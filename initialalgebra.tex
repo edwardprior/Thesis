@@ -1,0 +1,866 @@
+\documentclass{amsart} % default font size is 10pt
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+\usepackage{latexsym}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amscd}
+\usepackage{graphicx}
+\usepackage{eucal}
+\usepackage{amsthm}
+\usepackage[all]{xy}
+\usepackage{pdfsync}
+\usepackage{xspace}
+\usepackage[unicode=true, pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,
+ breaklinks=false,
+ backref=false,
+ colorlinks=true,
+ %linkcolor=blue!70!black,
+ citecolor=black,
+ urlcolor=blue!78!red,
+ final
+]{hyperref}
+\usepackage[capitalise]{cleveref}
+\newcommand{\fref}{\cref}
+\newcommand{\Fref}{\Cref}
+\newcommand{\prettyref}{\cref}
+\newcommand{\newrefformat}[2]{}
+
+% Cleveref definitions
+\crefname{prop}{Proposition}{Propositions}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{defn}{Definition}{Definitions}
+\crefname{notn}{Notation}{Notations}
+\crefname{construction}{Construction}{Constructions}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{rem}{Remark}{Remarks}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{scholium}{Scholium}{Scholia}
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Display}{Displays}
+\crefname{eq}{Display}{Displays}
+\crefname{eqn}{Display}{Displays}
+
+\newenvironment{eq}{\begin{equation}}{\end{equation}}
+\newenvironment{eqn}{\begin{equation}}{\end{equation}}
+\newenvironment{eq*}{\begin{equation*}}{\end{equation*}}
+\newenvironment{eqn*}{\begin{equation*}}{\end{equation*}}
+
+%\usepackage{natbib}
+\newcommand{\bs}{\boldsymbol}
+\newcommand{\mb}{\mathbf}
+\renewcommand{\dot}{\centerdot}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\m}[1]{\mathcal{#1}}
+\renewcommand{\SS}{\mathcal{S}}
+\newcommand{\colim}{\textrm{colim }}
+\newcommand{\f}[1]{\ensuremath{\mathcal{#1}}\xspace}
+\newcommand{\g}[1]{\ensuremath{\mathbb{#1}}\xspace}
+\newcommand{\Cat}{\ensuremath{\textnormal{Cat}}\xspace}
+\newcommand{\cd}[2][]{\vcenter{\hbox{\xymatrix#1{#2}}}}
+\newcommand{\Set}{\ensuremath{\textnormal{Set}}\xspace}
+\newcommand{\twocat}{\ensuremath{\textnormal{2-Cat}}\xspace}
+\newcommand{\Icon}{\ensuremath{\textnormal{Icon}}\xspace}
+%\newcommand{\to}{\rightarrow}
+
+%\pdfshift
+
+\begin{document}
+\numberwithin{equation}{section}% [if desired]
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{lem}[equation]{Lemma}
+\newtheorem{cor}[equation]{Corollary}
+
+\newtheoremstyle{example}{\topsep}{\topsep}%
+     {}%         Body font
+     {}%         Indent amount (empty = no indent, \parindent = para indent)
+     {\bfseries}% Thm head font
+     {.}%        Punctuation after thm head
+     {2pt}%     Space after thm head (\newline = linebreak)
+     {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}%         Thm head spec
+
+   \theoremstyle{example}
+   \newtheorem{nota}[equation]{Notation}
+   \newtheorem{example}[equation]{Example}
+   \newtheorem{defi}[equation]{Definition}
+   \newtheorem{rem}[equation]{Remark}
+	\newtheorem{comment}[equation]{Comment}
+
+\tableofcontents
+
+\section{Free algebras of action operads}
+
+Our ultimate goal for this chapter is to understand the free braided monoidal category on an finite number of invertible objects. Thus, now that we have a firm grasp on action operads and their algebras, we should begin to think about the various free constructions they can form. 
+
+\subsection{The free algebra on $n$ objects} 
+
+We begin with the simplest case, which we will use extensively when calculating the invertible case later on. In the paper \cite{operadborel}, Gurski establishes how to contruct certain free action operad algebras through the use of the Borel construction. What follows in this section is a quick summary of the results which will be useful for our purposes. For a more detailed treatment please refer to \cite{operadborel}.
+
+\begin{prop}\label{freealg} There exists a free $\mathrm{E}G$-algebra on $n$ objects. That is, there is an $\mathrm{E}G$-algebra $Y$ such that for any other $\mathrm{E}G$-algebra $X$, we have an isomorphism of categories
+\begin{eq*} \mathrm{E}G\mathrm{Alg}_S(Y, X) \cong X^n .\end{eq*}
+\end{prop}
+\begin{proof}
+There is an obvious forgetful 2-functor $U: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{Cat}$ sending $\mathrm{E}G$-algebras to their underlying categories. $U$ has a left adjoint, which we call the free 2-functor $F : \mathrm{Cat} \to \mathrm{E}G\mathrm{Alg}_S$joint to it. It follows immediately that
+\begin{eq*}\begin{array}{rll}
+		U(X)^n & = & \mathrm{Cat}(\{1, ..., n\}, U(X) ) \\
+		& \cong & \mathrm{E}G\mathrm{Alg}_S( F(\{1, ..., n\}), X) 
+		\end{array}.
+\end{eq*}
+Since $X$ and $U(X)$ are obviously isomorphic as categories, this shows that $F(\{1, ..., n\})$ is the free algebra on $n$ objects as required. 
+\end{proof}
+
+\begin{defi}\label{Gndef} Let $\mathbb{G}_n$ denote the $\mathrm{E}G$-algebra
+\begin{eq*} \mathbb{G}_n = \coprod_{m \geq 0} \mathrm{E}G(m) \times_{G(m)} \{ 1,...,n \}^m .\end{eq*}
+\end{defi}
+
+Objects in this algebra are equivalence classes of tuples $(g; x_1, ..., x_m)$, $g \in G(m)$, $x_i \in \{1, ..., n\}$ under the relation
+\begin{eq*} ( \, gh \, ; \, x_1, \, ..., \, x_m \, ) \sim ( \, g \, ; \, x_{\pi(h)^{-1}(1)}, \, ..., \, x_{\pi(h)^{-1}(m)} \, ). \end{eq*}
+Using this relation we can write each object uniquely in the form $[e; x_1, ..., x_m]$, $x_i \in \{1, ..., n\}$, and we will adopt the notation $x_1 \otimes ... \otimes x_m$ for this equivalence class. In other words, we're viewing $\mathrm{Ob}(\mathbb{G}_n)$ as the monoid $\mathbb{N}^{*n}$. Also, to avoid any confusion, we'll switch to calling the generators $1, ..., n$ of this monoid $z_1, ..., z_n$ instead.
+
+Similarly, the morphisms of $\mathbb{G}_n$ are the equivalence classes of the maps
+\begin{eq*} (! ; id_{x_1}, ..., id_{x_m}) : ( g ; x_1, ..., x_m ) \to ( h ; x_1, ..., x_m ). \end{eq*}
+Using the relation we can write each morphism uniquely in the form
+\begin{eq*} [g ; id_{x_1},...,id_{x_m}] \, : \, x_1 \otimes ... \otimes x_m \to x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)},\end{eq*}
+with $x_i \in \{z_1, ..., z_n \}$. The action of $\mathrm{E}G$ on objects of $\mathbb{G}_n$ is permutation and tensor product, and the action on morphisms is given by
+\begin{eq*} \alpha( \, g \, : \, [h_1; id_{x_1}, ..., id_{x_{m_1}}], \, ..., \, [h_k; id_{x_1}, ..., id_{x_{m_k}}] \, ) = [ \, \mu(g;h_1, .., h_k) \, ; \, id_{x_1}, \, ..., \, id_{x_{m_k}} \, ] \end{eq*}
+Notice that by the tensor product notation we adopted earlier the object $[e; x]$ is written as just $x$, and so $[e; id_x] = id_{[e;x]}$ should be written as $id_x$, and hence by the above $[g; id_{x_1}, ..., id_{x_m}]$ is really $\alpha(g; id_{x_1}, ..., id_{x_m})$.
+
+\begin{thm}\label{freealg} $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects. That is, 
+\begin{eq*}  F(\{1, ..., n\}) = \mathbb{G}_n \end{eq*}
+\end{thm}
+
+\subsection{The free algebra on $n$ invertible objects}
+
+We saw in Proposition \ref{freealg} that the existence of a free $\mathrm{E}G$-algebra on $n$ objects can be proven by taking the left adjoint of a 2-functor which forgets about the algebra structure. Now we want to extend this idea into the realm of algebras on invertible objects, and so for the analogous approach we need to find a new 2-functor that lets us forget about any non-invertible objects. Then hopefully we can find its left adjoint too, and use it to freely add inverses to $\mathbb{G}_n$. First though, we need to make this concept of `forgetting non-invertible objects' a little more precise.
+
+\begin{defi} Given an $\mathrm{E}G$-algebra $X$, we denote by $X_{\mathrm{inv}}$ the sub-$\mathrm{E}G$-algebra containing all invertible objects in $X$ and the isomorphisms between them. \end{defi}
+
+Note that this is indeed a well-defined $\mathrm{E}G$-algebra. If $x_1, ..., x_m$ are invertible objects with inverses $x_1^*, ..., x_m^*$, then $\alpha(g; x_1, ..., x_m)$ is an invertible object with inverse $\alpha(g; x_m^*, ..., x_1^*)$, since 
+\begin{eq*} \begin{array}{ll}
+		& \alpha(g; x_1, ..., x_m) \otimes \alpha(g; x_m^*, ..., x_1^*) \\
+		= & \big( x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \big) \otimes \big( x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \big) \\
+		= & I \\
+		& \\
+		& \alpha(g; x_m^*, ..., x_1^*) \otimes \alpha(g; x_1, ..., x_m) \\
+		= & \big( x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \big) \otimes \big( x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \big) \\
+		= & I
+		\end{array}.
+\end{eq*}
+Likewise, if $f_1, ..., f_m$ are isomorphisms from invertible objects $x_1, ..., x_m$ to invertible objects $y_1, ..., y_m$, then $\alpha(g; f_1, ..., f_m)$ is a map from the invertible object $\alpha(g; x_1, ..., x_m)$ to the invertible object $\alpha(g; y_1, ..., y_m)$, and it has an inverse $\alpha(g^{-1}; f_{\pi(g)(1)}^{-1}, ..., f_{\pi(g)(m)}^{-1})$, since
+\begin{eq*} \begin{array}{ll}
+		& \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \circ \alpha( \, g \, ; \, f_1, ..., f_m \,) \\
+		= & \alpha\big( \, g^{-1}g \, ; \, f_1^{-1} f_1, \, ..., \, f_m^{-1} f_m \, \big) \\
+		= & id_{x_1 \otimes ... \otimes x_m} \\
+		& \\
+		& \alpha( \, g \, ; \, f_1, ..., f_m \,) \circ \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \\
+		= & \alpha\big( \, gg^{-1} \, ; \, f_{\pi(g)(1)} f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)} f_{\pi(g)(m)}^{-1} \, \big) \\
+		= & id_{y_{\pi(g)(1)} \otimes ... \otimes y_{\pi(g)(m)}}
+		\end{array}.
+\end{eq*}
+Clearly then, $X_{\mathrm{inv}}$ is the correct algebra for our new forgetful 2-functor to send $X$ to. Knowing this, we can contruct the rest of the functor fairly easily.
+
+\begin{prop} \label{invprop} The assignment $X \mapsto X_{\mathrm{inv}}$ can be extended to a 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
+\end{prop}
+\begin{proof}
+Let $F: X \to Y$ be a map of $\mathrm{E}G$-algebras. If $x$ is an invertible object in $X$ with inverse $x^*$, then $F(x)$ is an invertible object in $Y$ with inverse $F(x^*)$, by
+\begin{eq*} F(x) \otimes F(x^*) = F(x \otimes x^*) = F(I) = I \end{eq*}
+\begin{eq*} F(x^*) \otimes F(x) = F(x^* \otimes x) = F(I) = I \end{eq*}
+Since $F$ sends invertible objects to invertible objects, it will also send isomorphisms of invertible objects to isomorphisms of invertible objects. In other words, the map $F: X \to Y$ can be restricted to a map $F_{\mathrm{inv}} : X_{\mathrm{inv}} \to Y_{\mathrm{inv}}$. Moreover, we have that
+\begin{eq*} (F \circ G)_{\mathrm{inv}}(x) = F \circ G(x) = F_{\mathrm{inv}} \circ G_{\mathrm{inv}}(x) \end{eq*}
+\begin{eq*} (F \circ G)_{\mathrm{inv}}(f) = F \circ G(f) = F_{\mathrm{inv}} \circ G_{\mathrm{inv}}(f) \end{eq*}
+and so the assignment $F \mapsto F_{\mathrm{inv}}$ is clearly functorial. Next, let $\theta : F \Rightarrow G$ be an $\mathrm{E}G$-monoidal natural transformation. Choose an invertible object $x$ from $X$, and consider the component map of its inverse, $\theta_{x^*} : F(x^*) \to G(x^*)$. Since $\theta$ is monoidal, we have $\theta_{x^*} \otimes \theta_x = \theta_I = I$ and $\theta_x \otimes \theta_{x^*} = I$, or in other words that $\theta_{x^*}$ is the monoidal inverse of $\theta_x$. We can use this fact to construct a compositional inverse as well, namely $id_{F(x)} \otimes \theta_{x^*} \otimes id_{G(x)}$, which can be seen as follows:
+\begin{eq*}  \begin{array}{rll}
+		\big( id_{F(x)} \otimes \theta_{x^*} \otimes id_{G(x)} \big)  \circ \theta_x & = & \theta_x \otimes \theta_{x^*} \otimes id_{G(x)} \\
+		& = &  id_{G(x)} \\
+		&& \\
+		\theta_x \circ  \big( id_{F(x)} \otimes \theta_{x^*} \otimes id_{G(x)} \big) & = & id_{F(x)} \otimes \theta_{x^*} \otimes \theta_x \\
+		& = &  id_{F(x)} \\
+		\end{array} 
+\end{eq*}
+Therefore, we see that all the components of our transformation on invertible objects are isomorphisms, and hence we can define a new transformation $\theta_{\mathrm{inv}}: F_{\mathrm{inv}} \Rightarrow G_{\mathrm{inv}}$ whose components are just $(\theta_{\mathrm{inv}})_x = \theta_x$. The assignment $\theta \mapsto \theta_{\mathrm{inv}}$ is also clearly functorial, and thus we have a complete 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
+\end{proof}
+
+\begin{prop} The 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$ has a left adjoint, $L: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
+\end{prop}
+\begin{proof} To begin, consider the 2-monad $\mathrm{E}G(\_)$. This is a finitary monad, that is it preserves all filtered colimits, and it is a 2-monad over $\mathrm{Cat}$, which is locally finitely presentable. It follows from this that $\mathrm{E}G\mathrm{Alg}_S$ is itself locally finitely presentable. Thus if we want to prove $(\_)_{\mathrm{inv}}$ has a left adjoint, we can use the Adjoint Functor Theorem for locally finitely presentable categories, which amounts to showing that $(\_)_{\mathrm{inv}}$ preserves both limits and filtered colimits.
+\begin{itemize}
+\item Given an indexed collection of $\mathrm{E}G$-algebras $X_i$, the $\mathrm{E}G$-action of their product $\prod X_i$ is defined componentwise. In particular, this means that the tensor product of two objects in $\prod X_i$ is just the collection of the tensor products of their components in each of the $X_i$. An invertible object in $\prod X_i$ is thus simply a family of invertible objects from the $X_i$ --- in other words, $(\prod X_i)_{\mathrm{inv}} = \prod (X_i)_{\mathrm{inv}}$.
+\item Given maps of $\mathrm{E}G$-algebras $F: X \to Z$, $G : Y \to Z$, the $\mathrm{E}G$-action of their pullback $X \times_Z Y$ is also defined componentwise. It follows that an invertible object in $X \times_Z Y$ is just a pair of invertible objects $(x, y)$ from $X$ and $Y$, such that $F(x) = G(y)$. But this is the same as asking for a pair of objects $(x, y)$ from $X_{\mathrm{inv}}$ and $Y_{\mathrm{inv}}$ such that $F_{\mathrm{inv}}(x) = G_{\mathrm{inv}}(y)$, and hence $(X \times_Z Y)_{\mathrm{inv}} = X_{\mathrm{inv}} \times_{Z_{\mathrm{inv}}} Y_{\mathrm{inv}}$.
+\item Given a filtered diagram $D$ of $\mathrm{E}G$-algebras, the $\mathrm{E}G$-action of their colimit $\mathrm{colim}(D)$ is defined in the following way: use filteredness to find an algebra which contains (representatives of the classes of) all the things you want to act on, then apply the action of that algebra. In the case of tensor products this means that $[x]\otimes[y] = [x \otimes y]$, and thus an invertible object in $\mathrm{colim}(D)$ is just (the class of) an invertible object in one of the algebras of $D$. In other words, $\mathrm{colim}(D)_{\mathrm{inv}} = \mathrm{colim}(D_{\mathrm{inv}})$.
+\end{itemize}
+Preservation of products and pullbacks gives preservation of limits, and preservation of limits and filtered colimits gives the result.
+\end{proof}
+
+With this new 2-functor $L: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$, we now have the ability to `freely add inverses to objects' in any $\mathrm{E}G$-algebra we want. The algebra $L\mathbb{G}_n$ is then a clear candidate for our free algebra on $n$ invertible objects, and indeed the proof of this is very simple.
+
+\begin{thm} There exists a free $\mathrm{E}G$-algebra on $n$ invertible objects. Specifically, the algebra $L\mathbb{G}_n$ is such that for any other $\mathrm{E}G$-algebra $X$, we have an isomorphism of categories
+\begin{eq*} \mathrm{E}G\mathrm{Alg}_S(L\mathbb{G}_n, X) \cong (X_{\mathrm{inv}})^n \end{eq*}
+\end{thm}
+\begin{proof}
+Using the adjunction from the previous Proposition along with the one from Theorem \ref{freealg}, we see that
+\begin{eq*}\begin{array}{rll}
+		 U(X_{\mathrm{inv}})^n & = & \mathrm{Cat}(\{1, ..., n\}, U(X_{\mathrm{inv}}) ) \\
+		& \cong & \mathrm{E}G\mathrm{Alg}_S( F(\{1, ..., n\}), X_{\mathrm{inv}}) \\
+		& \cong & \mathrm{E}G\mathrm{Alg}_S( LF(\{1, ..., n\}), X)
+\end{array}
+ \end{eq*}
+As before, $X_{\mathrm{inv}}$ and $U(X_{\mathrm{inv}})$ are obviously isomorphic as categories, and so $LF(\{1, ..., n\}) = L\mathbb{G}_n$ satisfies the requirements for the free algebra on $n$ invertible objects.
+\end{proof}
+
+\subsection{$L(X)$ as an initial algebra}
+
+We have now proven that a free $\mathrm{E}G$-algebra on $n$ invertible objects does indeed exist. But this fact on its own is not very helpful. To be able to actually use the free algebra $L\mathbb{G}_n$, we need to know how to contruct it explicitly, in terms of its objects and morphisms. We could do this by finding a detailed characterisation of the 2-functor $L$, and then applying this to our explicit description of $\mathbb{G}_n$ from Definition \ref{Gndef}. However, this would probably be much more effort than is required, since it would involve determining the behaviour of $L$ in many situtations we aren't interested in, and we also wouldn't be leveraging $\mathbb{G}_n$'s status as a free algebra to make the calculations any easier. We will try a different strategy instead. We begin by noticing some special properties of the functor $L$.
+
+\begin{prop} \label{linveql} For any $\mathrm{E}G$-algebra $X$, we have that $L(X)_{\mathrm{inv}} = L(X)$.
+\end{prop}
+\begin{proof}
+From the definition of adjunctions, the isomorphisms
+\begin{eq*}\mathrm{E}G\mathrm{Alg}_S(LX , Y) \cong \mathrm{E}G\mathrm{Alg}_S(X, Y_{\mathrm{inv}}) \end{eq*}
+are subject to certain naturality conditions. Specifically, given $F: X' \to X$ and $G: Y \to Y'$ we get a commutative diagram
+\begin{eq*} \xymatrix{
+\mathrm{E}G\mathrm{Alg}_S(LX , Y) \ar[d]_{G \circ \_ \circ LF} \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X, Y_{\mathrm{inv}}) \ar[d]^{G_{\mathrm{inv}} \circ \_ \circ F} \\
+\mathrm{E}G\mathrm{Alg}_S(LX' , Y') \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X', Y'_{\mathrm{inv}}) }.
+\end{eq*}
+Consider the case where $F$ is the identity map $id_X : X \to X$ and $G$ is the inclusion $j: L(X)_{\mathrm{inv}} \to L(X)$. Note that because $j$ is an inclusion, the restriction $j_{\mathrm{inv}}: (L(X)_{\mathrm{inv}})_{\mathrm{inv}} \to L(X)_{\mathrm{inv}}$ is also an inclusion, but since $((\_)_{\mathrm{inv}})_{\mathrm{inv}} = (\_)_{\mathrm{inv}}$, we have that $j_{\mathrm{inv}} = id$. It follows that
+\begin{eq*} \xymatrix{
+\mathrm{E}G\mathrm{Alg}_S(LX , LX_{\mathrm{inv}}) \ar[d]_{j \circ \_} \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X, LX_{\mathrm{inv}}) \ar@{=}[d] \\
+\mathrm{E}G\mathrm{Alg}_S(LX , LX) \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X, LX_{\mathrm{inv}}) }.
+\end{eq*}
+Therefore, for any map $f: LX \to LX$ there exists a unique $g: LX \to LX_{\mathrm{inv}}$ such that $j \circ g =f$. But this means that for any such $f$, we must have $\mathrm{im}(f) \subseteq L(X)_{\mathrm{inv}}$, and so in particular $L(X) = \mathrm{im}(id_{LX}) \subseteq L(X)_{\mathrm{inv}}$. Since $L(X)_{\mathrm{inv}} \subseteq L(X)$ by definition, we obtain the result.
+\end{proof}
+
+This result is not especially surprising. Intuitively, it just says that when you freely add inverses to an algebra, every object ends up with an inverse. The next result however if far less expected.
+
+\begin{defi} Given an $\mathrm{E}G$-algebra $X$, let $C(X)$ denote the comma category $\big( \, id_X \downarrow (\_)_{\mathrm{inv}} \, \big)$. That is, $C(X)$ is the coslice category whose objects are pairs $(Y, \, \psi: X \to Y_{\mathrm{inv}})$ and whose morphisms $f: (Y, \psi) \to (Y', \psi')$ are maps $f: Y \to Y'$ such that $f_{\mathrm{inv}} \circ \psi = \psi'$. \end{defi}
+
+\begin{prop} $L(X)$ is an initial object in $C(X)$.
+\end{prop}
+\begin{proof} Consider the adjuntion isomorphism
+\begin{eq*}\mathrm{E}G\mathrm{Alg}_S( LX , Y) \cong \mathrm{E}G\mathrm{Alg}_S(X, Y_{\mathrm{inv}}). \end{eq*}
+Let $\psi: X \to Y_{\mathrm{inv}}$ be an arbitrary object from $C(X)$, whose image under the isomorphism we will call $f : LX \to Y$. Also, call the image of $id_{LX}$ under the adjunction $\phi$. As in the proof of Proposition \ref{linveql}, we consider the naturality conditions for adjunction isomorphisms. In particular, the commutative diagram we get when we choose $f$ as our $F$ and $id_{X}$ as $G$ is
+\begin{eq*} \xymatrix{
+\mathrm{E}G\mathrm{Alg}_S(LX , LX) \ar[d]_{f \circ \_} \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X,  LX) \ar[d]^{f_{\mathrm{inv}} \circ \_ } \\
+\mathrm{E}G\mathrm{Alg}_S(LX , Y) \ar[r]^{\sim} & \mathrm{E}G\mathrm{Alg}_S(X, Y_{\mathrm{inv}}) }.
+\end{eq*}
+Note that this uses $(LX)_{\mathrm{inv}} = LX$, by Proposition \ref{linveql}. Now, by starting at the top-left corner of this diagram with the map $id_{LX}$ and travelling either way around the diagram, we see that $f_{\mathrm{inv}} \circ \phi = \psi$. In other words, given any object $\psi$ of $C(X)$, there exists at least one map $f$ in $C(X)$ from $\phi$ onto $\psi$. Moreover this map is unique, since $f$ is the unique choice of $F$ such that the image of $F \circ id$ under the adjunction isomorphism is $\psi$. Therefore, $\phi: X \to LX$ is an initial object in $C(X)$.
+\end{proof}
+
+Being able to view $L(\mathbb{G}_n)$ is an initial object in the comma category $C(\mathbb{G}_n)$ will prove immensely useful in the coming sections. This is because it lets us think about the properties of $L(\mathbb{G}_n)$ in terms of maps $\psi: \mathbb{G}_n \to X_{\mathrm{inv}}$, which is exactly the context where we can exploit the fact that $\mathbb{G}_n$ is a free algebra.
+
+Also, from now on rather of writing objects in $C(\mathbb{G}_n)$ as maps $\psi: \mathbb{G}_n \to Y_{\mathrm{inv}}$ we will instead just let $X = Y_{\mathrm{inv}}$ and speak of maps $\psi: \mathbb{G}_n \to X$. This is for notational convenience, and shouldn't be a problem so long as we remember that the targets of these maps will only ever contain invertible objects and morphisms.
+
+\subsection{Objects and morphisms of the initial algebras}
+
+We know that the functor $L$ represents the process of `freely adding inverses to objects' of a given $\mathrm{E}G$-algebra. Therefore, it makes sense to expect the objects of $L(\mathbb{G}_n)$ to form not just a monoid but a group, and in particular be the groupification of $\mathbb{G}_n$'s monoid of objetcs. As we saw in Definition \ref{Gndef} the objects of $\mathbb{G}_n$ are $\mathbb{N}^{*n}$, and so we want to have that $\mathrm{Ob}(L(\mathbb{G}_n)) = \mathbb{Z}^{*n}$. This intuition is correct, and can justified as follows:
+
+\begin{prop}\label{Zobj} Let $\phi: \mathbb{G}_n \to Z$ be an initial object in $C(\mathbb{G}_n)$. Then $\mathrm{Ob}(Z) = \mathbb{Z}^{*n}$, and the restriction of $\phi$ to objects $\phi_{\mathrm{ob}}$ is the obvious inclusion $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$.
+\end{prop}
+\begin{proof}
+To begin, we will first construct a non-initial object in $C(\mathbb{G}_n)$ which possesses all of the required properties. Let $H$ be the $\mathrm{E}G$-algebra whose objects are $\mathrm{Ob}(H) = \mathbb{Z}^{*n}$ and which has a unique morphism between each of its objects. In order to define a map of $\mathrm{E}G$-algebras $\mathbb{G}_n \to H$ we need an underlying monoid homomorphism $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$ between their objects. There is a unique $\psi: \mathbb{G}_n \to H$ where this homomorphism $\psi_{\mathrm{ob}}$ is the obvious inclusion --- the result of $\psi$ on morphisms is just determined by their source and target. Clearly this map is an object in $C(\mathbb{G}_n)$.
+
+Now, let $\phi: \mathbb{G}_n \to Z$ be our initial object in $C(\mathbb{G}_n)$. It follows that there is a unique algebra map $u: Z \to H$ with $u\phi = \psi$, and hence a monoid homomorphism $u_{\mathrm{ob}}$ making
+\begin{eq*} \xymatrix{
+& \mathbb{N}^{*n} \ar[dl]_{\phi_{\mathrm{ob}}} \ar[dr]^-{\psi_{\mathrm{ob}}} & \\
+\mathrm{Ob}(Z) \ar[rr]^{u_{\mathrm{ob}}} & & \mathbb{Z}^{*n} }
+\end{eq*}
+commute. This fact is enough to determine much of the behaviour of $u_{\mathrm{ob}}$. For any generator $z_i$ of $\mathbb{N}^{*n}$, we have $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)) = \psi_{\mathrm{ob}}(z_i) = z_i$ and $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)^*) = z_i^*$. Since the $z_i, z_i^*$ are the generators of $\mathbb{Z}^{*n}$, it follows that $u_{\mathrm{ob}}$ is surjective, even when restricted to $\langle \mathrm{im}(\phi) \rangle$. Moreover, $\psi_{\mathrm{ob}}$ is injective, so $\phi_{\mathrm{ob}}$ is also injective, and hence $u_{\mathrm{ob}}$ is injective on $\langle \mathrm{im}(\phi) \rangle$ too. In other words, $\mathrm{Ob}(Z)$ contains a submonoid $\langle \mathrm{im}(\phi) \rangle$ which is isomorphic to $\mathbb{Z}^{*n}$. 
+
+Finally, we wish to show that this submonoid is actually all of  $\mathrm{Ob}(Z)$. Let $J$ be the $\mathrm{E}G$-algebra with objects $\mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle$ and a unique morphism between each. As before, we can construct a new object $\chi : \mathbb{G}_n \to J$ of $C(\mathbb{G}_n)$ just by defining $\chi_{\mathrm{ob}}$, since the morphisms are determined by their source and target. We choose $\chi_{\mathrm{ob}}(x) = [\phi_{\mathrm{ob}}(x)]$ for all $x \in \mathbb{N}^{*n}$, which works since $\chi_{\mathrm{ob}}(z_i) = 0$ is invertible for the generator $z_i$. Now, initiality of $\phi$ should gives us a unique $v : Z \to J$ such that 
+\begin{eq*} \xymatrix{
+& \mathbb{N}^{*n} \ar[dl]_{\phi_{\mathrm{ob}}} \ar[dr]^-{\chi_{\mathrm{ob}}} & \\
+\mathrm{Ob}(Z) \ar[rr]^{v_{\mathrm{ob}}} & & \mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle }
+\end{eq*}
+commutes. But there are at least two options here --- one is the $v$ whose underlying monoid homomorphism is $v_{\mathrm{ob}}(x) = [x]$, and the other is the one with $v_{\mathrm{ob}}(x) = 0$. It follows that these must be the same map, and thus $ \mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle = 0$, that is, $\mathrm{Ob}(Z) =  \langle \mathrm{im}(\phi) \rangle$. Returning to the first of our diagrams, we see now that $u_{\mathrm{ob}} : \mathrm{Ob}(Z) \to \mathbb{Z}^{*n}$ is fully injective and surjective. Therefore $ \mathrm{Ob}(Z) \cong \mathbb{Z}^{*n}$, and when viewed this way $\phi_{\mathrm{ob}}$ is the obvious inclusion $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$.
+\end{proof}
+
+Unlike with objects, there is no simple intuition for how the application of $L$ will generate the morphisms of $L\mathbb{G}_n$ from those in $\mathbb{G}_n$. Obviously we will need to add a host of new action morphisms between all of the new objects, and the various composites of these. But we will also need new action maps between old objects, based on new ways of viewing them as a tensor product. For example, we must have an $\alpha(g; id_x, id_{x^*})$, which will be a new automorphism of $0 = x \otimes x^* = x^* \otimes x$. Should any of these new maps actually be the equal to ones inherited from $\mathbb{G}_n$? And how do the composites of these things relate to one another? It is not immediately clear. 
+
+However, what we do know is that all of the morphisms in $\mathbb{G}_n$ can be written as action morphisms. And there is some sense in which we shouldn't expect a free $\mathrm{E}G$-algebra contruction to add any new maps that don't come from the $\mathrm{E}G$-action. This seems to suggest that $L\mathbb{G}_n$ should also only contain action morphisms. We will need to make our reasoning much more rigourous before we can can prove this though, so we start by introducing some new terminology.
+
+\begin{defi} \label{mgd} For an element $w$ of $\mathbb{Z}^{*n}$, let the minimal generator decomposition of $w$ be the unique finite sequence $d(w) = (d(w)_1, ..., d(w)_k)$ such that
+\begin{eq*} d(w)_i \in \{z_1, z_1^*, ..., z_n, z_n^* \}, \quad \bigotimes d(w)_i = w, \quad d(w)_{i+1} \neq d(w)_i^* \end{eq*}
+for all $1 \leq i \leq k$.
+\end{defi}
+
+In other words, the minimal generator decomposition of an object is the shortest way of writing it as a tensor product of generators $z_i$.
+
+\begin{defi} Let $f_i: x_i \to y_i$, $1 \leq i \leq m$, be maps in an $\mathrm{E}G$-algebra $X$. We say that the action morphism $\alpha(g; f_1, .., f_m)$ has source sequence $(x_1, ..., x_m)$ and target sequence $(y_{\pi(g)^{-1}(1)}, ..., y_{\pi(g)^{-1}(1)})$. \end{defi}
+
+The purpose of source and target sequences is to allow us to better talk about the composition of action morphisms. Specifically, we know that if the target of $\alpha(g; id_{w_1}, ..., id_{w_m})$ is the same as the source of $\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'})$ then those two maps can be composed, just like any other morphisms. But if the target sequence of $\alpha(g; id_{w_1}, ..., id_{w_m})$ is the same as the source sequence of $\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'})$, then we can go one step futher and express their composite as an action morphism as well, since from the definition of $\mathrm{E}G$-actions we know that
+\begin{eq*}\begin{array}{rll}
+		\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'}) \circ \alpha(g; id_{w_1}, ..., id_{w_m}) & = & \alpha(g'g; id_{w_1}, ..., id_{w_m}) \\
+		\mathrm{if} \quad w_{\pi(g)^{-1}(i)} & = & w_i' \quad \forall i 
+		\end{array}.
+\end{eq*}
+This fact will be important for figuring out what new maps will need to appear in $L\mathbb{G}_n$. To get the most use out of it though, we'll need the following result about rearranging source and target sequences.
+
+\begin{prop}\label{zerosubseq} Let $x_1, ..., x_m$ be a sequence of objects from $\mathrm{E}G$-algebra $X$ which has a contiguous subsequence $x_i, ..., x_j$ with $x_i \otimes ... \otimes x_j = I$. Then there exists $g \in G(m)$ such that the identity $id_{x_1 \otimes ... \otimes x_m}$ can be written as an action map $\alpha(g; id_{x_1}, ..., id_{x_m} )$ with target sequence 
+\begin{eq*} ( \, x_1, \, ..., \, x_{i-1}, \, x_{j+1}, \, ..., \, x_m, \, x_i, \, ..., \, x_j \, ). \end{eq*}
+\end{prop}
+\begin{proof}
+To begin, choose an arbitrary element $h$ of $G(2)$ whose underlying permutation is $\pi(h) = (1 2)$. Since the map $\pi$ is surjective, such an $h$ always exists. Now consider the following manipulations of action morphisms:
+\begin{eq*}\begin{array}{rll}
+		\alpha(h; id_y, id_z) & = & \alpha(h; id_y \otimes id_I, id_z) \\
+		& = & \alpha( \, h \, ; \, \alpha(e_2; id_y, id_I), \, id_z \,) \\
+		& = & \alpha( \, \mu(h; e_2, e_1) \, ; \, id_y , \, id_I, \, id_z \, ) \\
+		&& \\
+		\alpha(h; id_y, id_z) & = & \alpha(h; id_y, id_z) \otimes id_I \\
+		& = & \alpha( \, e_2 \, ; \, \alpha(h; id_y, id_z), \, id_I \, ) \\
+		& = & \alpha( \, \mu(e_2; h, e_1) \, ; \, id_y, \, id_z \, id_I \, )
+		\end{array}.
+\end{eq*}
+Since these two maps are the same, we can compose one with the inverse of the other to get the identity, $id_{y \otimes z}$. However, the maps both have target sequence $(z, y, I)$, so this composite can be rephrased as an action morphism:
+\begin{eq*}\begin{array}{rll}
+		id_{y \otimes z} & = & \alpha(h; id_y, id_z)^{-1} \circ \alpha(h; id_y, id_z) \\
+		& = & \alpha\big( \, \mu(e_2; h, e_1) \, ; \, id_y, \, id_z, \, id_I \, \big)^{-1} \circ \alpha\big( \, \mu(h; e_2, e_1) \, ; \, id_y , \, id_I, \, id_z \, \big) \\
+		& = & \alpha\big( \, \mu(e_2; h, e_1)^{-1} \, ; \, id_z, \, id_y, \, id_I \, \big) \circ \alpha\big( \, \mu(h; e_2, e_1) \, ; \, id_y , \, id_I, \, id_z \, \big) \\
+		& = & \alpha\big( \, \mu(e_2; h^{-1}, e_1)\mu(h; e_2, e_1) \, ; \, id_y, \, id_I, \, id_z \, \big) \\
+		\end{array}.
+\end{eq*}
+This action map has target sequence $(y, z, I)$, so to arrive at the result we just need to use the substitutions $y = x_1 \otimes ... \otimes x_{i-1}$, $I = x_i \otimes ... \otimes x_j$, $z = x_{j+1} \otimes ... \otimes x_m$ and then expand:
+\begin{eq*}\begin{array}{rl}
+		& id_{x_1 \otimes ... \otimes x_m} \\
+		= & \alpha\big( \, \mu(e_2; h^{-1}, e_1)\mu(h; e_2, e_1) \, ; \, id_{x_1 \otimes ... \otimes x_{i-1}} , \, id_{x_i \otimes ... \otimes x_j}, \, id_{ x_{j+1} \otimes ... \otimes x_m} \, \big) \\ 
+		= & \alpha\Big( \, \mu\big( \, \mu(e_2; h^{-1}, e_1)\mu(h; e_2, e_1) \, ; \, e_{i-1}, \, e_{j-i+1}, \, e_{m-j} \big) \, ; \, id_{x_1}, \, ..., \, id_{x_m} \, \Big)
+
+		\end{array}.
+\end{eq*}
+Therefore we see that choosing $g = \mu\big( \, \mu(e_2; h^{-1}, e_1)\mu(h; e_2, e_1) \, ; \, e_{i-1}, \, e_{j-i+1}, \, e_{m-j} \big)$ gives the required action map.
+\end{proof}
+
+With this result under our belts, we are finally ready to describe the morphisms of $L\mathbb{G}_n$ as action maps.
+
+\begin{prop}\label{allmapsaction} Let $Z$ be an initial object in $C(\mathbb{G}_n)$. Then every morphism in $Z$ can be written as $\alpha(g; id_{w_1}, ..., id_{w_m})$, for some $g \in G(m)$ and $w_i \in \mathbb{Z}^{*n}$, not necessarily uniquely. 
+\end{prop}
+\begin{proof} Define $Z'$ to be the wide sub-$\mathrm{E}G$-algebra of $Z$ containing only morphisms of the form $\alpha(g; id_{w_1}, ..., id_{w_m})$. We wish to show that this is also initial, but first we need to check that it is even a well-defined $\mathrm{E}G$-algebra. The $\mathrm{E}G$-action is simple: for any maps $\alpha(h_1; id_{w_{1,1}}, ..., id_{w_{1,m_1}})$, ..., $\alpha(h_k; id_{w_{k,1}}, ..., id_{w_{k,m_k}})$, the action of $g \in G(k)$ on them is
+\begin{eq*}\begin{array}{ll}
+		& \alpha \big( \, g \, ; \,  \alpha(h_1; id_{w_{1,1}}, ..., id_{w_{1,m_1}}), \, ..., \, \alpha(h_k; id_{w_{k,1}}, ..., id_{w_{k,m_k}}) \, \big) \\
+		= & \alpha \big( \, \mu(g; h_1, ..., h_k) \, ; \, id_{w_{1,1}}, \, ..., \, id_{w_{k,m_k}} \, \big)
+		\end{array}.
+\end{eq*}
+which is in the correct form.
+
+Composition is more subtle. Let $\alpha(g; id_{w_1}, ..., id_{w_m})$ and $\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'})$ be two composable morphisms. Since they are composable, we know that the source of one must be equal to the target of the other. However, we wish to write their composite an action map itself, and we only know how to do this if they share a source and target sequence. Thus we seek a way to rewrite our two maps as action morphisms between different sequences but without changing their value. We begin by expanding the maps using minimal generator decompositions:
+\begin{eq*}\begin{array}{rll}
+		\alpha(g; id_{w_1}, ..., id_{w_m}) & = & \alpha( \, g \, ; \, id_{d(w_1)_1 \otimes ... \otimes d(w_1)_{k_1}}, \, ..., \, id_{d(w_m)_1 \otimes ... \otimes d(w_m)_{k_m}}) \\
+		& = & \alpha( \, \mu(g; e_{k_1}, ..., e_{k_m}) \, ; \, id_{d(w_1)_1} \, ..., \, id_{d(w_m)_{k_m}}) \\
+		& & \\
+		\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'}) & = & \alpha( \, \mu(g; e_{k_1'}, ..., e_{k_{m'}'}) \, ; \, id_{d(w_1')_1} \, ..., \, id_{d(w_{m'}')_{k_{m'}'}} )
+		\end{array}.
+\end{eq*}
+Now, the target sequence of this first map and the source sequence of the second may contain different entries and may even be of different lengths. However, since our two maps are composable, we do know that 
+\begin{eq*} w'_1 \otimes ... \otimes w'_m = w_{\pi(g)^{-1}(1)} \otimes ... \otimes w_{\pi(g)^{-1}(m')} \end{eq*}
+and hence
+\begin{eq*} d(w'_1) \otimes ... \otimes d(w'_m) = d(w_{\pi(g)^{-1}(1)}) \otimes ... \otimes d(w_{\pi(g)^{-1}(m')}). \end{eq*}
+The fact that everything in these tensorings is a generator means that the sequences must differ from each other only by the presence of some contiguous subsequences which tensor to give 0, so that those parts cancel out and the products are equal. But Proposition \ref{zerosubseq} gives us a way to move contiguous tensor 0 subsequences to the end of a source or target sequence without changing the value of the map --- by composing with the identity written as a certain action morphism --- and we can use this to solve our problem. In particular, let $(c_1, ..., c_j)$ be the concatenation of the contiguous tensor 0 subequences that appear in the target sequence $d(w_{\pi(g)^{-1}(i)})$, let $(c_1', ..., c_{j'}')$ be the concatenation of contiguous tensor 0 subequences appearing in target sequence $d(w'_i)$, and let $(y_1, ...., y_{m-j})$ be the sequence that remains after removing either the $c_i$ or the $c_i'$ from their respective sequences. Applying Proposition \ref{zerosubseq} to $\alpha( \, \mu(g; e_{k_1}, ..., e_{k_m}) \, ; \, id_{d(w_1)_1} \, ..., \, id_{d(w_m)_{k_m}})$ lets us express that map as an action morphism on identities with target sequence $(y_1, ..., y_{m-j}, c_1, ..., c_j)$, and then tensoring on the right by $id_0 = id_{c_1' \otimes ... \otimes c_{j'}}$ lets us re-express the same map again in the right form but with target sequence $(y_1, ..., y_{m-j}, c_1, ..., c_j, c_1', ..., c_{j'}')$. Similarly, tensoring $\alpha( \, \mu(g; e_{k_1'}, ..., e_{k_{m'}'}) \, ; \, id_{d(w_1')_1} \, ..., \, id_{d(w_{m'}')_{k_{m'}'}} )$ by $id_0 = id_{c_1 \otimes ... \otimes c_j}$ and then applying Proposition \ref{zerosubseq} lets us express this map in a form with source sequence $(y_1, ..., y_{m-j}, c_1, ..., c_j, c_1', ..., c_{j'}')$. 
+
+It follows that any composable action morphisms $\alpha(g; id_{w_1}, ..., id_{w_m})$, $\alpha(g'; id_{w_1'}, ..., id_{w_{m'}'})$ can be rewritten as action morphisms with a shared source and target sequence, and thus their composite can be expressed as a single action morphism of the right form. Therefore, composition is well-defined in $Z'$, and hence $Z'$ is a well-defined $\mathrm{E}G$-algebra.
+
+By Definition \ref{Gndef}, every morphism in $\mathbb{G}_n$ can be written uniquely as $[g ; id_{x_1},...,id_{x_m}] = \alpha(g;  id_{x_1},...,id_{x_m})$, for some $g \in G(m)$ and $x_1, ..., x_m \in \{ z_1, ..., z_n \}$ generators of $\mathbb{N}^{*n}$. Using this, we can define a map $\phi' : \mathbb{G}_n \to Z'$ which acts as $\phi$ does on objects and on morphisms by
+\begin{eq*} \phi(\alpha(g ; id_{x_1},...,id_{x_m})) = \alpha(g ; id_{\phi(x_1)},...,id_{\phi(x_m)}) \end{eq*}
+Now, since $Z$ is initial in $C(\mathbb{G}_n)$ each object $\psi : \mathbb{G}_n \to H$ has a corresponding map $u : Z \to H$ such that $u \phi = \psi$. We can use this to define a new map $u' : Z' \to H$ with $u' \phi' = \psi$ by simply letting $u'$ be the same as $u$ on objects and setting
+\begin{eq*} u'(\alpha(g; id_{w_1}, ..., id_{w_m})) = \alpha(g; id_{u'(w_1)}, ..., id_{u'(w_m)}) \end{eq*}
+However, this condition is a necessary part of $u'$ being a map of $\mathrm{E}G$-algebras, so we really had no choice about what to do with the morphisms. Thus $u'$ is the unique map such that $u' \phi' = \psi$, and hence $Z'$ is an initial object in $C(\mathbb{G}_n)$. But $Z'$ was subalgebra of $Z$, also an initial object, and this is only possible if in fact $Z' = Z$.
+\end{proof}
+
+Before moving on, notice that this result lets us immediately classify the connected components of $L\mathbb{G}_n$:
+
+\begin{prop}\label{concomp} The connected components of $\mathbb{G}_n$ are $\mathbb{N}^n$, with the assignment $[ \,\, ] : \mathbb{N}^{*n} \to \mathbb{N}^n$ of objects to their component being the quotient map of abelianisation. Also, if $Z$ is an initial object in $C(\mathbb{G}_n)$ then the connected components of $Z$ are $\mathbb{Z}^n$, with its assignment of objects to components also given by abelianisation, and with the restriction of $\phi$ to components $\phi_\pi : \mathbb{N}^n \to \mathbb{Z}^n$ being the obvious inclusion. 
+\end{prop}
+\begin{proof}All morphisms in $\mathbb{G}_n$ are of the form $\alpha(g; id_{w_1}, ..., id_{w_m})$ for some $g \in G(m)$ and $w_i \in \mathbb{N}^{*n}$. Since these have source $w_1 \otimes ... \otimes w_m$ and target $w_{\pi(g)^{-1}(1)} \otimes ... \otimes w_{\pi(g)^{-1}(m)}$, we see that two objects can be in the same connected component only if they can expanded as a tensor product in ways that are permutations of one another. Moreover, for any two objects where this is true --- say $w = w_1 \otimes ... \otimes w_m$ and target $w' = w_{\sigma^{-1}(1)} \otimes ... \otimes w_{\sigma^{-1}(m)}$ --- we can always find a map $\alpha(g; id_{w_1}, ..., id_{w_m})$  between them by choosing a $g$ with $\pi(g) = \sigma$, which we can do because $\pi$ is surjective. So two objects of $\mathbb{G}_n$ are in the same connected component if and only if their expansions are permutations of each others. Therefore, the canonical map $[ \,\, ] : \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n)$ sending each object to its connected component is just the map which forgets about these permutations, making the free product on $\mathbb{N}^{*n}$ commutative. That is, it is the quotient map for the abelianisation $q : \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{ab}$, and so $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$. 
+
+Since all morphisms in $Z$ can also be written as $\alpha(g; id_{w_1}, ..., id_{w_m})$, the same proof works there too, giving $\pi_0(Z) = \mathbb{Z}^n$ and $[ \,\, ]_Z = q : \mathbb{Z}^{*n} \to \mathbb{Z}^n$. Also, by Proposition \ref{Zobj} $\phi$ acts as an inclusion on objects, so we have the following commutative square:
+\begin{eq*} \xymatrix{
+\mathbb{N}^{*n} \ar[r]^{q} \ar[d]_{i} & \mathbb{N}^{n} \ar[d]^{\phi_\pi} \\
+\mathbb{Z}^{*n} \ar[r]^{q} & \mathbb{Z}^{n} }.
+\end{eq*}
+Thus $\phi_\pi(q(x)) = q(x)$, and so $\phi_\pi$ is also an inclusion.
+\end{proof}
+
+Each time we learn of some important new behaviour which every initial object shares, such as those in the previous proposition, we could use it to narrow down our definition of the initial objects. This is because whenever the initial objects of some category $C$ all share a property $P$, it follows that they are also all initial objects in the subcategory of $C$ containing only objects with property $P$. We will not resort to this tactic after every piece of information we learn about $L(\mathbb{G}_n)$ and its kin, since if we did the subalgebras of $C(\mathbb{G}_n)$ we'd end up working in would get quite complicated, without really providing much aid in constructing proofs. However, the previous proposition is an exception to this, since it turns out we will need this refinement later.
+
+\begin{cor} Any initial object of $C(\mathbb{G}_n)$ is also initial in $C_{\mathrm{inj}}(\mathbb{G}_n)$, the full subcategory of $C(\mathbb{G}_n)$ on maps $\psi: \mathbb{G}_n \to X$ which are injective on connected components. 
+\end{cor}
+\begin{proof}
+By Proposition \ref{concomp}, the restriction to components of any initial object $\phi: \mathbb{G}_n \to Z$ in $C(\mathbb{G}_n)$ is just the inclusion $\phi_\pi : \mathbb{N}^n \to \mathbb{Z}^n$. This is clearly injective, and so $\phi$ is in $C_{\mathrm{inj}}(\mathbb{G}_n)$. For any other $\psi: \mathbb{G}_n \to X$ in $C_{\mathrm{inj}}(\mathbb{G}_n)$, the initiality condition $\exists ! u : \psi = u \phi$ is satisfied in $C(\mathbb{G}_n)$, and $u: \phi \to \psi$ is a morphism of $C_{\mathrm{inj}}(\mathbb{G}_n)$ by fullness, so the initiality condition is satisfied in $C_{\mathrm{inj}}(\mathbb{G}_n)$ as well.
+\end{proof}
+
+\subsection{Initial algebras as groupoids}
+
+Recall that objects $X$ in $C_{\mathrm{inj}}(\mathbb{G}_n)$ are always expressible as $Y_{\mathrm{inv}}$ for some algebra $Y$. From this fact, along with the definition of $\mathbb{G}_n$, it is clear that all of the algebras we will be working with are in fact groupoids. This is very convenient, as one of the key features of groupoids is that every connected groupoid $G$ can be described as the product of two simpler groupoids --- one encoding information about the objects of $G$ and the other about the morphisms of $G$. To see this, notice that composition by a given isomorphism in $G$ induces an isomorphism between two of its homsets, and since $G$ is connected this means that all of its homsets are isomorphic. Thus, in order to identify a particular morphism it suffices know to its source, target, and then its position in 'the' homset of $G$. This can be achieved using vertex groups and translation groupoids in the following way:
+
+\begin{prop}\label{conngpd} Let $G$ be a connected groupoid. Choose an object $x \in G$, and for each other object $y \in G$ choose a map $\rho_y : x \to y$. Then the functor $F : G \to \mathrm{B}G(x, x) \times \mathrm{E}(\mathrm{Ob}(G))$ defined by
+\begin{eq*} \begin{array}{rll}
+		F(y) & = & (\, \ast, \, y \,) \\
+		F(f : y \to y') & = & ( \, \rho_{y'}^{-1} f \rho_y, \, y \to y' \, ) 
+		\end{array}
+\end{eq*}
+is an isomorphism.
+\end{prop}
+\begin{proof}
+First we need to check that $F$ is in fact a functor. Given $f : y \to y'$ and $f' : y' \to y''$, we have
+\begin{eq*} \begin{array}{rll}
+		F(f') \circ F(f) & = & ( \, \rho_{y''}^{-1} f' \rho_{y'}, y' \to y'' \, ) \circ ( \, \rho_{y'}^{-1} f \rho_y, \, y \to y' \, ) \\
+		& = & ( \, \rho_{y''}^{-1} f' \rho_{y'} \rho_{y'}^{-1} f \rho_y, \, y \to y' \to y'' \, ) \\
+		& = & ( \, \rho_{y''}^{-1} f' f \rho_y, \, y \to y'' \, ) \\
+		& = & F(f'f) 
+		\end{array}
+\end{eq*}
+as required. Next we need an inverse for $F$, so let $F^{-1}: \mathrm{B}G(x, x) \times E(\mathrm{Ob}(G)) \to G$ be the map
+\begin{eq*} \begin{array}{rll}
+		F^{-1}(\, \ast, \, y \, ) & = & y \\
+		F^{-1}( \, a, \, y \to y' \, ) & = & \rho_{y'} a \rho_y^{-1}
+		\end{array}.
+\end{eq*}
+Again we quickly make sure that this is a functor; for $(a, y \to y')$ and $(b, y' \to y'')$, we have:
+\begin{eq*} \begin{array}{rll}
+		F^{-1}(b, y' \to y'') \circ F^{-1}(a, y \to y') & = & ( \rho_{y''} b \rho_{y'}^{-1} ) \circ ( \rho_{y'} a \rho_y^{-1} ) \\
+		& = & \rho_{y''} b a \rho_y^{-1} \\
+		& = & F^{-1}(ba, y \to y'')
+		\end{array}.
+\end{eq*}
+Finally, we need to check that $F^{-1}$ really is an inverse of $F$. This is obvious on objects, and on morphisms is due to
+\begin{eq*} F^{-1}F(f : y \to y') = \rho_{y'}(\rho_{y'}^{-1}f\rho_y)\rho_y^{-1} = f \end{eq*}
+\begin{eq*} FF^{-1}(a, y \to y') = ( \, \rho_{y'}^{-1}(\rho_{y'} a \rho_y^{-1})\rho_y, \, y \to y' \, ) = (a, y \to y') \end{eq*}
+\end{proof}
+
+We can't immediately apply this useful result to the case of $L\mathbb{G}_n$, because we know from Proposition \ref{concomp} that the connected components of $L\mathbb{G}_n$ are $\mathbb{Z}^n$, and so it is not connected. However, we can get round this minor issue by simply working componentwise. 
+
+\begin{prop}\label{zerotree} For each connected component of $\mathbb{G}_n$, choose a representative $w \in [w]$ and maps $\rho_{w'} : w \to w'$ for each other $w' \in [w]$. Then we have an isomorphism of groupoids:
+\begin{eq*} \mathbb{G}_n \quad \cong \quad \coprod_{[w] \in \mathbb{N}^n} \mathrm{B}\mathbb{G}_n(w, w) \times \mathrm{E}[w]. \end{eq*}
+Likewise, let $\psi: \mathbb{G}_n \to X$ be an object in $C(\mathbb{G}_n)$, and make a similar choice of representatives and maps. Then we have an isomorphism of groupoids:
+\begin{eq*} X \quad \cong \quad \pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]. \end{eq*}
+\end{prop}
+\begin{proof}
+First, remember that any groupoid $H$ may be seen as the coproduct of its connected components. Since each connected component is obviously a connected groupoid, given sufficient choices we can use Proposition \ref{conngpd} to rewrite $H$ in terms of vertex groups and translation groupoids:
+\begin{eq*} H \quad \cong \quad \coprod_{[h] \in \pi_0(H)} \mathrm{B}H(h,h) \times \mathrm{E}[h]. \end{eq*}
+This immediately gives us the result for $\mathbb{G}_n$. 
+
+For $X$, we also observe that the process of tensoring by $x^*$ sets up an isomorphism of groups between $X(x, x)$ and $X(I,I)$, and hence defines a map
+\begin{eq*} \begin{array}{lrll}
+		\_ \otimes x^* : & \mathrm{B}X(x, x) & \to & \mathrm{B}X(I,I) \\
+		& x & \mapsto & I \\
+		& f & \mapsto & f \otimes id_{x^*}
+		\end{array} 
+\end{eq*}
+with inverse $\_ \otimes x$. The same process also creates an isomorphism between the connected component $[x]$ and the connected component $[0]$, which defines a map
+\begin{eq*} \begin{array}{lrll}
+		\_ \otimes x^* : & \mathrm{E}[x] & \to & \mathrm{E}[0] \\
+		& x' & \mapsto & x' \otimes x^* \\
+		& ! : x' \to x'' & \mapsto & ! : x' \otimes x^* \to x'' \otimes x^*
+		\end{array} 
+\end{eq*}
+also with inverse $\_ \otimes x$.Therefore, we can combine both of these $\_ \otimes x^*$ maps in the obvious way to form an isomorphism of groupoids $\, \_ \otimes x^*: \mathrm{B}X(x,x) \times \mathrm{E}[x] \to \mathrm{B}X(I, I) \times \mathrm{E}[I]$. Doing this for each representing object $x$ and then composing this with the isomorphism defined earlier in the proof, we find that
+\begin{eq*} X \quad \cong \quad \coprod_{[x] \in \pi_0(X)} \mathrm{B}X(I, I) \times \mathrm{E}[I]. \end{eq*}
+But the terms in the coproduct are now independent of the indexing variable $[x] \in \pi_0(X)$, we can also choose to write this as 
+\begin{eq*} X \quad \cong \quad \pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]. \end{eq*}
+\end{proof}
+
+Now, we need to be very careful here, since while we've constructed many isomorphisms between $X$ and $\pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]$, as far as we know they are only isomorphisms of groupoids. We also need the action to be preserved --- that they extend to isomorphisms of $\mathrm{E}G$-algebras --- in order for us to truly represent $L\mathbb{G}_n$ this way. We can resolve this issue using the following lemma:
+
+\begin{lem}\label{indact} Let $F: X \to Y$ be an isomorphism of categories. If $X$ is also an $\mathrm{E}G$-algebra, then the map $F$ induces an $\mathrm{E}G$-algebra structure on $Y$, and this is the unique algebra structure on $Y$ for which $F$ is an isomorphism of algebras.
+\end{lem}
+\begin{proof}
+Let $\alpha$ be the $\mathrm{E}G$-action on $X$, and define new action $\beta$ on $Y$ by
+\begin{eq*} \xymatrix{
+\mathrm{E}G(n) \times X^n \ar[d]_{\alpha_n} \ar[rr]^{id \times F^n} & & \mathrm{E}G(n) \times Y^n \ar[d]^{\beta_n} \\
+X \ar[rr]^{F} & & Y }.
+\end{eq*}
+This $\beta$ satisfies all of the conditions for an $\mathrm{E}G$-action; firstly that
+\begin{eq*} \begin{array}{rl}
+		& \beta\big( \, g \, ; \, \beta(h_1; y_1, ..., y_{k_1}), \, ..., \, \beta(h_n; y_{k_{n-1}+1}, ..., y_{k_n}) \, \big) \\
+		= & F\alpha\big( \, g \, ; \, F^{-1}F\alpha(h_1; F^{-1}y_1, ..., F^{-1}y_{k_1}), \, ..., \, F^{-1}F\alpha(h_n; F^{-1}y_{k_{n-1}+1}, ..., F^{-1}y_{k_n}) \, \big) \\
+		= & F\alpha\big( \, g \, ; \,\alpha(h_1; F^{-1}y_1, ..., F^{-1}y_{k_1}), \, ..., \, \alpha(h_n; F^{-1}y_{k_{n-1}+1}, ..., F^{-1}y_{k_n}) \, \big) \\
+		= & F\alpha\big( \, \mu(g; h_1, ..., h_n) \, ; \, F^{-1}y_1, \, ..., \, F^{-1}y_{k_n} \, \big) \\
+		= & \beta\big( \, \mu(g; h_1, ..., h_n) \, ; \, y_1, \, ..., \, y_{k_n} \, \big)
+		\end{array} 
+\end{eq*}
+for any objects $y_i \in Y$, with the same argument showing that
+\begin{eq*} \begin{array}{rll}
+		\beta\big( \, g \, ; \, \beta(h_1; f_1, ..., f_{k_1}), \, ..., \, \beta(h_n; f_{k_{n-1}+1}, ..., f_{k_n}) \, \big) & = & \beta\big( \, \mu(g; h_1, ..., h_n) \, ; \, f_1, \, ..., \, f_{k_n} \, \big)
+		\end{array} 
+\end{eq*}
+for any morphisms $f_i \in Y$; and secondly that
+\begin{eq*} \begin{array}{rll}
+		\beta(e;y) & = & F\alpha( \, e \, ; \, F^{-1}y \, ) \\
+		& = & FF^{-1}y \\
+		& = & y
+		\end{array} 
+\end{eq*}
+for any object $y \in Y$, with the same argument showing that
+\begin{eq*} \begin{array}{rll}
+		\beta(e;f) & = & f
+		\end{array} 
+\end{eq*}
+for any morphism $f \in Y$. Therefore, $Y$ is an $\mathrm{E}G$-algebra with action $\beta$. Moreover, the commutative square we used to define $\beta$ is exactly the one needed for $F$ to be an $\mathrm{E}G$-algebra morphism between $(X, \alpha)$ and $(Y, \beta)$.
+\end{proof}
+
+With this, we can now use the simplifications given in Proposition \ref{zerotree} without worrying about their $\mathrm{E}G$-action. Maps between them have a similar result, namely:
+
+\begin{lem}\label{indmap} Let $\psi: X \to X'$ be a map of $\mathrm{E}G$-algebras, and let $F: X \to Y$ and $F': X' \to Y'$ be isomorphisms of categories. Then the functor $F' \circ \psi \circ F^{-1}$ is a map of $\mathrm{E}G$-algebras from $Y$ with the action induced by $F$ to $Y'$ with the action induced by $X'$.
+\end{lem}
+\begin{proof}
+As we saw in the proof of Lemma \ref{indact}, the action induced on by an isomorphism of categories is defined by the same kind of commutative square needed to show that functor is a map of $\mathrm{E}G$-algebras. Thus from the data we have been given we can contruct three such squares; one for action induced by $F$, one for the action induced by $F'$, and one from the  $\mathrm{E}G$-action preservation of $\psi$. We can combine these diagrams in the following way:
+\begin{eq*} \xymatrix{
+\mathrm{E}G(n) \times Y^n \ar[d]  & \mathrm{E}G(n) \times X^n \ar[d] \ar[l] \ar[r] & \mathrm{E}G(n) \times (X')^n \ar[d] \ar[r] & \mathrm{E}G(n) \times (Y')^n \ar[d] \\
+Y & X \ar[l]_{F} \ar[r]^{\psi} & X' \ar[r]^{F'} & Y' }.
+\end{eq*}
+Having done so, we notice that the outside square is the condition for $F' \circ \psi \circ F^{-1}$ to be a map of $\mathrm{E}G$-algebras with respect to the induced actions, as required.
+\end{proof}
+
+\subsection{Initial algebras as a colimit}
+
+For any of the objects $\psi : \mathbb{G}_n \to X$ of $C_{\mathrm{inj}}(\mathbb{G}_n)$, we now have a way of breaking down its source and target into smaller groupoids representing their connected components and automorphisms. We might wonder if we can also simplify $\psi$ by doing the same sort of thing, splitting it up into several maps which run between the corresof ponding terms $\coprod \mathrm{B}\mathbb{G}_n(w, w) \times \mathrm{E}[w]$ and $\pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]$. This can actually be done, so long as we are careful about how we choose our representatives.
+
+\begin{prop}\label{factprop} Choose a representative object $w \in [w]$ from each of the connected components of $\mathbb{G}_n$, and maps $\rho_{w'} : w \to w'$ for each other object $w' \in [w]$. Then each object of $C_{\mathrm{inj}}(\mathbb{G}_n)$ determines the following data:
+\begin{itemize}
+\item an injective monoid homorphism onto a group 
+\begin{eq*} \psi_\pi : \mathbb{N}^n \to \pi_0(X) \end{eq*}
+\item a family of group homomorphisms onto a fixed group,
+\begin{eq*} \psi^w : \mathbb{G}_n(w,w) \to X(I,I), \end{eq*}
+indexed by the representing objects and satisfying the relation
+\begin{eq*} \psi^w(f) = \psi^{w \otimes v}(f \otimes id_v), \quad \quad \forall \, f \in \mathbb{G}_n(w, w) \end{eq*}
+whenever $w$ and $w \otimes v$ are both representatives
+\item a family of functions from pointed sets onto a fixed group,  
+\begin{eq*} \psi_w : \big( [w], w \big) \to \big( [I], I \big), \end{eq*}
+indexed by the representing objects and satisfying the relation
+\begin{eq*} \psi_w(w') = \psi_{w \otimes v}(w' \otimes v), \quad \quad \forall \, w' \in [w] \end{eq*}
+\end{itemize}
+\end{prop}
+\begin{proof}
+Let $\psi: \mathbb{G}_n \to X$ be an object of $C_{\mathrm{inj}}(\mathbb{G}_n)$. By Proposition \ref{zerotree}, we know that our choice of representives on $\mathbb{G}_n$ defines an isomorphism $F: \mathbb{G}_n \to \coprod \mathrm{B}\mathbb{G}_n(w, w) \times \mathrm{E}[w]$. Next, choose a similar family of representatives for $X$, making sure that $\psi(w)$ is the representative of the component $[\psi(w)]$ in $X$ for each representative $w$ of $\mathbb{G}_n$, and that $\rho_{\psi(w')} = \psi(\rho_{w'})$ wherever possible. This can be done because $\psi \in C_{\mathrm{inj}}(\mathbb{G}_n)$ is injective on connected components, so for different representatives $w, v$ of $\mathbb{G}_n$ we will always have $[\psi(w)] \neq [\psi(v)]$. Any other representatives for $X$ may be chosen arbitrarily. Proposition \ref{zerotree} then gives us a second isomorphism, $F': X \to \pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]$. Notice that while $F'$ differs based on our arbitrarily chosen representatives, the induced map $\psi' = F' \circ \psi \circ F^{-1}$ does not, since the representatives in the image of $\phi$ are fixed.
+
+Unpacking the definition of $\psi'$, we see that it acts on objects by
+\begin{eq*} \begin{array}{rll}
+		\psi'(\, w, \, w' \, ) & = & F' \psi F^{-1}(\, w, \, w' \, ) \\
+		& = & F' \psi( \, w' \, )  \\
+		& = & \big( \, [\psi(w')], \, I, \, \psi(w') \otimes \psi(w)^* \, \big) \\
+		\end{array}. 
+\end{eq*}
+The first entry of this triple is simply the restriction of $\psi$ to connected components, $\psi_\pi: \mathbb{N}^n \to \pi_0(X)$. Since $\psi$ is in $C_{\mathrm{inj}}(\mathbb{G}_n)$ we know that it is injective on components, and also that every $[x] \in \pi_0(X)$ has an inverse $[x^*]$. Thus, $\psi_\pi$ must be an injective monoid homomorphism, whose target is in fact a group. The third entry is determined by a family of functions $\psi(\, \_ \,) \otimes \psi(w)^*: [w] \to [I]$, one for each representative $w$. The component $[I]$ is a group, since
+\begin{eq*} x \cong I, \quad y \cong I \quad \implies \quad x \otimes y \cong I \otimes I = I, \quad x^* = x^* \otimes I \cong x^* \otimes x = I , \end{eq*}
+and moreover,
+\begin{eq*}\psi(w) \otimes \psi(w)^* = I \quad \implies \quad \psi(\, \_ \,) \otimes \psi(w)^* : \, w \, \mapsto \, I, \end{eq*}
+so these are pointed maps $([w], w) \to ([I], I)$. As they satisfy
+\begin{eq*}\begin{array}{rll}
+		\psi(w') \otimes \psi(w)^* & = & \psi(w') \otimes \psi(v) \otimes \psi(v)^* \otimes \psi(w)^* \\
+		& = & \psi(w' \otimes v) \otimes \psi(v)^* \otimes \psi(w)^* \\
+		& = & \psi(w' \otimes v) \otimes (\psi(w) \otimes \psi(v))^* \\
+		& = & \psi(w' \otimes v) \otimes \psi(w \otimes v)^*
+		\end{array},
+\end{eq*}
+these are the maps $\psi_w$ that were required.
+
+Finally, the action of $\phi'$ on morphisms is given by
+\begin{eq*} \begin{array}{rll}
+		\psi'(f, w' \to w'') & = & F' \psi F^{-1}( \, f, \, w' \to w'' \, ) \\
+		& = & F' \psi( \, \rho_{w''} f \rho_{w'}^{-1} \, )  \\
+		& = & F'\big( \, \psi(\rho_{w''}) \psi(f) \psi(\rho_{w'}^{-1}) \, \big)  \\
+		& = & F'\big( \, \rho_{\psi(w'')} \psi(f) \rho_{\psi(w')}^{-1}) \, \big)  \\
+		& = & \big( \, id_{[\psi(w')]}, \, \psi(f) \otimes id_{\psi(w)^*}, \, \psi(w') \otimes \psi(w)^* \to \psi(w'') \otimes \psi(w)^* \, \big) \\
+		& = & \big( \, id_{\psi_\pi([w])}, \, \psi(f) \otimes id_{\psi(w)^*}, \, \psi_w(w') \to \psi_w(w'') \, \big)
+		\end{array} 
+\end{eq*}
+The first and third entries are still detemined by $\psi_\pi$ and $\psi_w$ respectively. The second is given by a family of maps $\psi( \, \_ \, )  \otimes id_{\psi(w)^*} :  \mathbb{G}_n(w,w) \to X(I,I)$. Because $\psi$ is a functor, these maps are all group homomorphisms:
+\begin{eq*}\begin{array}{rll}
+		\psi(g \circ f) \otimes id_{\psi(w)^*} & = & \big( \, \psi(g) \circ \psi(f) \, \big) \otimes id_{\psi(w)^*} \\
+		& = & \big( \, \psi(g) \otimes id_{\psi(w)^*} \, \big) \circ \big( \, \psi(f) \otimes id_{\psi(w)^*} \, \big) \\
+		&& \\
+		\psi(f^{-1}) \otimes id_{\psi(w)^*} & = & \psi(f)^{-1} \otimes (id_{\psi(w)^*})^{-1} \\
+		& = & \big( \psi(f) \otimes id_{\psi(w)^*} \big)^{-1}
+		\end{array}
+\end{eq*}
+We also obtain the relation
+\begin{eq*}\begin{array}{rll}
+		\psi(f) \otimes id_{\psi(w)^*} & = & \psi(f) \otimes id_{\psi(v)} \otimes id_{\psi(v)^*}  \otimes id_{\psi(w)^*} \\
+		& = & \psi(f \otimes id_v) \otimes id_{\psi(v)^* \otimes \psi(w)^*} \\
+		& = & \psi(f \otimes id_v) \otimes id_{(\psi(w) \otimes \psi(v))^*} \\
+		& = & \psi(f \otimes id_v) \otimes id_{(\psi(w \otimes v))^*}
+		\end{array}.
+\end{eq*}
+Furthermore, the group $X(I,I)$ has two binary operations on it, $\otimes$ and $\circ$, which both have unit $id_I$ and satisfy an interchange law, $(a \circ b) \otimes (c \circ d) = (a \otimes c) \circ (b \otimes d)$. Using an Eckmann-Hilton argument, it follows that $\otimes$ and $\circ$ must be the same binary operation, and that operation is commutative. Therefore $X(I, I)$ is an abelian group, and hence these maps are the $\psi^w$ we were looking for.
+\end{proof}
+
+Loosely speaking, this result tells us that when we split $X$ up into $\pi_0(X) \times \mathrm{B}X(I,I) \times \mathrm{E}[I]$, we cause $\psi: \mathbb{G}_n \to X$ to split into the functors
+\begin{eq*}\begin{array}{rrll}
+		\psi_\pi : & \pi_0(\mathbb{G}_n) & \to & \pi_0(X) \\
+		\mathrm{B}\psi^w : & \mathrm{B}\mathbb{G}_n(w,w) & \to & \mathrm{B}X(I,I) \\
+		\mathrm{E}\psi_w : & \mathrm{E}[w] & \to & \mathrm{E}[I]
+		\end{array}.
+\end{eq*}
+It's important to notice that this process is not one-to-one --- given a set of data $(\psi_\pi, \psi^w, \psi_w)$, we are not always able to build a well-defined $\psi$ in $C_{\mathrm{inj}}(\mathbb{G}_n)$ from them. This is because at no point in Proposition \ref{factprop} did we invoke any of the properties unique to $\mathrm{E}G$-algebras. Indeed, the splitting into a triple will work on any map $\psi: \mathbb{G}_n \to X$ where $X$ is merely a monoidal groupoid, rather than an algebra. Only in this broader context is the process reversible, by taking the expansion of $\psi'$ in terms of $(\psi_\pi, \psi^w, \psi_w)$ in Proposition \ref{factprop} to be definitional.
+
+Whilst it may seem like we're ignoring the crucial $\mathrm{E}G$-algebra structure, it turns out that this will not stop us from being able to use Proposition \ref{factprop} to determine $L\mathbb{G}_n$. The reason for this will be explained in Proposition \ref{initeq}, though to state it we first we need to expand some of our previous definitions.
+
+\begin{defi} Given a monoidal groupoid $X$, we denote by $X_{\mathrm{inv}}$ the subgroupoid containing all invertible objects in $X$ and the isomorphisms between them. \end{defi}
+
+\begin{prop} The assignment $X \mapsto X_{\mathrm{inv}}$ can be extended to a 2-functor $(\_)_{\mathrm{inv}}: \mathrm{MonGpd} \to \mathrm{MonGpd}$.
+\end{prop}
+\begin{proof}
+The proof is identical to that of Proposition \ref{invprop}.
+\end{proof}
+
+\begin{defi} Given a monoidal groupoid $X$, let $\widehat{C}(X)$ denote the comma category $\big( \, id_X \downarrow (\_)_{\mathrm{inv}} \, \big)$. That is, $\widehat{C}(X)$ is the coslice category whose objects are pairs $(Y, \, \psi: X \to Y_{\mathrm{inv}})$ and whose morphisms $f: (Y, \psi) \to (Y', \psi')$ are maps $f: Y \to Y'$ such that $f_{\mathrm{inv}} \circ \psi = \psi'$.\end{defi}
+
+\begin{defi} Let $\widehat{C}_{\mathrm{inj}}(X)$, be the full subcategory of $\widehat{C}(X)$ on maps which are injective on connected components. \end{defi}
+
+\begin{prop} \label{mongpd} The category $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$ has an initial object, $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$.
+\end{prop}
+\begin{proof}
+Let $\chi: \mathbb{G}_n \to Y$ and $\psi: \mathbb{G}_n \to X$ be two arbitrary objects in $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$, and let $u: Y \to X$ be a map between them. If we choose any collection of representatives $w \in [w]$, $\rho_{w'} : w \to w'$ for $\mathbb{G}_n$, then we can use  Proposition \ref{factprop} to split $\psi$ into the triple of maps $(\psi_\pi, \psi^w, \psi_w)$, and $\chi$ into $(\chi_\pi, \chi^w, \chi_w)$. Let $F_{\mathbb{G}_n}$, $F_X$, $F_Y$ denote the isomorphisms from $\mathbb{G}_n$, $X$, $Y$ that we generate during this process, and let $\psi'$, $\chi'$ and $u'$ be the maps induced from $\psi$, $\chi$, $u$ by these isomorphisms, as per Lemma \ref{indmap}. Then we can take the $\psi = u \circ \chi$ condition given by $u$ being a map in $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$ and rewrite it as an equivalent condition involving the triples: 
+\begin{eq*}\begin{array}{rll}
+		\psi & = & u \chi \\
+		\implies \psi' & = & u' \chi' \\
+		\\
+		\psi'(\, w, \, w' \, ) & = & u' \chi'(\, w, \, w' \, ) \\
+		\implies \big( \, \psi_\pi([w]), \, I, \, \psi_w(w') \, \big) & = & u' \big( \, \chi_\pi([w]), \, I, \, \chi_w(w') \, \big) \\
+		& & \\
+		\psi'(f, w' \to w'') & = & u' \chi'(f, w' \to w'') \\
+		\implies \big( \, id_{\psi_\pi([w])}, \, \psi^w(f), \, \psi_w(w') \to \psi_w(w'') \, \big) & = & u' \big( \, id_{\chi_\pi([w])}, \, \chi^w(f), \, \chi_w(w') \to \chi_w(w'') \, \big) \\
+		\end{array}. 
+\end{eq*}
+By inspection, we see that the map $u'$ is really a product of maps $u_\pi \times \mathrm{B}u^\bullet \times \mathrm{E}u_\bullet$ for some $u_\pi : \pi_0(Y) \to \pi_0(X)$, $u^\bullet : Y(I,I) \to X(I,I)$, and $u_\bullet : [I]_Y \to [I]_X$, obeying the conditions
+\begin{eq*} \psi_\pi = u_\pi \chi_\pi, \quad \quad \psi^w = u^\bullet \chi^w, \quad \quad \psi_w = u_\bullet \chi_w, \end{eq*}
+for each representative $w$.
+
+Now, let $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ be an object of $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$ which we hope to show is initial. Then by definition, for any other object $\psi: \mathbb{G}_n \to X$ we need a unique map $u: \widehat{Z} \to X$ satisfying $\psi = u \circ \widehat{\phi}$. As we have shown, this is equivalent to the condition that for any set of data $(\psi_\pi, \psi^w, \psi_w)$ there is a unique $(u_\pi, u^\bullet, u_\bullet)$ such that
+\begin{eq*} \psi_\pi = u_\pi \widehat{\phi}_\pi, \quad \quad \psi^w = u^\bullet \widehat{\phi}^w, \quad \quad \psi_w = u_\bullet \widehat{\phi}_w. \end{eq*}
+For the first of these equalities, recall that the map $\psi_\pi$ is injective monoid homomorphisms from $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$ onto $\pi_0(X)$. Since $\pi_0(X)$ is a group, it follows that $\psi_\pi$ must factor uniquely through the group completion --- or Grothendieck group --- of $\mathbb{N}^n$:
+\begin{eq*} \xymatrix{
+& \mathbb{N}^n \ar[dl]_{i} \ar[dr]^{\psi_\pi} & \\
+(\mathbb{N}^n)^{\mathrm{gp}} \ar[rr]^{(\psi_\pi)^{\mathrm{gp}}} & & \pi_0(X) }.
+\end{eq*}
+Therefore, if we choose $\pi_0(\widehat{Z})$ to be $(\mathbb{N}^n)^{\mathrm{gp}} = \mathbb{Z}^n$ and $\widehat{\phi}_\pi$ to be the inclusion $i: \mathbb{N}^n \to \mathbb{Z}^n$ then we can always find a unique $u_\pi = (\psi_\pi)^{\mathrm{gp}}$ satisfying $\psi_\pi = u_\pi \widehat{\phi}_\pi$, as required. 
+
+Next, consider the family of group homomorphisms $\psi^w: \mathbb{G}_n(w, w) \to X(I, I)$. These satisfy the relations
+\begin{eq*} \psi^w(f) = \psi^{w \otimes v}(f \otimes id_v), \quad \quad \forall \, f \in \mathbb{G}_n(w, w), \end{eq*}
+for any representative objects $w$, $w \otimes v$; in other words, all of the diagrams of the form
+\begin{eq*} \xymatrix{
+\mathbb{G}_n(w,w) \ar[dr]_{\psi^w} \ar[rr]^-{\_ \otimes id_v} & & \mathbb{G}_n(w \otimes v , w \otimes v) \ar[dl]^{\psi^{w \otimes v}} \\
+& X(I,I) & }
+\end{eq*}
+commute. It follows directly from this that $X(I,I)$ is actually a cocone of a diagram $D^\bullet$, the one whose vertices are the groups $\mathbb{G}_n(w,w)$ and whose edges are the maps $\_ \otimes id_v$ between them. If we take the colimit of this diagram, $(\mathrm{colim}(D^\bullet), j^w)$, then because it is the universal cocone we obtain a unique map $v^\bullet : \mathrm{colim}(D^\bullet) \to X(I,I)$ such that $\psi^w = v^\bullet j^w$. Moreover, $X(I, I)$ is an abelian group, and so the map $v^\bullet$ will also factor uniquely through the abelianisation of its source:
+\begin{eq*} \xymatrix{
+& \mathrm{colim}(D^\bullet) \ar[dl]_{q} \ar[dr]^{v^\bullet} & \\
+\mathrm{colim}(D^\bullet)^{\mathrm{ab}} \ar[rr]^{(v^\bullet)^{\mathrm{ab}}} & & X(I, I) }.
+\end{eq*}
+Putting these two facts together, we see that setting $\widehat{Z}(I,I) = \mathrm{colim}(D^\bullet)^{\mathrm{ab}}$ and $\widehat{\phi}^w = q j^w$ will let us always find a unique $u^\bullet = (v^\bullet)^{\mathrm{ab}}$ such that $\psi^w = u^\bullet \widehat{\phi}^w$.
+
+Finally, we have the $\psi_w$. These are a family of functions from the connected components $([w], w)$ of $\mathbb{G}_n$ seen as pointed sets, and onto the component $([I]_X, I)$ of $X$. As before, the relations
+\begin{eq*} \psi_w(w') = \psi_{w \otimes v}(w' \otimes v), \quad \quad \forall \, w' \in [w] \end{eq*}
+for representatives $w$, $w \otimes v$, tell us that we have a family of commuting diagrams
+\begin{eq*} \xymatrix{
+\big( \, [w], \, w \, \big) \ar[dr]_{\psi_w} \ar[rr]^-{\_ \otimes v} & & \big( \, [w \otimes v], \, w \otimes v \, \big) \ar[dl]^{\psi_{w \otimes v}} \\
+& \big( \, [I]_X, \, I \, \big) & }.
+\end{eq*}
+Thus $([I]_X, I)$ is a cocone of the diagram $D_\bullet$ with vertices $([w], w)$ and edges $\_ \otimes v$, and by taking the colimit of this diagram $(\mathrm{colim}(D_\bullet), j_w)$ we obtain a unique map $v_\bullet : \mathrm{colim}(D_\bullet) \to ([I]_X, I)$ giving $\psi_w = v_\bullet j_w$. Again, since $([I]_X, I)$ is not just a pointed set but a group we can uniquely factor the map $v_\bullet$, this time through the free group on the set $\mathrm{colim}(D_\bullet) \setminus \ast$, where $\ast$ is the basepoint of $\mathrm{colim}(D_\bullet)$:
+\begin{eq*} \xymatrix{
+& \mathrm{colim}(D_\bullet) \ar[dl]_{\iota} \ar[dr]^{v_\bullet} & \\
+\mathrm{F}\big( \, \mathrm{colim}(D_\bullet) \setminus \ast \, \big) \ar[rr]^{\mathrm{F}(v_\bullet)} & & \big( \, [I]_X, \, I \, \big) }.
+\end{eq*}
+Therefore, if we let $([I]_{\widehat{Z}}, I) = \mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast)$ and $\widehat{\phi}_w = \iota j_w$, then there exists a unique $u_\bullet = \mathrm{F}(v_\bullet)$ such that $\psi_w = u_\bullet \widehat{\phi}_w$.
+
+With all three equalities satisfied, it follows that data $(\widehat{\phi}_\pi, \widehat{\phi}^w, \widehat{\phi}_w)$ defines an initial object $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ of $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$.
+\end{proof}
+
+To summarize, we have found that the initial objects of $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$ are isomorphic to the monoidal groupoid
+\begin{eq*} \widehat{Z} \quad \cong \quad \mathbb{Z}^n \times \mathrm{B}\mathrm{colim}(D^\bullet)^{\mathrm{ab}} \times \mathrm{E}\mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast) \end{eq*}
+for some diagrams $D^\bullet$, $D_\bullet$.
+
+\begin{prop} \label{initeq} There is a unique way to view the functor $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ from Proposition \ref{mongpd} as a map of $\mathrm{E}G$-algebras, and hence $\widehat{\phi}$ is also an initial object of $C_{\mathrm{inj}}(\mathbb{G}_n)$.
+\end{prop}
+\begin{proof}
+Notice that since we are working with monoidal groupoids, we can already form most of the $\mathrm{E}G$-algebra structure on our initial object, by
+\begin{eq*}\begin{array}{rll}
+		\alpha(g; z_1, ..., z_m) & = & z_{\pi(g)^{-1}(1)} \otimes ... \otimes z_{\pi(g)^{-1}(m)} \\
+		\alpha(e; f_1, ..., f_m) & = & f_1 \otimes ... \otimes f_m
+		\end{array}
+\end{eq*}
+for any objects $z_i$ and morphisms $f_i$ in $\widehat{Z}$. All that remains to be defined is the action $\alpha(g; id_{z_1}, ..., id_{z_m})$ of the groups $G(m)$ on identity morphisms. Since we want $\widehat{\phi}$ to extend to an algebra map for this new action, this needs to satisfy
+\begin{eq*} \widehat{\phi}\alpha(g; id_{w_1}, ..., id_{w_m}) = \alpha(g; id_{\widehat{\phi}(w_1)}, ..., id_{\widehat{\phi}(w_m)}) \end{eq*}
+for any objects $w_i$ in $\mathbb{G}_n$. We can take this to just be a definition, in which case we now just need to understand $\alpha$ outside of the image of $\widehat{\phi}$. Now, by Proposition \ref{mongpd}, we know that
+\begin{eq*}\begin{array}{rll}
+		\widehat{\phi}(w') & = & \big( \, \widehat{\phi}_\pi([w]), \, I, \, \widehat{\phi}_w(w') \, \big) \\
+		& = & \big( \, i([w]), \, I, \,  \iota j_w(w') \, \big) \\
+		\end{array}
+\end{eq*}
+However, since $\mathbb{Z}^n$ is generated by the image of the inclusion $i: \mathbb{N}^n \to \mathbb{Z}^n$, and $\mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast)$ is generated by the images of the inclusions $\iota j_w : ([w], w) \to \mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast)$, it follows that the objects $(i([w]), I, \iota j_w(w'))$ generate $\mathrm{Ob}(\widehat{Z})$. Thus any object $z \in \widehat{Z}$ can be expressed as a tensor product of objects which are all either of the form $\widehat{\phi}(w')$ or $\widehat{\phi}(w'')^*$, and hence all of the $\alpha(g; id_{z_1}, ..., id_{z_m})$ can be defined in terms of the $\alpha(g; id_{\widehat{\phi}(w_1)}, ..., id_{\widehat{\phi}(w_m)})$. This completes the structure needed to see $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ as a map of $\mathrm{E}G$-algebras.
+ 
+Next, consider that any object $\psi: \mathbb{G}_n \to X$ of $C_{\mathrm{inj}}(\mathbb{G}_n)$ can be viewed as an object of $\widehat{C}_{\mathrm{inj}}(\mathbb{G}_n)$, since any $\mathrm{E}G$-algebra map has an underlying map of monoidal groupoids. Therefore by initiality there exists a unique map of monoidal groupoids $u: \widehat{Z} \to X$ such that $\psi = u \circ \widehat{\phi}$. Since $\psi$ and $\widehat{\phi}$ are both maps of $\mathrm{E}G$-algebras, we know that
+
+\end{proof}
+
+\begin{thm}\label{colimthm}  Let $\phi : \mathbb{G}_n \to Z$ be an initial object in $C_{\mathrm{inj}}(\mathbb{G}_n)$. Then 
+\begin{eq*} Z \quad \cong \quad \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim} \Big( \mathbb{G}_n(w,w) \to \mathbb{G}_n(w \otimes v, w\otimes v) \Big)^{\mathrm{ab}} \times \mathrm{E}[\mathbb{Z}^{*n}, \mathbb{Z}^{*n}]. \end{eq*}
+\end{thm}
+\begin{proof}
+
+From Proposition \ref{concomp}, we know that $\pi_0(Z)$ is in fact just $\mathbb{Z}^n$. It also tells us that the canonical map $[ \, \, ] : \mathbb{Z}^{*n} \to \mathbb{Z}^n$ sending objects of $Z$ to their connected component is the quotient map of abelianisation, and so $[0]$ is just the kernel of this map, the commutator subgroup $[\mathbb{Z}^{*n}, \mathbb{Z}^{*n}]$.
+
+\end{proof}
+
+\subsection{Examples}
+
+\subsection{The free algebra on $n$ weakly invertible objects}
+
+Up until now, we've been working under the convention that by `invertible' objects we mean stictly invertible --- $x \otimes x^* = I$. As an additional exercise, we can ask ourselves how all of this would change if we permitted our objects to be only weakly invertible, that is $x \otimes x^* \cong I$. The situation is actually quite elegant, in that the effect of weakening in our objects can be offset completely by the effect of also weakening our algebra homomorphisms, such that we won't need to calculate any new free algebras other than those given by Theorem \ref{colimthm}. Before proving this though, we first to need to set out some definitions.
+
+\begin{defi} Given an $\mathrm{E}G$-algebra $X$, we denote by $X_{\mathrm{wkinv}}$ the category whose
+\begin{itemize}
+\item objects are tuples $(x, x^*, \eta, \epsilon)$, where $x$ and $x^*$ are objects of $X$ and $\eta: I \to x^* \otimes x$ and $\epsilon : x \otimes x^* \to I$ are morphisms such that the composites
+\begin{eq*} \xymatrix{
+x \ar[r]^-{id \otimes \eta} & x \otimes x^* \otimes x \ar[r]^-{\epsilon \otimes id} & x &
+x^* \ar[r]^-{\eta \otimes id} & x^* \otimes x \otimes x^* \ar[r]^-{id \otimes \epsilon} & x^* }
+\end{eq*}
+are identity morphisms.
+\item maps $(f, f^*): (x, x^*, \eta_x, \epsilon_x) \to (y, y^*, \eta_y, \epsilon_y)$ are pairs $f: x \to y$, $f^* : x^* \to y^*$ of morphisms such that the diagrams
+\begin{eq*} \xymatrix{
+& I \ar[dl]_{\eta_x} \ar[dr]^{\eta_y} & & x \otimes x^* \ar[rr]^{f \otimes f^*} \ar[dr]_{\epsilon_x} & & y \otimes y^* \ar[dl]^{\epsilon_y} \\
+x^* \otimes x \ar[rr]_{f^* \otimes f} & & y \otimes y^* & & I & }
+\end{eq*}
+commute.
+\end{itemize}
+\end{defi}
+
+\begin{defi}\label{weakmonfunc} Let $(X, \alpha)$ and $(Y, \beta)$ be $\mathrm{E}G$-algebras. A weak $\mathrm{E}G$-algebra homorphism between them is a weak monoidal functor $\psi: X \to Y$ such that all diagrams of the form
+\begin{eq*} \xymatrix{
+\psi( x_1 \otimes ... \otimes x_m) \ar[r]^-{\sim} \ar[d]_{\psi(\alpha(g; h_1, ... h_m))} &  \psi(x_1) \otimes ... \otimes \psi(x_m) \ar[d]^{\beta(g; \psi(h_1), ... \psi(h_m))} \\
+\psi( y_{\pi(g)^{-1}(1)} \otimes ... \otimes y_{\pi(g)^{-1}(m)}) \ar[r]^-{\sim} &  \psi(y_{\pi(g)^{-1}(1)}) \otimes ... \otimes \psi(y_{\pi(g)^{-1}(m)}) }
+\end{eq*}
+commute.
+\end{defi}
+
+\begin{defi} We denote by $\mathrm{E}G\mathrm{Alg}_W$ the 2-category of $\mathrm{E}G$-algebras, weak $\mathrm{E}G$-algebra homomorphisms, and weak monoidal transformations.\end{defi}
+
+Now we can properly express what we mean by the free algebras on weakly invertible objects being the same as those in the strict case.
+
+\begin{thm} The algebra $L\mathbb{G}_n$ is also the free $\mathrm{E}G$-algebra on $n$ weakly invertible objects. Specifically, for any other $\mathrm{E}G$-algebra $X$ there is an equivalence of categories
+\begin{eq*} \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \simeq (X_{\mathrm{wkinv}})^n \end{eq*}
+\end{thm}
+\begin{proof}
+We begin by defining a functor $F : \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \to (X_{\mathrm{wkinv}})^n$. On weak maps, $F$ acts as 
+\begin{eq*} F( \, \psi: L\mathbb{G}_n \to X \, ) = \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{ 1, ..., n \} } \end{eq*}
+where the $z_i$ are the generators of $\mathbb{Z}^{*n}$ and the isomorphisms are those given by $\psi$ being a weak moniodal functor. On weak monoidal transformations, $F$ acts as
+\begin{eq*} F( \, \theta : \psi \to \chi \, ) = \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{ 1, ..., n \} }. \end{eq*}
+This choice does satisfy the condition on morphisms of $(X_{\mathrm{wkinv}})^n$, since we can build the required commuting diagrams out of smaller ones given by $\theta$ being a weak monoidal transfomation:
+\begin{eq*} \xymatrix{
+& I \ar[dl]_{\sim} \ar[dr]^{\sim} & & \psi(z_i) \otimes \psi(z_i^*) \ar[rr]^{\theta_{z_i} \otimes \theta_{z_i^*}} \ar[d]_{\sim} & & \chi(z_i) \otimes \chi(z_i^*) \ar[d]^{\sim} \\
+\psi(I) \ar[d]_{\sim} \ar[rr]^{\theta_I} & & \chi(I) \ar[d]^{\sim} & \psi(I) \ar[dr]^{\sim} \ar[rr]^{\theta_I} & & \chi(I) \ar[dl]_{\sim} \\
+\psi(z_i^*) \otimes \psi(z_i) \ar[rr]^{\theta_{z_i^*} \otimes \theta_{z_i}} & & \chi(z_i^*) \otimes \chi(z_i) & & I & }.
+\end{eq*}
+
+Now we need to check if $F$ is an equivalence of categories. First, let $\big\{ ( x_i, x_i^*, \eta_i, \epsilon_i ) \big\}_{i \in \{1, ..., n \} }$ be an arbitrary object of $(X_{\mathrm{wkinv}})^n$. We can construct a weak algebra map $\psi: L\mathbb{G}_n \to X$ from it as follows. Define
+\begin{eq*} \psi(I) = I, \quad \psi(z_i) = x_i, \quad \psi(z_i^*) = x_i^* \end{eq*}
+and choose the isomorphisms
+\begin{eq*} \begin{array}{rllllll}
+		\psi_I & : & I \to \psi(I) & = & id_I & : & I \to I \\
+		\psi_{z_i, z_i^*} & : & \psi(z_i) \otimes \psi(z_i^*) \to \psi(I) & = & \epsilon_i & : & x_i \otimes x_i^* \to I \\
+		\psi_{z_i^*, z_i} & : & \psi(z_i^*) \otimes \psi(z_i) \to \psi(I) & = & \eta_i^{-1} & : & x_i^* \otimes x_i \to I
+		\end{array} .
+\end{eq*}
+Then for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ such that $d(w \otimes w') = d(w) \otimes d(w')$, where $d(-)$ is the minimal generator decomposition from Definition \ref{mgd}, set 
+\begin{eq*} \psi(w \otimes w') = \psi(w) \otimes \psi(w'), \quad \quad \psi_{w, w'} = id_{\psi(w) \otimes \psi(w')} \end{eq*}
+This is enough to determine the value of $\psi$ on all of the remaining objects, via successive decompositions. For the isomorphisms, first note that the ones we have already defined satisfy the associativity and unitality required of weak monoidal functors. Now consider some $w, w'$ with $d(w \otimes w') \neq d(w) \otimes d(w')$. The fact that they differ implies that tensoring $w$ with $w'$ causes some cancellation of inverses to occur where the end of one sequence meets the beginning of another. In particular, if we let $b$ be the last term in the minimal generator decomposition of $w$, and let $c = w'$, then we conclude that the length $d(b \otimes c)$ is smaller than the length of $d(c)$. Let $a$ be the product of the rest of $d(w)$, so that $a \otimes b = w$. Then we can use requirement for associativity,
+\begin{eq*} \xymatrix{
+\psi(a) \otimes \psi(b) \otimes \psi(c) \ar[rr]^{id \otimes \psi_{b, c}} \ar[d]_{\psi_{a, b} \otimes id} && \psi(a) \otimes \psi(b \otimes c) \ar[d]^{\psi_{a, b \otimes c}} \\
+\psi(a \otimes b) \otimes \psi(c) \ar[rr]_{\psi_{a \otimes b, c}} && \psi(a \otimes b \otimes c) },
+\end{eq*}
+to define $\psi_{w, w'} = \psi{a\otimes b, c}$ in terms of three other isomorphisms that each have strictly smaller decompositions. Repeating this process will therefore eventually yield a definition in terms of our previous isomorphisms.
+
+By Proposition \ref{allmapsaction}, every morphism in $L\mathbb{G}_n$ can be written as $\alpha(g; id_{w_1}, ..., id_{w_m})$ for some $g \in G(m)$, $w_i \in \mathbb{Z}^{*n}$. The action of $\psi$ on morphisms is thus determined by the diagram in Definition \ref{weakmonfunc}, that is
+\begin{eq*} \psi(\alpha(g; w_1, ... w_m)) \, = \, \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta(\, g \, ; \, id_{\psi(w_1)}, \, ..., \, id_{\psi(w_m)}\, ) \circ \psi_{\mathbf{w}}^{-1}. \end{eq*} 
+However, morphisms do not have a unique representation of this form, so we must check that whenever we have different representations of the same morphism
+\begin{eq*} \alpha(g; id_{w_1}, ..., id_{w_m}) = \alpha(g'; id_{w_1'}, ..., id_{w_{m'}'}) \end{eq*}
+their diagrams give the same image under $\psi$. There are two cases to consider here;
+\begin{eq*} \alpha(g; id_{w_1}, ..., id_{w_m}) = \alpha( \, g \otimes e_k \, ; \, id_{w_1}, \, ..., \, id_{w_m}, \, id_{v_1}, \, ..., \, id_{v_k} \, ) \end{eq*}
+when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimit diagram $D$ in Theorem \ref{colimthm}; and
+\begin{eq*} \begin{array}{rll}
+		\alpha(g; id_{w_1}, ..., id_{w_m}) & = & \alpha(\, h \, ; \, id_{w_1'}, \, ..., \, id_{w_{m'}} \, ) \\
+		&& \circ \, \, \alpha(\, j \, ; \, id_{w_1''}, \, ..., \, id_{w_{m''}''} \, ) \\
+		&& \circ \, \, \alpha(\, h^{-1} \, ; \, id_{w_1'}, \, ..., \, id_{w_{m'}'} \, ) \\
+		&& \circ \, \, \alpha(\, j^{-1} \, ; \, id_{w_1''}, \, ..., \, id_{w_{m''}''} \, ) \\
+		& = & id_{w_1 \otimes ... \otimes w_m} 
+		\end{array}.
+\end{eq*}
+for $ \alpha(\, h \, ; \, id_{w_1'}, \, ..., \, id_{w_{m'}} \, ), \alpha(\, j \, ; \, id_{w_1''}, \, ..., \, id_{w_{m''}''} \, ) \in \mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, which comes from the abelianisation of the vertices of $D$. All other ways for a morphism to have different representations must be generated by successive examples of these cases, since otherwise they wouldn't be coequalised by the colimit in Theorem \ref{colimthm}. In the first case we just have
+\begin{eq*} \begin{array}{rl}
+		& \psi( \, \alpha( \, g \otimes e_k \, ; \, id_{w_1}, \, ..., \, id_{w_m}, \, id_{v_1}, \, ..., \, id_{v_k} \, ) \, ) \\
+		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}, \mathbf{v}} \circ \beta(\, g \otimes e_k \, ; \, id_{\psi(w_1)}, \, ..., \, id_{\psi(w_m)}, \, id_{\psi(v_1)}, \, ..., \, id_{\psi(v_k)} \, ) \circ \psi_{\mathbf{w}, \mathbf{v}}^{-1} \\
+		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \otimes \psi_{\mathbf{v}} \big) \circ \big( \beta( g ; id_{\psi(w_1)}, ..., id_{\psi(w_m)}) \otimes id_{\psi(\mathbf{v})} \big) \circ \big( \psi_{\mathbf{w}}^{-1} \otimes \psi_{\mathbf{v}}^{-1} \big) \\
+		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; id_{\psi(w_1)}, ..., id_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \big) \otimes \big( \psi_{\mathbf{v}} \circ id_{\psi(\mathbf{v})} \circ \psi_{\mathbf{v}}^{-1} \big) \\
+		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; id_{\psi(w_1)}, ..., id_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \\
+		=& \psi( \, \alpha(g; id_{w_1}, ..., id_{w_m}) \, )
+		\end{array}.
+\end{eq*}
+as required. The second case is more subtle. We begin by expanding
+\begin{eq*} \begin{array}{rl}
+		& \psi( \, \alpha( \, g \, ; \, id_{w_1}, \, ..., \, id_{w_m} \, ) \\
+		= & \psi( \, \alpha(\, h \, ; \, id_{w_1'}, \, ..., \, id_{w_{m'}} \, ) \, ) \\
+		& \circ \, \, \psi( \, \alpha(\, j \, ; \, id_{w_1''}, \, ..., \, id_{w_{m''}''} \, ) \, ) \\
+		& \circ \, \, \psi( \, \alpha(\, h^{-1} \, ; \, id_{w_1'}, \, ..., \, id_{w_{m'}'} \, ) \, ) \\
+		&\circ \, \, \psi( \, \alpha(\, j^{-1} \, ; \, id_{w_1''}, \, ..., \, id_{w_{m''}''} \, ) \, ) \\
+		= & \psi_{\mathbf{w'}} \circ \beta(\, h \, ; \, id_{\psi(w_1')}, \, ..., \, id_{\psi(w_{m'})} \, ) \circ \psi_{\mathbf{w'}}^{-1} \\
+		& \circ \, \, \psi_{\mathbf{w''}} \circ\beta(\, j \, ; \, id_{\psi(w_1'')}, \, ..., \, id_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
+		& \circ \, \, \psi_{\mathbf{w'}} \circ \beta(\, h^{-1} \, ; \, id_{\psi(w_1')}, \, ..., \, id_{\psi(w_{m'}')} \, ) \circ \psi_{\mathbf{w'}}^{-1}  \\
+		&\circ \, \, \psi_{\mathbf{w''}} \circ \beta(\, j^{-1} \, ; \, id_{\psi(w_1'')}, \, ..., \, id_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
+		\end{array}.
+\end{eq*}
+Here the objects $w_i, w_i', w_i''$ are all in $\mathbb{G}_n \subseteq L\mathbb{G}_n$, and so we know their minimal generator decompositions are also in $\mathbb{G}_n$. It follows that $d(w_i \otimes w_j) = d(w_i) \otimes d(w_j)$ for all $i,j$, and hence by our definition of $\psi$ we have $\psi(w_i \otimes w_j) = \psi(w_i) \otimes \psi(w_j)$ and also $\psi_{\mathbf{w}_{\sigma}} = id$ for any permuation $\sigma$ --- and the same for $\mathbf{w'}$ and $\mathbf{w''}$. Also, note that since we are working in $\mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, all of the action morphisms in the above composite have the same source and target, $\psi(w_1 \otimes ...\otimes w_m)$. This object is weakly invertible, because each of the $w_i$ are invertible. However, the automorphisms of any weakly invertible object are isomorphic to the automorphisms of the unit object, as in the proof of Proposition \ref{zerotree}, and hence form an abelian group, by an Eckmann-Hilton argument like in the proof of Theorem \ref{colimthm}. Therefore we may permute these action morphisms freely, and so
+\begin{eq*} \begin{array}{rl}
+& \psi( \, \alpha( \, g \, ; \, id_{w_1}, \, ..., \, id_{w_m} \, ) \\
+		= & \beta(\, h \, ; \, id_{\psi(w_1')}, \, ..., \, id_{\psi(w_{m'})} \, ) \\
+		& \circ \, \, \beta(\, h^{-1} \, ; \, id_{\psi(w_1')}, \, ..., \, id_{\psi(w_{m'}')} \, )  \\
+		& \circ \, \, \beta(\, j \, ; \, id_{\psi(w_1'')}, \, ..., \, id_{\psi(w_{m''}'')} \, ) \\
+		& \circ \, \, \beta(\, j^{-1} \, ; \, id_{\psi(w_1'')}, \, ..., \, id_{\psi(w_{m''}'')} \, ) \\
+		= & id_{\psi(w_1) \otimes ... \otimes \psi(w_m)} \\
+		= & \psi_{\mathbf{w}} \circ \beta(\, e_m \, ; \, id_{\psi(w_1)}, \, ..., \, id_{\psi(w_{m})} \, ) \circ \psi_{\mathbf{w}}^{-1}
+		\end{array}
+\end{eq*}
+as required.
+
+With $\psi$ now fully defined, notice that
+\begin{eq*} \begin{array}{rll}
+		F(\psi) & = & \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{ 1, ..., n \} } \\
+		& = & \big\{ \, ( \, x_i, \, x_i^*, \, \eta_i, \, \epsilon_i \, ) \, \big\}_{i \in \{ 1, ..., n \} } \\
+		\end{array}
+\end{eq*}
+which was our arbitrary object in $(X_{\mathrm{wkinv}})^n$. Therefore, $F$ is surjective on objects.
+
+Next, choose an arbitrary monoidal transformation $\theta : \psi \to \chi$ from $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$. By naturality, for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ we have that
+\begin{eq*} \xymatrix{
+\psi(w) \otimes \psi(w') \ar[r]^-{\sim} \ar[d]_{\theta_w \otimes \theta_{w'}} & \psi(w \otimes w') \ar[d]^{\theta_{w \otimes w'}} \\
+\chi(w) \otimes \chi(w') \ar[r]^-{\sim} & \chi(w \otimes w') }
+\end{eq*}
+or equivalently, $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$. It follows from this that the components of $\theta$ are generated by the components on the generators of $\mathrm{Ob}(L\mathbb{G}_n)$, namely $\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \}_{i \in \{ 1, ..., n \} }$. But this is just $F(\theta)$, and thus any monoidal transformation $\theta$ is determined uniquely by its image under $F$, or in other words $F$ is faithful.
+
+Finally, let $\psi, \chi$ be objects of $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$, and choose an arbitrary map $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{ 1, ..., n \} } : F(\psi) \to F(\chi)$ from $(X_{\mathrm{wkinv}})^n$. We can use this to construct a monoidal transformation $\theta : \psi \to \chi$ via the reverse of process we just used. Specifically, if we define
+\begin{eq*} \theta_I = \chi_I \circ \psi_I^{-1}, \quad \quad \theta_{z_i} =  f_i, \quad \quad \theta_{z_i^*} = f_i^*\end{eq*}
+then these will automatically form the naturality squares
+\begin{eq*} \xymatrix{
+\psi(z_i) \otimes \psi(z_i^*) \ar[rr]^-{\psi_{z_i, z_i^*}} \ar[dd]_{f_i \otimes f_i^*} & & \psi(I) \ar[d]^{\psi_I^{-1}} & \psi(z_i^*) \otimes \psi(z_i) \ar[rr]^-{\psi_{z_i^*, z_i}} \ar[dd]_{f_i^* \otimes f_i} & & \psi(I) \ar[d]^{\psi_I^{-1}} \\
+& & I \ar[d]^{\chi_I} & & & I \ar[d]^{\chi_I}\\
+\chi(z_i) \otimes \chi(z_i^*) \ar[rr]^-{\chi_{z_i, z_i^*}} & & \chi(I) & \chi(z_i^*) \otimes \chi(z_i) \ar[rr]^-{\chi_{z_i^*, z_i}} & & \chi(I)}
+\end{eq*}
+since these are just the conditions for $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{ 1, ..., n \} }$ to be a map $F(\psi) \to F(\chi)$ in $(X_{\mathrm{wkinv}})^n$. Repeatedly applying the naturality condition $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$ will then generate all of the other components of $\theta$, in a way that clearly satisfies naturality. Thus we have a well-defined monoidal transformation $\theta : \psi \to \chi$, and applying $F$ to it gives
+\begin{eq*} \begin{array}{rll}
+		F(\theta) & = & \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{ 1, ..., n \} } \\
+		& = & \big\{ \, ( \, f_i, \, f_i^* \, ) \, \big\}_{ i \in \{ 1, ..., n \} },
+		\end{array}
+\end{eq*}
+our arbitrary map. Therefore $F$ is full and, putting this together with the previous results, is an equivalence of categories.
+\end{proof}
+
+\begin{thebibliography}{1}
+
+\bibitem{operadborel} 
+Nick Gurski. 
+\it{Operads, tensor products, and the categorical Borel construction}. 
+ arXiv:1508.04050 [math.CT].
+
+\end{thebibliography}
+
+
+\end{document}
