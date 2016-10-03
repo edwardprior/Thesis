@@ -4,7 +4,7 @@
 \contentsline {subsection}{\tocsubsection {}{1.3}{$L(X)$ as an initial algebra}}{4}{subsection.1.3}
 \contentsline {subsection}{\tocsubsection {}{1.4}{Objects and morphisms of the initial algebras}}{6}{subsection.1.4}
 \contentsline {subsection}{\tocsubsection {}{1.5}{Initial algebras as groupoids}}{11}{subsection.1.5}
-\contentsline {subsection}{\tocsubsection {}{1.6}{Initial algebras as a colimit}}{14}{subsection.1.6}
-\contentsline {subsection}{\tocsubsection {}{1.7}{Examples}}{19}{subsection.1.7}
-\contentsline {subsection}{\tocsubsection {}{1.8}{The free algebra on $n$ weakly invertible objects}}{19}{subsection.1.8}
-\contentsline {section}{\tocsection {}{}{References}}{24}{section*.1}
+\contentsline {subsection}{\tocsubsection {}{1.6}{Initial algebras as a colimit}}{16}{subsection.1.6}
+\contentsline {subsection}{\tocsubsection {}{1.7}{Examples}}{21}{subsection.1.7}
+\contentsline {subsection}{\tocsubsection {}{1.8}{The free algebra on $n$ weakly invertible objects}}{22}{subsection.1.8}
+\contentsline {section}{\tocsection {}{}{References}}{26}{section*.5}
