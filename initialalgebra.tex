@@ -324,7 +324,7 @@ Also, from now on rather of writing objects in $C(\mathbb{G}_n)$ as maps $\psi: 
 
 \subsection{Objects and morphisms of the initial algebras}
 
-We know that the functor $L$ represents the process of `freely adding inverses to objects' of a given $\mathrm{E}G$-algebra. Therefore, it makes sense to expect the objects of $L(\mathbb{G}_n)$ to form not just a monoid but a group, and in particular be the groupification of $\mathbb{G}_n$'s monoid of objetcs. As we saw in Definition \ref{Gndef} the objects of $\mathbb{G}_n$ are $\mathbb{N}^{*n}$, and so we want to have that $\mathrm{Ob}(L(\mathbb{G}_n)) = \mathbb{Z}^{*n}$. This intuition is correct, and can justified as follows:
+We know that the functor $L$ represents the process of `freely adding inverses to objects' of a given $\mathrm{E}G$-algebra. Therefore, it makes sense to expect the objects of $L(\mathbb{G}_n)$ to form not just a monoid but a group, and in particular be the groupification of $\mathbb{G}_n$'s monoid of objects. As we saw in Definition \ref{Gndef} the objects of $\mathbb{G}_n$ are $\mathbb{N}^{*n}$, and so we want to have that $\mathrm{Ob}(L(\mathbb{G}_n)) = \mathbb{Z}^{*n}$. This intuition is correct, and can justified as follows:
 
 \begin{prop}\label{Zobj} Let $\phi: \mathbb{G}_n \to Z$ be an initial object in $C(\mathbb{G}_n)$. Then $\mathrm{Ob}(Z) = \mathbb{Z}^{*n}$, and the restriction of $\phi$ to objects $\phi_{\mathrm{ob}}$ is the obvious inclusion $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$.
 \end{prop}
@@ -336,14 +336,14 @@ Now, let $\phi: \mathbb{G}_n \to Z$ be our initial object in $C(\mathbb{G}_n)$. 
 & \mathbb{N}^{*n} \ar[dl]_{\phi_{\mathrm{ob}}} \ar[dr]^-{\psi_{\mathrm{ob}}} & \\
 \mathrm{Ob}(Z) \ar[rr]^{u_{\mathrm{ob}}} & & \mathbb{Z}^{*n} }
 \end{eq*}
-commute. This fact is enough to determine much of the behaviour of $u_{\mathrm{ob}}$. For any generator $z_i$ of $\mathbb{N}^{*n}$, we have $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)) = \psi_{\mathrm{ob}}(z_i) = z_i$ and $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)^*) = z_i^*$. Since the $z_i, z_i^*$ are the generators of $\mathbb{Z}^{*n}$, it follows that $u_{\mathrm{ob}}$ is surjective, even when restricted to $\langle \mathrm{im}(\phi) \rangle$. Moreover, $\psi_{\mathrm{ob}}$ is injective, so $\phi_{\mathrm{ob}}$ is also injective, and hence $u_{\mathrm{ob}}$ is injective on $\langle \mathrm{im}(\phi) \rangle$ too. In other words, $\mathrm{Ob}(Z)$ contains a submonoid $\langle \mathrm{im}(\phi) \rangle$ which is isomorphic to $\mathbb{Z}^{*n}$. 
+commute. This fact is enough to determine much of the behaviour of $u_{\mathrm{ob}}$. For any generator $z_i$ of $\mathbb{N}^{*n}$, we have $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)) = \psi_{\mathrm{ob}}(z_i) = z_i$ and $u_{\mathrm{ob}}(\phi_{\mathrm{ob}}(z_i)^*) = z_i^*$. Since the $z_i, z_i^*$ are the generators of $\mathbb{Z}^{*n}$, it follows that $u_{\mathrm{ob}}$ is surjective, even when restricted to $\langle \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \rangle$. Moreover, $\psi_{\mathrm{ob}}$ is injective, so $\phi_{\mathrm{ob}}$ is also injective, and hence $u_{\mathrm{ob}}$ is injective on $\langle \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \rangle$ too. In other words, $\mathrm{Ob}(Z)$ contains a submonoid $\langle \, \mathrm{im}(\phi) \, \rangle$ which is isomorphic to $\mathbb{Z}^{*n}$. 
 
-Finally, we wish to show that this submonoid is actually all of  $\mathrm{Ob}(Z)$. Let $J$ be the $\mathrm{E}G$-algebra with objects $\mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle$ and a unique morphism between each. As before, we can construct a new object $\chi : \mathbb{G}_n \to J$ of $C(\mathbb{G}_n)$ just by defining $\chi_{\mathrm{ob}}$, since the morphisms are determined by their source and target. We choose $\chi_{\mathrm{ob}}(x) = [\phi_{\mathrm{ob}}(x)]$ for all $x \in \mathbb{N}^{*n}$, which works since $\chi_{\mathrm{ob}}(z_i) = 0$ is invertible for the generator $z_i$. Now, initiality of $\phi$ should gives us a unique $v : Z \to J$ such that 
+Finally, we wish to show that this submonoid is actually all of  $\mathrm{Ob}(Z)$. Let $J$ be the $\mathrm{E}G$-algebra with objects $\mathrm{Ob}(Z) / \langle \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \rangle$ and a unique morphism between each. As before, we can construct a new object $\chi : \mathbb{G}_n \to J$ of $C(\mathbb{G}_n)$ just by defining $\chi_{\mathrm{ob}}$, since the morphisms are determined by their source and target. We choose $\chi_{\mathrm{ob}}(x) = [\phi_{\mathrm{ob}}(x)]$ for all $x \in \mathbb{N}^{*n}$, which works since $\chi_{\mathrm{ob}}(z_i) = 0$ is invertible for the generator $z_i$. Now, initiality of $\phi$ should gives us a unique $v : Z \to J$ such that 
 \begin{eq*} \xymatrix{
 & \mathbb{N}^{*n} \ar[dl]_{\phi_{\mathrm{ob}}} \ar[dr]^-{\chi_{\mathrm{ob}}} & \\
-\mathrm{Ob}(Z) \ar[rr]^{v_{\mathrm{ob}}} & & \mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle }
+\mathrm{Ob}(Z) \ar[rr]^{v_{\mathrm{ob}}} & & \mathrm{Ob}(Z) / \langle \, \mathrm{im}(\phi) \, \rangle }
 \end{eq*}
-commutes. But there are at least two options here --- one is the $v$ whose underlying monoid homomorphism is $v_{\mathrm{ob}}(x) = [x]$, and the other is the one with $v_{\mathrm{ob}}(x) = 0$. It follows that these must be the same map, and thus $ \mathrm{Ob}(Z) / \langle \mathrm{im}(\phi) \rangle = 0$, that is, $\mathrm{Ob}(Z) =  \langle \mathrm{im}(\phi) \rangle$. Returning to the first of our diagrams, we see now that $u_{\mathrm{ob}} : \mathrm{Ob}(Z) \to \mathbb{Z}^{*n}$ is fully injective and surjective. Therefore $ \mathrm{Ob}(Z) \cong \mathbb{Z}^{*n}$, and when viewed this way $\phi_{\mathrm{ob}}$ is the obvious inclusion $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$.
+commutes. But there are at least two options here --- one is the $v$ whose underlying monoid homomorphism is $v_{\mathrm{ob}}(x) = [x]$, and the other is the one with $v_{\mathrm{ob}}(x) = 0$. It follows that these must be the same map, and thus $ \mathrm{Ob}(Z) /  \langle \, \mathrm{im}(\phi) \, \rangle = 0$, that is, $\mathrm{Ob}(Z) =  \langle \, \mathrm{im}(\phi) \, \rangle$. Returning to the first of our diagrams, we see now that $u_{\mathrm{ob}} : \mathrm{Ob}(Z) \to \mathbb{Z}^{*n}$ is fully injective and surjective. Therefore $ \mathrm{Ob}(Z) \cong \mathbb{Z}^{*n}$, and when viewed this way $\phi_{\mathrm{ob}}$ is the obvious inclusion $\mathbb{N}^{*n} \to \mathbb{Z}^{*n}$.
 \end{proof}
 
 Unlike with objects, there is no simple intuition for how the application of $L$ will generate the morphisms of $L\mathbb{G}_n$ from those in $\mathbb{G}_n$. Obviously we will need to add a host of new action morphisms between all of the new objects, and the various composites of these. But we will also need new action maps between old objects, based on new ways of viewing them as a tensor product. For example, we must have an $\alpha(g; \mathrm{id}_x, \mathrm{id}_{x^*})$, which will be a new automorphism of $0 = x \otimes x^* = x^* \otimes x$. Should any of these new maps actually be the equal to ones inherited from $\mathbb{G}_n$? And how do the composites of these things relate to one another? It is not immediately clear. 
@@ -440,44 +440,110 @@ Before moving on, notice that this result lets us immediately classify the conne
 
 \begin{prop}\label{concomp} The connected components of $\mathbb{G}_n$ are $\mathbb{N}^n$, with the assignment $[ \,\, ] : \mathbb{N}^{*n} \to \mathbb{N}^n$ of objects to their component being the quotient map of abelianisation. Also, if $Z$ is an initial object in $C(\mathbb{G}_n)$ then the connected components of $Z$ are $\mathbb{Z}^n$, with its assignment of objects to components also given by abelianisation, and with the restriction of $\phi$ to components $\phi_\pi : \mathbb{N}^n \to \mathbb{Z}^n$ being the obvious inclusion. 
 \end{prop}
-\begin{proof}All morphisms in $\mathbb{G}_n$ are of the form $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ for some $g \in G(m)$ and $w_i \in \mathbb{N}^{*n}$. Since these have source $w_1 \otimes ... \otimes w_m$ and target $w_{\pi(g)^{-1}(1)} \otimes ... \otimes w_{\pi(g)^{-1}(m)}$, we see that two objects can be in the same connected component only if they can expanded as a tensor product in ways that are permutations of one another. Moreover, for any two objects where this is true --- say $w = w_1 \otimes ... \otimes w_m$ and target $w' = w_{\sigma^{-1}(1)} \otimes ... \otimes w_{\sigma^{-1}(m)}$ --- we can always find a map $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$  between them by choosing a $g$ with $\pi(g) = \sigma$, which we can do because $\pi$ is surjective. So two objects of $\mathbb{G}_n$ are in the same connected component if and only if their expansions are permutations of each others. Therefore, the canonical map $[ \,\, ] : \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n)$ sending each object to its connected component is just the map which forgets about these permutations, making the free product on $\mathbb{N}^{*n}$ commutative. That is, it is the quotient map for the abelianisation $q : \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{ab}$, and so $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$. 
+\begin{proof}All morphisms in $\mathbb{G}_n$ are of the form $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ for some $g \in G(m)$ and $w_i \in \mathbb{N}^{*n}$. Since these have source $w_1 \otimes ... \otimes w_m$ and target $w_{\pi(g)^{-1}(1)} \otimes ... \otimes w_{\pi(g)^{-1}(m)}$, we see that two objects can be in the same connected component only if they can expanded as a tensor product in ways that are permutations of one another. Moreover, for any two objects where this is true --- say source $w = w_1 \otimes ... \otimes w_m$ and target $w' = w_{\sigma^{-1}(1)} \otimes ... \otimes w_{\sigma^{-1}(m)}$ --- we can always find a map $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$  between them by choosing any $g$ with $\pi(g) = \sigma$, which we can do because $\pi$ is surjective. So two objects of $\mathbb{G}_n$ are in the same connected component if and only if their expansions are permutations of each others. Therefore, the canonical map $[ \,\, ] : \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n)$ sending each object to its connected component is just the map which forgets about these permutations, making the free product on $\mathbb{N}^{*n}$ commutative. That is, it is the quotient map for the abelianisation $q : \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{ab}$, and so $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$. 
 
 Since all morphisms in $Z$ can also be written as $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, the same proof works there too, giving $\pi_0(Z) = \mathbb{Z}^n$ and $[ \,\, ]_Z = q : \mathbb{Z}^{*n} \to \mathbb{Z}^n$. Also, by Proposition \ref{Zobj} $\phi$ acts as an inclusion on objects, so we have the following commutative square:
 \begin{eq*} \xymatrix{
 \mathbb{N}^{*n} \ar[r]^{q} \ar[d]_{i} & \mathbb{N}^{n} \ar[d]^{\phi_\pi} \\
 \mathbb{Z}^{*n} \ar[r]^{q} & \mathbb{Z}^{n} }.
 \end{eq*}
-Thus $\phi_\pi(q(x)) = q(x)$, and so $\phi_\pi$ is also an inclusion.
+Thus $\phi_\pi(q(x)) = q(x)$, and because $q$ is surjective this means that $\phi_\pi$ is an inclusion.
 \end{proof}
 
-Each time we learn of some important new behaviour which every initial object shares, such as those in the previous proposition, we could use it to narrow down our definition of the initial objects. This is because whenever the initial objects of some category $C$ all share a property $P$, it follows that they are also all initial objects in the subcategory of $C$ containing only objects with property $P$. We will not resort to this tactic after every piece of information we learn about $L(\mathbb{G}_n)$ and its kin, since if we did the subalgebras of $C(\mathbb{G}_n)$ we'd end up working in would get quite complicated, without really providing much aid in constructing proofs. However, the previous proposition is an exception to this, since it turns out we will need this refinement later.
+\subsection{Refinement of $C(\mathbb{G}_n)$}
 
-\begin{cor} Any initial object of $C(\mathbb{G}_n)$ is also initial in $C_{\mathrm{i}}(\mathbb{G}_n)$, the full subcategory of $C(\mathbb{G}_n)$ on maps $\psi: \mathbb{G}_n \to X$ which are injective on connected components. 
+In the previous section, we learnt some important new features of the initial objects of $C(\mathbb{G}_n)$. Using this information, we can carefully make changes to the category we are finding initial objects in, hopefully in a way which will make the search for $L(\mathbb{G}_n)$ easier.
+
+\begin{defi} Let $C_{\mathrm{i}}(\mathbb{G}_n)$ denote the subcategory of $C(\mathbb{G}_n)$ consisting of the objects $\psi: \mathbb{G}_n \to X$ and morphisms $f: X \to Y$ which have all of the following properties:
+\begin{itemize}
+\item injective on objects
+\item injective on connected components
+\item the objects in the image generate the group of objects of the target
+\end{itemize}
+\end{defi}
+
+\begin{prop} Let $\phi : \mathbb{G}_n \to Z$ be an initial object of $C(\mathbb{G}_n)$. Then it is also initial in $C_{\mathrm{i}}(\mathbb{G}_n)$.
+\end{prop}
+\begin{proof}
+By Proposition \ref{Zobj} the restriction of $\phi$ to objects is just the inclusion $\phi_{\mathrm{ob}} : \mathbb{N}^{\ast n} \to \mathbb{Z}^{\ast n}$, and by Proposition \ref{concomp} its restriction to connected components is the inclusion $\phi_\pi : \mathbb{N}^n \to \mathbb{Z}^n$. These are both clearly injective, and $\langle \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \rangle =  \langle \, \mathbb{N}^{\ast n} \, \rangle = \mathbb{Z}^{\ast n}$, so $\phi$ is definitely in $C_{\mathrm{i}}(\mathbb{G}_n)$. 
+
+For any other object $\psi: \mathbb{G}_n \to X$ of $C_{\mathrm{i}}(\mathbb{G}_n)$, we know that it is also an object of $C(\mathbb{G}_n)$, and so the initiality condition for $\phi$ tells us that there exists a unique $u : Z \to X$ in $C(\mathbb{G}_n)$ such that $\psi = u \phi$. But as we saw in the proof of Proposition \ref{Zobj}, the fact that $\phi_{\mathrm{ob}}$ and $\psi_{\mathrm{ob}}$ are injective tells us that $u_{\mathrm{ob}}$ is injective when restriced to $\langle \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \rangle = \mathbb{Z}^{\ast n}$. Since we now know that this is just the entire source of $u_{\mathrm{ob}}$, it follows that $u$ is injective on objects, and the same line of reasoning but applied to $\phi_\pi$ and $\psi_\pi$ instead says that $u$ is injective on connected components as well. Lastly, we have
+\begin{eq*} \langle \, \mathrm{im}(u_{\mathrm{ob}}) \, \rangle \, \supseteq \, \langle \, \mathrm{im}(u_{\mathrm{ob}}\phi_{\mathrm{ob}}) \, \rangle = \, \langle \, \mathrm{im}(\psi_{\mathrm{ob}}) \, \rangle = \mathrm{Ob}(X) \end{eq*}
+and hence $u$ is a valid morphism from $\phi$ to $\psi$ in $C_{\mathrm{i}}(\mathbb{G}_n)$. Clearly there can be no other such maps, as that would violate the initiality of $\phi$ in $C(\mathbb{G}_n)$, and therefore $\phi$ is also an initial object in $C_{\mathrm{i}}(\mathbb{G}_n)$.
+\end{proof}
+
+By excluding several kinds of objects and morphisms from $C_{\mathrm{i}}(\mathbb{G}_n)$, we've effectively reduced the number of commutative diagrams that need to be checked when trying to find the initial object. This should make our task easier, but before moving on we will make one more refinement to our category. Consider that every $\mathrm{E}G$-algebra $X$ has an underlying monoidal category, the one with tensor product given by
+\begin{eq*}\begin{array}{rll}
+		\alpha(g; x_1, ..., x_m) & = & x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \\
+		\alpha(e; f_1, ..., f_m) & = & f_1 \otimes ... \otimes f_m
+		\end{array}
+\end{eq*}
+for objects $x_i$ and morphisms $f_i$ in $X$. Notice that the $\mathrm{E}G$-action on morphisms can always be split as
+\begin{eq*} \alpha(g; f_1, ..., f_m) = \alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) \circ \alpha(e; f_1, ..., f_m) \end{eq*}
+and so to recover $X$ from its underlying monoidal category the only addition information we need is the values of actions of the form $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$. Likewise, since a map $F : X \to Y$ between $\mathrm{E}G$-algebras is just a functor which preserves the action, all that we need to recover $F$ from its underlying monoidal functor is the actions on identities for its source and target. We can apply this fact to prove the following useful proposition:
+
+\begin{prop} Let $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$ be the category whose objects and morphisms are the underlying monoidal functors of the objects and morphisms of $C_{\mathrm{i}}(\mathbb{G}_n)$. Then the obvious functor
+\begin{eq*} C_{\mathrm{i}}(\mathbb{G}_n) \to C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n) \end{eq*}
+sending $\mathrm{E}G$-algebra maps to their underlying monoidal functors is an isomorphism of categories.  
+\end{prop}
+\begin{proof}
+Let $\psi: \mathbb{G}_n \to X$ an arbitrary object of $C_{\mathrm{i}}(\mathbb{G}_n)$, and suppose that $\hat{\psi}: \mathbb{G}_n \to \hat{X}$ is another object that has the same underlying monoidal functor as $\psi$. As noted before this proposition, $\hat{\psi}$ can differ from $\psi$ only in the values for actions of the form $\alpha(g; \mathrm{id}, ..., \mathrm{id})$ on their source and target. Moreover, since objects of $C_{\mathrm{i}}(\mathbb{G}_n)$ are always maps out of $\mathbb{G}_n$ with its canonical $\mathrm{E}G$-algebra strucutre, we actually only need such values for $\hat{X}$.
+
+One of the conditions these $\alpha_{\hat{X}}(g; \mathrm{id}, ..., \mathrm{id})$ must satisfy is
+\begin{eq*} \hat{\psi} \big( \, \alpha_{\mathbb{G}_n}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{\hat{X}}(g; \mathrm{id}_{\hat{\psi}(w_1)}, ..., \mathrm{id}_{\hat{\psi}(w_m)}) \end{eq*}
+for any objects $w_i$ in $\mathbb{G}_n$. Notice that given a collection of objects $x_i$ in the image of $\hat{\psi}$, this equation can be taken to be definitional --- if we choose a collection of $w_i$ in $\mathbb{G}_n$ with $\hat{\psi}(w_i) = x_i$, then $\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ must then have the value $\hat{\psi}(\alpha_{\mathbb{G}_n}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}))$. That is, the behaviour of $\alpha_{\hat{X}}$ on $\mathrm{im}(\hat{\psi})$ is fixed by the underlying monoidal functor of $\hat{\psi}$; as $\psi$ shares this functor, we also have that
+\begin{eq*}\begin{array}{rll}
+		\alpha_{\hat{X}}(g; \mathrm{id}_{\hat{\psi}(w_1)}, ..., \mathrm{id}_{\hat{\psi}(w_m)}) & = & \hat{\psi} \big( \, \alpha_{\mathbb{G}_n}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \\
+		& = & \alpha_X(g; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)})
+		\end{array}
+\end{eq*}
+
+In order to understand the behaviour of $\alpha_{\hat{X}}$ outside of $\mathrm{im}(\hat{\psi})$, consider the algebra $\mathbb{G}_{2n}$. The objects of this category are the monoid $\mathbb{N}^{\ast 2n}$, with generators that we've been calling $z_1, ..., z_{2n}$. It follows that we can always construct a new map of $\mathrm{E}G$-algebras, $\hat{\psi}_2: \mathbb{G}_{2n} \to \hat{X}$, out of $\hat{\psi}$ by simply setting
+\begin{eq*}
+\hat{\psi}_2(z_i) =
+\begin{cases}
+       	\hat{\psi}(z_i) & \quad \text{if} \quad 1 \leq i \leq n \\
+      	\hat{\psi}(z_{i-n})^* & \quad \text{if} \quad n+1 \leq i \leq 2n \\
+\end{cases}
+\end{eq*}
+\begin{eq*} \hat{\psi}_2 \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{\hat{X}}(g; \mathrm{id}_{\hat{\psi}_2(w_1)}, ..., \mathrm{id}_{\hat{\psi}_2(w_m)}) \end{eq*}
+The results of applying $\hat{\psi}_2$ to other objects of $\mathbb{G}_{2n}$ is determined from the values on generators by the need for $\hat{\psi}_2(w \otimes w') = \hat{\psi}_2(w) \otimes \hat{\psi}_2(w')$ for all objects $w, w'$. Since every morphism of $\mathbb{G}_{2n}$ can be written in the form $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, not necessarily uniquely, the result of applying $\hat{\psi}_2$ to morphisms is also fully determined. The last condition also ensures that $\hat{\psi}_2$ is a well-defined $\mathrm{E}G$-algebra map, and so clearly $\hat{\psi}_2$ is an object of $C(\mathbb{G}_{2n})$. We know that this category has an initial object, $\phi: \mathbb{G}_{2n} \to Z_{2n}$, and hence there is a unique map $u: Z_{2n} \to \hat{X}$ such that $\hat{\psi}_2 = u \phi$. Remembering that $\phi$ has the properties
+\begin{eq*}\phi(w) = w, \quad \quad \phi \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \end{eq*}
+we can conclude that $u$ satisfies
+\begin{eq*}
+u(z_i) =
+\begin{cases}
+       	\hat{\psi}(z_i) & \quad \text{if} \quad 1 \leq i \leq n \\
+      	\hat{\psi}(z_{i-n})^* & \quad \text{if} \quad n+1 \leq i \leq 2n \\
+\end{cases}
+\end{eq*}
+\begin{eq*} u \big( \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{\hat{X}}(g; \mathrm{id}_{u(w_1)}, ..., \mathrm{id}_{u(w_m)}) \end{eq*}
+Like before, we can use this last condition to fix the way that $\alpha_{\hat{X}}$ must act on the image of $u$, using only knowledge of the underlying monoidal functor of $u$. However, this time $\mathrm{im}(u)$ contains every object of $\hat{X}$, since $u_{\mathrm{ob}}$ is a group homomophism and so $\mathrm{im}(u_{\mathrm{ob}}) = \langle \, \mathrm{im}(u_{\mathrm{ob}}) \, \rangle = \mathrm{Ob}(\hat{X})$. Thus, for any collection of objects $x_i$ in the underlying categroy of $X$ we can always find some $w_i$ in $Z_{2n}$ with $u(w_i) = x_i$, meaning that
+\begin{eq*}\begin{array}{rll}
+		\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) & = & u \big( \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \\
+		& = & \alpha_{X}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) 
+		\end{array}
+\end{eq*}
+It follows that $X$ and $\hat{X}$ are really the same $\mathrm{E}G$-algebra, and $\psi$ and $\hat{\psi}$ the same $\mathrm{E}G$-algebra map, and therefore the $\mathrm{E}G$-structure of an object of $C_{\mathrm{i}}(\mathbb{G}_n)$ is completely determined by its underlying monoidal functor.
+
+As for the morphisms of $C_{\mathrm{i}}(\mathbb{G}_n)$, let $f: X \to Y$ be a morphism from $\psi: \mathbb{G}_n \to X$ to $\chi: \mathbb{G}_n \to Y$. Given the underlying monoidal functors of $\psi$ and $\chi$, the actions on $X$ and $Y$ are fixed, and this together with the underlying monoidal functor of $f$ is enough to determine $F$ as a map of $\mathrm{E}G$-algebras. Thus, the process of taking underlying monoidal functors of object and morphisms of $C_{\mathrm{i}}(\mathbb{G}_n)$ is one-to-one, and so $C_{\mathrm{i}}(\mathbb{G}_n) \cong C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$.
+\end{proof}
+
+This result has two very important consequences. The first is that the underlying monoidal functors of the initial objects of $C_{\mathrm{i}}(\mathbb{G}_n)$ must be the initial objects of $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$. This is immediate from their isomorphism as categories, and will allows us to further use $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$ as a refinement of $C(\mathbb{G}_n)$. The second result is a more practical consideration.
+
+\begin{cor} It is possible to recontruct the entirety of $C_{\mathrm{i}}(\mathbb{G}_n)$ from just the objects and morphisms of $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_{n})$ and $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_{2n})$.
 \end{cor}
 \begin{proof}
-By Proposition \ref{concomp}, the restriction to components of any initial object $\phi: \mathbb{G}_n \to Z$ in $C(\mathbb{G}_n)$ is just the inclusion $\phi_\pi : \mathbb{N}^n \to \mathbb{Z}^n$. This is clearly injective, and so $\phi$ is in $C_{\mathrm{i}}(\mathbb{G}_n)$. For any other $\psi: \mathbb{G}_n \to X$ in $C_{\mathrm{i}}(\mathbb{G}_n)$, the initiality condition $\exists ! u : \psi = u \phi$ is satisfied in $C(\mathbb{G}_n)$, and $u: \phi \to \psi$ is a morphism of $C_{\mathrm{i}}(\mathbb{G}_n)$ by fullness, so the initiality condition is satisfied in $C_{\mathrm{i}}(\mathbb{G}_n)$ as well.
+When we were defining the value of $\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ at the end of the previous proof, we not only used the underlying monoidal functor of $u: Z_{2n} \to X$, which is a morphism in $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_{2n})$, but also the value of $\alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, something not included in the data of any $C_{\mathrm{i}, \mathrm{m}}$. However, notice that the way we defined $\hat{\psi}_2$ implies that
+\begin{eq*} \mathrm{Ob}(X) = \langle \, \mathrm{im}(\psi_{\mathrm{ob}}) \, \rangle = \mathrm{im}\big( \, (\hat{\psi}_2)_{\mathrm{ob}} \, \big) = \mathrm{im}(u_{\mathrm{ob}} \phi_{\mathrm{ob}}) = u \big( \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \big) \end{eq*}
+Hence, when we had to pick some $w_i$ such that $u(w_i) = x_i$, we were always free to choose $w_i$ exclusively from $\mathrm{im}(\phi)$. 
+
+But we saw earlier in the previous proof that given any object $\psi: \mathbb{G}_{n} \to X$ of $C_{\mathrm{i}}(\mathbb{G}_n)$, we can define the values of the action $\alpha_X$ on $\mathrm{im}(\psi)$ so long as we know the underlying monoidal functor of $\psi$. Applying this logic to $\phi: \mathbb{G}_{2n} \to Z_{2n}$, it follows that we can get all of the values of $\alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ we need just by knowing the underlying functor of $\phi$, which is just an object of $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_{2n})$. Therefore, we can fully recontruct an object $\psi: \mathbb{G}_n \to X$ of $C_{\mathrm{i}}(\mathbb{G}_n)$ from its underlying monoidal functor in $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$ and some extra data from $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_{2n})$, and likewise with morphisms.
 \end{proof}
 
-\subsection{Initial algebras as monoidal groupoids}
+\subsection{Initial algebras as groupoids}
 
-Recall that objects $X$ in $C_{\mathrm{i}}(\mathbb{G}_n)$ are always expressible as $Y_{\mathrm{inv}}$ for some algebra $Y$. From this fact, along with the definition of $\mathbb{G}_n$, it is clear that all of the algebras we will be working with are not just categories, but groupoids. This is very convenient, as groupoids are structurely much simpler than general categories, and we can exploit this simplicity to help find the initial algebra more easily. In particular, we will use the fact that for any connected component of a groupoid, all of the homsets between its objects are isomorphic. This will allow us to describe any groupoid $X$ by splitting it into two smaller pieces --- one encoding information about the objects of $X$, and the other about the morphisms of the components $X$. 
-
-Moreover, in order to make things even simpler, we will not worry about the full structure of our $\mathrm{E}G$-algebras. Later on, in Proposition ???, it will be shown that the initial object $\phi: \mathbb{G}_n \to Z$ we are searching for can be recovered from just its underlying (strict) monoidal functor. Therefore we will shift our attention to realm of monoidal groupoids, at least for the moment. To keep things clear we'll adapt our notation slightly.
-
-\begin{defi} Given a strict monoidal groupoid $X$, we denote by $X_{\mathrm{inv}}$ the subgroupoid containing all invertible objects in $X$ and the isomorphisms between them. \end{defi}
-
-\begin{prop} The assignment $X \mapsto X_{\mathrm{inv}}$ can be extended to a 2-functor $(\_)_{\mathrm{inv}}: \mathrm{MonCat}_S \to \mathrm{MonGpd}_S$.
-\end{prop}
-
-The proof of this proposition is already contained within the proof of Proposition \ref{invprop}.
-
-\begin{defi} Given a strict monoidal groupoid $X$, let $C^{\mathrm{m}}(X)$ denote the comma category $\big( \, \mathrm{id}_X \downarrow (\_)_{\mathrm{inv}} \, \big)$. That is, $C^{\mathrm{m}}(X)$ is the coslice category whose objects are pairs of a monoidal groupoid $Y$ and a monoidal functor $\psi: X \to Y_{\mathrm{inv}})$, and whose morphisms $f: (Y, \psi) \to (Y', \psi')$ are monoidal functors $f: Y \to Y'$ such that $f_{\mathrm{inv}} \circ \psi = \psi'$. \end{defi}
-
-\begin{defi} Let $C^{\mathrm{m}}_{\mathrm{i}}(\mathbb{G}_n)$ denote the full subcategory of $C^{\mathrm{m}}(\mathbb{G}_n)$ on maps $\psi: \mathbb{G}_n \to X_{\mathrm{inv}}$ which are injective on connected components. \end{defi}
-
-This new category $C^{\mathrm{m}}_{\mathrm{i}}(\mathbb{G}_n)$ contains all of the same sort of data that $C_{\mathrm{i}}(\mathbb{G}_n)$ did, except that now we no longer require our monoidal groupoids to be $\mathrm{E}G$-algebras. As before, for the sake of less cluttered notation, we will choose to write these monoidal functors $\psi: \mathbb{G}_n \to Y_{\mathrm{inv}}$ as $\psi: \mathbb{G}_n \to X$, whilst remembering that we'll always have $X = Y_{\mathrm{inv}}$ from some $Y$.
-
-Now we can consider the two pieces we intend to split our monoidal groupoids into. Firstly, we have the part which encodes the morphisms.
+Recall that objects $X$ in $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$ are always expressible as $Y_{\mathrm{inv}}$ for some monoidal category $Y$. From this fact, along with the definition of $\mathbb{G}_n$, it is clear that all of the structures we will be working with are not just categories, but groupoids. This is very convenient, as groupoids are often much simpler than general categories, and we can exploit this simplicity to help find initial algebras more easily. In particular, we will use the fact that for any connected component of a groupoid, all of the homsets between its objects are isomorphic. This will allow us to describe any groupoid $X$ by splitting it into two smaller pieces --- one encoding information about the objects of $X$, and the other about the morphisms of the components $X$. First, we'll look at the part which details the morphisms.
 
 \begin{defi} Let $X$ be a monoidal groupoid. A skeleton of $X$ is a full subcategory of $X$ which contains exactly one object from each of the connected components of $X$. \end{defi}
 
@@ -647,7 +713,7 @@ The proof of the other coherence condition for $\eta^U$, involving $r$ rather th
 
 For any of the objects $\psi : \mathbb{G}_n \to X$ of $C^{\mathrm{m}}_{\mathrm{i}}(\mathbb{G}_n)$, we now have a way of breaking down their source and target into smaller groupoids representing their connected components and automorphisms. We might wonder if we can do the same sort of thing to $\psi$ itself --- show that it is equivalent to several 'smaller' maps running between corresponding terms of $\mathrm{sk}(\mathbb{G}_n) \times_{\pi_0(\mathbb{G}_n)} \mathrm{po}(\mathbb{G}_n)$ and $\mathrm{sk}(X) \times_{\pi_0(X)} \mathrm{po}(X)$. This would allow us to contruct the initial object of $C^m_{\mathrm{i}}(\mathbb{G}_n)$ by finding the initial versions of these reduced maps, greatly simplifying the problem. It turns out that this procedure is relatively straightforward.
 
-\begin{prop}\label{factprop} Let $\psi : \mathbb{G}_n \to X$ be an object of $C^{\mathrm{m}}_{\mathrm{i}}(\mathbb{G}_n)$, and $\mathrm{sk}(\mathbb{G}_n)$ a choice of skeleton for $\mathbb{G}_n$. Then there exists a choice of skeleton $\mathrm{sk}(X)$ such that there is a unique pair of weak monoidal functors
+\begin{prop}\label{factprop} Let $\psi : \mathbb{G}_n \to X$ be an object of $C_{\mathrm{i}, \mathrm{m}}(\mathbb{G}_n)$, and $\mathrm{sk}(\mathbb{G}_n)$ a choice of skeleton for $\mathbb{G}_n$. Then there exists a choice of skeleton $\mathrm{sk}(X)$ and a unique pair of weak monoidal functors
 \begin{eq*} \psi_{\mathrm{s}} : \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(X), \quad \quad \psi_{\mathrm{p}} : \mathrm{po}(\mathbb{G}_n) \to \mathrm{po}(X) \end{eq*}
 making the following diagram commutes:
 \begin{eq*} \xymatrix{
@@ -666,9 +732,18 @@ To begin, we have to make a choice of $\mathrm{sk}(X)$. Consider the commutative
 \end{tikzcd} \end{eq*}
 The bottom square here is just the definition of $\psi_\pi$, the restriction of $\psi$ to connected components. For the top square, we have factored the functor $\psi \circ i : \mathrm{sk}(\mathbb{G}_n) \to \mathbb{G}_n \to X$ through its image. This image is a clearly subcategory of $X$, but the rest of the diagram tells us more than just that. Because $\psi$ is an object of $C^{\mathrm{m}}_{\mathrm{i}}(\mathbb{G}_n)$, it is injective on connected components, or in other words the bottom edge of the diagram, $\psi_\pi$, is injective on objects. Also, since $\mathrm{sk}(\mathbb{G}_n)$ contains one object from each connected component of $\mathbb{G}_n$, the lefthand edge must be bijective on objects. Lastly, the top edge is surjective on objects, by the definition of the image of $\psi i$. It follows from this that the righthand edge of the diagram must be injective, and this in turn means that the subcategory $\mathrm{im}(\psi i)$ will contain at most one object from each connected component of $X$. 
 
-The upshot of all of this is that $\mathrm{im}(\psi i)$ can be extended to a skeleton of $X$, though not necessarily uniquely --- given any set of representatives that includes every object of $\mathrm{im}(\psi i)$, the full subcategory of $X$ on those representatives will be a skeleton $\mathrm{sk}(X)$ with $\mathrm{im}(\psi i) \subseteq \mathrm{sk}(X)$. We will proceed by picking any one of these possibilities to be our chosen $\mathrm{sk}(X)$. Recalling the diagram given the statement of the proposition, it follows immediately from Proposition \ref{pullback} that the left- and righthand squares will commute.
+The upshot of all of this is that $\mathrm{im}(\psi i)$ can be extended to a skeleton of $X$, though not necessarily uniquely --- given any set of representatives that includes every object of $\mathrm{im}(\psi i)$, the full subcategory of $X$ on those representatives will be a skeleton $\mathrm{sk}(X)$ with $\mathrm{im}(\psi i) \subseteq \mathrm{sk}(X)$. We will proceed by picking any one of these possibilities to be our chosen $\mathrm{sk}(X)$. Recalling the diagram given in the statement of the proposition, it follows immediately from Proposition \ref{pullback} that the left- and righthand squares will commute.
 
-We also need to choose a natural isomorphism $\rho^X : i^X \circ R^X \to \mathrm{id}_X$ which witnesses that our $\mathrm{sk}(X)$ is indeed equivalent to $X$. 
+We also need to choose a natural isomorphism $\rho^X : i^X \circ R^X \to \mathrm{id}_X$ which witnesses that our $\mathrm{sk}(X)$ is indeed equivalent to $X$. For this, we'll pick one that satisfies
+\begin{eq*} \rho^X_{\psi(w)} \, = \, \psi( \rho^{\mathbb{G}_n}_w ) \end{eq*}
+
+
+
+
+
+
+
+
 
 Next, we need to show that there is at least one pair of maps $\psi_{\mathrm{s}}$, $\psi_{\mathrm{p}}$ satisfying the necessary conditions. For $\psi_{\mathrm{p}}$, we will choose the strict monoidal functor induced by the restriction of $\psi$ to objects:
 \begin{eq*} \begin{array}{rcccl}
@@ -913,65 +988,14 @@ Next we apply the classic Eckmann-Hilton argument (see \cite{eckhil} for their o
 Since we have unitality and interchange, the Eckmann-Hilton argument tells us that $\otimes$ and $\circ$ must in fact be the same binary operation, and that that operation is commutative. Therefore $\mathrm{colim}(D)$ is actually an abelian group.
 \end{proof}
 
+
+
+
+
+
+
+
 \epnote{Everything from here to next section needs to be rephrased in terms of new notation / paper reordering; ignore for the moment}
-
-\begin{prop} \label{mongpd} The category $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$ has an initial object, $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$.
-\end{prop}
-\begin{proof}
-Let $\chi: \mathbb{G}_n \to Y$ and $\psi: \mathbb{G}_n \to X$ be two arbitrary objects in $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$, and let $u: Y \to X$ be a map between them. If we choose any collection of representatives $w \in [w]$, $\rho_{w'} : w \to w'$ for $\mathbb{G}_n$, then we can use  Proposition \ref{factprop} to split $\psi$ into the triple of maps $(\psi_\pi, \psi^w, \psi_w)$, and $\chi$ into $(\chi_\pi, \chi^w, \chi_w)$. Let $F_{\mathbb{G}_n}$, $F_X$, $F_Y$ denote the isomorphisms from $\mathbb{G}_n$, $X$, $Y$ that we generate during this process, and let $\psi'$, $\chi'$ and $u'$ be the maps induced from $\psi$, $\chi$, $u$ by these isomorphisms, as per Lemma \ref{indmap}. Then we can take the $\psi = u \circ \chi$ condition given by $u$ being a map in $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$ and rewrite it as an equivalent condition involving the triples: 
-\begin{eq*}\begin{array}{rll}
-		\psi & = & u \chi \\
-		\implies \psi' & = & u' \chi' \\
-		\\
-		\psi'(\, w, \, w' \, ) & = & u' \chi'(\, w, \, w' \, ) \\
-		\implies \big( \, \psi_\pi([w]), \, I, \, \psi_w(w') \, \big) & = & u' \big( \, \chi_\pi([w]), \, I, \, \chi_w(w') \, \big) \\
-		& & \\
-		\psi'(f, w' \to w'') & = & u' \chi'(f, w' \to w'') \\
-		\implies \big( \, \mathrm{id}_{\psi_\pi([w])}, \, \psi^w(f), \, \psi_w(w') \to \psi_w(w'') \, \big) & = & u' \big( \, \mathrm{id}_{\chi_\pi([w])}, \, \chi^w(f), \, \chi_w(w') \to \chi_w(w'') \, \big) \\
-		\end{array}. 
-\end{eq*}
-By inspection, we see that the map $u'$ is really a product of maps $u_\pi \times \mathrm{B}u^\bullet \times \mathrm{E}u_\bullet$ for some $u_\pi : \pi_0(Y) \to \pi_0(X)$, $u^\bullet : Y(I,I) \to X(I,I)$, and $u_\bullet : [I]_Y \to [I]_X$, obeying the conditions
-\begin{eq*} \psi_\pi = u_\pi \chi_\pi, \quad \quad \psi^w = u^\bullet \chi^w, \quad \quad \psi_w = u_\bullet \chi_w, \end{eq*}
-for each representative $w$.
-
-Now, let $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ be an object of $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$ which we hope to show is initial. Then by definition, for any other object $\psi: \mathbb{G}_n \to X$ we need a unique map $u: \widehat{Z} \to X$ satisfying $\psi = u \circ \widehat{\phi}$. As we have shown, this is equivalent to the condition that for any set of data $(\psi_\pi, \psi^w, \psi_w)$ there is a unique $(u_\pi, u^\bullet, u_\bullet)$ such that
-\begin{eq*} \psi_\pi = u_\pi \widehat{\phi}_\pi, \quad \quad \psi^w = u^\bullet \widehat{\phi}^w, \quad \quad \psi_w = u_\bullet \widehat{\phi}_w. \end{eq*}
-For the first of these equalities, recall that the map $\psi_\pi$ is injective monoid homomorphisms from $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$ onto $\pi_0(X)$. Since $\pi_0(X)$ is a group, it follows that $\psi_\pi$ must factor uniquely through the group completion --- or Grothendieck group --- of $\mathbb{N}^n$:
-\begin{eq*} \xymatrix{
-& \mathbb{N}^n \ar[dl]_{i} \ar[dr]^{\psi_\pi} & \\
-(\mathbb{N}^n)^{\mathrm{gp}} \ar[rr]^{(\psi_\pi)^{\mathrm{gp}}} & & \pi_0(X) }.
-\end{eq*}
-Therefore, if we choose $\pi_0(\widehat{Z})$ to be $(\mathbb{N}^n)^{\mathrm{gp}} = \mathbb{Z}^n$ and $\widehat{\phi}_\pi$ to be the inclusion $i: \mathbb{N}^n \to \mathbb{Z}^n$ then we can always find a unique $u_\pi = (\psi_\pi)^{\mathrm{gp}}$ satisfying $\psi_\pi = u_\pi \widehat{\phi}_\pi$, as required. 
-
-With all three equalities satisfied, it follows that data $(\widehat{\phi}_\pi, \widehat{\phi}^w, \widehat{\phi}_w)$ defines an initial object $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ of $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$.
-\end{proof}
-
-To summarize, we have found that the initial objects of $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$ are isomorphic to the monoidal groupoid
-\begin{eq*} \widehat{Z} \quad \cong \quad \mathbb{Z}^n \times \mathrm{B}\mathrm{colim}(D^\bullet)^{\mathrm{ab}} \times \mathrm{E}\mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast) \end{eq*}
-for some diagrams $D^\bullet$, $D_\bullet$.
-
-\begin{prop} \label{initeq} There is a unique way to view the functor $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ from Proposition \ref{mongpd} as a map of $\mathrm{E}G$-algebras, and hence $\widehat{\phi}$ is also an initial object of $C_{\mathrm{i}}(\mathbb{G}_n)$.
-\end{prop}
-\begin{proof}
-Notice that since we are working with monoidal groupoids, we can already form most of the $\mathrm{E}G$-algebra structure on our initial object, by
-\begin{eq*}\begin{array}{rll}
-		\alpha(g; z_1, ..., z_m) & = & z_{\pi(g)^{-1}(1)} \otimes ... \otimes z_{\pi(g)^{-1}(m)} \\
-		\alpha(e; f_1, ..., f_m) & = & f_1 \otimes ... \otimes f_m
-		\end{array}
-\end{eq*}
-for any objects $z_i$ and morphisms $f_i$ in $\widehat{Z}$. All that remains to be defined is the action $\alpha(g; \mathrm{id}_{z_1}, ..., \mathrm{id}_{z_m})$ of the groups $G(m)$ on identity morphisms. Since we want $\widehat{\phi}$ to extend to an algebra map for this new action, this needs to satisfy
-\begin{eq*} \widehat{\phi}\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha(g; \mathrm{id}_{\widehat{\phi}(w_1)}, ..., \mathrm{id}_{\widehat{\phi}(w_m)}) \end{eq*}
-for any objects $w_i$ in $\mathbb{G}_n$. We can take this to just be a definition, in which case we now just need to understand $\alpha$ outside of the image of $\widehat{\phi}$. Now, by Proposition \ref{mongpd}, we know that
-\begin{eq*}\begin{array}{rll}
-		\widehat{\phi}(w') & = & \big( \, \widehat{\phi}_\pi([w]), \, I, \, \widehat{\phi}_w(w') \, \big) \\
-		& = & \big( \, i([w]), \, I, \,  \iota j_w(w') \, \big) \\
-		\end{array}
-\end{eq*}
-However, since $\mathbb{Z}^n$ is generated by the image of the inclusion $i: \mathbb{N}^n \to \mathbb{Z}^n$, and $\mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast)$ is generated by the images of the injections $\iota j_w : ([w], w) \to \mathrm{F}(\mathrm{colim}(D_\bullet) \setminus \ast)$, it follows that the objects $(i([w]), I, \iota j_w(w'))$ generate $\mathrm{Ob}(\widehat{Z})$. Thus any object $z \in \widehat{Z}$ can be expressed as a tensor product of objects which are all either of the form $\widehat{\phi}(w')$ or $\widehat{\phi}(w'')^*$, and hence all of the $\alpha(g; \mathrm{id}_{z_1}, ..., \mathrm{id}_{z_m})$ can be defined in terms of the $\alpha(g; \mathrm{id}_{\widehat{\phi}(w_1)}, ..., \mathrm{id}_{\widehat{\phi}(w_m)})$. This completes the structure needed to see $\widehat{\phi}: \mathbb{G}_n \to \widehat{Z}$ as a map of $\mathrm{E}G$-algebras.
- 
-Next, consider that any object $\psi: \mathbb{G}_n \to X$ of $C_{\mathrm{i}}(\mathbb{G}_n)$ can be viewed as an object of $\widehat{C}_{\mathrm{i}}(\mathbb{G}_n)$, since any $\mathrm{E}G$-algebra map has an underlying map of monoidal groupoids. Therefore by initiality there exists a unique map of monoidal groupoids $u: \widehat{Z} \to X$ such that $\psi = u \circ \widehat{\phi}$. Since $\psi$ and $\widehat{\phi}$ are both maps of $\mathrm{E}G$-algebras, we know that
-
-\end{proof}
 
 \begin{thm}\label{colimthm}  Let $\phi : \mathbb{G}_n \to Z$ be an initial object in $C_{\mathrm{i}}(\mathbb{G}_n)$. Then 
 \begin{eq*} Z \quad \cong \quad \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim} \Big( \mathbb{G}_n(w,w) \to \mathbb{G}_n(w \otimes v, w\otimes v) \Big)^{\mathrm{ab}} \times \mathrm{E}[\mathbb{Z}^{*n}, \mathbb{Z}^{*n}]. \end{eq*}
