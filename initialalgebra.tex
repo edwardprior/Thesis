@@ -550,59 +550,81 @@ Hence, when we had to pick some $w_i$ such that $u(w_i) = x_i$, we were always f
 This is important because we saw earlier in the proof that given any object $\psi: \mathbb{G}_{n} \to X$ of $C_{\mathrm{z}}(\mathbb{G}_n)$, we can define the values of the action $\alpha_X$ on $\mathrm{im}(\psi)$ so long as we know the underlying monoidal functor of $\psi$. Applying this logic to $\phi: \mathbb{G}_{2n} \to Z_{2n}$, it follows that we can get all of the values of $\alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ we need just by knowing the underlying functor of $\phi$, which is just an object of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_{2n})$. Therefore, we can fully recontruct an object $\psi: \mathbb{G}_n \to X$ of $C_{\mathrm{z}}(\mathbb{G}_n)$ from its underlying monoidal functor in $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$ and some extra data from $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_{2n})$. Furthermore, once we've recovered all of the actions this way, we can reconstruct all of the morphism of $C_{\mathrm{z}}(\mathbb{G}_n)$ from their underlying functors in $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_{n})$ too.
 \end{proof}
 
-\subsection{Initial algebras as groupoids}
+\subsection{Initial algebras as monoidal groupoids}
 
 Recall that objects $X$ in $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$ are always expressible as $Y_{\mathrm{inv}}$ for some monoidal category $Y$. From this fact, along with the definition of $\mathbb{G}_n$, it is clear that all of the structures we will be working with are not just categories, but groupoids. This is very convenient, as groupoids are often much simpler than general categories, and we can exploit this simplicity to help find initial algebras more easily. In particular, we will use the fact that for any connected component of a groupoid, all of the homsets between its objects are isomorphic. This will allow us to describe any groupoid $X$ by splitting it into two smaller pieces --- one encoding information about the objects of $X$, and the other about the morphisms of the components $X$. First, we'll look at the part which details the morphisms.
 
 \begin{defi} Let $X$ be a monoidal groupoid. A skeleton of $X$ is a full subcategory of $X$ which contains exactly one object from each of the connected components of $X$. \end{defi}
 
-It is well known that the canonical inclusion of a skeleton, $i: \mathrm{sk}(X) \to X$, is part of an equivalence between the two. Indeed, the skeleton of a $X$ is the smallest subcategory which is still equivalent to $X$. We shall denote weak inverse of $i$ by $R: X \to \mathrm{sk}(X)$. This inverse is actually always strict in one direction --- $R \circ i = \mathrm{id}_{\mathrm{sk}(X)}$. In the other direction we just have a natural isomorphism, which we will call $\rho: i \circ R \Rightarrow \mathrm{id}_X$. 
+It is well known that the canonical inclusion of a skeleton, $i: \mathrm{sk}(X) \to X$, is part of an equivalence between the two. Indeed, the skeleton of $X$ is the smallest subcategory which is still equivalent to $X$. We shall denote weak inverse of $i$ by $R: X \to \mathrm{sk}(X)$. This inverse is actually always strict in one direction --- $R \circ i = \mathrm{id}_{\mathrm{sk}(X)}$. In the other direction we just have a natural isomorphism, which we will call $\rho: i \circ R \Rightarrow \mathrm{id}_X$. 
 
-We will think about the objects of a particular skeleton as being a chosen set of `representatives' for each of the connected components. Under this interpretation, the functor $R$ sends each object $x$ to its isomorphism class' representative $R(x)$, and $\rho_x : R(x) \to x$ is an isomorphism which witnesses that they are indeed in the same class. Notice also that the naturality of $\rho$ serves to define the action of $R$ on morphisms:
+We will think about the objects of a particular skeleton of $X$ as being a chosen set of `representatives' for each of the connected components of $X$. For this reason we will normally be loose with notation and just write $s \in \mathrm{Ob}(X)$ when talking about $i(s) \in \mathrm{Ob}(X)$ for $s \in \mathrm{sk}(X)$. Under this interpretation, the functor $R$ sends each object $x$ to its isomorphism class' representative $R(x)$, and $\rho_x : R(x) \to x$ is an isomorphism which witnesses that they are indeed in the same class. Notice also that the naturality of $\rho$ serves to define the action of $R$ on morphisms:
 \begin{eq*} R( \, f: x \to y \,) \, = \, \rho_y^{-1} \circ f \circ \rho_x \end{eq*}
 
-Since $X$ is a (strict) monoidal category, the equivalence $(i, R, \rho, \mathrm{id})$ naturally induces on $\mathrm{sk}(X)$ the structure of a weak monoidal category, with product $\boxtimes$ defined by
+Since $X$ is a (strict) monoidal category, the equivalence $(i, R, \rho, \mathrm{id})$ naturally induces on $\mathrm{sk}(X)$ the structure of a weak monoidal category:
+
+\begin{defi} Let $\boxtimes$ be the weak monoidal product defined on $\mathrm{sk}(X)$ by
 \begin{eq*} \xymatrix{
 \mathrm{sk}(X) \times \mathrm{sk}(X) \ar[d]_{i \times i} \ar[rr]^{\boxtimes} & & \mathrm{sk}(X) \\
 X \times X \ar[rr]^{\otimes} & & X \ar[u]_{R} }.
 \end{eq*}
 This new product has unit object $R(I)$ and coherence data
-\begin{eq*} \xymatrix{
-(x \boxtimes y) \boxtimes z \ar[d]_{\rho_{(x \boxtimes y) \otimes z}} \ar[rrrr]^{a_{x,y,z}} & & & & x \boxtimes (y \boxtimes z) \\
-(x \boxtimes y) \otimes z \ar[rr]^{\rho_{x \otimes y} \otimes \mathrm{id}_z} & & x \otimes y \otimes z \ar[rr]^{\mathrm{id}_x \otimes \rho_{y \otimes z}^{-1} } & & x \otimes (y \boxtimes z) \ar[u]_{\rho_{x \otimes (y \boxtimes z)}^{-1}} }
-\end{eq*}
-\begin{eq*} \xymatrix{
-R(I) \boxtimes x \ar[d]_{\rho_{R(I) \otimes x}} \ar[rr]^{l_x} & & x & & x \boxtimes R(I) \ar[d]_{\rho_{x \otimes R(I)}} \ar[rr]^{r_x} & & x \\
-R(I) \otimes x \ar[rr]^{\rho_I \, \otimes \, \mathrm{id}_x} & & I \otimes x \ar@{=}[u] & & x \otimes R(I) \ar[rr]^{\mathrm{id}_x \, \otimes \, \rho_I} & & x \otimes I \ar@{=}[u] }
-\end{eq*}
-It is also important to note that even though $\mathrm{sk}(X)$ is not strictly monoidal, the fact that
-\begin{eq*} R(r \otimes s) \otimes t \quad \cong \quad r \otimes s \otimes t \quad \cong \quad r \otimes R(s \otimes t), \end{eq*}
-causes $\boxtimes$ to be strictly associative on objects:
-\begin{eq*} \begin{array}{rll}
- \quad (r \boxtimes s) \boxtimes t & = & R\big( R(r \otimes s) \otimes t \big) \\
-		& = &  R\big( r \otimes R(s \otimes t) \big) \\
-		& = & r \boxtimes (s \boxtimes t)
+\begin{eq*} \begin{tikzcd}
+(s \boxtimes s') \boxtimes s'' \ar[d, equal] \ar[rr, "a^{\mathrm{sk}(X)}_{s,s',s''}"] & & s \boxtimes (s' \boxtimes s') \\
+R\big( \, R(s \otimes s') \otimes s'' \, \big) \ar[d, "R( \rho_{s \otimes s'} \otimes \mathrm{id}_{s''})"'] & & R\big( \, s \otimes R(s' \otimes s'') \, \big) \ar[u, equal] \\
+R\big( \, (s \otimes s') \otimes s'' \, \big) \ar[rr, "R(a^X_{s,s',s''})", equal] & & R\big( \, s \otimes (s' \otimes s'') \, \big) \ar[u, " R(\mathrm{id}_{s} \otimes \rho_{s' \otimes s''})^{-1}"']
+\end{tikzcd} \end{eq*}
+\begin{eq*} \begin{tikzcd}
+R(I) \boxtimes s \ar[d, equal] \ar[rr, "l^{\mathrm{sk}(X)}_s"] & & s & & s \boxtimes R(I) \ar[d, equal] \ar[rr, "r^{\mathrm{sk}(X)}_s"] & & s \\
+R\big( \, R(I) \otimes s \, ) \ar[d, "R(\rho_I \otimes \mathrm{id}_s)"'] & & & & R\big( \, s \otimes R(I) \, ) \ar[d, "R(\mathrm{id}_s \otimes \rho_I)"'] & & \\
+R(I \otimes s) \ar[rr, "R(l^X_s)", equal] & & R(s) \ar[uu, equal] & & R(s \otimes I) \ar[rr, "R(r^X_s)", equal] & & R(s) \ar[uu, equal] 
+\end{tikzcd} \end{eq*}
+\end{defi}
+
+Moreover, as this weak monoidal structure $\boxtimes$ was induced on $\mathrm{sk}(X)$ by the equivalence $(i, R, \rho, \mathrm{id})$, it follows immediately that $(i, R, \rho, \mathrm{id})$ is a weak monoidal equivalence with respect to $\boxtimes$. Explicitly:
+
+\begin{cor}\label{iRdata} There exists coherence data
+\begin{eq*} \begin{array}{rclrrcl}
+		\mu^R_{x, x'} & = & R( \rho_x \otimes \rho_{x'} ) & \quad & \eta^R & = & \mathrm{id}_{R(I)} \\
+		\mu^i_{s, s'} & = & \rho^{-1}_{s \otimes s'} & & \eta^i & = & \rho^{-1}_I \\
 		\end{array}
 \end{eq*}
+making $R, i$ into weak monoidal functors and $\rho$ into a weakly monoidal natural transformation. 
+\end{cor}
+
+It is important to note that while the product $\boxtimes$ is strictly associative and unital
+\begin{eq*} \begin{array}{rcl}
+		(s \boxtimes s') \boxtimes s'' & = & R\big( \, R(s \otimes s') \otimes s'' \, \big)  \\
+		& = & R(s \otimes s' \otimes s'') \\
+		& = & R\big(\, s \otimes R(s' \otimes s'') \, \big) \\
+		& = & s \boxtimes (s'' \boxtimes s'') 
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rcllrcl}
+		R(I) \boxtimes s & = & R\big( \, R(I) \otimes s \,) & \quad & s \boxtimes R(I) & = & R\big( \, s \otimes R(I) \, ) \\
+		& = & R(I \otimes s) & & & = & R(s \otimes I) \\
+		& = & R(s) & & & = & R(s) \\
+		& = & s & & & = & s \\
+		\end{array}
+\end{eq*}
+nevertheless the associator and unitors of $\mathrm{sk}(X)$ are in general \emph{not} identities.
 
 Finally, because $\mathrm{sk}(X)$ contains one object for each of the elements of $\pi_0(X)$ there is an obvious functor, isomorphic on objects, between the two:
 \begin{eq*} \begin{array}{rrrll}
 		[ \, \_ \, ] & : & \mathrm{sk}(X) & \to & \pi_0(X) \\
-		& : & x & \mapsto & [x] \\
-		& : & f: x \to x & \mapsto & id_{[x]}
+		& : & s & \mapsto & [s] \\
+		& : & f: s \to s & \mapsto & id_{[s]}
 		\end{array}
 \end{eq*}
-This functor can easily be made weakly monoidal. Since
-\begin{eq*} [x] \otimes [y] \, = \, [x \otimes y] \, = \, [ \, R(x \otimes y) \, ] \, = \, [ x \boxtimes y ] \end{eq*}
-we can choose the coherence map $\mu: [ \, \_ \, ] \otimes [ \, \_ \, ] \Rightarrow [ \, \_ \, \boxtimes \, \_ \, ]$ to be the identity natural transformation $\mathrm{id}_{[ \, \_ \, ] \otimes [ \, \_ \, ]}$, and because
-\begin{eq*} [I] \, = \, [ \, R(I) \, ] \end{eq*}
-the unit isomorphism $\eta: [I] \to [ R(I) ]$ can just be $\mathrm{id}_{[I]}$. Then by the definition of $[ \, \_ \, ]$ on morphisms, the coherence data $a, l, r$ of $\mathrm{sk}(X)$ are all mapped onto identities too, and hence the necessary conditions for a weak monoidal functor will all be trivially satisfied.
+This functor is clearly weak monoidal; the only morphisms we have to pick the coherence maps $\mu^{[ \, \_ \, ]}_{s, s'}$ and $\eta^{[ \, \_ \, ]}$ from are identities, which is well-defined because
+\begin{eq*} [s] \otimes [s'] \, = \, [s' \otimes s'] \, = \, [ \, R(s' \otimes s') \, ] \, = \, [ s \boxtimes s' ], \quad \quad [I] \, = \, [ \, R(I) \, ] \end{eq*}
+and since the coherence data $a, l, r$ of $\mathrm{sk}(X)$ will all be mapped onto identities too the conditions for a weak monoidal functor will be satisfied trivially.
 
 Next, we will define the subcategory which will describe the objects of our monoidal groupoids.
 
 \begin{defi} Let $X$ be a monoidal groupoid, and consider a new category which has the same objects as $X$, and has a unique morphism between two objects if and only if there is at least one morphism between them in $X$. We call this $\mathrm{po}(X)$, since it is always a posetal category. \end{defi}
 
-Since $X$ is a groupoid, $\mathrm{po}(X)$ must be one too, and it also inherits a strict monoidal product durectly from $X$. Furthmore, $\mathrm{po}(X)$ has exactly the same objects and connected components that $X$ does, and so we can construct two obvious strict monoidal functors,
+Because $X$ is a groupoid $\mathrm{po}(X)$ must be one too, and it also inherits a strict monoidal product directly from $X$. Furthermore, $\mathrm{po}(X)$ has exactly the same objects and connected components that $X$ does, and so we can construct two obvious strict monoidal functors,
 \begin{eq*} \begin{array}{rrrll}
 		P & : & X & \to & \mathrm{po}(X) \\
 		& : & x & \mapsto & x \\
@@ -614,9 +636,9 @@ and
 		[ \, \_ \, ] & : & \mathrm{po}(X) & \to & \pi_0(X) \\
 		& : & x & \mapsto & [x] \\
 		& : & x \to y & \mapsto & id_{[x]}
-		\end{array}.
+		\end{array}
 \end{eq*}
-Here we denote the morphisms of $\mathrm{po}(X)$ by giving their unique source and target, rather than assigning them a particular name. 
+Here we denote the morphisms of $\mathrm{po}(X)$ by giving their unique source and target, rather than assigning them any particular names. 
 
 Putting this together with what we had for $\mathrm{sk}(X)$, we can now express precisely how we are going to split our monoidal groupoids:
 
@@ -632,7 +654,7 @@ is a pullback square in the category of weak monoidal categories. That is,
 \begin{proof}
 First of all, we need to check tht the above diagram actually commutes. Notice that $[ \, P( \, \_ \, ) \, ]$ and $[ \, R( \, \_ \, ) \, ]$ are both strict monoidal functors, since their coherence data lives in the category $\pi_0(X)$, which contains only identity morphisms. This means we only need to check that they commute as functors, which is simple enough:
 \begin{eq*} [ \, R(x) \, ] \, = \, [x] \, = \, [ \, P(x) \, ], \quad \quad \quad [ \, R(f: x \to y) \, ] \, = \, id_{[x]} \, = \, [ \, P(f) \, ]. \end{eq*}
-In other words, both  $[ \, P( \, \_ \, ) \, ]$ and $[ \, R( \, \_ \, ) \, ]$ are the obvious map $X \to \pi_0(X)$ sending objects to their connected components. 
+In other words, both  $[ \, P( \, \_ \, ) \, ]$ and $[ \, R( \, \_ \, ) \, ]$ are the obvious map $[ \, \_ \, ]: X \to \pi_0(X)$ sending objects to their connected components. 
 
 Now, assume that we are given a pair of weak monoidal functors $S: Y \to \mathrm{sk}(X)$ and $Q: Y \to \mathrm{po}(X)$ which also form an appropriate commutative square --- that is, $[ \, S( \, \_ \, ) \, ] = [ \, Q( \, \_ \, ) \, ]$. We wish to construct a unique map $U: Y \to X$ which factors $S$ and $Q$ through $R$ and $P$ respectively:
 \begin{eq*} \xymatrix{
@@ -650,7 +672,7 @@ Let $y$ be an object of $Y$. In order for the right-hand triangle in the above d
 		\implies & S(y) & = & RU(y)
 		\end{array}
 \end{eq*}
-Similarly, let $f: y \to y'$ be a morphism from $Y$. The right-hand triangle of the diagram automatically commutes, since
+Similarly, let $f: y \to y'$ be a morphism from $Y$. The right-hand triangle of the diagram commutes regardless of what $U$ does to morphisms, since
 \begin{eq*} \begin{array}{rll}
 		PU( \, f : y \to y' \, ) & = & P\big( \, U(f) : U(y) \to U(y') \, \big) \\
 		& = & U(y) \to U(y') \\
@@ -667,22 +689,12 @@ but since morphisms in $\mathrm{po}(X)$ are uniquely specified by their source a
 		& \eta^S & = & R(\eta^U) \circ \eta^R & & \mu^S & = & R(\mu^U) \circ \mu^R \\
 		& & = & \rho_{U(I)}^{-1} \, \eta^U \, \rho_{I} \, \eta^R & & & = & \rho_{U(\_ \otimes \_)}^{-1} \, \mu^U \, \rho_{U(\_) \otimes U(\_)} \, \mu^R \\
 		&&&&&&& \\
-		\implies & \eta^U & = & \rho_{U(I)} \, \eta^S \, (\eta^R)^{-1} \, \rho_{I}^{-1} & & \mu^U & = & \rho_{U(\_ \otimes \_)} \, \mu^S \, (\mu^R)^{-1} \, \rho_{U(\_) \otimes U(\_)}^{-1}
+		\implies & \eta^U & = & \rho_{U(I)} \, \eta^S \, (\eta^R)^{-1} \, \rho_{I}^{-1} & & \mu^U & = & \rho_{U(\_ \otimes \_)} \, \mu^S \, (\mu^R)^{-1} \, \rho_{U(\_) \otimes U(\_)}^{-1} \\
+		& & = & \rho_{U(I)} \, \eta^S \, (\eta^R)^{-1} \, \rho_{I}^{-1} & & \mu^U & = & \rho_{U(\_ \otimes \_)} \, \mu^S \, (\mu^R)^{-1} \, \rho_{U(\_) \otimes U(\_)}^{-1} \\
 		\end{array}.
 \end{eq*}
 
-Since this definition of $U$ has been forced on us by the requirement that it fit into a certain commutative diagram, clearly $U$ is the unique functor with that property. However, to complete the proof we also need to verify that what we have constructed is actually a well-defined weak monoidal functor. This amounts to checking that the following diagrams commute:
-\begin{eq*} \xymatrix{
-\big( \, U(y) \otimes U(y') \, \big) \otimes U(y'') \ar[rrr]^{a^X_{U(y), U(y'), U(y'')}} \ar[d]_{\mu^U_{y, y'} \, \otimes \, \mathrm{id}_{U(y'')}} & & & U(y) \otimes \big( \, U(y') \otimes U(y'') \, \big) \ar[d]^{\mathrm{id}_{U(y)} \, \otimes \, \mu^U_{y', y''}} \\
-U(y \otimes y') \otimes U(y'') \ar[d]_{\mu^U_{y \otimes y', y''}} & & &  U(y) \otimes U(y' \otimes y'') \ar[d]^{\mu^U_{y, y' \otimes y''}} \\
-U\big( \, (y \otimes y') \otimes y'' \, \big) \ar[rrr]^{U(a^Y_{y, y', y''})} & & & U\big( \, y \otimes (y' \otimes y'') \, \big) }
-\end{eq*}
-\begin{eq*} \xymatrix{
-I \otimes U(y) \ar[r]^{l^X_{U(y)}} \ar[d]_{\eta^U \, \otimes \, \mathrm{id}_{U(y)}} & U(y) & & U(y) \otimes I \ar[r]^{r^X_{U(y)}} \ar[d]_{\mathrm{id}_{U(y)} \, \otimes \, \eta^U} & U(y) \\
- U(I) \otimes U(y) \ar[r]^{\mu^U_{I, y}} & U(I \otimes y) \ar[u]_{U(l^Y_y)} & & U(y) \otimes U(I) \ar[r]^{\mu^U_{y, I}} & U(y \otimes I) \ar[u]_{U(r^Y_y)}
- }
-\end{eq*}
-Note that from now on we will supress the subscripts on morphisms for the sake of clarity. In order to check the first of these conditions, consider the following diagram:
+Since this definition of $U$ has been forced on us by the requirement that it fit into a certain commutative diagram, clearly $U$ is the unique functor with that property. However, to complete the proof we also need to verify that what we have constructed is actually a well-defined weak monoidal functor. To see that $U$ respects associators, consider the following diagram:
 \begin{eq*} \xymatrix{
 \big( \, RU(y) \boxtimes RU(y') \, \big) \boxtimes RU(y'') \ar[rr]^{a^{\mathrm{sk}(X)}} \ar[d]_{\mu^R \, \boxtimes \, \mathrm{id}} & & RU(y) \boxtimes \big( \, RU(y') \boxtimes RU(y'') \, \big) \ar[d]^{\mathrm{id} \, \boxtimes \, \mu^R} \\
 R\big( \, U(y) \otimes U(y') \, \big) \boxtimes RU(y'') \ar[d]_{R(\mu^U) \, \boxtimes \, \mathrm{id}} \ar@/^6pc/[dd]^{\mu^R} & & RU(y) \boxtimes R\big( \, U(y') \otimes U(y'') \, \big) \ar[d]^{\mathrm{id} \, \boxtimes \, R(\mu^U)} \ar@/_6pc/[dd]_{\mu^R}  \\
@@ -691,16 +703,9 @@ R\Big( \, \big( \, U(y) \otimes U(y') \, \big) \otimes U(y'') \, \Big) \ar[rr]^{
 R\big( \, U(y \otimes y') \otimes U(y'') \, \big) \ar[d]_{R(\mu^U)} & & R\big( \, U(y) \otimes U(y' \otimes y'') \, \big) \ar[d]^{R(\mu^U)} \\
 RU\big( \, (y \otimes y') \otimes y'' \, \big) \ar[rr]^{RU(a^Y)} & & RU\big( \, y \otimes (y' \otimes y'') \, \big) }
 \end{eq*}
-The topmost area of this diagram, enclosed by the two maps that run from $(RU(y) \boxtimes RU(y')) \boxtimes RU(y'')$ to $RU(y) \boxtimes (RU(y') \boxtimes RU(y''))$, is an example of the coherence condition for $\mu^R$, and hence commutes. The two areas on either side of the diagram also commute, by the nautrality of $\mu^R$. Lastly, the outside edges of this diagram commute because they form the coherence condition for $\mu^S = R(\mu^U) \mu^R$. As a result of this, and the fact that every edge of the diagram is invertible, it follows that the bottom rectangle the diagram commutes too. Focusing on this area, we see that is is the image under $R$ of the coherence condition for $\mu^U$. But since $R$ just acts on morphisms as $R(f) = \rho_{y'}^{-1} f \rho_y$, the full condition for $\mu^U$ is readily recoverable from this:
-\begin{eq*} \begin{array}{rll}
-		\mu^U \, (\mathrm{id} \otimes \mu^U) \, a^X & = & \rho \, \rho^{-1} \, \mu^U \, \rho \, \rho^{-1} \, (\mathrm{id} \otimes \mu^U) \, \rho \, \rho^{-1} \, a^X \, \rho \, \rho^{-1} \\
-		& = & \rho \, R(\mu^U) \, R(\mathrm{id} \otimes \mu^U) \, R(a^X) \, \rho^{-1} \\
-		& = & \rho \, RU(a^Y) \, R(\mu^U) \, R(\mu^U \otimes \mathrm{id}) \, \rho^{-1} \\
-		& = & \rho \, \rho^{-1} \, U(a^Y) \, \rho \, \rho^{-1} \, \mu^U \, \rho \, \rho^{-1} \, (\mu^U \otimes \mathrm{id}) \, \rho \, \rho^{-1} \\
-		& = & U(a^Y) \, \mu^U \, (\mu^U \otimes \mathrm{id})
-		\end{array}
-\end{eq*}
-We can prove the coherence of $\eta^U$ in a very similar way. Consider the following diagram:
+The topmost region in this diagram is just the associativity coherence condition for $R$, and hence it commutes. Likewise, the outside edges of this diagram commute because they form the associativity condition for $S$, via $\mu^S = R(\mu^U) \mu^R$. Lastly, the two areas on either side of the diagram commute by naturality of $\mu^R$. As a result of this, and the fact that every edge of the diagram is invertible, it follows that the bottom rectangle the diagram commutes too. Focusing on this area, we see that is is the image under $R$ of the associativity condition for $U$. But since $R$ just acts on morphisms by $f \mapsto \rho_{y'}^{-1} f \rho_y$, which is bijective, the full condition for $U$ is immediately recoverable. 
+
+We can prove that $U$ respects unitors in a similar way. Consider the following diagram:
 \begin{eq*} \xymatrix{
 & RU(y) & \\
 R(I) \boxtimes RU(y) \ar[ur]^{l^Y} \ar[dd]_{\eta^R \, \boxtimes \, \mathrm{id}} & & RU(I \otimes y) \ar[ul]_{RU(l^{\mathrm{sk}(X)})} \\
@@ -708,45 +713,36 @@ R(I) \boxtimes RU(y) \ar[ur]^{l^Y} \ar[dd]_{\eta^R \, \boxtimes \, \mathrm{id}} 
 R(I) \boxtimes RU(y) \ar[ur]^{\mu^R} \ar[dr]^{R(\eta^U) \, \otimes \mathrm{id}} & & R\big( \, U(I) \otimes U(y) \, \big) \ar[uu]_{R(\mu^U)} \\
 & RU(I) \boxtimes RU(y) \ar[ur]^{\mu^R} & }
 \end{eq*}
-The top-left square is one of the coherence conditions for $\eta^R$; the outer edges form the same coherence condition but for $\eta^S = R(\eta^U) \eta^R$; and the bottom square follows from the naturality of $\mu^R$. Hence, all of those parts of the diagram commute, and since again all edges are invertible, we can conclude that the remaining top-right square also commutes. But this is just the image under $R$ of one of the coherence conditions for $\eta^U$, from which we can obtain the original thusly:
-\begin{eq*} \begin{array}{rll}
-		U(l^{\mathrm{sk}(X)}) \, \mu^U \, (\eta^U \otimes \mathrm{id}) & = & \rho \, \rho^{-1} \, U(l^{\mathrm{sk}(X)}) \, \rho \, \rho^{-1} \, \mu^U \, \rho \, \rho^{-1} \, (\eta^U \otimes \mathrm{id}) \, \rho \, \rho^{-1} \\
-		& = & \rho \, RU(l^{\mathrm{sk}(X)}) \, R(\mu^U) \, R(\eta^U \otimes \mathrm{id}) \, \rho^{-1} \\
-		& = & \rho \, R(l^X) \, \rho^{-1} \\
-		& = & \rho \, \rho^{-1} \, l^X \, \rho \, \rho^{-1} \\
-		& = & l^X
-		\end{array}
-\end{eq*}
-The proof of the other coherence condition for $\eta^U$, involving $r$ rather than $l$, proceeds in exactly the same way. Therefore, $U$ is indeed a well-defined weak monoidal functor, and so $X$ is the required pullback.
+The top-left square is the left unitality coherence condition for $R$; the outer edges form the same coherence condition but for $S$ with $\eta^S = R(\eta^U) \eta^R$; and the bottom square follows from the naturality of $\mu^R$. Hence, all of those parts of the diagram commute, and since again all edges are invertible, we can conclude that the remaining top-right square also commutes. But this is just the image under $R$ of left unitality for $\eta^U$, and again we can obtain the original from this by bijectivity. The proof of the right unitality coherence condition for $U$ proceeds in exactly the same way, except involving $r$ instead of $l$. Therefore, $U$ is indeed a well-defined weak monoidal functor, and hence $X$ is the required pullback.
 \end{proof}
 
-For any of the objects $\psi : \mathbb{G}_n \to X$ of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, we now have a way of breaking down their source and target into smaller groupoids representing their connected components and automorphisms. We might wonder if we can do the same sort of thing to $\psi$ itself --- show that it is equivalent to several 'smaller' maps running between corresponding terms of $\mathrm{sk}(\mathbb{G}_n) \times_{\pi_0(\mathbb{G}_n)} \mathrm{po}(\mathbb{G}_n)$ and $\mathrm{sk}(X) \times_{\pi_0(X)} \mathrm{po}(X)$. This would allow us to contruct the initial object of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$ by finding the initial versions of these reduced maps, greatly simplifying the problem. It turns out that this procedure is relatively straightforward, though we have to take some care when choosing skeletons.
+For any of the objects $\psi : \mathbb{G}_n \to X$ of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, we now have a way of breaking down their source and target into smaller groupoids representing their connected components and automorphisms. We might wonder if we can do the same sort of thing to $\psi$ itself --- show that it is equivalent to several `smaller' maps running between corresponding terms of $\mathrm{sk}(\mathbb{G}_n) \times_{\pi_0(\mathbb{G}_n)} \mathrm{po}(\mathbb{G}_n)$ and $\mathrm{sk}(X) \times_{\pi_0(X)} \mathrm{po}(X)$. This would allow us to contruct the initial object of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$ by finding the initial versions of these reduced maps, greatly simplifying the problem. It turns out that this procedure is relatively straightforward, though we have to take some care when choosing skeletons.
 
-\begin{prop}\label{factprop} Let $F : X \to Y$ be either an object or a morphism of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, and let $\mathrm{sk}(X)$ be a choice of skeleton for $X$. Then there exist skeletons $\mathrm{sk}(Y)$ of $Y$ for which there is a unique pair of weak monoidal functors
-\begin{eq*} F_{\mathrm{s}} : \mathrm{sk}(X) \to \mathrm{sk}(Y), \quad \quad F_{\mathrm{p}} : \mathrm{po}(X) \to \mathrm{po}(Y) \end{eq*}
-that make the following diagrams commute:
+\begin{prop}\label{factprop} Let $F : X \to Y$ be either an object or a morphism of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, and let $\mathrm{sk}(X)$ be a choice of skeleton for $X$. Then there exist a unique skeleton $\mathrm{sk}(Y)$ of $Y$ and a unique pair of weak monoidal functors
+\begin{eq*} F_{\mathrm{sk}} : \mathrm{sk}(X) \to \mathrm{sk}(Y), \quad \quad F_{\mathrm{po}} : \mathrm{po}(X) \to \mathrm{po}(Y) \end{eq*}
+such that the following diagrams commute:
 \begin{eq*} \begin{tikzcd}
 X \ar[r, "F"] \ar[d, "R^X"'] & Y \ar[d, "R^Y"] & & X \ar[r, "F"] \ar[d, "P^X"'] & Y \ar[d, "P^Y"] \\
-\mathrm{sk}(X) \ar[r, "F_{\mathrm{s}}"] \ar[d, "\lbrack \, \_ \, \rbrack"'] & \mathrm{sk}(Y) \ar[d, "\lbrack \, \_ \, \rbrack"] & & \mathrm{po}(X) \ar[r, "F_{\mathrm{p}}"] \ar[d, "\lbrack \, \_ \, \rbrack"'] & \mathrm{po}(Y) \ar[d, "\lbrack \, \_ \, \rbrack"] \\
+\mathrm{sk}(X) \ar[r, "F_{\mathrm{sk}}"] \ar[d, "\lbrack \, \_ \, \rbrack"'] & \mathrm{sk}(Y) \ar[d, "\lbrack \, \_ \, \rbrack"] & & \mathrm{po}(X) \ar[r, "F_{\mathrm{po}}"] \ar[d, "\lbrack \, \_ \, \rbrack"'] & \mathrm{po}(Y) \ar[d, "\lbrack \, \_ \, \rbrack"] \\
 \pi_0(X) \ar[r, "F_\pi"] & \pi_0(Y) & & \pi_0(X) \ar[r, "F_\pi"] & \pi_0(Y)
 \end{tikzcd} \end{eq*}
 \end{prop}
 \begin{proof}
-First, let $F_{\mathrm{p}}$ be the strict monoidal functor obtained by restricting $F$ to objects:
+First, let $F_{\mathrm{po}}$ be the strict monoidal functor obtained by restricting $F$ to objects:
 \begin{eq*} \begin{array}{rcccl}
-		F_{\mathrm{p}} & : &  \mathrm{po}(X) & \to & \mathrm{po}(Y) \\
+		F_{\mathrm{po}} & : &  \mathrm{po}(X) & \to & \mathrm{po}(Y) \\
 		& : & x & \mapsto & F(x) \\
 		& : & x \to x' & \mapsto & F(x) \to F(x')
 		\end{array}
 \end{eq*}
-With $F_{\mathrm{p}}$ defined this way, the righthand diagram in the proposition now contains only strictly monoidal functors, and so the following is sufficient to show that the top and bottom squares commute:
+With $F_{\mathrm{po}}$ defined this way, the righthand diagram in the proposition now contains only strictly monoidal functors, and so the following is sufficient to show that the top and bottom squares commute:
 \begin{eq*} \begin{array}{rllrrlll}
 		P^Y F(x) & = & F(x) & \quad & P^Y F( \, f: x \to x' \, ) & = & P^Y \big( \, F(f) : F(x) \to F(x') \, \big) \\
-		& = & F_{\mathrm{p}}(x) & & & = & F(x) \to F(x') \\
-		& = & F_{\mathrm{p}} P^X(x) & & & = & F_{\mathrm{p}}(x \to x') \\
-		& & & & & = & F_{\mathrm{p}} P^X(f: x \to x') \\
+		& = & F_{\mathrm{po}}(x) & & & = & F(x) \to F(x') \\
+		& = & F_{\mathrm{po}} P^X(x) & & & = & F_{\mathrm{po}}(x \to x') \\
+		& & & & & = & F_{\mathrm{po}} P^X(f: x \to x') \\
 		& & & & & & \\
-		\left[ \, F_{\mathrm{p}}(x) \, \right] & = & [ \, F(x) \, ] & & [ \, F_{\mathrm{p}}(x \to x') \, ] & = & [ \, F(x) \to F(x') \, ] \\
+		\left[ \, F_{\mathrm{po}}(x) \, \right] & = & [ \, F(x) \, ] & & [ \, F_{\mathrm{po}}(x \to x') \, ] & = & [ \, F(x) \to F(x') \, ] \\
 		& = & F_{\pi}\big( \, [x] \, \big) & & & = & \mathrm{id}_{[ F(x) ]} \\
 		& & & & & = & \mathrm{id}_{F_{\pi}([x])} \\
 		& & & & & = & F_{\pi}(\mathrm{id}_{[x]}) \\
@@ -754,28 +750,61 @@ With $F_{\mathrm{p}}$ defined this way, the righthand diagram in the proposition
 		\end{array}
  \end{eq*}
 
-Next, assume for the moment that we have already determined $\mathrm{sk}(Y)$, and begin looking for $F_{\mathrm{s}}$. Recall that since $F$ is either an object or morphism of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, the canonical maps $\mathrm{Ob}(X) \to \pi_0(X)$ and $\mathrm{Ob}(X) \to \pi_0(X)$ are the quotients of abelianisation. By the proof of Proposition \ref{pullback}, these maps are just $[ \, R^X \, ]$ and $[ \, R^Y \, ]$ respectively, and so if we take the diagram for $F_{\mathrm{s}}$ from the proposition and restrict it to objects we will get
+Next, assume for the moment that we have already determined $\mathrm{sk}(Y)$, and begin looking for $F_{\mathrm{sk}}$. Recall that since $F$ is either an object or morphism of $C_{\mathrm{z}, \mathrm{m}}(\mathbb{G}_n)$, the canonical maps $\mathrm{Ob}(X) \to \pi_0(X)$ and $\mathrm{Ob}(X) \to \pi_0(X)$ are the quotients of abelianisation. By the proof of Proposition \ref{pullback}, these maps are just $[ \, R^X \, ]$ and $[ \, R^Y \, ]$ respectively, and so if we take the diagram for $F_{\mathrm{sk}}$ from the proposition and restrict it to objects we will get
 \begin{eq*} \begin{tikzcd}
 \mathrm{Ob}(X) \ar[rr, "F_{\mathrm{ob}}"] \ar[dd, "q"', bend right = 90] \ar[d, "R^X_{\mathrm{ob}}"] & & \mathrm{Ob}(Y) \ar[dd, "q",  bend left = 90] \ar[d, "R^Y_{\mathrm{ob}}"'] \\
 \mathrm{Ob}\big( \, \mathrm{sk}(X) \, \big) \ar[rr, "(F_s)_{\mathrm{ob}}"] \ar[d, "\lbrack \, \_ \, \rbrack_{\mathrm{ob}}", "\rotatebox{90}{\(\sim\)}"'] & & \mathrm{Ob}\big( \, \mathrm{sk}(Y) \, \big) \ar[d, "\lbrack \, \_ \, \rbrack_{\mathrm{ob}}"', "\rotatebox{90}{\(\sim\)}"] \\
 \pi_0(X) \ar[rr, "F_\pi"] & & \pi_0(Y)
 \end{tikzcd} \end{eq*}
-The bottom square here will serve as our definition of $F_{\mathrm{s}}$ on objects --- namely, we set $(F_{\mathrm{s}})_{\mathrm{ob}} = \lbrack \, \_ \, \rbrack_{\mathrm{ob}}^{-1} \circ F_\pi \circ \lbrack \, \_ \, \rbrack_{\mathrm{ob}}$. The fact that bottom and outer squares commute then implies that the top one does too. Notice that this is the case regardless of what the objects of $\mathrm{sk}(Y)$ actually are.
+As skeletons contain one object from each connected component, the maps $[\, \_ \,]_{\mathrm{ob}}$ are isomorphisms. This means that the bottom square of this diagram must serve as our definition of $F_{\mathrm{sk}}$ on objects: $(F_{\mathrm{sk}})_{\mathrm{ob}} = [ \, \_ \, ]_{\mathrm{ob}}^{-1} \circ F_\pi \circ \lbrack \, \_ \, \rbrack_{\mathrm{ob}}$. The fact that bottom and outer squares commute --- along with invertibility of the bottom right arrow --- then implies that the top one does too. Notice that this is the case regardless of what the objects of $\mathrm{sk}(Y)$ actually are.
 
-We can employ a similar tactic for the morphisms as well. Let $r$ be one of the respresenting objects from $X$, that is $R(r) = r$. The map $R^X$ acts on maps $r \to r$ by precomposing by $\rho^X_r$ and postcomposing by $(\rho^X_r)^{-1}$; the map $R^Y$ behaves the same way; and the maps $\lbrack \, \_ \, \rbrack$ always send morphisms to the appropriate identity. Therefore, the restriction of the diagram for $F_{\mathrm{s}}$ to the endomorphisms of $r$ is
+We can employ a similar tactic for the morphisms as well. Let $s$ be one of the respresenting objects in $\mathrm{sk}(X)$. The functor $R^X$ acts on maps $s \to s$ by precomposing by $\rho^X_s$ and postcomposing by $(\rho^X_s)^{-1}$; the map $R^Y$ behaves the same way, but with $\rho^Y$; and the maps $[ \, \_ \, ]$ always send any morphisms to the appropriate identity. Therefore, the restriction of the diagram for $F_{\mathrm{sk}}$ to the endomorphisms of $s$ is
 \begin{eq*} \begin{tikzcd}
-X(r, r) \ar[rr, "F"] \ar[d, "(\rho^X_r)^{-1} \, \circ \, \_ \, \circ \, \rho^X_r"', "\rotatebox{90}{\(\sim\)}"] & & Y\big( F(r), F(r) \big) \ar[d, "(\rho^Y_{F(r)})^{-1} \, \circ \, \_ \, \circ \, \rho^Y_{F(r)}",  "\rotatebox{90}{\(\sim\)}"'] \\
-X(r, r) \ar[rr, "F_{\mathrm{s}}"] \ar[d] & & Y\big( RF(r), RF(r) \big) \ar[d] \\
+X(s, s) \ar[rr, "F"] \ar[d, "(\rho^X_s)^{-1} \, \circ \, \_ \, \circ \, \rho^X_s"', "\rotatebox{90}{\(\sim\)}"] & & Y\big( F(s), F(s) \big) \ar[d, "(\rho^Y_{F(s)})^{-1} \, \circ \, \_ \, \circ \, \rho^Y_{F(s)}",  "\rotatebox{90}{\(\sim\)}"'] \\
+X(s, s) \ar[rr, "F_{\mathrm{sk}}"] \ar[d] & & Y\big( RF(s), RF(s) \big) \ar[d] \\
 1 \ar[rr, equal] & & 1
 \end{tikzcd} \end{eq*}
-Clearly the bottom square tells us nothing interesting, but the top square can again be taken as a definition --- choose $F_{\mathrm{s}}$ such that for any morphism $f: r \to r$ in $\mathrm{sk}(X)$,
-\begin{eq*} F_{\mathrm{s}}(f) \, = \, (\rho^Y_{F(r)})^{-1} \circ F(\rho^X_r) \circ F(f) \circ F(\rho^X_r)^{-1} \circ \rho^Y_{F(r)}  \end{eq*}
-Again, this must be true regardless of the chosen skeleton $(\mathrm{sk}(Y), R^Y, \rho^Y)$, and so we can stop assuming that we know what they are. This is important, because we also need $F_{\mathrm{s}}$ to fit into the more general version of the commutative diagram,
+Clearly the bottom square tells us nothing interesting, but the top square again forces upon us a definition --- we must choose $F_{\mathrm{sk}}$ such that for any $f: s \to s$ in $\mathrm{sk}(X)$,
+\begin{eq*} F_{\mathrm{sk}}(f) \, = \, (\rho^Y_{F(s)})^{-1} \circ F(\rho^X_s) \circ F(f) \circ F(\rho^X_s)^{-1} \circ \rho^Y_{F(s)}  \end{eq*}
+Again this is true regardless of the chosen skeleton $(\mathrm{sk}(Y), R^Y, \rho^Y)$, and so we can stop assuming that we know what it is. This is important, because we also need $F_{\mathrm{sk}}$ to fit into the more general version of the commutative diagram,
 \begin{eq*} \begin{tikzcd}
 X(x, x') \ar[rr, "F"] \ar[d, "(\rho^X_{x'})^{-1} \, \circ \, \_ \, \circ \, \rho^X_{x}"', "\rotatebox{90}{\(\sim\)}"] & & Y\big( F(x), F(x') \big) \ar[d, "(\rho^Y_{F(x')})^{-1} \, \circ \, \_ \, \circ \, \rho^Y_{F(x)}",  "\rotatebox{90}{\(\sim\)}"'] \\
-X\big( R(x), R(x) \big) \ar[rr, "F_{\mathrm{s}}"] & & Y\big( RF(x), RF(x) \big)
+X\big( R(x), R(x) \big) \ar[rr, "F_{\mathrm{sk}}"] & & Y\big( RF(x), RF(x) \big)
 \end{tikzcd} \end{eq*}
-and since we've already fully determined the action of $F_{\mathrm{s}}$ on morphisms, we'll have to achieve this by choosing an appropriate $\mathrm{sk}(Y)$. Specifically, for each connected component $[y]$ in $\pi_0(Y)$ choose an object $R^Y(y) \in [y]$ to be in $\mathrm{Ob}(\mathrm{sk}(Y))$, and then for each component $[x]$ in $\pi_0(X)$ choose an isomorphism $c_{[x]} : R^Y F(x) \to FR^X(x)$ from $Y$. This second part is always possible no matter which $R^Y(y)$ we picked, since
+and since we've already fully determined the action of $F_{\mathrm{sk}}$ on morphisms, we'll have to achieve this by choosing an appropriate $\mathrm{sk}(Y)$.
+
+To that end, we'll now turn our attention to the last pieces of data we need to define $F_{\mathrm{sk}}$, its coherence isomorphisms. If we want the diagram for $F_{\mathrm{sk}}$ in the proposition to commutes, then we will need the following relations to hold:
+\begin{eq*}\begin{array}{rclrrcl}
+		R^Y(\mu^F) \circ \mu^{R^Y} & = & F_{\mathrm{sk}}(\mu^{R^X}) \circ \mu^{F_{\mathrm{sk}}}, & \quad & R^Y(\eta^F) \circ \eta^{R^Y} & = & F_{\mathrm{sk}}(\eta^{R^X}) \circ \eta^{F_{\mathrm{sk}}} \\
+		\lbrack \mu^{F_{\mathrm{sk}}} \rbrack \circ \mu^{[ \, \_ \, ]} & = & F_\pi(\mu^{[ \, \_ \, ]}) \circ \mu^{F_\pi}, & \quad & [\eta^{F_{\mathrm{sk}}}] \circ \eta^{[ \, \_ \, ]} & = & F_\pi(\eta^{[ \, \_ \, ]}) \circ \eta^{F_\pi}
+		\end{array}
+\end{eq*}
+The second row of relations is satisfied trivially since it concerns morphisms of $\pi_0(Y)$, which are all identities. For the first row, recall that $F$ is strictly monoidal and that from Corollary \ref{iRdata} we know the coherence data for $R^X$ and $R^Y$:
+\begin{eq*} \begin{array}{rclrrcl}
+		\mu^F_{x, x'} & = & \mathrm{id}_{F(x \otimes x')} & & \eta^F & = & \mathrm{id}_I \\
+		\mu^{R^X}_{x, x'} & = & R^X( \rho^X_x \otimes \rho^X_{x'} ) & \quad & \eta^{R^X} & = & \mathrm{id}_{R^X(I)} \\
+		\mu^{R^Y}_{y, y'} & = & R^Y( \rho^Y_y \otimes \rho^Y_{y'} ) & \quad & \eta^{R^Y} & = & \mathrm{id}_{R^Y(I)}
+		\end{array}
+\end{eq*}
+Thus,
+\begin{eq*}\begin{array}{rcl}
+		R^Y(\mathrm{id}_I) \circ \mathrm{id}_{R^Y(I)} & = & F_{\mathrm{sk}}(\mathrm{id}_{R^X(I)}) \circ \eta^{F_{\mathrm{sk}}} \\
+		\implies \quad \eta^{F_{\mathrm{sk}}} & = & \mathrm{id}_{R^Y(I)} \\
+		& & \\
+		R^Y(\mathrm{id}_{F(x \otimes x')}) \circ R^Y( \rho^Y_{F(x)} \otimes \rho^Y_{F(x')} ) & = & F_{\mathrm{sk}} R^X( \rho^X_x \otimes \rho^X_{x'} ) \circ \mu^{F_{\mathrm{sk}}}_{R^X(x), R^X(x')} \\
+		& = & R^Y F( \rho^X_x \otimes \rho^X_{x'} ) \circ \mu^{F_{\mathrm{sk}}}_{R^X(x), R^X(x')} \\
+		\implies \quad \mu^{F_{\mathrm{sk}}}_{R^X(x), R^X(x')} & = & R^Y\big( \, F( \rho^X_x \otimes \rho^X_{x'} )^{-1} \circ (\rho^Y_{F(x)} \otimes \rho^Y_{F(x')} ) \, \big) \\
+		& = & R^Y\big( \, F( \rho^X_x)^{-1} \rho^Y_{F(x)} \otimes F(\rho^X_{x'})^{-1} \rho^Y_{F(x')} ) \, \big)		
+		\end{array}
+\end{eq*}
+Note that in order for this statement of $\mu^{F_{\mathrm{sk}}}$ to be well-defined, the composite $F( \rho^X_x )^{-1} \rho^Y_{F(x)}$ must have a fixed value for all $x$ in a given connected component. We also need to check that this coherence data really does makes $F_{\mathrm{sk}}$ weak monoidal.
+
+.
+.
+.
+
+
+Specifically, for each connected component $[y]$ in $\pi_0(Y)$ choose an object $R^Y(y) \in [y]$ to be in $\mathrm{Ob}(\mathrm{sk}(Y))$, and then for each component $[x]$ in $\pi_0(X)$ choose an isomorphism $c_{[x]} : R^Y F(x) \to FR^X(x)$ from $Y$. This second part is always possible no matter which $R^Y(y)$ we picked, since
 \begin{eq*} R^X(x) \, \cong \, x \quad \implies \quad FR^X(x) \, \cong \, F(x) \, \cong \, R^Y F(x) \end{eq*}
 and it is also well-defined, since
 \begin{eq*}\begin{array}{lcrclcrcl}
@@ -792,12 +821,12 @@ Having done this we can begin to define $\rho^Y$ by setting $\rho^Y_{F(x)} = F(\
 \end{eq*}
 It follows from all of this that
 \begin{eq*} \begin{array}{rll}
-		F_{\mathrm{s}}(f) & = & (\rho^Y_{F(r)})^{-1} \circ F(\rho^X_r) \circ F(f) \circ F(\rho^X_r)^{-1} \circ \rho^Y_{F(r)}  \\
+		F_{\mathrm{sk}}(f) & = & (\rho^Y_{F(r)})^{-1} \circ F(\rho^X_r) \circ F(f) \circ F(\rho^X_r)^{-1} \circ \rho^Y_{F(r)}  \\
 		& = & c_{[r]}^{-1} \circ F(\rho^X_r)^{-1} \circ F(\rho^X_r) \circ F(f) \circ F(\rho^X_r)^{-1} \circ F(\rho^X_r) \circ c_{[r]} \\
 		& = & c_{[r]}^{-1} \circ F(f) \circ c_{[r]}	
 		\end{array}
 \end{eq*}
-and so the general commutative diagram for $F_{\mathrm{s}}$ is
+and so the general commutative diagram for $F_{\mathrm{sk}}$ is
 \begin{eq*} \begin{tikzcd}
 X(x, x') \ar[rrr, "F"] \ar[d, "(\rho^X_{x'})^{-1} \, \circ \, \_ \, \circ \, \rho^X_{x}"', "\rotatebox{90}{\(\sim\)}"] & & & Y\big( F(x), F(x') \big) \ar[d, "c_{[r]}^{-1} \circ F(\rho^X_r)^{-1} \, \circ \, \_ \, \circ \, F(\rho^X_x) \circ c_{[x]}",  "\rotatebox{90}{\(\sim\)}"'] \\
 X\big( R(x), R(x) \big) \ar[rrr, "c_{[r]}^{-1} \circ F(\, \_ \,) \circ c_{[r]}"] & & & Y\big( RF(x), RF(x) \big)
@@ -815,7 +844,7 @@ Given this, we'll define $\rho^Y$ on non-unit objects by
 \begin{eq*} \rho^Y_y = \big( \, F(\rho^X_{x_1}) \otimes F(\rho^X_{x_1})^* \otimes ... \, \big) \circ c_{[x]} \end{eq*}
 
 
-Finally, since $F_{\mathrm{s}}$ is a functor between weakly monoidal categories we need to define its coherence data, $\eta^{F_{\mathrm{s}}}, \mu^{F_{\mathrm{s}}}$.
+Finally, since $F_{\mathrm{sk}}$ is a functor between weakly monoidal categories we need to define its coherence data, $\eta^{F_{\mathrm{sk}}}, \mu^{F_{\mathrm{sk}}}$.
 
 
 
