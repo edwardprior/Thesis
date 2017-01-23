@@ -259,7 +259,7 @@ Therefore, we see that all the components of our transformation on invertible ob
 \begin{itemize}
 \item Given an indexed collection of $\mathrm{E}G$-algebras $X_i$, the $\mathrm{E}G$-action of their product $\prod X_i$ is defined componentwise. In particular, this means that the tensor product of two objects in $\prod X_i$ is just the collection of the tensor products of their components in each of the $X_i$. An invertible object in $\prod X_i$ is thus simply a family of invertible objects from the $X_i$ --- in other words, $(\prod X_i)_{\mathrm{inv}} = \prod (X_i)_{\mathrm{inv}}$.
 \item Given maps of $\mathrm{E}G$-algebras $F: X \to Z$, $G : Y \to Z$, the $\mathrm{E}G$-action of their pullback $X \times_Z Y$ is also defined componentwise. It follows that an invertible object in $X \times_Z Y$ is just a pair of invertible objects $(x, y)$ from $X$ and $Y$, such that $F(x) = G(y)$. But this is the same as asking for a pair of objects $(x, y)$ from $X_{\mathrm{inv}}$ and $Y_{\mathrm{inv}}$ such that $F_{\mathrm{inv}}(x) = G_{\mathrm{inv}}(y)$, and hence $(X \times_Z Y)_{\mathrm{inv}} = X_{\mathrm{inv}} \times_{Z_{\mathrm{inv}}} Y_{\mathrm{inv}}$.
-\item Given a filtered diagram $D$ of $\mathrm{E}G$-algebras, the $\mathrm{E}G$-action of their colimit $\mathrm{colim}(D)$ is defined in the following way: use filteredness to find an algebra which contains (representatives of the classes of) all the things you want to act on, then apply the action of that algebra. In the case of tensor products this means that $[x]\otimes[y] = [x \otimes y]$, and thus an invertible object in $\mathrm{colim}(D)$ is just (the class of) an invertible object in one of the algebras of $D$. In other words, $\mathrm{colim}(D)_{\mathrm{inv}} = \mathrm{colim}(D_{\mathrm{inv}})$.
+\item Given a filtered diagram $D$ of $\mathrm{E}G$-algebras, the $\mathrm{E}G$-action of their colimit $\mathrm{colim}(D_n)$ is defined in the following way: use filteredness to find an algebra which contains (representatives of the classes of) all the things you want to act on, then apply the action of that algebra. In the case of tensor products this means that $[x]\otimes[y] = [x \otimes y]$, and thus an invertible object in $\mathrm{colim}(D_n)$ is just (the class of) an invertible object in one of the algebras of $D$. In other words, $\mathrm{colim}(D_n)_{\mathrm{inv}} = \mathrm{colim}(D_{\mathrm{inv}})$.
 \end{itemize}
 Preservation of products and pullbacks gives preservation of limits, and preservation of limits and filtered colimits gives the result.
 \end{proof}
@@ -493,7 +493,7 @@ and so to recover $X$ from its underlying monoidal category the only additional 
 \begin{defi} Let $A$ be a category whose objects and morphisms are all $\mathrm{E}G$-algebra maps. Then we denote by $A^{\mathrm{mn}}$ the category whose objects and morphisms are the underlying monoidal functors of the objects and morphisms of $A$. \end{defi}
 
 \begin{prop}\label{initialmn} The obvious functor
-\begin{eq*} C(\mathbb{G}_n) \to C(\mathbb{G}_n)^{\mathrm{mn}} \end{eq*}
+\begin{eq*} C_{\mathrm{gp}}(\mathbb{G}_n) \to C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}} \end{eq*}
 sending $\mathrm{E}G$-algebra maps to their underlying monoidal functors is an isomorphism of categories.  
 \end{prop}
 \begin{proof}
@@ -508,20 +508,29 @@ for any objects $w_i$ in $\mathbb{G}_n$. Notice that given a collection of objec
 		\end{array}
 \end{eq*}
 
-In order to understand the behaviour of $\alpha_{\hat{X}}$ outside of $\mathrm{im}(\hat{\psi})$, consider the algebra $\mathbb{G}_{2n}$. The objects of this category are the monoid $\mathbb{N}^{\ast 2n}$, with generators that we've been calling $z_1, ..., z_{2n}$. It follows that we can always construct a new map of $\mathrm{E}G$-algebras, $\hat{\psi}_2: \mathbb{G}_{2n} \to \hat{X}$ by simply setting
-\begin{eq*}
-\hat{\psi}_2(z_i) =
-\begin{cases}
-       	\hat{\psi}(z_i) & \quad \text{if} \quad 1 \leq i \leq n \\
-      	\hat{\psi}(z_{i-n})^* & \quad \text{if} \quad n+1 \leq i \leq 2n \\
-\end{cases}
+In order to understand the behaviour of $\alpha_{\hat{X}}$ outside of $\mathrm{im}(\hat{\psi})$, consider the generators $z_1, ..., z_n$ of the objects $\mathbb{Z}^{\ast n}$ of $\hat{X}$. There is an obvious isomorphism between these and their inverses $z_1^*, ..., z_n^*$, and we can extend this to a full automorphism
+\begin{eq*} \begin{array}{rrcll}
+		\delta & : & \hat{X} & \to & \hat{X} \\
+		& : & z_i & \mapsto & z_i^* \\
+		& : & z_i^* & \mapsto & z_i
+		\end{array}
 \end{eq*}
-\begin{eq*} \hat{\psi}_2 \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{\hat{X}}(g; \mathrm{id}_{\hat{\psi}_2(w_1)}, ..., \mathrm{id}_{\hat{\psi}_2(w_m)}) \end{eq*}
-The results of applying $\hat{\psi}_2$ to other objects of $\mathbb{G}_{2n}$ can be determined from its value on generators, using $\hat{\psi}_2(w \otimes w') = \hat{\psi}_2(w) \otimes \hat{\psi}_2(w')$ for all objects $w, w'$. Since every morphism of $\mathbb{G}_{2n}$ can be written in the form $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, not necessarily uniquely, the result of applying $\hat{\psi}_2$ to morphisms is also fully determined. The last part of its definition also ensures that $\hat{\psi}_2$ is a well-defined $\mathrm{E}G$-algebra map, and so clearly $\hat{\psi}_2$ is an object of $C(\mathbb{G}_{2n})$. We know that this category has an initial object, $\phi: \mathbb{G}_{2n} \to Z_{2n}$, and hence there is a unique map $u: Z_{2n} \to \hat{X}$ such that $\hat{\psi}_2 = u \phi$. Remembering that $\phi$ has the properties
+\begin{eq*}
+\delta \big( \, \alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) \, \big) \, := \, \alpha_{\hat{X}}(g; \mathrm{id}_{\delta(x_1)}, ..., \mathrm{id}_{\delta(x_m)})
+\end{eq*}
+The results of applying $\delta$ to other objects of $\hat{X}$ can be determined from its value on generators, using $\delta(x \otimes x') = \delta(x) \otimes \delta(x')$ for all objects $x, x'$. Since every morphism of $\mathbb{G}_n$ can be written in the form $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, not necessarily uniquely, the result of applying $\delta$ to morphisms in $\mathrm{im}(\hat{\psi})$ is fully determined as well. For any $f: x \to x'$ not in $\mathrm{im}(\hat{\psi})$, the value of $\delta(f)$ may be chosen arbitrarily. The last part of the definition also ensures that $\delta$ is a well-defined $\mathrm{E}G$-algebra map.
+
+It follows that we can use $\delta$ to construct a new object of $C(\mathbb{G}_{2n})$ via the composite
+\begin{eq*} \begin{tikzcd}
+\mathbb{G}_{2n} \ar[r, "\sim"] & \mathbb{G}_n + \mathbb{G}_n \ar[r, "\hat{\psi} + \hat{\psi}"] & \hat{X} + \hat{X} \ar[r, "\mathrm{id}_{\hat{X}} + \delta"] & \hat{X} + \hat{X} \ar[r, "i + i"] & \hat{X}
+\end{tikzcd} \end{eq*}
+which we will call $\hat{\psi}_2$. Notice that here we've made use of the fact that left adjoints preserve colimits, so that 
+\begin{eq*} \mathbb{G}_{2n} \, := \, F(2n) \, = \, F(n) + F(n) \, = \, \mathbb{G}_n + \mathbb{G}_n \end{eq*}
+Now, since we know that $C(\mathbb{G}_{2n})$ has an initial object, $\phi: \mathbb{G}_{2n} \to Z_{2n}$, there must exist a unique map $u: Z_{2n} \to \hat{X}$ such that $\hat{\psi}_2 = u \phi$. Remembering that $\phi$ has the properties
 \begin{eq*}\phi(w) = w, \quad \quad \phi \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \end{eq*}
 we can conclude that $u$ satisfies
 \begin{eq*}
-u(z_i) =
+u(z_i) \, = \, u\phi(z_i) \, = \, \hat{\psi}_2(z_i) \, = \,
 \begin{cases}
        	\hat{\psi}(z_i) & \quad \text{if} \quad 1 \leq i \leq n \\
       	\hat{\psi}(z_{i-n})^* & \quad \text{if} \quad n+1 \leq i \leq 2n \\
@@ -529,7 +538,7 @@ u(z_i) =
 \end{eq*}
 \begin{eq*} u \big( \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \, = \, \alpha_{\hat{X}}(g; \mathrm{id}_{u(w_1)}, ..., \mathrm{id}_{u(w_m)}) \end{eq*}
 Like before, we can use this second condition to fix the way that $\alpha_{\hat{X}}$ must act on the image of $u$, using only knowledge of the underlying monoidal functor of $u$. However, this time $\mathrm{im}(u)$ contains every object of $\hat{X}$, since the first condition on $u$ implies that
-\begin{eq*} \mathrm{im}(u_{\mathrm{ob}})  \, = \, \langle \, \mathrm{im}(\hat{\psi}_{\mathrm{ob}}) \, \rangle \, = \, \langle \, \mathrm{N}^{\ast n} \, \rangle \, = \, \mathrm{Z}^{\ast n} \, = \, \mathrm{Ob}(\hat{X}) \end{eq*}
+\begin{eq*} \mathrm{im}(u_{\mathrm{ob}})  \, = \, \langle \, \mathrm{im}(\hat{\psi}_{\mathrm{ob}}) \, \rangle \, = \, \langle \, \mathbb{N}^{\ast n} \, \rangle \, = \, \mathbb{Z}^{\ast n} \, = \, \mathrm{Ob}(\hat{X}) \end{eq*}
 Thus for any collection of objects $x_i$ in the underlying category of $X$ we can always find some $w_i$ in $Z_{2n}$ with $u(w_i) = x_i$, meaning that
 \begin{eq*}\begin{array}{rll}
 		\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) & = & u \big( \, \alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, \big) \\
@@ -541,12 +550,12 @@ It follows that $X$ and $\hat{X}$ are really the same $\mathrm{E}G$-algebra, and
 As for the morphisms of $C(\mathbb{G}_n)$, let $f: X \to Y$ be a morphism from $\psi: \mathbb{G}_n \to X$ to $\chi: \mathbb{G}_n \to Y$. Given the underlying monoidal functors of $\psi$ and $\chi$, the actions on $X$ and $Y$ are fixed, and this together with the underlying monoidal functor of $f$ is enough to determine $F$ as a map of $\mathrm{E}G$-algebras. Thus, the process of taking underlying monoidal functors of object and morphisms of $C(\mathbb{G}_n)$ is one-to-one, and so $C(\mathbb{G}_n) \cong C(\mathbb{G}_n)^{\mathrm{mn}}$.
 \end{proof}
 
-This result has two very important consequences. The first is that the underlying monoidal functors of the initial objects of $C_{\mathrm{gp}}(\mathbb{G}_n)$ must be the initial objects of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$. This is immediate from the restriction of the isomorphism $C(\mathbb{G}_n) \cong C(\mathbb{G}_n)^{\mathrm{mn}}$ to the subcategory $C_{\mathrm{gp}}(\mathbb{G}_n) \subseteq C_(\mathbb{G}_n)$. This will allow us to further use $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$ as a refinement of $C(\mathbb{G}_n)$. The second result is a more practical consideration.
+This result has two very important consequences. The first is that the underlying monoidal functors of the initial objects of $C_{\mathrm{gp}}(\mathbb{G}_n)$ must be the initial objects of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$. This will allow us to further use $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$ as a refinement of $C(\mathbb{G}_n)$. The second result is a more practical consideration.
 
 \begin{cor}\label{initialact} It is possible to recontruct the entirety of $C_{\mathrm{gp}}(\mathbb{G}_n)$ from just the objects and morphisms of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$ and $C_{\mathrm{gp}}(\mathbb{G}_{2n})^{\mathrm{mn}}$.
 \end{cor}
 \begin{proof}
-When we were defining the value of $\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ at the end of the previous proof, we needed to use the underlying monoidal functor of $u: Z_{2n} \to X$, which was defined in terms of the underlying monoidal functor of $\psi$, an object of $C_{\mathrm{gp}}(\mathbb{G}_{2n})^{\mathrm{mn}}$. But we also used the value of $\alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, something not included in the data of any $C_{\mathrm{gp}}(\, \_ \,)^{\mathrm{mn}}$. However, notice that the way we defined $\hat{\psi}_2$ implies that
+When we were defining the value of $\alpha_{\hat{X}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ at the end of the previous proof, we needed to use the underlying monoidal functor of $u: Z_{2n} \to X$, which was defined in terms of the underlying monoidal functor of $\psi$, an object of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$. But we also used the value of $\alpha_{Z_{2n}}(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, something not included in the data of any $C_{\mathrm{gp}}(\, \_ \,)^{\mathrm{mn}}$. However, notice that the way we defined $\hat{\psi}_2$ implies that
 \begin{eq*} \mathrm{Ob}(X) = \langle \, \mathrm{im}(\psi_{\mathrm{ob}}) \, \rangle = \mathrm{im}\big( \, (\hat{\psi}_2)_{\mathrm{ob}} \, \big) = \mathrm{im}(u_{\mathrm{ob}} \phi_{\mathrm{ob}}) = u \big( \, \mathrm{im}(\phi_{\mathrm{ob}}) \, \big) \end{eq*}
 Hence, when we had to pick some $w_i$ such that $u(w_i) = x_i$, we were always free to choose $w_i$ exclusively from $\mathrm{im}(\phi)$. 
 
@@ -861,7 +870,7 @@ Thus there is also at most one morphism $u$ in $C_{\mathrm{sk}}(\mathbb{G}_n)$ s
 
 Finally, we have reached the point where in order to find the initial object of $C(\mathbb{G}_n)$ it will suffice to find an initial object in the much more restrictive category $C_{\mathrm{sk}}(\mathbb{G}_n)$. With so much of the unnecessary structure of $C(\mathbb{G}_n)$ now removed, this task is at last appproachable.
 
-\begin{defi} \label{Ddef} Let $D$ be a diagram in category of groups whose vertices are the endomorphism groups $\mathbb{G}_n(s, s)$ of the representing objects $s$ in $\mathrm{sk}(\mathbb{G}_n)$, and which has edges
+\begin{defi} \label{Ddef} Let $D_n$ be a diagram in category of groups whose vertices are the endomorphism groups $\mathbb{G}_n(s, s)$ of the representing objects $s$ in $\mathrm{sk}(\mathbb{G}_n)$, and which has edges
 \begin{eq*} \begin{array}{rrrll}
 		\_ \boxtimes \mathrm{id}_{s'} & : & \mathbb{G}_n(s, s) & \to & \mathbb{G}_n(s \boxtimes s', s \boxtimes s') \\
 		\mathrm{id}_{s'} \boxtimes \_ & : & \mathbb{G}_n(s, s) & \to & \mathbb{G}_n(s' \boxtimes s, s' \boxtimes s) 
@@ -870,7 +879,7 @@ Finally, we have reached the point where in order to find the initial object of 
 for all $s, s' \in \mathbb{N}^{\ast n} = \mathrm{Ob}\big(\mathrm{sk}(\mathbb{G}_n)\big)$.
 \end{defi}
 
-\begin{prop}\label{colimD} Let $\phi_{\mathrm{sk}} : \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ be the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$. Then $\mathrm{sk}(Z)$ is the weak monoidal category with underlying category $\mathbb{Z}^n \times \mathrm{colim}(D)$ and coherence data
+\begin{prop}\label{colimD} Let $\phi_{\mathrm{sk}} : \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ be the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$. Then $\mathrm{sk}(Z)$ is the weak monoidal category with underlying category $\mathbb{Z}^n \times \mathrm{colim}(D_n)$ and coherence data
 \begin{eq*} \begin{array}{rll}
 		a^{\mathrm{sk}(Z)}_{s, s', s''} & = & j_{s \boxtimes s' \boxtimes s''}(a^{\mathrm{sk}(\mathbb{G}_n)}_{s, s', s''}) \\
 		l^{\mathrm{sk}(Z)}_s & = & j_s(l^{\mathrm{sk}(\mathbb{G}_n)}_s) \\
@@ -879,14 +888,14 @@ for all $s, s' \in \mathbb{N}^{\ast n} = \mathrm{Ob}\big(\mathrm{sk}(\mathbb{G}_
 \end{eq*} 
 and $\phi_{\mathrm{sk}}$ is the weak monoidal functor
 \begin{eq*}\begin{array}{rrrll}
-		\phi_{\mathrm{sk}} & : & \mathrm{sk}(\mathbb{G}_n) & \to & \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D) \\
+		\phi_{\mathrm{sk}} & : & \mathrm{sk}(\mathbb{G}_n) & \to & \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D_n) \\
 		& : & s & \mapsto & s \\
 		& : & f: s \to s & \mapsto & \big( \, \mathrm{id}_s, j_s(f) \, \big) \\
 		& & \mu^\chi_{s, s'} & = & \mathrm{id}_{s \boxtimes s'} \\
 		& & \eta^\chi & = & \mathrm{id}_{R(I)}
 		\end{array}
 \end{eq*}
-where the $j_s$ are the canonical maps $\mathbb{G}_n(s, s) \to \mathrm{colim}(D)$.
+where the $j_s$ are the canonical maps $\mathbb{G}_n(s, s) \to \mathrm{colim}(D_n)$.
 \end{prop}
 \begin{proof}
 By unraveling its definition, recall an object $\chi$ of $C_{\mathrm{sk}}(\mathbb{G}_n)$ is a monoidal functor whose source is a chosen skeleton $\mathrm{sk}(\mathbb{G}_n)$ of $\mathbb{G}_n$, whose target is a skeleton $\mathrm{sk}(X)$ of some $\mathrm{E}$G-algebra $X$ with objects $\mathbb{Z}^{\ast n}$ assigned to connected components though abelianisation, and whose restriction $\chi_{\pi}$ is the inclusion $\mathbb{N}^n \to \mathbb{Z}^n$. In other words, $\phi_{\mathrm{sk}}$ is part of the initial diagram amongst those of the form
@@ -973,7 +982,7 @@ we can recover the full condition $\chi_I(f \boxtimes f') = \chi_I(f) \boxtimes 
 		& = & \chi_I(f) \boxtimes \mathrm{id}_{R(I)} & & & = & \mathrm{id}_{R(I)} \boxtimes \chi_I(f) \\
 		& = & \chi_I(f) & & & = & \chi_I(f)
 		\end{array} \end{eq*}
-and so these are really the more fundamental property of $\chi_I$. Returning to the view of $\chi_I$ as a family of group homomorphisms again, what we've proven is that both $\chi_{s \boxtimes s'}(\_ \boxtimes \mathrm{id}_{s'})$ and $\chi_{s' \boxtimes s}(\mathrm{id}_{s'} \boxtimes \_)$ are equal to $\chi_s$. In the language of Definition \ref{Ddef}, the pair $(X(R(I), R(I)), \chi_I)$ is a cocone of the diagram $D$.
+and so these are really the more fundamental property of $\chi_I$. Returning to the view of $\chi_I$ as a family of group homomorphisms again, what we've proven is that both $\chi_{s \boxtimes s'}(\_ \boxtimes \mathrm{id}_{s'})$ and $\chi_{s' \boxtimes s}(\mathrm{id}_{s'} \boxtimes \_)$ are equal to $\chi_s$. In the language of Definition \ref{Ddef}, the pair $(X(R(I), R(I)), \chi_I)$ is a cocone of the diagram $D_n$.
 
 The last few properties that $\chi_I$ will inherit come from the coherence conditions governing how $\chi$ and its natural isomorphisms $\mu^\chi, \eta^\chi$ interact with the data $a, l, r$ of $\mathrm{sk}(\mathbb{G}_n)$ and $\mathrm{sk}(X)$. However, it turns out that that these can be safely ignored when determining the initial object $\phi_{\mathrm{sk}}$. To see this, let $\chi': \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(X)'$ be the weak monoidal functor with the same underlying functor as $\chi$, but coherence data 
 \begin{eq*} \begin{array}{rll}
@@ -984,7 +993,7 @@ The last few properties that $\chi_I$ will inherit come from the coherence condi
 		\eta^\chi & = & \mathrm{id}_{R(I)}
 		\end{array}
 \end{eq*} 
-It is easy to verify that this is a well-defined object of $C_{\mathrm{sk}}(\mathbb{G}_n)$ which produces the same cocone $\chi_I$ of $D$ that $\chi$ does. Thus any weak monoidal functor $f: \mathrm{sk}(X)' \to \mathrm{sk}(X)$ such that $\chi = f \circ \chi'$ must have the identity as its underlying functor, and coherence data satisfying
+It is easy to verify that this is a well-defined object of $C_{\mathrm{sk}}(\mathbb{G}_n)$ which produces the same cocone $\chi_I$ of $D_n$ that $\chi$ does. Thus any weak monoidal functor $f: \mathrm{sk}(X)' \to \mathrm{sk}(X)$ such that $\chi = f \circ \chi'$ must have the identity as its underlying functor, and coherence data satisfying
 \begin{eq*} \begin{array}{rclrrcl}
 		\mu^f_{s, s'} & = & f(\mu^{\chi'}_{s, s'})^{-1} \circ \mu^{\chi}_{s, s'} & \quad & \eta^f_{s, s'} & = & f(\eta^{\chi'}_{s, s'})^{-1} \circ \eta^{\chi}_{s, s'} \\
 		& = & \mu^\chi_{s, s'} & \quad & & = & \eta^\chi_{s, s'}
@@ -992,16 +1001,16 @@ It is easy to verify that this is a well-defined object of $C_{\mathrm{sk}}(\mat
 \end{eq*} 
 This weak monoidal functor is well-defined --- the proof involves similar steps to those taken during the proof of Proposition \ref{pullback} --- and so there exists a unique morphism from $\chi'$ to $\chi$ in $C_{\mathrm{sk}}(\mathbb{G}_n)$. Therefore, the unique morphism from the initial object $\phi_{\mathrm{sk}}$ onto $\chi$ can always be recovered from another map with the same cocone, and hence the cocones produced by the $\chi_I$ alone will provide sufficient information to determine $\phi_{\mathrm{sk}, I}$.
 
-Furthermore, this argument also showns that for any cocone $\xi_s: \mathbb{G}_n(s, s) \to A$ of $D$, there exist some object of $C_{\mathrm{sk}}(\mathbb{G}_n)$ with $\xi_s$ as its associated cocone. Specifically, if we combine the $\xi_s$ into a functor 
+Furthermore, this argument also showns that for any cocone $\xi_s: \mathbb{G}_n(s, s) \to A$ of $D_n$, there exist some object of $C_{\mathrm{sk}}(\mathbb{G}_n)$ with $\xi_s$ as its associated cocone. Specifically, if we combine the $\xi_s$ into a functor 
 \begin{eq*}\begin{array}{rrrll}
 		\chi & : & \mathrm{sk}(\mathbb{G}_n) & \to & \mathbb{Z}^n \times \mathrm{B}A \\
 		& : & s & \mapsto & s \\
 		& : & f: s \to s & \mapsto & \big( \, \mathrm{id}_s, \xi_s(f) \, \big)
 		\end{array}
 \end{eq*}
-then the weak monoidal functor $\chi'$ we get from it by the method given above will have $\chi'_s = \xi_s$. Therefore, $\phi_{\mathrm{sk}} : \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ is the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$, then the cocone obtained from $\psi_{\mathrm{sk}, I}$ is initial cocone of $D$ --- the colimit. In other words, the cocone $(Z(R(I), R(I)), \psi_{\mathrm{sk}, I})$ is just the pair $(\mathrm{colim}(D), j)$. Working backwards, from this cocone we can then reconstruct a $\phi_{\mathrm{sk}}: \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ which produces it, again by setting
+then the weak monoidal functor $\chi'$ we get from it by the method given above will have $\chi'_s = \xi_s$. Therefore, $\phi_{\mathrm{sk}} : \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ is the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$, then the cocone obtained from $\psi_{\mathrm{sk}, I}$ is initial cocone of $D_n$ --- the colimit. In other words, the cocone $(Z(R(I), R(I)), \psi_{\mathrm{sk}, I})$ is just the pair $(\mathrm{colim}(D_n), j)$. Working backwards, from this cocone we can then reconstruct a $\phi_{\mathrm{sk}}: \mathrm{sk}(\mathbb{G}_n) \to \mathrm{sk}(Z)$ which produces it, again by setting
 \begin{eq*} \begin{array}{rll}
-		\mathrm{sk}(Z) & = & \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D) \\
+		\mathrm{sk}(Z) & = & \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D_n) \\
 		a^{\mathrm{sk}(Z)}_{s, s', s''} & = & j_{s \boxtimes s' \boxtimes s''}(a^{\mathrm{sk}(\mathbb{G}_n)}_{s, s', s''}) \\
 		l^{\mathrm{sk}(Z)}_s & = & j_s(l^{\mathrm{sk}(\mathbb{G}_n)}_s) \\
 		r^{\mathrm{sk}(Z)}_s & = & j_s(r^{\mathrm{sk}(\mathbb{G}_n)}_s) \\
@@ -1011,46 +1020,101 @@ then the weak monoidal functor $\chi'$ we get from it by the method given above 
 \end{eq*} 
 \end{proof}
 
-With this proposition proven, the results in this chapter now collectively describe how to construct free $\mathrm{E}G$-algebras on $n$ invertible objects. Since the argument is obviously arranged in a rather piecemeal fashion, it would be best to restate the general conclusion as one easiy to read theorem.
+With this proposition proven, the results in this chapter now collectively describe how to construct free $\mathrm{E}G$-algebras on $n$ invertible objects. Since the argument is obviously arranged in a rather piecemeal fashion, it would be best to restate the general conclusion all in one place.
 
-\begin{thm}\label{freeinvalg} Let $G$ be an action operad. Then the free $\mathrm{E}G$-algebra on $n$ invertible objects is the category
-\begin{eq*} L\mathbb{G}_n \quad \cong \quad \mathrm{B} \, \mathrm{colim}(D) \times \bigsqcup_{w \in \mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \end{eq*}
-equipped with the $\mathrm{E}G$-action
-\begin{eq*} \end{eq*}
-Here $D$ is the diagram given in Definition \ref{Ddef}, and $q_{\mathbb{Z}^{\ast n}}$ is the quotient of abelianisation $\mathbb{Z}^{\ast n} \to \mathbb{Z}^n$.
+\begin{thm}\label{freeinvalg} Let $\mathbb{G}_n$ be the free $\mathrm{E}G$-algebra on $n$ objects. Choose a skeleton of $\mathbb{G}_n$ and an equivalence $\rho$ between the two, and use them to define the diagram $D_n$ as in Definition \ref{Ddef}, with colimit $(\mathrm{colim}(D_n), j)$. Also do the same with $\mathbb{G}_{2n}$, and let $u: \mathrm{colim}(D_{2n}) \to \mathrm{colim}(D_n)$ be the unique group homomorphism induced by the cocone of maps
+\begin{eq*} \begin{tikzcd} \mathbb{G}_{2n}(w, w) \ar[r, "j + j^*"] & \mathrm{colim}(D_n) \end{tikzcd} \end{eq*}
+Lastly, denote by $q_n$ the the quotient of abelianisation $\mathbb{Z}^{\ast n} \to \mathbb{Z}^n$, and define the function $h: \mathbb{Z}^{\ast n} \to \mathbb{N}^{\ast 2n}$ using minimal generator decompositions:
+\begin{eq*} h(z_i) \, = \, z_i, \quad \quad h(z_i^*) \, = \, z_{i+n}, \quad \quad d\big( \, h(w) \, \big) \, = \, h\big( \, d(w) \, \big) \end{eq*}
+Then the free $\mathrm{E}G$-algebra on $n$ invertible objects, $L\mathbb{G}_n$, is the algebra described by
+\begin{eq*}\begin{array}{rll}
+		& & \\
+		\mathrm{Ob}(L\mathbb{G}_n) & = & \mathbb{Z}^{\ast n} \\
+		& & \\
+		 L\mathbb{G}_n(w, w') & = & \begin{cases}
+     	  		\mathrm{colim}(D_n) & \quad \text{if} \quad q_n(w) \, = \, q_n(w') \\
+      			\emptyset & \quad \text{otherwise}
+			\end{cases} \\
+		& & \\
+		\alpha_{L\mathbb{G}_n}( \, e \, ; \, f_1, ..., f_m \, ) & = & f_1 \cdot ... \cdot f_m \\
+		& & \\
+		\alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m} \, ) & = & u j_{q_{2n}(w)}\big( \, \rho_{w'}^{-1} \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{h(w_1)}, ..., \mathrm{id}_{h(w_m)} \, ) \rho_{w} \, \big) \\
+		& &
+		\end{array}		
+\end{eq*}
+Note that this means that the underlying monoidal category of $L\mathbb{G}_n$ is
+\begin{eq*}L\mathbb{G}_n \quad = \quad \mathrm{B} \, \mathrm{colim}(D_n) \times \bigsqcup_{w \in \mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \end{eq*}
+with the monoidal product inherited from $\mathbb{Z}^{\ast n}$.
 \end{thm}
 \begin{proof}
-Proposition \ref{colimD} details the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$. Proposition \ref{initialsk} tells us that this is this one of the functors $\phi_{\mathrm{sk}}$ obtained from the initial object $\phi$ of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$ by applying Proposition \ref{factor1}. The other one, $\phi_{\mathrm{po}}$, is given by Lemma \ref{polem}. Proposition \ref{pullback} then lets us recover the target of $\phi$ as the pullback
+Proposition \ref{colimD} details the initial object of $C_{\mathrm{sk}}(\mathbb{G}_n)$. Proposition \ref{initialsk} tells us that this is this one of the functors $\phi_{\mathrm{sk}}$ obtained from the initial object $\phi_n$ of $C_{\mathrm{gp}}(\mathbb{G}_n)^{\mathrm{mn}}$ by applying Proposition \ref{factor1}. The other one, $\phi_{\mathrm{po}}$, is given by Lemma \ref{polem}. Proposition \ref{pullback} then lets us recover the target of $\phi_n$ as the pullback
 \begin{eq*} \begin{array}{rll}
-		 Z & \cong & \big( \, \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D) \, \big) \times_{\mathbb{Z}^n} \Big( \, \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \, \Big) \\
-		& = & \mathrm{B} \, \mathrm{colim}(D) \times \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big)
+		 Z & \cong & \big( \, \mathbb{Z}^n \times \mathrm{B} \, \mathrm{colim}(D_n) \, \big) \times_{\mathbb{Z}^n} \Big( \, \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \, \Big) \\
+		& = & \mathrm{B} \, \mathrm{colim}(D_n) \times \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big)
 		\end{array}
 \end{eq*}
 and from Propositions \ref{initial}, \ref{initialgp} and \ref{initialmn} we can conclude that this target is indeed the free algebra $L\mathbb{G}_n$. Similarly, after making any choice of skeleton for $\mathbb{G}_n$, Proposition \ref{factor2} can combine $\phi_{\mathrm{sk}}$ and $\phi_{\mathrm{po}}$ into $\phi$ by means of a pullback:
 \begin{eq*}\begin{array}{rrrll}
-		\phi & : & \mathbb{G}_n & \to & \mathrm{B} \, \mathrm{colim}(D) \times \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \\
+		\phi_n & : & \mathbb{G}_n & \to & \mathrm{B} \, \mathrm{colim}(D_n) \times \bigsqcup_{\mathbb{Z}^n} \mathrm{E}\big( \, q_{\mathbb{Z}^{\ast n}}^{-1}(w) \, \big) \\
 		& : & w & \mapsto & w \\
-		& : & f: w \to w' & \mapsto & \Big( \, j_{q_{\mathbb{Z}^{\ast n}}(w)}\big( \, \rho^{\mathbb{G}_n}_{q_{\mathbb{Z}^{\ast n}}(w)} (\rho^{\mathbb{G}_n}_{w'})^{-1} f \rho^{\mathbb{G}_n}_{w} (\rho^{\mathbb{G}_n}_{q_{\mathbb{Z}^{\ast n}}(w)})^{-1} \, \big), \, w \to w' \, \Big)
+		& : & f: w \to w' & \mapsto & \Big( \, j_{q_{\mathbb{Z}^{\ast n}}(w)}\big( \, (\rho^{\mathbb{G}_n}_{w'})^{-1} f \rho^{\mathbb{G}_n}_{w} \, \big), \, w \to w' \, \Big)
 		\end{array}
 \end{eq*}
-Finally, we can recontruct the action of $L\mathbb{G}_n$ using Corollary \ref{initialact}. Specifically, let $\phi_{2n}: \mathbb{G}_{2n} \to L\mathbb{G}_{2n}$ be the initial map on $2n$ invertible objects, let $u$ be the monoid homomorphism defined on generators by
-\begin{eq*}\begin{array}{rrrlll}
-		u & : & \mathbb{Z}^{\ast 2n} & \to & \mathbb{Z}^{\ast n} & \\
-		& : & z_i & \mapsto & z_i & \quad \text{if} \quad 1 \leq i \leq n \\
-		& : & z_i & \mapsto & z_{i-n}^* & \quad \text{if} \quad  n+1 \leq i \leq 2n
+Finally, we can recontruct the action of $L\mathbb{G}_n$ using Corollary \ref{initialact}. Specifically, let $\phi'_n: \mathbb{G}_{2n} \to L\mathbb{G}_n$ be the composite
+\begin{eq*} \begin{tikzcd}
+\mathbb{G}_{2n} \ar[r, "\sim"] & \mathbb{G}_n + \mathbb{G}_n \ar[r, "\phi_n + \phi_n"] & L\mathbb{G}_n + L\mathbb{G}_n \ar[r, "\mathrm{id} + \delta"] & L\mathbb{G}_n + L\mathbb{G}_n \ar[r, "i + i"] & L\mathbb{G}_n
+\end{tikzcd} \end{eq*}
+On generating objects, this functor acts by
+\begin{eq*}\begin{array}{rllll}
+		\phi'_n(z_i) & = &
+			\begin{cases}
+       				z_i & \quad \text{if} \quad 1 \leq i \leq n \\
+      				z_{i-n}^* & \quad \text{if} \quad n+1 \leq i \leq 2n \\
+			\end{cases}
 		\end{array}
 \end{eq*}
-and let $\theta: L\mathbb{G}_{2n} \to L\mathbb{G}_{n}$ be the unique map between the colimits induced by maps 
-\begin{eq*} \mathbb{G}_{2n}(s, s) \to \mathbb{G}_{n}\big( \, u(s), u(s) \, \big) \end{eq*}
-Then we define the action $\alpha_{L\mathbb{G}_n}$ to be
-\begin{eq*}\begin{array}{rll}
-		\alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m} \, ) & = & \theta \phi_{2n}\big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{u^{-1}(w_1)}, ..., \mathrm{id}_{u^{-1}(w_m)} \, ) \, \big) 
+and so we have $\phi'_n h(w) = w$ for any element $w$ of $\mathbb{Z}^{\ast n}$. Moreover, $\phi'_n$ is an object of $C(\mathbb{G}_{2n})$, and so if $\phi_{2n}$ is the initial object of that category then there must exist some $u: L\mathbb{G}_{2n} \to L\mathbb{G}_n$ such that $\phi'_n = u \circ \phi_{2n}$. The values that this $u$ takes on objects are given by
+\begin{eq*} u(w) \, = \, u \phi_{2n}(w) \, = \, \phi'_n(w) \end{eq*}
+and its values on morphisms are determined by the fact that the maps
+\begin{eq*} \begin{tikzcd} \mathbb{G}_{2n}(w, w) \ar[r, "\sim"] & (\mathbb{G}_n + \mathbb{G}_n)(w, w) \ar[r, "j + j"] & \mathrm{colim}(D_n) + \mathrm{colim}(D_n) \ar[r, "\mathrm{id} + \_^*"] & \mathrm{colim}(D_n) \end{tikzcd} \end{eq*}
+form a cocone over $D_{2n}$. Therefore,
+\begin{eq*} \begin{array}{rll}
+		\alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m} \, ) & = & \alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{\phi'_n h(w_1)}, ..., \mathrm{id}_{\phi'_n h(w_m)} \, ) \\
+		& = & \phi'_n \big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{h(w_1)}, ..., \mathrm{id}_{h(w_m)} \, ) \, \big) \\
+		& = & u \phi_{2n} \big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{h(w_1)}, ..., \mathrm{id}_{h(w_m)} \, ) \, \big) \\
+		& = & u j_{q_{2n}(w)}\big( \, \rho^{-1} \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{h(w_1)}, ..., \mathrm{id}_{h(w_m)} \, ) \rho_{w} \, \big)
 		\end{array}
 \end{eq*}
-
 \end{proof}
 
 \subsection{Examples}
+
+With Theorem \ref{freeinvalg} proven we can now finally achieve the primary goal of this chapter --- to describe the free braided monoidal category on $n$ invertible objects. In addition, this section will provide a few other simple applications of the theorem, in an effort to build up to the main result more gently. The definition of $L\mathbb{G}_n$ given in \ref{freeinvalg} is after all a little difficult to parse on first reading, because of the fairly abstract way it is presented, and hopefully the following concrete examples should allow the braided case to be properly understood.
+
+\begin{prop} Let $G$ be any action operad, and denote by $G(\infty)$ the colimit of the sequence 
+\begin{eq*} G(0) \, \hookrightarrow \, G(1) \, \hookrightarrow G(2) \, \hookrightarrow \, ... \end{eq*}
+ Then the free $\mathrm{E}G$-algebra on a single invertible object is the category
+\begin{eq*} L\mathbb{G}_1 \quad = \quad \mathrm{B}G(\infty)^{\mathrm{ab}} \times \mathbb{Z} \end{eq*}
+equipped with the action
+\begin{eq*}\alpha_{L\mathbb{G}_1}( \, g \, ; \, f_1, ..., f_m \, ) \, = \, g \cdot f_1 \cdot ... \cdot f_m \end{eq*}
+\end{prop}
+\begin{proof}
+Each object of $\mathbb{G}_1$ is isomorphic only to itself, and so it is its own skeleton. We are therefore free to choose $\rho$ to be the identity transformation, in which case the product $\boxtimes$ in our `skeleton' will just be the normal $\otimes$. The diagram $D_1$ from Definition \ref{Ddef} then has edges
+\begin{eq*}\begin{tikzcd} \mathbb{G}_1(n) \ar[r, "\, \_ \, \otimes \mathrm{id}_m"] & \mathbb{G}_1(n + m), & \mathbb{G}_1(n) \ar[r, "\mathrm{id}_m \otimes \, \_ \,"] & \mathbb{G}_1(m+n)  \end{tikzcd}\end{eq*}
+for each $m, n \in \mathbb{N}$. Given the structure of $\mathbb{G}_1$, these are really
+\begin{eq*}\begin{tikzcd} G(n) \ar[r, "\, \_ \, \otimes \mathrm{id}_m"] & G(n + m), & \mathbb{G}_1(n) \ar[r, "\mathrm{id}_m \otimes \, \_ \,"] & G(m+n)  \end{tikzcd}\end{eq*}
+which are all composites of the specific cases
+\begin{eq*}\begin{tikzcd} G(n) \ar[r, "\, \_ \, \otimes \mathrm{id}_1"] & G(n + 1), & \mathbb{G}_1(n) \ar[r, "\mathrm{id}_1 \otimes \, \_ \,"] & G(n+1)  \end{tikzcd}\end{eq*}
+Moreover, since we know that $\mathrm{colim}(D_1)$ is always an abelian group, and each of the above pairs has the same image under abelianisation, we can simply choose one of them to be the canonical inclusion $G(n) \hookrightarrow G(n+1)$, and then only abelianise after we've taken the colimit. Hence $L\mathbb{G}_1$ has the underlying category
+\begin{eq*}\mathrm{Ob}(L\mathbb{G}_1) \, = \, \mathbb{Z}, \quad \quad L\mathbb{G}_1(m, n) \, = \, \begin{cases}
+     	  		G(\infty)^{\mathrm{ab}} & \quad \text{if} \quad m \, = \, n \\
+      			\emptyset & \quad \text{otherwise}
+			\end{cases}
+\end{eq*}
+as required.
+
+In order to find the action $\alpha_{L\mathbb{G}_1}$ as well, we now also need to consider some of the structure of $L\mathbb{G}_2$. In particular, 
+\end{proof}
 
 \subsection{The free algebra on $n$ weakly invertible objects}
 
@@ -1124,7 +1188,7 @@ However, morphisms do not have a unique representation of this form, so we must 
 \begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha(g'; \mathrm{id}_{w_1'}, ..., \mathrm{id}_{w_{m'}'}) \end{eq*}
 their diagrams give the same image under $\psi$. There are two cases to consider here;
 \begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \end{eq*}
-when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimit diagram $D$ in Theorem \ref{colimthm}; and
+when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimit diagram $D_n$ in Theorem \ref{colimthm}; and
 \begin{eq*} \begin{array}{rll}
 		\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) & = & \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ) \\
 		&& \circ \, \, \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \\
@@ -1133,7 +1197,7 @@ when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimi
 		& = & \mathrm{id}_{w_1 \otimes ... \otimes w_m} 
 		\end{array}.
 \end{eq*}
-for $ \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ), \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \in \mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, which comes from the abelianisation of the vertices of $D$. All other ways for a morphism to have different representations must be generated by successive examples of these cases, since otherwise they wouldn't be coequalised by the colimit in Theorem \ref{colimthm}. In the first case we just have
+for $ \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ), \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \in \mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, which comes from the abelianisation of the vertices of $D_n$. All other ways for a morphism to have different representations must be generated by successive examples of these cases, since otherwise they wouldn't be coequalised by the colimit in Theorem \ref{colimthm}. In the first case we just have
 \begin{eq*} \begin{array}{rl}
 		& \psi( \, \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \, ) \\
 		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}, \mathbf{v}} \circ \beta(\, g \otimes e_k \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_m)}, \, \mathrm{id}_{\psi(v_1)}, \, ..., \, \mathrm{id}_{\psi(v_k)} \, ) \circ \psi_{\mathbf{w}, \mathbf{v}}^{-1} \\
