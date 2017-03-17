@@ -1,186 +1,4 @@
-\documentclass{amsart} % default font size is 10pt
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{3}
-\usepackage{latexsym}
-\usepackage{amsfonts}
-\usepackage{amssymb}
-\usepackage{amsmath}
-\usepackage{amscd}
-\usepackage{graphicx}
-\usepackage{eucal}
-\usepackage{amsthm}
-\usepackage[all]{xy}
-\usepackage{tikz-cd}
-\usepackage{pdfsync}
-\usepackage{xspace}
-\usepackage[unicode=true, pdfusetitle,
- bookmarks=true,bookmarksnumbered=false,
- breaklinks=false,
- backref=false,
- colorlinks=true,
- %linkcolor=blue!70!black,
- citecolor=black,
- urlcolor=blue!78!red,
- final
-]{hyperref}
-\usepackage[capitalise]{cleveref}
-\newcommand{\fref}{\cref}
-\newcommand{\Fref}{\Cref}
-\newcommand{\prettyref}{\cref}
-\newcommand{\newrefformat}[2]{}
-
-\usepackage[color=orange!80,bordercolor=black,textwidth=3cm,textsize=small,colorinlistoftodos]{todonotes}
-\makeatletter \providecommand\@dotsep{5}
-\makeatother
-\newcommand{\amsartlistoftodos}{\makeatother \listoftodos\relax}
-
-%% E.P. notes
-\newcommand{\epnote}[1]{\todo[color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
-\newcommand{\epmpar}[1]{\todo[noline,color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
-\newcommand{\epnoteil}[1]{\todo[inline,color=blue!40,linecolor=blue!40!black,size=\normalsize]{#1}}
-
-%% N.G. notes
-\newcommand{\ngnote}[1]{\todo[color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
-\newcommand{\ngmpar}[1]{\todo[noline,color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
-\newcommand{\ngnoteil}[1]{\todo[inline,color=red!40,linecolor=red!40!black,size=\normalsize]{#1}}
-
-% Cleveref definitions
-\crefname{prop}{Proposition}{Propositions}
-\crefname{thm}{Theorem}{Theorems}
-\crefname{defn}{Definition}{Definitions}
-\crefname{notn}{Notation}{Notations}
-\crefname{construction}{Construction}{Constructions}
-\crefname{lem}{Lemma}{Lemmas}
-\crefname{rem}{Remark}{Remarks}
-\crefname{cor}{Corollary}{Corollaries}
-\crefname{scholium}{Scholium}{Scholia}
-\crefname{figure}{Figure}{Figures}
-\crefname{equation}{Display}{Displays}
-\crefname{eq}{Display}{Displays}
-\crefname{eqn}{Display}{Displays}
-
-\newenvironment{eq}{\begin{equation}}{\end{equation}}
-\newenvironment{eqn}{\begin{equation}}{\end{equation}}
-\newenvironment{eq*}{\begin{equation*}}{\end{equation*}}
-\newenvironment{eqn*}{\begin{equation*}}{\end{equation*}}
-
-%\usepackage{natbib}
-\newcommand{\bs}{\boldsymbol}
-\newcommand{\mb}{\mathbf}
-\renewcommand{\dot}{\centerdot}
-\newcommand{\R}{\mathbb{R}}
-\newcommand{\m}[1]{\mathcal{#1}}
-\renewcommand{\SS}{\mathcal{S}}
-\newcommand{\colim}{\textrm{colim }}
-\newcommand{\f}[1]{\ensuremath{\mathcal{#1}}\xspace}
-\newcommand{\g}[1]{\ensuremath{\mathbb{#1}}\xspace}
-\newcommand{\Cat}{\ensuremath{\textnormal{Cat}}\xspace}
-\newcommand{\cd}[2][]{\vcenter{\hbox{\xymatrix#1{#2}}}}
-\newcommand{\Set}{\ensuremath{\textnormal{Set}}\xspace}
-\newcommand{\twocat}{\ensuremath{\textnormal{2-Cat}}\xspace}
-\newcommand{\Icon}{\ensuremath{\textnormal{Icon}}\xspace}
-%\newcommand{\to}{\rightarrow}
-
-%\pdfshift
-
-\begin{document}
-\numberwithin{equation}{section}% [if desired]
-\newtheorem{thm}[equation]{Theorem}
-\newtheorem{prop}[equation]{Proposition}
-\newtheorem{lem}[equation]{Lemma}
-\newtheorem{cor}[equation]{Corollary}
-
-\newtheoremstyle{example}{\topsep}{\topsep}%
-     {}%         Body font
-     {}%         Indent amount (empty = no indent, \parindent = para indent)
-     {\bfseries}% Thm head font
-     {.}%        Punctuation after thm head
-     {2pt}%     Space after thm head (\newline = linebreak)
-     {\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}%         Thm head spec
-
-   \theoremstyle{example}
-   \newtheorem{nota}[equation]{Notation}
-   \newtheorem{example}[equation]{Example}
-   \newtheorem{defn}[equation]{Definition}
-   \newtheorem{rem}[equation]{Remark}
-	\newtheorem{comment}[equation]{Comment}
-
-\tableofcontents
-
-\begin{defn} Operads $O$ \end{defn}
-\begin{defn} Action operads $G$ \end{defn}
-\begin{defn} $G$-operads \end{defn}
-\begin{defn} The $G$-operad $\mathrm{E}G$ \end{defn}
-\begin{defn}\label{monaddef} The monad $\mathrm{E}G$ \end{defn}
-\begin{defn} $G$-operad algebras / $\mathrm{E}G$-algebras \end{defn}
-\begin{prop} $G$-operad algebras are monoidal categories with permutation-like structure \end{prop}
-\begin{cor} Braided monoidal categories are $G$-operad algebras \end{cor}
-
-\begin{defn} A strict monoidal category $X$ is said to be \emph{spacial} if, for any object $x \in \mathrm{Ob}(X)$ and any endomorphism of the unit object $f: I \to I$, 
-\begin{eq*} f \otimes \mathrm{id}_x = \mathrm{id}_x \otimes f \end{eq*}
-\end{defn}
-
-The motivation for the name `spacial' comes from the context of string diagrams \cite{graphicalmon}. In a string diagram, the act of tensoring two strings together is represented by placing those strings side by side. Since the defining feature of the unit object is that tensoring it with other objects should have no effect, the unit object is therefore represented diagrammatically by the absense of a string. An endomorphism of the unit thus appears as an entity with no input or output strings, detached from the rest of the diagram. In a real-world version of these diagrams, made out of physical strings arranged in real space, we could use this detachedness to grab these endomorphisms and slide them over or under any strings we please, without affecting anything else in the diagram. This ability is embodied algebraically by the equation above, and hence categories which obey it are called `spacial'.
-
-\begin{lem}\label{spacial} All $\mathrm{E}G$-algebras are spacial. \end{lem}
-\begin{proof}
-Let $X$ be an $\mathrm{E}G$-algebra, and fix $x \in \mathrm{Ob}(X)$ and \( f: I \to I \). From the surjectivity of \( \pi : G(2) \to S_2 \) we know that the set $\pi^{-1}( \, (1 \, 2) \, )$ is non-empty, and from the rules for composition of action morphisms we see that for any such $g \in \pi^{-1}( \, (1 \, 2) \, )$,
-\begin{eq*}\begin{array}{rll}
-		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \circ \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, g \, ; \, \mathrm{id}_x, \, f \, ) \\
-		& = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_x \, ) \circ \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \\
-		\end{array}
-\end{eq*}
-Thus in order to obtain the result we're after, it will suffice to find a particular $g \in \pi^{-1}( \, (1 \, 2) \, )$ for which
-\begin{eq*}\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) = \mathrm{id}_x \end{eq*}
-However, since
-\begin{eq*}\begin{array}{rll}
-		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) & = & \alpha( \, g \, ; \, \mathrm{id}_x, \, \alpha( e_0; - ) \, ) \\
-		& = & \alpha( \, \mu(g; e_1, e_0) \, ; \, \mathrm{id}_x \, )
-		\end{array}
-\end{eq*}
-all we really need is to find a $g \in \pi^{-1}( \, (1 \, 2) \, )$ for which
-\begin{eq*} \mu(g; e_1, e_0) = e_1 \end{eq*}
-To this end, choose an arbtrary element $h \in \pi^{-1}( \, (1 \, 2) \, )$. This $h$ probably won't obey the above equation, but we can use it to construct a new element $g$ which does. Specifically, define
-\begin{eq*} k \, := \, \mu( \, h \ ; \, e_1, \, e_0 \, ) \end{eq*}
-and then consider
-\begin{eq*} g \, := \, h \cdot \mu(e_2; k^{-1}, e_1) \end{eq*}
-To see that this is the correct choice of $g$, first note that we must have \( \pi(k) = e_1 \), since this is the only element of $S_1$. Following from that, we have 
-\begin{eq*}\begin{array}{rll}
-		\pi \big( \, \mu(e_2; k^{-1}, e_1) \, \big) & = & \mu \big( \, \pi(e_2) \ ; \, \pi(k^{-1}), \, \pi(e_1) \, \big) \\
-		& = & \mu \big( \, e_2  \ ; \, e_1, \, e_1 \, \big) \\
-		& = & e_2
-		\end{array}
-\end{eq*}
-and hence
-\begin{eq*}\begin{array}{rll}
-		\pi(g) & = & \pi \big( h \cdot \mu(e_2; k^{-1}, e_1) \big) \\
-		& = & \pi(h) \cdot \pi \big(\mu(e_2; k^{-1}, e_1) \big) \\
-		& = & (1 \, 2) \cdot e_2 \\
-		& = & (1 \, 2)
-		.\end{array}
-\end{eq*}
-So $g$ is indeed in $\pi^{-1}( \, (1 \, 2) \, )$, and furthermore
-\begin{eq*}\begin{array}{rll}
-		\mu(g; e_1, e_0) & = & \mu \big( \, h \cdot \mu(e_2; k^{-1}, e_1) \ ; \, e_1, \, e_0 \, \big) \\
-		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu \big( \, \mu(e_2; k^{-1}, e_1) \ ; \, e_1, \, e_0 \, \big) \\
-		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu \big( \, e_2 \ ; \, \mu(k^{-1}; e_1), \, \mu(e_1; e_0) \, \big) \\
-		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu( \, e_2 \ ; \, k^{-1}, e_0 \, ) \\
-		& = & k \cdot k^{-1} \\
-		& = & e_1
-		\end{array}
-\end{eq*}
-Therefore, $h \cdot \mu(e_2; k^{-1}, e_1)$ is exactly the $g$ we were looking for, and so working backwards through the proof we obtain the required result:
-\begin{eq*} \begin{array}{rll}
-		\mu(g; e_1, e_0) & = & e_1 \\
-		\implies \quad \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) & = & \mathrm{id}_x \\
-		& & \\
-		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \circ \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_x \, ) \circ \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \\
-		\implies \quad \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_I \, )
-		\end{array}
-\end{eq*}
-\end{proof}
-
-\section{Free algebras of action operads}
+\section{Free $\mathrm{E}G$-algebras}
 
 Our ultimate goal for this chapter is to understand the free braided monoidal category on an finite number of invertible objects. Thus, now that we have a firm grasp on action operads and their algebras, we should begin to think about the various free constructions they can form. 
 
@@ -206,13 +24,13 @@ where $\{z_1, ..., z_n\}$ is any set with $n$ distinct elements. Since $X$ and $
 is the appropriate component of the multiplication natural transformation $\mu: \mathrm{E}G \circ \mathrm{E}G \to \mathrm{E}G$ of the 2-monad $\mathrm{E}G$.
 \end{defn}
 
-\begin{thm} $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects. That is, 
+\begin{thm} $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects. That is,
 \begin{eq*}  F(\{z_1, ..., z_n\}) = \mathbb{G}_n \end{eq*}
 \end{thm}
 \begin{proof}
 \end{proof}
 
-\cref{Gndef} is a fairly opaque definition, so we'll spend a little time upacking it. Recall from \cref{monaddef} that $\mathrm{E}G( \{ z_1, ..., z_n \})$ is the coequaliser of the maps
+\cref{Gndef} is a fairly opaque definition, so we'll spend a little time upacking it. Recall from \cref{monaddef} that $\mathrm{E}G( \{ z_1, ..., z_n \})$ is the coequalizer of the maps
 \begin{eq*} \begin{tikzcd}
 \coprod_{m \geq 0} \mathrm{E}G(m) \times G(m) \times \{ z_1, ..., z_n \}^m \ar[r, shift left] \ar[r, shift right] & \coprod_{m \geq 0} \mathrm{E}G(m) \times \{ z_1, ..., z_n \}^m
 \end{tikzcd} \end{eq*}
@@ -515,6 +333,8 @@ Like in \cref{Zobj}, the free commutative monoids $\langle z_i \otimes z_{i+n} \
 and so the restriction of $\eta$ to connected components is just the inclusion $\mathbb{N}^n \to \mathbb{Z}^n$.
 \end{proof}
 
+\subsection{$L\mathbb{G}_n$ as a coequalizer}
+
 \cref{Zobj,Zconcomp} both contain statements about the partial surjectivity of the map $q$; since $q_{\mathrm{ob}}$ is the quotient map of monoids $\mathbb{N}^{\ast 2n} \to \mathbb{Z}^{\ast n}$, every object of $L\mathbb{G}_n$ is the image under $q$ of some object of $\mathbb{G}_{2n}$, and likewise for connected components. From this one might guess that $q$ is will turn out to be a surjective map of $\mathrm{E}G$-algebras. Indeed this is the case, and much as \cref{Zobj,Zconcomp} are analogues of \cref{Gnobj,Gnconcomp} respectively, the fact that $q$ is surjective on morphisms will provide us with a result analagous to \cref{Gnmapsaction}. That is, since every morphism of $\mathbb{G}_{2n}$ is an action morphism, and since $\mathrm{E}G$-algebra maps always send action morphisms to action morphisms, if $q$ is surjective then every morphism of $L\mathbb{G}_n$ is also an action morphism.
 
 However, the proof of this is not so straightforward. In particular, if every morphism in $L\mathbb{G}_n$ were an action morphisms of the form $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, $x_i \in \{ z_1, ..., z_n, z^*_1, ..., z^*_n \}$, then this would mean that the set of such action morphisms would have to be closed under composition, which is not at all obvious. For $\mathbb{G}_{2n}$ we know this is true because two maps $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, $\alpha(g'; \mathrm{id}_{x'_1}, ..., \mathrm{id}_{x'_m})$, $x_i, x'_i \in \{ z_1, ..., z_{2n} \}$ are only composable if the target of the first is equal to the source of the second, which means that
@@ -526,10 +346,50 @@ However, the proof of this is not so straightforward. In particular, if every mo
 \end{eq*}
 However, in $L\mathbb{G}_n$ this line of reasoning does not work, because for example
 \begin{eq*} z_1 \otimes z^*_1 \quad = \quad I \quad = \quad z_2 \otimes z^*_2 \end{eq*}
-but this does not imply that $z_1 = z_2$. To proceed, we need the following intermediate result:
+but this does not imply that $z_1 = z_2$. 
+
+In order to solve this problem, we will need to adopt a slightly different view of the map $q$ --- no longer seeing it as a cokernel, but just as a general coequalizer.
+
+\begin{lem} Recall that $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects so that $\mathbb{G}_{3n}$ is the coproduct of $\mathbb{G}_{2n}$ and $\mathbb{G}_n$. Using this, define the maps $\delta, \zeta : \mathbb{G}_{3n} \to \mathbb{G}_{2n}$ using the universal property of the coproduct:
+\begin{eq*} \begin{tikzcd}
+& \mathbb{G}_{3n} \ar[dd, "\delta"] & & & \mathbb{G}_{3n} \ar[dd, "\zeta"] & \\
+\mathbb{G}_n \ar[ur, hookrightarrow] \ar[dr, "d"'] & & \mathbb{G}_{2n} \ar[ul, hookrightarrow] \ar[dl, "\mathrm{id}"] & \mathbb{G}_n \ar[ur, hookrightarrow] \ar[dr, "0"'] & & \mathbb{G}_{2n} \ar[ul, hookrightarrow] \ar[dl, "\mathrm{id}"] \\
+& \mathbb{G}_{2n} & & & \mathbb{G}_{2n} & \\
+\end{tikzcd} \end{eq*}
+Then $q$ is the coequalizer of $\delta$ and $\zeta$.
+\end{lem}
+\begin{proof}
+Let $i: \mathbb{G}_n \to \mathbb{G}_{3n}$ be the inclusion defined by sending the generators $z_i$ to $z_{i+2n}$, and let $p: \mathbb{G}_{2n} \to X$ be any map of $\mathrm{E}G$-algebras. If $p \circ \delta = p \circ \zeta$, then
+\begin{eq*} \begin{array}{rll}
+		p \circ d & = & p \circ \delta \circ i \\
+		& = & p \circ \zeta \circ i \\
+		& = & p \circ 0 \\
+		& = & 0 
+		\end{array}
+\end{eq*}
+and conversely if $p \circ d = 0$ then
+\begin{eq*} \begin{array}{rll}
+		p \circ \delta & = & p \circ (\mathrm{id}_{\mathbb{G}_{2n}} + d) \\
+		& = & p + p \circ d \\
+		& = & p + 0 \\
+		& = & p \circ (\mathrm{id}_{\mathbb{G}_{2n}} + 0) \\
+		& = & p \circ \zeta
+		\end{array}
+\end{eq*}
+That is, $p \circ d = 0$ and $p \circ \delta = p \circ \zeta$ are equivalent properties, and so since $q$ is the universal map with the first property, it must also be the universal map with the second. Therefore, $q$ is the coequalizer of $\delta$ and $\zeta$.
+\end{proof}
+
+\begin{cor} $q$ is a reflexive coequalizer. \end{cor}
+\begin{proof}
+A reflexive coequalizer is a map which is the coequalizer of a reflexive pair, which is in turn a pair of parallel maps which share a right-inverse. If we let $i: \mathbb{G}_{2n} \to \mathbb{G}_{3n}$ be the inclusion defined on generators by $z_i \mapsto z_i$, then $i$ is a right-inverse of both $\delta$ and $\zeta$:
+\begin{eq*} \delta \circ i \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + d) \circ i \, = \, \mathrm{id}_{\mathbb{G}_{2n}}, \quad \quad \zeta \circ i \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + 0) \circ i \, = \, \mathrm{id}_{\mathbb{G}_{2n}} \end{eq*}
+Therefore, $(\delta, \zeta)$ is a reflexive pair, and $q$ a reflexive coequalizer.
+\end{proof}
+
+Using this new perspective of $q$, we can prove the following result about the composites of morphisms in $L \mathbb{G}_n$:
 
 \begin{prop} For any two morphisms $f: v \to w$, $f' : w' \to v'$ in $\mathbb{G}_{2n}$,
-\begin{eq*} q(w) = q(w') \quad \implies \quad \exists \, f_v: v \to v' \quad \mathrm{s.t.} \quad q(f_v) = q(f) \circ q(f') \end{eq*}
+\begin{eq*} q(w) = q(w') \quad \implies \quad \exists \, h: v \to v' \quad \mathrm{s.t.} \quad q(h) = q(f) \circ q(f') \end{eq*}
 \end{prop}
 \begin{proof}
 Let $w, w'$ be objects of $\mathbb{G}_{2n}$ for which $q(w) = q(w')$. By \cref{Gnconcomp}, their connected components $[w], [w']$ are just elements of $\mathbb{N}^{2n}$, and so we can use them to define a new element
@@ -711,10 +571,10 @@ We will think about the objects of a particular skeleton of $X$ as being a chose
 Since $X$ is a (strict) monoidal category, the equivalence $(i, R, \rho, \mathrm{id})$ naturally induces on $\mathrm{sk}(X)$ the structure of a weak monoidal category:
 
 \begin{defn}\label{boxtimes} Let $\boxtimes$ be the weak monoidal product defined on $\mathrm{sk}(X)$ by
-\begin{eq*} \xymatrix{
-\mathrm{sk}(X) \times \mathrm{sk}(X) \ar[d]_{i \times i} \ar[rr]^{\boxtimes} & & \mathrm{sk}(X) \\
-X \times X \ar[rr]^{\otimes} & & X \ar[u]_{R} }.
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+\mathrm{sk}(X) \times \mathrm{sk}(X) \ar[d, "i \times i"'] \ar[rr, "\boxtimes"] & & \mathrm{sk}(X) \\
+X \times X \ar[rr, "\otimes"] & & X \ar[u, "R"']
+\end{tikzcd} \end{eq*}
 This new product has unit object $R(I)$ and coherence data
 \begin{eq*} \begin{tikzcd}
 (s \boxtimes s') \boxtimes s'' \ar[d, equal] \ar[rr, "a^{\mathrm{sk}(X)}_{s,s',s''}"] & & s \boxtimes (s' \boxtimes s') \\
@@ -1251,27 +1111,27 @@ Up until now, we've been working under the convention that by `invertible' objec
 \begin{defn} Given an $\mathrm{E}G$-algebra $X$, we denote by $X_{\mathrm{wkinv}}$ the category whose
 \begin{itemize}
 \item objects are tuples $(x, x^*, \eta, \epsilon)$, where $x$ and $x^*$ are objects of $X$ and $\eta: I \to x^* \otimes x$ and $\epsilon : x \otimes x^* \to I$ are morphisms such that the composites
-\begin{eq*} \xymatrix{
-x \ar[r]^-{id \otimes \eta} & x \otimes x^* \otimes x \ar[r]^-{\epsilon \otimes id} & x &
-x^* \ar[r]^-{\eta \otimes id} & x^* \otimes x \otimes x^* \ar[r]^-{id \otimes \epsilon} & x^* }
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+x \ar[r, "\mathrm{id} \otimes \eta"] & x \otimes x^* \otimes x \ar[r, "\epsilon \otimes \mathrm{id}"] & x &
+x^* \ar[r, "\eta \otimes \mathrm{id}"] & x^* \otimes x \otimes x^* \ar[r, "\mathrm{id} \otimes \epsilon"] & x^* 
+\end{tikzcd} \end{eq*}
 are identity morphisms.
 \item maps $(f, f^*): (x, x^*, \eta_x, \epsilon_x) \to (y, y^*, \eta_y, \epsilon_y)$ are pairs $f: x \to y$, $f^* : x^* \to y^*$ of morphisms such that the diagrams
-\begin{eq*} \xymatrix{
-& I \ar[dl]_{\eta_x} \ar[dr]^{\eta_y} & & x \otimes x^* \ar[rr]^{f \otimes f^*} \ar[dr]_{\epsilon_x} & & y \otimes y^* \ar[dl]^{\epsilon_y} \\
-x^* \otimes x \ar[rr]_{f^* \otimes f} & & y \otimes y^* & & I & }
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+& I \ar[dl, "\eta_x"'] \ar[dr, "\eta_y"] & & x \otimes x^* \ar[rr, "f \otimes f^*"] \ar[dr, "\epsilon_x"'] & & y \otimes y^* \ar[dl, "\epsilon_y"] \\
+x^* \otimes x \ar[rr, "f^* \otimes f"] & & y \otimes y^* & & I &
+\end{tikzcd} \end{eq*}
 commute.
 \end{itemize}
 \end{defn}
 
 \begin{defn}\label{weakmonfunc} Let $(X, \alpha)$ and $(Y, \beta)$ be $\mathrm{E}G$-algebras. A \emph{weak $\mathrm{E}G$-algebra homorphism} between them is a weak monoidal functor $\psi: X \to Y$ such that all diagrams of the form
-\begin{eq*} \xymatrix{
-\psi( x_1 \otimes ... \otimes x_m) \ar[r]^-{\sim} \ar[d]_{\psi(\alpha(g; h_1, ... h_m))} &  \psi(x_1) \otimes ... \otimes \psi(x_m) \ar[d]^{\beta(g; \psi(h_1), ... \psi(h_m))} \\
-\psi( y_{\pi(g)^{-1}(1)} \otimes ... \otimes y_{\pi(g)^{-1}(m)}) \ar[r]^-{\sim} &  \psi(y_{\pi(g)^{-1}(1)}) \otimes ... \otimes \psi(y_{\pi(g)^{-1}(m)}) }
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+\psi( x_1 \otimes ... \otimes x_m) \ar[r, "\sim"] \arrow{d}[']{\psi(\alpha(g; h_1, ... , h_m))} & \psi(x_1) \otimes ... \otimes \psi(x_m) \arrow{d}{\beta(g; \psi(h_1), ..., \psi(h_m))} \\
+\psi( y_{\pi(g)^{-1}(1)} \otimes ... \otimes y_{\pi(g)^{-1}(m)}) \ar[r, "\sim"] & \psi(y_{\pi(g)^{-1}(1)}) \otimes ... \otimes \psi(y_{\pi(g)^{-1}(m)})
+\end{tikzcd} \end{eq*}
 commute.
-\end{defn}
+\end{defn} 
 
 \begin{defn} We denote by $\mathrm{E}G\mathrm{Alg}_W$ the 2-category of $\mathrm{E}G$-algebras, weak $\mathrm{E}G$-algebra homomorphisms, and weak monoidal transformations.\end{defn}
 
@@ -1286,11 +1146,11 @@ We begin by defining a functor $F : \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) 
 where the $z_i$ are the generators of $\mathbb{Z}^{*n}$ and the isomorphisms are those given by $\psi$ being a weak moniodal functor. On weak monoidal transformations, $F$ acts as
 \begin{eq*} F( \, \theta : \psi \to \chi \, ) = \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} }\end{eq*}
 This choice does satisfy the condition on morphisms of $(X_{\mathrm{wkinv}})^n$, since we can build the required commuting diagrams out of smaller ones given by $\theta$ being a weak monoidal transfomation:
-\begin{eq*} \xymatrix{
-& I \ar[dl]_{\sim} \ar[dr]^{\sim} & & \psi(z_i) \otimes \psi(z_i^*) \ar[rr]^{\theta_{z_i} \otimes \theta_{z_i^*}} \ar[d]_{\sim} & & \chi(z_i) \otimes \chi(z_i^*) \ar[d]^{\sim} \\
-\psi(I) \ar[d]_{\sim} \ar[rr]^{\theta_I} & & \chi(I) \ar[d]^{\sim} & \psi(I) \ar[dr]^{\sim} \ar[rr]^{\theta_I} & & \chi(I) \ar[dl]_{\sim} \\
-\psi(z_i^*) \otimes \psi(z_i) \ar[rr]^{\theta_{z_i^*} \otimes \theta_{z_i}} & & \chi(z_i^*) \otimes \chi(z_i) & & I & }.
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+& I \ar[dl, "\sim"'] \ar[dr, "\sim"] & & \psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\theta_{z_i} \otimes \theta_{z_i^*}"] \ar[d, "\sim"'] & & \chi(z_i) \otimes \chi(z_i^*) \ar[d, "\sim"] \\
+\psi(I) \ar[d, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[d, "\sim"] & \psi(I) \ar[dr, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[dl, "\sim"] \\
+\psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\theta_{z_i^*} \otimes \theta_{z_i}"] & & \chi(z_i^*) \otimes \chi(z_i) & & I & 
+\end{tikzcd} \end{eq*}
 
 Now we need to check if $F$ is an equivalence of categories. First, let $\big\{ ( x_i, x_i^*, \eta_i, \epsilon_i ) \big\}_{i \in \{z_1, ..., z_n\} }$ be an arbitrary object of $(X_{\mathrm{wkinv}})^n$. We can construct a weak algebra map $\psi: L\mathbb{G}_n \to X$ from it as follows. Define
 \begin{eq*} \psi(I) = I, \quad \psi(z_i) = x_i, \quad \psi(z_i^*) = x_i^* \end{eq*}
@@ -1304,10 +1164,10 @@ and choose the isomorphisms
 Then for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ such that $d(w \otimes w') = d(w) \otimes d(w')$, where $d(-)$ is the minimal generator decomposition from \cref{mgd}, set 
 \begin{eq*} \psi(w \otimes w') = \psi(w) \otimes \psi(w'), \quad \quad \psi_{w, w'} = \mathrm{id}_{\psi(w) \otimes \psi(w')} \end{eq*}
 This is enough to determine the value of $\psi$ on all of the remaining objects, via successive decompositions. For the isomorphisms, first note that the ones we have already defined satisfy the associativity and unitality required of weak monoidal functors. Now consider some $w, w'$ with $d(w \otimes w') \neq d(w) \otimes d(w')$. The fact that they differ implies that tensoring $w$ with $w'$ causes some cancellation of inverses to occur where the end of one sequence meets the beginning of another. In particular, if we let $b$ be the last term in the minimal generator decomposition of $w$, and let $c = w'$, then we conclude that the length $d(b \otimes c)$ is smaller than the length of $d(c)$. Let $a$ be the product of the rest of $d(w)$, so that $a \otimes b = w$. Then we can use requirement for associativity,
-\begin{eq*} \xymatrix{
-\psi(a) \otimes \psi(b) \otimes \psi(c) \ar[rr]^{id \otimes \psi_{b, c}} \ar[d]_{\psi_{a, b} \otimes id} && \psi(a) \otimes \psi(b \otimes c) \ar[d]^{\psi_{a, b \otimes c}} \\
-\psi(a \otimes b) \otimes \psi(c) \ar[rr]_{\psi_{a \otimes b, c}} && \psi(a \otimes b \otimes c) },
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+\psi(a) \otimes \psi(b) \otimes \psi(c) \ar[rr, "\mathrm{id} \otimes \psi_{b, c}"] \ar[d, "\psi_{a, b} \otimes \mathrm{id}"'] & & \psi(a) \otimes \psi(b \otimes c) \ar[d, "\psi_{a, b \otimes c}"] \\
+\psi(a \otimes b) \otimes \psi(c) \ar[rr, "\psi_{a \otimes b, c}"] && \psi(a \otimes b \otimes c)
+\end{tikzcd} \end{eq*}
 to define $\psi_{w, w'} = \psi{a\otimes b, c}$ in terms of three other isomorphisms that each have strictly smaller decompositions. Repeating this process will therefore eventually yield a definition in terms of our previous isomorphisms.
 
 By \cref{allmapsaction}, every morphism in $L\mathbb{G}_n$ can be written as $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ for some $g \in G(m)$, $w_i \in \mathbb{Z}^{*n}$. The action of $\psi$ on morphisms is thus determined by the diagram in \cref{weakmonfunc}, that is
@@ -1359,7 +1219,7 @@ Here the objects $w_i, w_i', w_i''$ are all in $\mathbb{G}_n \subseteq L\mathbb{
 		= & \psi_{\mathbf{w}} \circ \beta(\, e_m \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_{m})} \, ) \circ \psi_{\mathbf{w}}^{-1}
 		\end{array}
 \end{eq*}
-as required.
+as required. 
 
 With $\psi$ now fully defined, notice that
 \begin{eq*} \begin{array}{rll}
@@ -1370,20 +1230,20 @@ With $\psi$ now fully defined, notice that
 which was our arbitrary object in $(X_{\mathrm{wkinv}})^n$. Therefore, $F$ is surjective on objects.
 
 Next, choose an arbitrary monoidal transformation $\theta : \psi \to \chi$ from $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$. By naturality, for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ we have that
-\begin{eq*} \xymatrix{
-\psi(w) \otimes \psi(w') \ar[r]^-{\sim} \ar[d]_{\theta_w \otimes \theta_{w'}} & \psi(w \otimes w') \ar[d]^{\theta_{w \otimes w'}} \\
-\chi(w) \otimes \chi(w') \ar[r]^-{\sim} & \chi(w \otimes w') }
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+\psi(w) \otimes \psi(w') \ar[r, "\sim"] \ar[d, "\theta_w \otimes \theta_{w'}"'] & \psi(w \otimes w') \ar[d, "\theta_{w \otimes w'}"] \\
+\chi(w) \otimes \chi(w') \ar[r, "\sim"] & \chi(w \otimes w')
+\end{tikzcd} \end{eq*}
 or equivalently, $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$. It follows from this that the components of $\theta$ are generated by the components on the generators of $\mathrm{Ob}(L\mathbb{G}_n)$, namely $\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \}_{i \in \{z_1, ..., z_n\} }$. But this is just $F(\theta)$, and thus any monoidal transformation $\theta$ is determined uniquely by its image under $F$, or in other words $F$ is faithful.
 
 Finally, let $\psi, \chi$ be objects of $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$, and choose an arbitrary map $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} } : F(\psi) \to F(\chi)$ from $(X_{\mathrm{wkinv}})^n$. We can use this to construct a monoidal transformation $\theta : \psi \to \chi$ via the reverse of process we just used. Specifically, if we define
 \begin{eq*} \theta_I = \chi_I \circ \psi_I^{-1}, \quad \quad \theta_{z_i} =  f_i, \quad \quad \theta_{z_i^*} = f_i^*\end{eq*}
 then these will automatically form the naturality squares
-\begin{eq*} \xymatrix{
-\psi(z_i) \otimes \psi(z_i^*) \ar[rr]^-{\psi_{z_i, z_i^*}} \ar[dd]_{f_i \otimes f_i^*} & & \psi(I) \ar[d]^{\psi_I^{-1}} & \psi(z_i^*) \otimes \psi(z_i) \ar[rr]^-{\psi_{z_i^*, z_i}} \ar[dd]_{f_i^* \otimes f_i} & & \psi(I) \ar[d]^{\psi_I^{-1}} \\
-& & I \ar[d]^{\chi_I} & & & I \ar[d]^{\chi_I}\\
-\chi(z_i) \otimes \chi(z_i^*) \ar[rr]^-{\chi_{z_i, z_i^*}} & & \chi(I) & \chi(z_i^*) \otimes \chi(z_i) \ar[rr]^-{\chi_{z_i^*, z_i}} & & \chi(I)}
-\end{eq*}
+\begin{eq*} \begin{tikzcd}
+\psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\psi_{z_i, z_i^*}"] \ar[dd, "f_i \otimes f_i^*"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] & \psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\psi_{z_i^*, z_i}"] \ar[dd, "f_i^* \otimes f_i"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] \\
+& & I \ar[d, "\chi_I"] & & & I \ar[d, "\chi_I"] \\
+\chi(z_i) \otimes \chi(z_i^*) \ar[rr, "\chi_{z_i, z_i^*}"] & & \chi(I) & \chi(z_i^*) \otimes \chi(z_i) \ar[rr, "\chi_{z_i^*, z_i}"] & & \chi(I)
+\end{tikzcd} \end{eq*}
 since these are just the conditions for $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} }$ to be a map $F(\psi) \to F(\chi)$ in $(X_{\mathrm{wkinv}})^n$. Repeatedly applying the naturality condition $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$ will then generate all of the other components of $\theta$, in a way that clearly satisfies naturality. Thus we have a well-defined monoidal transformation $\theta : \psi \to \chi$, and applying $F$ to it gives
 \begin{eq*} \begin{array}{rll}
 		F(\theta) & = & \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
@@ -1392,31 +1252,3 @@ since these are just the conditions for $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i 
 \end{eq*}
 our arbitrary map. Therefore $F$ is full and, putting this together with the previous results, is an equivalence of categories.
 \end{proof}
-
-\begin{thebibliography}{9}
-
-\bibitem{graphicalmon}
-Peter Selinger.
-\textit{A survey of graphical languages for monoidal categories}.
-http://www.mscs.dal.ca/~selinger/papers/graphical.pdf
-
-\bibitem{operadborel} 
-Nick Gurski. 
-\textit{Operads, tensor products, and the categorical Borel construction}. 
- arXiv:1508.04050 [math.CT].
-
-\bibitem{bct}
-Tom Leinster.
-\textit{Basic Category Theory}
-Cambridge Studies in Advanced Mathematics, Vol. 143, Cambridge University Press, Cambridge, 2014.
-https://arxiv.org/pdf/1612.09375v1.pdf
-
-\bibitem{eckhil}
-Eckmann, B.; Hilton, P. J. 
-\textit{Group-like structures in general categories. I. Multiplications and comultiplications}
-Mathematische Annalen, 145 (3): 227–255
-
-\end{thebibliography}
-
-
-\end{document}

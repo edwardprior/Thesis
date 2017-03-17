@@ -1,0 +1,96 @@
+\section{Operads and their algebras}
+
+\subsection{Operads}
+
+\begin{defn} Operads $O$ \end{defn}
+
+\begin{defn} Action operads $G$ \end{defn}
+
+\begin{example} The symmetric operad $S$ \end{example}
+
+\begin{example} The braid operad $B$ \end{example}
+
+\begin{defn} $G$-operads \end{defn}
+
+\subsection{Operad algebras}
+
+\begin{defn} Operad algbras \end{defn}
+
+\begin{defn} $G$-operad algebras \end{defn}
+
+\subsection{$\mathrm{E}G$-algebras}
+
+\begin{defn} The $G$-operad $\mathrm{E}G$ \end{defn}
+
+\begin{defn}\label{monaddef} The monad $\mathrm{E}G$ \end{defn}
+
+\begin{defn} $\mathrm{E}G$-algebras \end{defn}
+
+\begin{prop} $G$-operad algebras are monoidal categories with permutation-like structure \end{prop} 
+
+\begin{cor} Braided monoidal categories are $G$-operad algebras \end{cor}
+
+\begin{defn} A strict monoidal category $X$ is said to be \emph{spacial} if, for any object $x \in \mathrm{Ob}(X)$ and any endomorphism of the unit object $f: I \to I$, 
+\begin{eq*} f \otimes \mathrm{id}_x = \mathrm{id}_x \otimes f \end{eq*}
+\end{defn}
+
+The motivation for the name `spacial' comes from the context of string diagrams \cite{graphicalmon}. In a string diagram, the act of tensoring two strings together is represented by placing those strings side by side. Since the defining feature of the unit object is that tensoring it with other objects should have no effect, the unit object is therefore represented diagrammatically by the absense of a string. An endomorphism of the unit thus appears as an entity with no input or output strings, detached from the rest of the diagram. In a real-world version of these diagrams, made out of physical strings arranged in real space, we could use this detachedness to grab these endomorphisms and slide them over or under any strings we please, without affecting anything else in the diagram. This ability is embodied algebraically by the equation above, and hence categories which obey it are called `spacial'.
+
+\begin{lem}\label{spacial} All $\mathrm{E}G$-algebras are spacial. \end{lem}
+\begin{proof}
+Let $X$ be an $\mathrm{E}G$-algebra, and fix $x \in \mathrm{Ob}(X)$ and \( f: I \to I \). From the surjectivity of \( \pi : G(2) \to S_2 \) we know that the set $\pi^{-1}( \, (1 \, 2) \, )$ is non-empty, and from the rules for composition of action morphisms we see that for any such $g \in \pi^{-1}( \, (1 \, 2) \, )$,
+\begin{eq*}\begin{array}{rll}
+		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \circ \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, g \, ; \, \mathrm{id}_x, \, f \, ) \\
+		& = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_x \, ) \circ \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \\
+		\end{array}
+\end{eq*}
+Thus in order to obtain the result we're after, it will suffice to find a particular $g \in \pi^{-1}( \, (1 \, 2) \, )$ for which
+\begin{eq*}\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) = \mathrm{id}_x \end{eq*}
+However, since
+\begin{eq*}\begin{array}{rll}
+		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) & = & \alpha( \, g \, ; \, \mathrm{id}_x, \, \alpha( e_0; - ) \, ) \\
+		& = & \alpha( \, \mu(g; e_1, e_0) \, ; \, \mathrm{id}_x \, )
+		\end{array}
+\end{eq*}
+all we really need is to find a $g \in \pi^{-1}( \, (1 \, 2) \, )$ for which
+\begin{eq*} \mu(g; e_1, e_0) = e_1 \end{eq*}
+To this end, choose an arbtrary element $h \in \pi^{-1}( \, (1 \, 2) \, )$. This $h$ probably won't obey the above equation, but we can use it to construct a new element $g$ which does. Specifically, define
+\begin{eq*} k \, := \, \mu( \, h \ ; \, e_1, \, e_0 \, ) \end{eq*}
+and then consider
+\begin{eq*} g \, := \, h \cdot \mu(e_2; k^{-1}, e_1) \end{eq*}
+To see that this is the correct choice of $g$, first note that we must have \( \pi(k) = e_1 \), since this is the only element of $S_1$. Following from that, we have 
+\begin{eq*}\begin{array}{rll}
+		\pi \big( \, \mu(e_2; k^{-1}, e_1) \, \big) & = & \mu \big( \, \pi(e_2) \ ; \, \pi(k^{-1}), \, \pi(e_1) \, \big) \\
+		& = & \mu \big( \, e_2  \ ; \, e_1, \, e_1 \, \big) \\
+		& = & e_2
+		\end{array}
+\end{eq*}
+and hence
+\begin{eq*}\begin{array}{rll}
+		\pi(g) & = & \pi \big( h \cdot \mu(e_2; k^{-1}, e_1) \big) \\
+		& = & \pi(h) \cdot \pi \big(\mu(e_2; k^{-1}, e_1) \big) \\
+		& = & (1 \, 2) \cdot e_2 \\
+		& = & (1 \, 2)
+		.\end{array}
+\end{eq*}
+So $g$ is indeed in $\pi^{-1}( \, (1 \, 2) \, )$, and furthermore
+\begin{eq*}\begin{array}{rll}
+		\mu(g; e_1, e_0) & = & \mu \big( \, h \cdot \mu(e_2; k^{-1}, e_1) \ ; \, e_1, \, e_0 \, \big) \\
+		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu \big( \, \mu(e_2; k^{-1}, e_1) \ ; \, e_1, \, e_0 \, \big) \\
+		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu \big( \, e_2 \ ; \, \mu(k^{-1}; e_1), \, \mu(e_1; e_0) \, \big) \\
+		& = & \mu( \, h \ ; \, e_1, \, e_0 \, ) \cdot \mu( \, e_2 \ ; \, k^{-1}, e_0 \, ) \\
+		& = & k \cdot k^{-1} \\
+		& = & e_1
+		\end{array}
+\end{eq*}
+Therefore, $h \cdot \mu(e_2; k^{-1}, e_1)$ is exactly the $g$ we were looking for, and so working backwards through the proof we obtain the required result:
+\begin{eq*} \begin{array}{rll}
+		\mu(g; e_1, e_0) & = & e_1 \\
+		\implies \quad \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) & = & \mathrm{id}_x \\
+		& & \\
+		\alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \circ \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_x \, ) \circ \alpha( \, g \, ; \, \mathrm{id}_x, \, \mathrm{id}_I \, ) \\
+		\implies \quad \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_I \, )
+		\end{array}
+\end{eq*}
+\end{proof}
+

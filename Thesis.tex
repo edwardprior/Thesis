@@ -1,0 +1,145 @@
+\documentclass{amsart}
+\setcounter{tocdepth}{3}
+\setcounter{secnumdepth}{3}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{eucal}
+\usepackage{tikz-cd}
+\usepackage{pdfsync}
+
+\usepackage[unicode=true, pdfusetitle,
+ bookmarks=true,bookmarksnumbered=false,
+ breaklinks=false,
+ backref=false,
+ colorlinks=true,
+ %linkcolor=blue!70!black,
+ citecolor=black,
+ urlcolor=blue!78!red,
+ final
+]{hyperref}
+
+\usepackage[capitalise]{cleveref}
+
+\usepackage[color=orange!80,bordercolor=black,textwidth=3cm,textsize=small,colorinlistoftodos]{todonotes}
+\makeatletter \providecommand\@dotsep{5}
+\makeatother
+\newcommand{\amsartlistoftodos}{\makeatother \listoftodos\relax}
+
+\newenvironment{eq}{\begin{equation}}{\end{equation}}
+\newenvironment{eq*}{\begin{equation*}}{\end{equation*}}
+
+\numberwithin{equation}{section}
+
+\newtheorem{thm}[equation]{Theorem}
+\newtheorem{prop}[equation]{Proposition}
+\newtheorem{lem}[equation]{Lemma}
+\newtheorem{cor}[equation]{Corollary}
+
+\newtheoremstyle{example}{\topsep}{\topsep}{}{}{\bfseries}{.}{2pt}{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}
+\theoremstyle{example}
+
+\newtheorem{nota}[equation]{Notation}
+\newtheorem{example}[equation]{Example}
+\newtheorem{defn}[equation]{Definition}
+\newtheorem{rem}[equation]{Remark}
+\newtheorem{comment}[equation]{Comment}
+
+%% E.P. notes
+\newcommand{\epnote}[1]{\todo[color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
+\newcommand{\epmpar}[1]{\todo[noline,color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
+\newcommand{\epnoteil}[1]{\todo[inline,color=blue!40,linecolor=blue!40!black,size=\normalsize]{#1}}
+
+%% N.G. notes
+\newcommand{\ngnote}[1]{\todo[color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
+\newcommand{\ngmpar}[1]{\todo[noline,color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
+\newcommand{\ngnoteil}[1]{\todo[inline,color=red!40,linecolor=red!40!black,size=\normalsize]{#1}}
+
+% Cleveref definitions
+\crefname{prop}{Proposition}{Propositions}
+\crefname{thm}{Theorem}{Theorems}
+\crefname{defn}{Definition}{Definitions}
+\crefname{notn}{Notation}{Notations}
+\crefname{construction}{Construction}{Constructions}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{rem}{Remark}{Remarks}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{scholium}{Scholium}{Scholia}
+\crefname{figure}{Figure}{Figures}
+\crefname{equation}{Display}{Displays}
+\crefname{eq}{Display}{Displays}
+\crefname{eqn}{Display}{Displays}
+
+
+
+\title[Classification of 3-groups]{Action operads, free algebras on invertible objects, and the classification of 3-groups} 
+\author{Edward G. Prior}
+
+\begin{document}
+
+\begin{titlepage}
+\maketitle
+\pagenumbering{gobble}
+\end{titlepage}
+
+\pagenumbering{arabic}
+
+\tableofcontents
+\pagebreak
+
+\input{actionoperad.tex}
+
+\input{initialalgebra.tex}
+
+\input{2groupclass.tex}
+
+\input{cohomology.tex}
+
+\input{3groupclass.tex}
+
+
+
+\begin{thebibliography}{9}
+
+\bibitem{hda5}
+John C. Baez; Aaron D. Lauda.
+\textit{Higher-Dimensional Algebra V: 2-Groups}.
+https://arxiv.org/pdf/math/0307200.pdf 
+
+\bibitem{picard}
+K. H. Ulbrich
+\textit{Group cohomology for Picard categories}
+Journal of Algebra, 91 (1984), pp. 464-498 
+http://dx.doi.org/10.1016/0021-8693(84)90114-5
+
+\bibitem{kkg}
+K. H. Ulbrich
+\textit{Kohärenz in Kategorien mit Gruppenstruktur}
+Journal of Algebra, 72 (1981), pp. 279-295
+http://dx.doi.org/10.1016/0021-8693(81)90295-7
+
+\bibitem{graphicalmon}
+Peter Selinger.
+\textit{A survey of graphical languages for monoidal categories}.
+http://www.mscs.dal.ca/~selinger/papers/graphical.pdf
+
+\bibitem{operadborel} 
+Nick Gurski. 
+\textit{Operads, tensor products, and the categorical Borel construction}. 
+ arXiv:1508.04050 [math.CT].
+
+\bibitem{bct}
+Tom Leinster.
+\textit{Basic Category Theory}
+Cambridge Studies in Advanced Mathematics, Vol. 143, Cambridge University Press, Cambridge, 2014.
+https://arxiv.org/pdf/1612.09375v1.pdf
+
+\bibitem{eckhil}
+Eckmann, B.; Hilton, P. J. 
+\textit{Group-like structures in general categories. I. Multiplications and comultiplications}
+Mathematische Annalen, 145 (3), pp. 227–255
+
+\end{thebibliography}
+
+\end{document}
