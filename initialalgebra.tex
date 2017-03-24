@@ -348,14 +348,22 @@ However, in $L\mathbb{G}_n$ this line of reasoning does not work, because for ex
 \begin{eq*} z_1 \otimes z^*_1 \quad = \quad I \quad = \quad z_2 \otimes z^*_2 \end{eq*}
 but this does not imply that $z_1 = z_2$. 
 
-In order to solve this problem, we will need to adopt a slightly different view of the map $q$ --- no longer seeing it as a cokernel, but just as a general coequalizer.
+In order to solve this problem, we will need to adopt a slightly different view of the map $q$ --- no longer seeing it as a cokernel, but just as a more general coequalizer.
 
-\begin{lem} Recall that $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects so that $\mathbb{G}_{3n}$ is the coproduct of $\mathbb{G}_{2n}$ and $\mathbb{G}_n$. Using this, define the maps $\delta, \zeta : \mathbb{G}_{3n} \to \mathbb{G}_{2n}$ using the universal property of the coproduct:
+\begin{lem}\label{coeq} Recall that $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects so that $\mathbb{G}_{3n}$ is the coproduct of $\mathbb{G}_{2n}$ and $\mathbb{G}_n$. Using this, define the maps $\delta, \zeta : \mathbb{G}_{3n} \to \mathbb{G}_{2n}$ using the universal property of the coproduct
 \begin{eq*} \begin{tikzcd}
-& \mathbb{G}_{3n} \ar[dd, "\delta"] & & & \mathbb{G}_{3n} \ar[dd, "\zeta"] & \\
-\mathbb{G}_n \ar[ur, hookrightarrow] \ar[dr, "d"'] & & \mathbb{G}_{2n} \ar[ul, hookrightarrow] \ar[dl, "\mathrm{id}"] & \mathbb{G}_n \ar[ur, hookrightarrow] \ar[dr, "0"'] & & \mathbb{G}_{2n} \ar[ul, hookrightarrow] \ar[dl, "\mathrm{id}"] \\
+& \mathbb{G}_{3n} \ar[dd, dashed, "\delta"] & & & \mathbb{G}_{3n} \ar[dd, dashed, "\zeta"] & \\
+\mathbb{G}_{2n} \ar[ur, hookrightarrow] \ar[dr, "\mathrm{id}"'] & & \mathbb{G}_n \ar[ul, hookrightarrow] \ar[dl, "d"] & \mathbb{G}_{2n} \ar[ur, hookrightarrow] \ar[dr, "\mathrm{id}"'] & & \mathbb{G}_n \ar[ul, hookrightarrow] \ar[dl, "0"] \\
 & \mathbb{G}_{2n} & & & \mathbb{G}_{2n} & \\
 \end{tikzcd} \end{eq*}
+where the inclusions are
+\begin{eq*}\begin{array}{rll}
+		\mathbb{G}_{2n} & \to & \mathbb{G}_{3n} \\
+		z_i & \mapsto & z_i \\
+		\mathbb{G}_n & \to & \mathbb{G}_{3n} \\
+		z_{i+2n} & \mapsto & z_i
+		\end{array}
+\end{eq*}
 Then $q$ is the coequalizer of $\delta$ and $\zeta$.
 \end{lem}
 \begin{proof}
@@ -379,91 +387,97 @@ and conversely if $p \circ d = 0$ then
 That is, $p \circ d = 0$ and $p \circ \delta = p \circ \zeta$ are equivalent properties, and so since $q$ is the universal map with the first property, it must also be the universal map with the second. Therefore, $q$ is the coequalizer of $\delta$ and $\zeta$.
 \end{proof}
 
-\begin{cor} $q$ is a reflexive coequalizer. \end{cor}
+This result may seem rather unnecessary, as like all cokernels $q$ was already a coequalizer, in this case of $d$ and $0$. But the advantage of seeing $q$ in terms of $\delta$ and $\zeta$ instead is that these two maps form a reflexive pair --- parallel maps which share a right-inverse.
+
+\begin{cor} Let $\iota: \mathbb{G}_{2n} \to \mathbb{G}_{3n}$ be the inclusion defined on generators by $z_i \mapsto z_i$. Then $\iota$ is a right-inverse of both $\delta$ and $\zeta$. \end{cor}
 \begin{proof}
-A reflexive coequalizer is a map which is the coequalizer of a reflexive pair, which is in turn a pair of parallel maps which share a right-inverse. If we let $i: \mathbb{G}_{2n} \to \mathbb{G}_{3n}$ be the inclusion defined on generators by $z_i \mapsto z_i$, then $i$ is a right-inverse of both $\delta$ and $\zeta$:
-\begin{eq*} \delta \circ i \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + d) \circ i \, = \, \mathrm{id}_{\mathbb{G}_{2n}}, \quad \quad \zeta \circ i \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + 0) \circ i \, = \, \mathrm{id}_{\mathbb{G}_{2n}} \end{eq*}
-Therefore, $(\delta, \zeta)$ is a reflexive pair, and $q$ a reflexive coequalizer.
+\begin{eq*} \delta \circ \iota \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + d) \circ \iota \, = \, \mathrm{id}_{\mathbb{G}_{2n}}, \quad \quad \zeta \circ \iota \, = \, (\mathrm{id}_{\mathbb{G}_{2n}} + 0) \circ \iota \, = \, \mathrm{id}_{\mathbb{G}_{2n}} \end{eq*}
 \end{proof}
 
-Using this new perspective of $q$, we can prove the following result about the composites of morphisms in $L \mathbb{G}_n$:
+In other words, $q$ is a reflexive coequalizer. Using this new perspective of $q$, we will be able to prove that the image of $q$ is closed under composition, and from that get the required result about the action morphisms of $L \mathbb{G}_n$. First though, we need an intermediate result.
+
+\begin{prop} For any two objects $w$, $w'$ of $\mathbb{G}_{2n}$,
+\begin{eq*} \begin{array}{rlrlllrll}
+		& & & & & & \delta(w_n) & = & w, \\
+		q(w) = q(w') & \implies & \exists \, w_n, w'_n & \in & \mathbb{N}^{\ast 3n} & \mathrm{s.t.} & \delta(w'_n) & = & w', \\
+		& & & & & & \zeta(w_n) & = & \zeta(w'_n)
+		\end{array}
+\end{eq*}
+\end{prop}
+\begin{proof}
+For $1 \le i \le n$, let $\delta_i$, $\zeta_i$ and $q_i$ be the monoid homomorphisms defined by
+\begin{eq*} \begin{array}{l}
+			\begin{array}{rlrlll}
+			\delta_i & : & \mathbb{N}^{\ast 2n + i} & \to & \mathbb{N}^{\ast 2n + i - 1} & \\
+			& : & z_{2n+i} & \mapsto & z_i \otimes z_{n+i} & \\
+			& : & z_j & \mapsto & z_j & j \neq i \\
+			& & & & \\
+			& & & & \\
+			\zeta_i & : & \mathbb{N}^{\ast 2n + i} & \to & \mathbb{N}^{\ast 2n+i-1} & \\
+			& : & z_{2n+i} & \mapsto & I & \\
+			& : & z_j & \mapsto & z_j & j \neq i \\
+			& & & & \\
+			& & & &
+			\end{array} \\
+			\begin{array}{rlrlll}
+			q_i & : & \mathbb{Z}^{\ast i - 1} \ast \mathbb{N}^{\ast 2(n+1-i)} & \to & \mathbb{Z}^{\ast i} \ast \mathbb{N}^{\ast 2(n-i)} & \\
+			& & & &
+			\end{array} \\
+			\begin{array}{rll}
+			q_1 & = & \mathrm{coeq}( \, \delta_1, \, \zeta_1 \, ) \\
+			q_i & = & \mathrm{coeq}( \, q_{i-1} ... q_1 \delta_1 ... \delta_i, \, q_{i-1} ... q_1 \zeta_1 ... \zeta_i \, )
+			\end{array}
+		\end{array}
+\quad \quad \quad
+\begin{tikzcd}
+\mathbb{N}^{\ast 3n} \ar[d, bend right, "\delta_n"'] \ar[d, bend left, "\zeta_n"] \\
+\mathbb{N}^{\ast 3n-1} \ar[d, bend right, "\delta_{n-1}"'] \ar[d, bend left, "\zeta_{n-1}"] \\
+\vdots \ar[d, bend right, "\delta_1"'] \ar[d, bend left, "\zeta_1"] \\
+\mathbb{N}^{\ast 2n} \ar[d, "q_1"] \\
+\mathbb{Z} \ast \mathbb{N}^{\ast 2n-2} \ar[d, "q_2"] \\
+\vdots \ar[d, "q_n"] \\
+\mathbb{Z}^{\ast n}
+\end{tikzcd}
+\end{eq*}
+It's worth spending some time unpacking this. Recall from \cref{coeq} that $\delta$ is the coproduct of the map $d$ from \cref{quotient} with the identity on $\mathbb{G}_{2n}$. This means that on objects $\delta$ acts trivially on the first $2n$ of the generators of $\mathbb{G}_{3n}$ and as $d$ on the other $n$. The $\delta_i$ are maps that represent the effect of $\delta$ on those last $n$ generators independently, so that $\delta_1 \circ ... \circ \delta_n = \delta_{\mathrm{ob}}$. The $\zeta_i$ are defined from $\zeta$ in the same way, with $\zeta_1 \circ ... \circ \zeta_n = \zeta_{\mathrm{ob}}$. Lastly, as the coequalizer of $\delta$ and $\zeta$, the map $q$ acts on objects by setting $z_i \otimes z_{n+i} = I$ for all $1 \le i \le n$. The maps $q_i$ defined above are exactly those coequalizers which carry out the $n$ independent parts of this process separately, so that $q_i$ just sets $z_i \otimes z_{n+i} = I$, and hence $q_n \circ ... \circ q_1 = q_{\mathrm{ob}}$.
+
+Now, for the object $w \in \mathrm{Ob}(\mathbb{G}_{2n}) = \mathbb{N}^{\ast 2n}$ from the statement of the proposition, consider the set $\delta^{-1}_1(w)$. Intuitively, this set contains all of the objects one can get from $w$ by taking some number of $z_1 \otimes z_{n+1}$ substrings from its presentation in terms of generators and replacing them with $z_{2n+1}$ instead. Since the connected components such objects are just elements of $\mathbb{N}^{2n+1}$, and any collection of natural numbers has a smallest member, it follows that we can choose some $w_1 \in \delta^{-1}_1(w)$ whose connected component has the lowest possible first coordinate:
+\begin{eq*} [w_1]_1 = \mathrm{min}\big( \, [u]_1 : u \in \delta^{-1}_1(w) \, \big) \end{eq*}
+Essentially, this says that $w_1$ is an object that we could construct from $w$ by replacing as many $z_1 \otimes z_{n+1}$ substrings as we can. Similarly, for $2 \le i \le n$ we will define a sequence of objects $w_i$ inductively, by choosing $w_i \in \delta^{-1}_{i}(w_{i-1})$ such that the $i$th coordinate of the connected component $[w_i] \in \mathbb{N}^{2n+i}$ is the minimum across all such values in $\delta^{-1}_i(w_{i-1})$:
+\begin{eq*} [w_i]_i = \mathrm{min}\big( \, [u]_i : u \in \delta^{-1}_i(w_{i-1}) \, \big) \end{eq*}
+The final object in this sequence, $w_n$, will then have all of its components coordinates being minimal; that is, it will be an object we can get from $w$ by replacing as many $z_i \otimes z_{n+i}$ substrings as possible, for all $1 \le i \le n$.
+
+We can do the exact same thing with $w'$ as well, picking out a sequence of objects $w'_i$, but there is also an analagous procedure starting from $q(w)$. Let $x_{n+1} = q(w)$, and then for $1 \le i \le n$ define the sequence of objects $x_i$ inductively by choosing $x_i \in q^{-1}_i(x_{i+1})$ with
+\begin{eq*} [x_i]_i = \mathrm{min}\big( \, [y]_i : y \in q^{-1}_i(x_{i+1}) \, \big) \end{eq*}
+Note that this still makes sense because $[x_i]$ is an element of $\mathbb{Z}^{i - 1} \times \mathbb{N}^{2(n+1-i)}$, so its $i$th coordinate is still a natural number. Intuitively, $x_i$ is the object we obtain from $x_{i+1}$ by replacing as many instances of $z_i^*$ with $z_{n_i}$ as possible, so long as the presentation of $x_{i+1}$ by generators that we start with doesn't contain any $z_i \otimes z_i^*$ or $z_i^* \otimes z_i$ substrings. 
+
+Next, consider the case $n=1$, where $x_2$ is just an element of $\mathbb{Z}$. If $x_2 \le 0$, then the object $z_2^{\otimes (-x_2)}$ is an element of $q^{-1}_1(x_2)$, with connected component is $(0, -x_2) \in \mathbb{N}^{\ast 2}$. Obviously $0$ is the smallest value that the first coordinate can take in this situation, and moreover $z_2^{\otimes -x_2}$ is the unique object in $q^{-1}_1(x_2)$ with this property, since there is only one way to tensor together $-x_2$ copies of $z_2$ and $0$ copies of $z_1$. Therefore, when $n=1$ our choice $x_1$ will be uniquely determined by our choice of $x_2$. 
+
+Now, denote by $q_(i)$ the monoid homomorphism $q_(i) : \mathbb{N}^{\ast 2} \to \mathbb{Z}$ which acts like the map $q_1$ in the $n=1$ case, but where the generators of $\mathbb{N}^{\ast 2}$ are now labelled $z_i$ and $z_{n+i}$, and the generator of $\mathbb{Z}$ is $z_i$. For general $n$, the map $q_i$ is a homomorphism from the monoid $\mathbb{Z}^{\ast i - 1} \ast \mathbb{N}^{\ast 2(n+1-i)} = \mathbb{N}^{\ast 2n} \ast (\mathbb{Z}^{\ast i - 1} \ast \mathbb{N}^{\ast 2(n-i)} )$ onto $\mathbb{Z}^{\ast i} \ast \mathbb{N}^{\ast 2(n-i)} = \mathbb{Z} \ast (\mathbb{Z}^{\ast i -1} \ast \mathbb{N}^{\ast 2(n-i)}$, and when seen this way, $q_i$ is defined in such a way that $q_i = q_(i) \ast \mathrm{id}_{\mathbb{Z}^{\ast i - 1} \ast \mathbb{N}^{\ast 2(n-i)} )}$. Thus it follows from the $n=1$ case that for any $n$ and any $1 \le i \le n$, there is a unique choice of $x_i$ for a given $x_{i+1}$. In particular, this means that there is a unique object $x_1$ in $q^{-1}_1 ... q^{-1}_n(x) = q^{-1}(x)$ whose connected component's coordinates are all minimal --- in other words, there is a unique way to $x$ into an element of $\mathbb{N}^{\ast 2n}$ by replacing all $z_i^*$ with $z_{n_i}$ without introducing any $z_i \otimes z_{n+i}$ substrings.
+
+Finally, we determine the value of $\zeta(w_n)$. Since
+\begin{eq*} q \zeta(w_n) \, = \, q \delta(w_n) \, = \, q(w) \, = \, x \end{eq*}
+$\zeta(w_n)$ is in the set $q^{-1}(x)$. Moreover, for each $1 \le i \le n$ the $i$th coordinate of the $\zeta(w_n)$'s connected component is
+\begin{eq*} \begin{array}{rll}
+		[\zeta(w_n)]_i & = & \big( \, \zeta_{\pi}[w_n] \, \big)_i \\
+		& = & [w_n]_i \\
+		& = & \mathrm{min}\big( \, [u]_i : u \in \delta^{-1}(w) \, \big) \\
+		& = & \\
+		& = & \mathrm{min}\big( \, [y]_i : y \in q^{-1}(x) \, \big)
+		\end{array}
+\end{eq*}
+because
+
+Therefore, since $x_1$ is the unique element of $q^{-1}(x)$ whose component's coordinates are minimal, we must have that $\zeta(w_n) = x_1$, and as the exact same reason applies for $w'$ as well, $\zeta(w'_n) = x_1$ too. Thus, $w_n$ and $w'_n$ are elements of $\mathbb{N}^{\ast 3n}$ such that $\delta(w_n) =  w$, $\delta(w'_n) =  w'$, and $\zeta(w_n) = \zeta(w'_n)$, as required.
+
+\end{proof}
+
+From this, we get following result on the composites of morphisms in $L \mathbb{G}_n$:
 
 \begin{prop} For any two morphisms $f: v \to w$, $f' : w' \to v'$ in $\mathbb{G}_{2n}$,
 \begin{eq*} q(w) = q(w') \quad \implies \quad \exists \, h: v \to v' \quad \mathrm{s.t.} \quad q(h) = q(f) \circ q(f') \end{eq*}
 \end{prop}
 \begin{proof}
-Let $w, w'$ be objects of $\mathbb{G}_{2n}$ for which $q(w) = q(w')$. By \cref{Gnconcomp}, their connected components $[w], [w']$ are just elements of $\mathbb{N}^{2n}$, and so we can use them to define a new element
-\begin{eq*} m := (m_1, ..., m_{2n}) \in \mathbb{N}^{2n}, \quad \quad m_i := \mathrm{min}\big( \, [w]_i, \, [w']_i \, \big) \end{eq*}
-Because of how we've contructed $m$, the expressions $[w]_i - m_i$, $[w']_i - m_i$ are well-defined, despite subtraction not being defined in general on $\mathbb{N}$, and at least one of the two will always equal 0. Thus we can also create two new elements $a, a'$ of $\mathbb{N}^{2n}$ by setting
-\begin{eq*} a_i \, := \, [w]_i - m_i, \quad \quad a'_i  \, := \, [w']_i - m_i \end{eq*}
-and these will be the unique elements with the property that $m+a = [w]$ and $m+a' = [w']$. Also, note that because of how we defined $m_i$ we will always have at least one of $a_i$ and $a'_i$ equal to 0.
-
-Now, since $q_\pi : \mathbb{N}^{2n} \to \mathbb{Z}^n$ is the restriction of $q$ to connected components, we have
-\begin{eq*}\begin{array}{rlrll}
-		q(w) = q(w') & \implies & q_\pi([w]) & = & q_\pi([w']) \\
-		& \implies & q_\pi(m+a) & = & q_\pi(m+a') \\
-		& \implies & q_\pi(m)+q_\pi(a) & = & q_\pi(m)+q_\pi(a') \\
-		& \implies & q_\pi(a) & = & q_\pi(a') \\
-		& \implies & q_\pi(a)_i & = & q_\pi(a')_i \quad \quad 1 \le i \le n
-		\end{array}
-\end{eq*}
-Moreover, by \cref{Zconcomp} $q_\pi$ is the map that quotients out the submonoid $\langle z_i + z_{i+n} \rangle$ of $\mathbb{N}^{2n}$, and so
-\begin{eq*} a_i - a_{i+n} \, = \, q_\pi(a)_i \, = \, q_\pi(a')_i \, = \, a'_i - a'_{i+n}, \quad \quad 1 \le i \le n \end{eq*}
-But at least one out of $a_i$ and $a'_i$ is 0, and likewise with $a_i, a'_i$, and so there are four possibilities to consider:
-\begin{eq*}\begin{array}{rll}
-		a_i = a_{i+n} = 0 & \implies & a'_i - a'_{i+n} = 0 \\
-		& \implies & a'_i = a'_{i+n} \\
-		& & \\
-		a'_i = a'_{i+n} = 0 & \implies & a_i = a_{i+n} \\
-		& & \\
-		a_i = a'_{i+n} = 0 & \implies & - a_{i+n} = a'_i, \quad \quad a_{i+n}, a'_i \in \mathbb{N} \\
-		& \implies & a_{i+n} = a'_i = 0 \\
-		& & \\
-		a'_i = a_{i+n} = 0 & \implies & a_i = a'_{i+n} = 0
-		\end{array} 
-\end{eq*}
-In every case, we can conclude that $a_i = a_{i+n}$ and $a'_i = a'_{i+n}$ for all $1 \le i \le n$.
-
-Next, let $b, b'$ be the following elements of $\mathbb{N}^{\ast n}$,
-\begin{eq*} b \, := \, z_1^{\otimes a_1} \otimes ... \otimes z_n^{\otimes a_n}, \quad \quad b' \, := \, z_1^{\otimes a'_1} \otimes ... \otimes z_n^{\otimes a'_n} \end{eq*}
-and consider their images under $d_{ob}: \mathbb{N}^{\ast n} \to \mathbb{N}^{\ast 2n}$,
-\begin{eq*}\begin{array}{rll}
-		d(b) & = & d( \,  z_1^{\otimes a_1} \otimes ... \otimes z_n^{\otimes a_n} \, ) \\
-		& = & d(z_1)^{\otimes a_1} \otimes ... \otimes d(z_n)^{\otimes a_n} \\
-		& = & (z_1 \otimes z_{1+n})^{\otimes a_1} \otimes ... \otimes (z_n \otimes z_{2n})^{\otimes a_n} \\
-		& & \\
-		d(b') & = & (z_1 \otimes z_{1+n})^{\otimes a'_1} \otimes ... \otimes (z_n \otimes z_{2n})^{\otimes a'_n}
-		\end{array}
-\end{eq*}
-By \cref{Gnconcomp}, the map sending objects of $\mathbb{G}_{2n}$ to their connected components is the quotient of abelianisation $\mathbb{N}^{\ast 2n} \to \mathbb{N}^{2n}$, the one making the tensor product $\otimes$ commutative. Therefore, the components of $d(b)$ and $d(b')$ are $a$ and $a'$ respectively:
-\begin{eq*} \begin{array}{rll}
-		[ \, d(b) \, ] & = & [ \, (z_1 \otimes z_{1+n})^{\otimes a_1} \otimes ... \otimes (z_n \otimes z_{2n})^{\otimes a_n} \, ] \\
-		& = & z_1^{\otimes a_1} \otimes ... \otimes z_n^{\otimes a_n} \otimes z_{1+n}^{\otimes a_1} \otimes ... \otimes z_{2n}^{\otimes a_n} \\
-		& = & (a_1, ...., a_n, a_1, ..., a_n) \\
-		& = & a \\
-		& & \\
-		\protect [ \, d(b') \, ] & = & a' 
-		\end{array}
-\end{eq*}
-It follows that the objects $w \otimes d(b')$ and $d(b') \otimes w'$ share a connected component of $\mathbb{G}_{2n}$,
-\begin{eq*} \begin{array}{rll}
-		[ \, w \otimes d(b') \, ] & = & [w] + [ \, d(b') \, ] \\
-		& = & a + m + a' \\
-		& = & [ \, d(b) \, ] + [w'] \\
-		& = & [ \, d(b') \otimes w' \, ]
-		\end{array}
-\end{eq*}
-Furthermore, these two objects have the same image under $q$, which is also the image of $w$ and $w'$, because of how $q$ is the cokernel of $d$:
-\begin{eq*} \begin{array}{rll}
-		q\big( \, w \otimes d(b') \, \big) & = & q(w) \otimes qd(b') \\
-		& = & q(w) \\
-		& = & q(w') \\
-		& = & qd(b) \otimes q(w') \\
-		& = & q\big( \, d(b') \otimes w' \, \big)
-		\end{array}
-\end{eq*}
-
-Finaly, we return to our morphisms $f: v \to w$, $f' : w' \to v'$ in $\mathbb{G}_{2n}$. 
 \end{proof}
 
 As an immediate consequence, we can learn the following about the morphisms $L\mathbb{G}_n$:
