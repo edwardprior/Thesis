@@ -8,6 +8,8 @@
 \usepackage{eucal}
 \usepackage{tikz-cd}
 \usepackage{pdfsync}
+\usepackage{relsize}
+\usepackage{afterpage}
 
 \usepackage[unicode=true, pdfusetitle,
  bookmarks=true,bookmarksnumbered=false,
@@ -71,6 +73,8 @@
 \crefname{eq}{Display}{Displays}
 \crefname{eqn}{Display}{Displays}
 
+\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+
 
 
 \title[Classification of 3-groups]{Action operads, free algebras on invertible objects, and the classification of 3-groups} 
@@ -88,15 +92,17 @@
 \tableofcontents
 \pagebreak
 
-%\input{actionoperad.tex}
+\input{actionoperad.tex} 
 
-\input{initialalgebra.tex}
+\input{initialalgebra.tex} 
 
-%\input{2groupclass.tex}
+\input{coeqalgebra.tex}
 
-%\input{cohomology.tex}
+\input{2groupclass.tex}
 
-%\input{3groupclass.tex}
+\input{cohomology.tex}
+
+\input{3groupclass.tex}
 
 
 
