@@ -209,7 +209,7 @@ for $1 \le i \le k$, and for any object $u$ of $\mathbb{G}_{4n}$,
 \begin{eq*} \delta(u) \, = \, w_k \quad \implies \quad u \, = \, u_k \end{eq*}
 \end{prop}
 \begin{proof}
-From \cref{Nlengthdef,qdef}, we know that for any generator $z_i$ of $\mathbb{G}_{4n}$,
+From \cref{lengthdef,qdef}, we know that for any generator $z_i$ of $\mathbb{G}_{4n}$,
 \begin{eq*}\begin{array}{rllll}
 				 | \delta(z_i) |  & = & \left. \begin{cases}
 								1 & \text{if} \quad 1 \le i \le 2n \\
@@ -222,9 +222,7 @@ From \cref{Nlengthdef,qdef}, we know that for any generator $z_i$ of $\mathbb{G}
 							\end{cases} \right \rbrace & \le 1 
 		\end{array}
 \end{eq*}
-Also, length is additive on tensor products, because
-\begin{eq*} |x \otimes y| \, = \, \sum [x \otimes y]_i \, = \, \sum \big( \, [x]_i + [y]_i \, \big) \, = \, \sum [x]_i + \sum [y]_i \, = \, |x| + |y| \end{eq*}
-Thus for any object $u$ in $\mathbb{G}_{4n}$, we can conclude that
+Also these lengths are additive across tensor products, since $| \, \_ \, |$ is a monoid homomorphism $\mathbb{G}_{2n} \to \mathbb{N}$. Thus for any object $u$ in $\mathbb{G}_{4n}$, we can conclude that
 \begin{eq*}\begin{array}{rllllllll}
 			| \delta(u) | & = & | \, \delta\big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \, | & = & | \, \mathlarger{\bigotimes_{i=1}^{|u|} \delta \big( \, g(u, i) \, \big)} \, | & = & \mathlarger{\sum_{i=1}^{|u|} | \, \delta \big( \, g(u, i) \, \big) \, |} & \ge & |u| \\
 			| \zeta(u) | & = & | \, \zeta\big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \, | & = & | \, \mathlarger{\bigotimes_{i=1}^{|u|} \zeta \big( \, g(u, i) \, \big)} \, | & = & \mathlarger{\sum_{i=1}^{|u|} | \, \zeta \big( \, g(u, i) \, \big) \, |} & \le & |u|
@@ -260,7 +258,7 @@ Thus the sequences $w_1, ..., w_k$ and $u_1, ..., u_k$ satisfy all of the condit
 
 The intuition behind \cref{ama1} is that we are successively removing parts of the object $w$, without changing its image under $q$. The map $\delta$ sends $z_{2n+i} \mapsto z_i \otimes z_{n+i}$ and $z_{3n+i} \mapsto z_{n+1} \otimes z_i$ while $\zeta$ sends these all to $I$, and so for any $u$ in $\mathbb{G}_{4n}$ the object $\zeta(u)$ will look like $\delta(u)$ except missing some number of $z_i \otimes z_{n+i}$ or $z_{n+1} \otimes z_i$ substrings. But since $q$ sends $z_{n+i} \mapsto z_i^*$, these are exactly the sort of omissions which the coequaliser doesn't care about. If we repeat this process then it will eventually terminate at $u_k = \iota(w_k)$, so we really have a method for removing \emph{all} of the relevent substrings from objects of $\mathbb{G}_{2n}$. In other words, $w_k$ has the smallest possible length while still having $q(w_k) = q(w)$. In fact, we will show that it is the unique shortest object of $\mathbb{G}_{2n}$ with this property.
 
-\begin{defn}\label{Zlengthdef} Let $x$ be an object of $L\mathbb{G}_m$ for some $m \in \mathbb{N}$, and hence an element of $\mathbb{Z}^{\ast m}$, the free monoid on $m$ invertible generators $\{ z_1, ..., z_m \}$. Then as in \cref{Nlengthdef} we can use the definition of the free product of monoids to write $x$ uniquely in the form
+\begin{defn}\label{Zlengthdef} Let $x$ be an object of $L\mathbb{G}_m$ for some $m \in \mathbb{N}$, and hence an element of $\mathbb{Z}^{\ast m}$, the free monoid on $m$ invertible generators $\{ z_1, ..., z_m \}$. Then as in \cref{decompdef} we can use the definition of the free product of monoids to write $x$ uniquely in the form
 \begin{eq*} x \, = \, \bigotimes_{i=1}^{|x|} g(x, i) \end{eq*}
 This time each $g(x, i)$ is either a generator of one of the copies of $\mathbb{N}$ or the inverse of a generator, $g(x, i) \in \{ z_1, ..., z_m, z_1^*, ..., z_m^* \}$, and for any $1 \le i < |x|$ we will always have $g(x, i+1) \neq g(x, i)^*$. As before, we will call the upper bound $|x|$ of this tensor product the \emph{length} of the element $x$. 
 \end{defn}
@@ -268,7 +266,7 @@ This time each $g(x, i)$ is either a generator of one of the copies of $\mathbb{
 \begin{prop}\label{ama2} Let $w$, $w'$ be objects of $\mathbb{G}_{2n}$ such that $q(w) = q(w')$. If $w_1, ..., w_k$ and $u_1, ..., u_k$ are sequences generated from $w$ via \cref{ama1}, and likewise $w'_1, ..., w'_{k'}$ and $u'_1, ..., u'_{k'}$ from $w'$, then $w_k = w'_{k'}$ and $u_k = u'_{k'}$.
 \end{prop}
 \begin{proof}
-Consider the decomposition of the object $w_k \in \mathbb{N}^{\ast 2n}$ as in \cref{Nlengthdef}. Assume, for the sake of contradiction, that there exist $1 \le j < |w_k|$ and $1 \le m \le n$ such that
+Consider the decomposition of the object $w_k \in \mathbb{N}^{\ast 2n}$ as in \cref{decompdef}. Assume, for the sake of contradiction, that there exist $1 \le j < |w_k|$ and $1 \le m \le n$ such that
 \begin{eq*} g(w_k, j) \, = \, z_m, \quad \quad g(w_k, j+1) \, = \, z_{n+m} \end{eq*}
 Then we can use $j, m$ to contruct an element $u \in \mathbb{N}^{\ast 4n}$, defined by
 \begin{eq*} |u| \, = \, |w| - 1, \quad \quad g(u, i) \, = \, \begin{cases}
@@ -277,7 +275,7 @@ Then we can use $j, m$ to contruct an element $u \in \mathbb{N}^{\ast 4n}$, defi
 									\iota \big( \, g(w_k, i+1) \, ) & \text{if} \quad j < i \le |u|
 								\end{cases}
 \end{eq*}
-for which
+This $u$ will then have the property that
 \begin{eq*} \begin{array}{rll}
 			\delta(u) & = & \delta \big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \\
 			& = & \mathlarger{\bigotimes_{i=1}^{|u|} \delta \big( \, g(u, i) \, \big)} \\
@@ -286,7 +284,7 @@ for which
 			& = & w_k
 		\end{array}
 \end{eq*}
-But this is impossible, since by \cref{ama1} $u_k$ is the only object of $\mathbb{G}_{4n}$ whose image under $\delta$ is $w_k$, and the $u$ we have constructed is manifestly not $w_k$. Thus we can conclude that there are no values of $j$ and $m$ for which
+But this is impossible, since by \cref{ama1} $u_k$ is the only object of $\mathbb{G}_{4n}$ whose image under $\delta$ is $w_k$, and this $u$ we have constructed is manifestly not $w_k$. Thus we can conclude that there are no values of $j$ and $m$ for which
 \begin{eq*} g(w_k, j) \, = \, z_m, \quad \quad g(w_k, j+1) \, = \, z_{n+m} \end{eq*}
 An analogous line of reasoning --- using $z_{3n + m}$ rather than $z_{2n + m}$ in the definition of $u$ --- demonstrates that there are also no $j, m$ with
 \begin{eq*} g(w_k, j) \, = \, z_{n+m}, \quad \quad g(w_k, j+1) \, = \, z_m \end{eq*}
@@ -297,7 +295,7 @@ As a result, for all $1 \le i < |w_k|$
 shows that the unique decomposition of $q(w_k)$ as in \cref{Zlengthdef} is given by
 \begin{eq*} |q(w_k)| \, = \, |w_k|, \quad \quad g\big( \, q(w_k), i \, \big) \, = \, q \big( \, g(w_k, i) \, \big) \end{eq*}
 
-Next, let $s$ be the \emph{function} which is defined by
+Next, let $s$ be a function defined by
 \begin{eq*} \begin{array}{rllll}
 			s & : & \mathbb{Z}^{\ast n} & \to & \mathbb{N}^{\ast 2n} \\
 			& : & z_i & \mapsto & z_i \\
@@ -336,7 +334,7 @@ Finally, notice that the exact same logic as we've used above will also work for
 as required.
 \end{proof}
 
-Next, we need to take things one step further. We've already shown that we can find an object $w_k$ which is like $w$ but with all $z_i \otimes z_{n+i}$ and $z_{n+i} \otimes z_i$ substrings removed. In order to prove the closure of $\mathrm{im}(q)$, we will need to construct a morphism of $\mathbb{G}_{2n}$ which witnesses this removal --- that is, a map $h: w \to v \otimes w_k$ where $v$ is made up of all of the $z_i \otimes z_{n+i}$ that are taken out of $w$ to make $w_k$. Likewise, the fact that $q(w_k) = q(w)$ will be embodied by the fact that $h$ becomes an identity morphism under $q$. This map $h$ will need to be built out of smaller pieces, using the sequence $u_1, ..., u_k$ and the following proposition:
+Next, we need to take things one step further. We've already shown that we can find an object $w_k$ which is like $w$ but with all $z_i \otimes z_{n+i}$ and $z_{n+i} \otimes z_i$ substrings removed. In order to prove the closure of $\mathrm{im}(q)$, we will need to construct a morphism of $\mathbb{G}_{2n}$ which witnesses this removal --- that is, a map $h: w \to v \otimes w_k$ where $v$ is made up of all of the $z_i \otimes z_{n+i}$ that need to be taken out of $w$ to make $w_k$. Likewise, the fact that $q(w_k) = q(w)$ will be embodied by the fact that this $h$ becomes an identity morphism under $q$. This map $h$ will need to be built out of smaller pieces, using the sequence $u_1, ..., u_k$ and the following proposition:
 
 \begin{prop}\label{ama3} Let $u$ be an object of $\mathbb{G}_{4n}$. Then there exists another object $x$ in $\mathbb{G}_{4n}$ and a morphism $h: \delta(u) \to \delta(x) \otimes \zeta(u)$ in $\mathbb{G}_{2n}$ such that $q(h) = \mathrm{id}_{q\delta(u)}$.
 \end{prop}
@@ -422,7 +420,7 @@ Now we finally have enough results in place to show that the image of $q$ is clo
 \\
 \delta(x_1) \otimes ... \otimes \delta(x_{k-1}) \otimes v' \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad
 \end{tikzcd} \end{eq*}
-\caption{The composite $h$}
+\caption{The composite $h$ from \cref{ama5} }
 \label{composite}
 \end{figure}
 \clearpage
@@ -444,7 +442,7 @@ for each $1 \le i < k$, with the properties
 We can do a similar thing with $w'$, first using \cref{ama1} to get sequences $w'_1, ..., w'_{k'}$ and $u'_1, ..., u'_{k'}$ with the appropriate properties, but this time applying \cref{ama4} to find objects $x'_1, ..., x'_{k'-1}$ and morphisms $h'_i: w'_i \to w_{i+1} \otimes \delta(x_i)$. Moreover, since the morphisms $q(f): q(v) \to q(w)$ and $q(f') : q(w') \to q(v')$ arecomposable, it must be the case that $q(w)$ and $q(w')$ are equal.
 By \cref{ama2}, this means that $w_k = w'_{k'}$
 
-Putting all of this together, we can form the composite morphism shown in \cref{composite}. Here the subscripts of the identity maps have been suppresed for clarity. This morphism will be our choice of $h: y \to y'$. To complete the proof, notice that 
+Putting all of this together, we can form the composite morphism shown in \cref{composite}. Here the subscripts of the identity maps have been suppressed for clarity. This morphism will be our choice of $h: y \to y'$. To complete the proof, notice that 
 \begin{eq*} \begin{array}{rrrcccccccl}
 			& & q\delta(x_i) & = & q \zeta(x_i) & = & I & = & q \zeta(x'_i) & = & q\delta(x'_i) \\
 			\implies & & q( \mathrm{id}_{\delta(x_i)} ) & = & \mathrm{id}_{q\delta(x_i)} & = & \mathrm{id}_I & = & \mathrm{id}_{q\delta(x'_i)} & = & q( \mathrm{id}_{\delta(x'_i)} )
@@ -500,10 +498,16 @@ But by \cref{Qobj}, for each generator $x'_i \in \{z_1, ..., z_{2n} \}$ the obje
 
 \subsection{The action of $L\mathbb{G}_n$}
 
-\begin{prop} The coequalizer of $\mathrm{Mor}(\delta)$ and $\mathrm{Mor}(\zeta)$ is $\mathrm{Mor}(L\mathbb{G}_n)$.
+\begin{prop} Propositions in previous section do not depend on $q$ having any property except $q \circ \delta = q \circ \zeta$.
 \end{prop}
 
-\begin{cor} $\mathrm{Mor}(q)$ is the coequalizer map of $\mathrm{Mor}(\delta)$ and $\mathrm{Mor}(\zeta)$.
+\begin{prop} The coequalizer of $\delta$ and $\zeta$ in $\mathrm{MonCat}$ is surjective
+\end{prop}
+
+\begin{prop} The coequalizer of $\delta$ and $\zeta$ in $\mathrm{MonCat}$ is $q$
+\end{prop}
+
+\begin{cor} The coequalizer of $\mathrm{Mor}(\delta)$ and $\mathrm{Mor}(\zeta)$ is $\mathrm{Mor}(q)$.
 \end{cor}
 
 \begin{prop} The action of $L\mathbb{G}_n$ is given by the following map:
