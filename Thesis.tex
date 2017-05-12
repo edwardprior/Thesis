@@ -73,7 +73,9 @@
 \crefname{eq}{Display}{Displays}
 \crefname{eqn}{Display}{Displays}
 
-\newcommand{\quotient}[2]{{\raisebox{.2em}{$#1$}\left/\raisebox{-.2em}{$#2$}\right.}}
+\newcommand{\quotient}[2]{ \raisebox{0.5\height}{$#1$} \mkern-5mu\diagup\mkern-4mu \raisebox{-0.5\height}{$#2$} }
+\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-15mu\scalebox{2}{$\diagup$}\mkern-8mu \raisebox{-0.5\height}{$#2$} }
+
 
 
 
