@@ -36,6 +36,7 @@
 
 \newtheorem{thm}[equation]{Theorem}
 \newtheorem{prop}[equation]{Proposition}
+\newtheorem*{prop*}{Proposition}
 \newtheorem{lem}[equation]{Lemma}
 \newtheorem{cor}[equation]{Corollary}
 
@@ -45,7 +46,7 @@
 \newtheorem{nota}[equation]{Notation}
 \newtheorem{example}[equation]{Example}
 \newtheorem{defn}[equation]{Definition}
-\newtheorem{rem}[equation]{Remark}
+\newtheorem*{rem}{Remark}
 \newtheorem{comment}[equation]{Comment}
 
 %% E.P. notes
@@ -58,9 +59,9 @@
 \newcommand{\ngmpar}[1]{\todo[noline,color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
 \newcommand{\ngnoteil}[1]{\todo[inline,color=red!40,linecolor=red!40!black,size=\normalsize]{#1}}
 
-% Cleveref definitions
+% Cleveref definitions 
 \crefname{prop}{Proposition}{Propositions}
-\crefname{thm}{Theorem}{Theorems}
+\crefname{thm}{Theorem}{Theorems} 
 \crefname{defn}{Definition}{Definitions}
 \crefname{notn}{Notation}{Notations}
 \crefname{construction}{Construction}{Constructions}
@@ -74,7 +75,7 @@
 \crefname{eqn}{Display}{Displays}
 
 \newcommand{\quotient}[2]{ \raisebox{0.5\height}{$#1$} \mkern-5mu\diagup\mkern-4mu \raisebox{-0.5\height}{$#2$} }
-\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-15mu\scalebox{2}{$\diagup$}\mkern-8mu \raisebox{-0.5\height}{$#2$} }
+\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-10mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
 
 
 
@@ -98,13 +99,13 @@
 
 \input{initialalgebra.tex} 
 
-\input{coeqalgebra.tex}
+\input{coeqalgebra.tex} 
 
 \input{2groupclass.tex}
 
 \input{cohomology.tex}
 
-\input{3groupclass.tex}
+\input{3groupclass.tex} 
 
 
 
