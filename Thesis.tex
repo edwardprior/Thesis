@@ -1,28 +1,20 @@
-\documentclass{amsart}
-\setcounter{tocdepth}{3}
-\setcounter{secnumdepth}{3}
+\documentclass[a4paper,12pt,times,numbered,print,index]{Style/PhDThesisPSnPDF}
+%\setcounter{tocdepth}{3}
+%\setcounter{secnumdepth}{3}
 
 \usepackage{amssymb}
-\usepackage{amsmath}
 \usepackage{amsthm}
+\usepackage{graphicx}
 \usepackage{eucal}
 \usepackage{tikz-cd}
 \usepackage{pdfsync}
 \usepackage{relsize}
 \usepackage{afterpage}
-
-\usepackage[unicode=true, pdfusetitle,
- bookmarks=true,bookmarksnumbered=false,
- breaklinks=false,
- backref=false,
- colorlinks=true,
- %linkcolor=blue!70!black,
- citecolor=black,
- urlcolor=blue!78!red,
- final
-]{hyperref}
-
+\usepackage{comment}
 \usepackage[capitalise]{cleveref}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+
 
 \usepackage[color=orange!80,bordercolor=black,textwidth=3cm,textsize=small,colorinlistoftodos]{todonotes}
 \makeatletter \providecommand\@dotsep{5}
@@ -47,7 +39,6 @@
 \newtheorem{example}[equation]{Example}
 \newtheorem{defn}[equation]{Definition}
 \newtheorem*{rem}{Remark}
-\newtheorem{comment}[equation]{Comment}
 
 %% E.P. notes
 \newcommand{\epnote}[1]{\todo[color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
@@ -75,29 +66,50 @@
 \crefname{eqn}{Display}{Displays}
 
 \newcommand{\quotient}[2]{ \raisebox{0.5\height}{$#1$} \mkern-5mu\diagup\mkern-4mu \raisebox{-0.5\height}{$#2$} }
-\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-10mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
+\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-12mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
+\newcommand{\pullback}{\mathbin{\text{\rotatebox{45}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
+
+%\excludecomment{proof} 
+ 
 
 
-
-
-\title[Classification of 3-groups]{Action operads, free algebras on invertible objects, and the classification of 3-groups} 
+\title{Action operads, free algebras on invertible objects, and the classification of 3-groups}
+%\subtitle{}
 \author{Edward G. Prior}
+\dept{School of Mathematics and Statistics}
+\university{University of Sheffield}
+%\crest{\includegraphics{Style/UnivShield}}
 
-\begin{document}
 
-\begin{titlepage}
+
+
+\begin{document} 
+
+
+\frontmatter
+
 \maketitle
-\pagenumbering{gobble}
-\end{titlepage}
 
-\pagenumbering{arabic}
+%\begin{dedication} 
+%\end{dedication}
+
+%\begin{acknowledgements}     
+%\end{acknowledgements}
+
+\begin{abstract}
+\end{abstract}
 
 \tableofcontents
-\pagebreak
 
-\input{actionoperad.tex} 
 
-\input{initialalgebra.tex} 
+
+
+\mainmatter
+
+
+\input{actionoperad.tex}  
+
+\input{initialalgebra.tex}
 
 \input{coeqalgebra.tex} 
 
@@ -150,5 +162,7 @@ Eckmann, B.; Hilton, P. J.
 Mathematische Annalen, 145 (3), pp. 227–255
 
 \end{thebibliography}
+
+
 
 \end{document}

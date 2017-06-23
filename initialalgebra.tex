@@ -1,8 +1,9 @@
-\section{Free invertible algebras as initial objects}
+\chapter{Free invertible algebras as initial objects}
 \label{initialalgebra}
 
+In this chapter we will start to consider how to construct free $\mathrm{E}G$-algebras on some number of invertible objects. Specifically, we will begin by showing that such algebras are the initial objects of a particular comma category, in accordance with some well known properties of adjunctions and their units. Using this initial object prespective will allow us to recover all of the data associated with the objects of a given free invertible algebra --- what those objects are, how they act under tensor product, and which pairs of objects form the source and target of at least one morphism. Unfortunately, a concrete decription of the morphisms themselves will ultimately remain elusive. We can get tantalisingly closer though, and an examiniation of the exact way that this method fails will provide the neccessary insight to motivate a more successful approach in \cref{coeqalgebra}.
 
-\subsection{The free algebra on $n$ invertible objects}
+\section{The free algebra on $n$ invertible objects}
 
 We saw in \cref{freealg} that the existence of a free $\mathrm{E}G$-algebra on $n$ objects can be proven by taking the left adjoint of a 2-functor which forgets about the algebra structure. Now we want to extend this idea into the realm of algebras on invertible objects. For the analogous approach, we will need to find a new 2-functor that lets us forget about non-invertible objects, and then hopefully we can find its left adjoint too, and use it to freely add inverses to $\mathbb{G}_n$. First though, we need to make this concept of `forgetting non-invertible objects' a little more precise.
 
@@ -10,22 +11,22 @@ We saw in \cref{freealg} that the existence of a free $\mathrm{E}G$-algebra on $
 
 Note that this is indeed a well-defined $\mathrm{E}G$-algebra. If $x_1, ..., x_m$ are invertible objects with inverses $x_1^*, ..., x_m^*$, then $\alpha(g; x_1, ..., x_m)$ is an invertible object with inverse $\alpha(g; x_m^*, ..., x_1^*)$, since 
 \begin{eq*} \begin{array}{ll}
-		& \alpha(g; x_1, ..., x_m) \otimes \alpha(g; x_m^*, ..., x_1^*) \\
-		= & \big( x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \big) \otimes \big( x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \big) \\
+		& \alpha(g; x_1, ..., x_m) \, \otimes \, \alpha(g; x_m^*, ..., x_1^*) \\
+		= & \big( \, x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \, \big) \, \otimes  \, \big( \, x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \, \big) \\
 		= & I \\
 		& \\
-		& \alpha(g; x_m^*, ..., x_1^*) \otimes \alpha(g; x_1, ..., x_m) \\
-		= & \big( x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \big) \otimes \big( x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \big) \\
+		& \alpha(g; x_m^*, ..., x_1^*) \, \otimes \, \alpha(g; x_1, ..., x_m) \\
+		= & \big( \, x_{\pi(g)^{-1}(m)}^* \otimes ... \otimes x_{\pi(g)^{-1}(1)}^* \, \big) \, \otimes \, \big( \, x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \, \big) \\
 		= & I
 		\end{array}
 \end{eq*}
 Likewise, if $f_1, ..., f_m$ are isomorphisms from invertible objects $x_1, ..., x_m$ to invertible objects $y_1, ..., y_m$, then $\alpha(g; f_1, ..., f_m)$ is a map from the invertible object $\alpha(g; x_1, ..., x_m)$ to the invertible object $\alpha(g; y_1, ..., y_m)$, and it has an inverse $\alpha(g^{-1}; f_{\pi(g)(1)}^{-1}, ..., f_{\pi(g)(m)}^{-1})$, since
 \begin{eq*} \begin{array}{ll}
-		& \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \circ \alpha( \, g \, ; \, f_1, ..., f_m \,) \\
+		& \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \, \circ \, \alpha( \, g \, ; \, f_1, ..., f_m \,) \\
 		= & \alpha\big( \, g^{-1}g \, ; \, f_1^{-1} f_1, \, ..., \, f_m^{-1} f_m \, \big) \\
 		= & \mathrm{id}_{x_1 \otimes ... \otimes x_m} \\
 		& \\
-		& \alpha( \, g \, ; \, f_1, ..., f_m \,) \circ \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \\
+		& \alpha( \, g \, ; \, f_1, ..., f_m \,) \, \circ \, \alpha\big( \, g^{-1} \, ; \, f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)}^{-1} \, \big) \\
 		= & \alpha\big( \, gg^{-1} \, ; \, f_{\pi(g)(1)} f_{\pi(g)(1)}^{-1}, \, ..., \, f_{\pi(g)(m)} f_{\pi(g)(m)}^{-1} \, \big) \\
 		= & \mathrm{id}_{y_{\pi(g)(1)} \otimes ... \otimes y_{\pi(g)(m)}}
 		\end{array}
@@ -53,7 +54,7 @@ and so the assignment $F \mapsto F_{\mathrm{inv}}$ is clearly functorial. Next, 
 Therefore, we see that all the components of our transformation on invertible objects are isomorphisms, and hence we can define a new transformation $\theta_{\mathrm{inv}}: F_{\mathrm{inv}} \Rightarrow G_{\mathrm{inv}}$ whose components are just $(\theta_{\mathrm{inv}})_x = \theta_x$. The assignment $\theta \mapsto \theta_{\mathrm{inv}}$ is also clearly functorial, and thus we have a complete 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
 \end{proof}
 
-\begin{prop} The 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$ has a left adjoint, $L: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
+\begin{prop} \label{invadj} The 2-functor $(\_)_{\mathrm{inv}}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$ has a left adjoint, $L: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$.
 \end{prop}
 \begin{proof} To begin, consider the 2-monad $\mathrm{E}G(\_)$. This is a finitary monad, that is it preserves all filtered colimits, and it is a 2-monad over $\mathrm{Cat}$, which is locally finitely presentable. It follows from this that $\mathrm{E}G\mathrm{Alg}_S$ is itself locally finitely presentable. Thus if we want to prove $(\_)_{\mathrm{inv}}$ has a left adjoint, we can use the Adjoint Functor Theorem for locally finitely presentable categories, which amounts to showing that $(\_)_{\mathrm{inv}}$ preserves both limits and filtered colimits.
 \begin{itemize}
@@ -67,10 +68,10 @@ Preservation of products and pullbacks gives preservation of limits, and preserv
 With this new 2-functor $L: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{E}G\mathrm{Alg}_S$, we now have the ability to `freely add inverses to objects' in any $\mathrm{E}G$-algebra we want. The algebra $L\mathbb{G}_n$ is then a clear candidate for our free algebra on $n$ invertible objects, and indeed the proof of this is very simple.
 
 \begin{thm} There exists a free $\mathrm{E}G$-algebra on $n$ invertible objects. Specifically, the algebra $L\mathbb{G}_n$ is such that for any other $\mathrm{E}G$-algebra $X$, we have an isomorphism of categories
-\begin{eq*} \mathrm{E}G\mathrm{Alg}_S(L\mathbb{G}_n, X) \cong (X_{\mathrm{inv}})^n \end{eq*}
+\begin{eq*} \mathrm{E}G\mathrm{Alg}_S(L\mathbb{G}_n, X) \quad \cong \quad (X_{\mathrm{inv}})^n \end{eq*}
 \end{thm}
 \begin{proof}
-Using the adjunction from the previous Proposition along with the one from \cref{freealg}, we see that
+Using the adjunction from \cref{invadj} along with the one from \cref{freealg}, we see that
 \begin{eq*}\begin{array}{rll}
 		 U(X_{\mathrm{inv}})^n & = & \mathrm{Cat}(\{z_1, ..., z_n\}, U(X_{\mathrm{inv}}) ) \\
 		& \cong & \mathrm{E}G\mathrm{Alg}_S( F(\{z_1, ..., z_n\}), X_{\mathrm{inv}}) \\
@@ -80,9 +81,9 @@ Using the adjunction from the previous Proposition along with the one from \cref
 As before, $X_{\mathrm{inv}}$ and $U(X_{\mathrm{inv}})$ are obviously isomorphic as categories, and so \( LF(\{z_1, ..., z_n\}) = L\mathbb{G}_n \) satisfies the requirements for the free algebra on $n$ invertible objects.
 \end{proof}
 
-\subsection{$L\mathbb{G}_n$ as an initial algebra}
+\section{$L\mathbb{G}_n$ as an initial algebra}
 
-We have now proven that a free $\mathrm{E}G$-algebra on $n$ invertible objects does indeed exist. But this fact on its own is not very helpful. To be able to actually use the free algebra $L\mathbb{G}_n$, we need to know how to contruct it explicitly, in terms of its objects and morphisms. We could do this by finding a detailed characterisation of the 2-functor $L$, and then applying this to our explicit description of $\mathbb{G}_n$ from \cref{Gndef}. However, this would probably be much more effort than is required, since it would involve determining the behaviour of $L$ in many situtations we aren't interested in, and we also wouldn't be leveraging $\mathbb{G}_n$'s status as a free algebra to make the calculations any easier. We will try a different strategy instead. We begin by noticing a special property of the functor $L$.
+We have now proven that a free $\mathrm{E}G$-algebra on $n$ invertible objects indeed exists. But this fact on its own is not very helpful. To be able to actually use the free algebra $L\mathbb{G}_n$, we need to know how to contruct it explicitly, in terms of its objects and morphisms. We could do this by finding a detailed characterisation of the 2-functor $L$, and then applying this to our explicit description of $\mathbb{G}_n$ from \cref{Gndef}. However, this would probably take far more effort than is required, since it would involve determining the behaviour of $L$ in many situtations that we aren't interested in. Also, we wouldn't be leveraging $\mathbb{G}_n$'s status as a free algebra to make the calculations any easier. We will try a different strategy instead, one that begins by noticing a special property of the functor $L$.
 
 \begin{prop} \label{linveql} For any $\mathrm{E}G$-algebra $X$, we have $L(X)_{\mathrm{inv}} = L(X)$.
 \end{prop}
@@ -110,14 +111,14 @@ This result is not especially surprising. Intuitively, it just says that when yo
 \end{prop}
 
 \begin{cor} If $\phi: \mathbb{G}_n \to Z$ is an initial object of $(\mathbb{G}_n \downarrow \mathrm{inv})$, then 
-\begin{eq*} Z \, \cong \, (L\mathbb{G}_n)_{\mathrm{inv}} \, = \, L\mathbb{G}_n \end{eq*}
+\begin{eq*} Z \quad \cong \quad (L\mathbb{G}_n)_{\mathrm{inv}} \quad = \quad L\mathbb{G}_n \end{eq*}
 \end{cor}
 
 Being able to view $L\mathbb{G}_n$ as the initial object in the comma category $(\mathbb{G}_n \downarrow \mathrm{inv})$ will prove immensely useful in the coming sections. This is because it lets us think about the properties of $L\mathbb{G}_n$ in terms of maps $\psi: \mathbb{G}_n \to X_{\mathrm{inv}}$, and this is exactly the context where we can exploit $\mathbb{G}_n$'s status as a free algebra. 
 
 Before moving on, we'll make a small change in notation. From now on, rather than writing objects in $(\mathbb{G}_n \downarrow \mathrm{inv})$ as maps $\psi: \mathbb{G}_n \to Y_{\mathrm{inv}}$, we will instead just let $X = Y_{\mathrm{inv}}$ and speak of maps $\psi: \mathbb{G}_n \to X$. This is purely to prevent the notation from becoming cluttered, and shouldn't be a problem so long as we always remember that the targets of these maps only ever contain invertible objects and morphisms.
 
-\subsection{The objects of $L\mathbb{G}_n$}
+\section{The objects of $L\mathbb{G}_n$}
 
 So now we know that $L\mathbb{G}_n$ is an initial object in the category $(\mathbb{G}_n \downarrow \mathrm{inv})$. But what does this actually tell us? After all, we do not currently have a method for finding initial objects in an arbitrary collection of $\mathrm{E}G$-algebra maps. Because of this, we'll have to approach the problem step-by-step, using the initiality of $\eta$ to extract different pieces of information about the algebra $L\mathbb{G}_n$ as we go. We'll begin by tring to find its objects.
 
@@ -156,7 +157,7 @@ What \cref{Obadj} is essentially saying is that the functor $\mathrm{Ob}$ provid
 \begin{defn} Let $M$ be a monoid, $M^{\mathrm{gp}}$ a group, and $i: M \to M^{\mathrm{gp}}$ a monoid homomorphism between them. Then we say that $M^{\mathrm{gp}}$ is the \emph{group completion} of $M$ if for any other group $H$ and homomorphism $h: M \to H$, there exists a unique homomorphism $u: M^{\mathrm{gp}} \to H$ such that $u \circ i = h$.
 \end{defn}
 
-In practice, $M^{\mathrm{gp}}$ is the group whose group presentation is the same as the monoid presentation of $M$. That is, if $M$ is the quotient of the free monoid on generators $\mathcal{G}$ by the relations $\mathcal{R}$, then $M^{\mathrm{gp}}$ is the quotient of the free \emph{group} on generators $\mathcal{G}$ by relations $\mathcal{R}$.
+There are several different ways to actually calculate the group completion of a monoid. One is to use that fact that $M^{\mathrm{gp}}$ is the group whose group presentation is the same as the monoid presentation of $M$. That is, if $M$ is the quotient of the free monoid on generators $\mathcal{G}$ by the relations $\mathcal{R}$, then $M^{\mathrm{gp}}$ is the quotient of the free \emph{group} on generators $\mathcal{G}$ by relations $\mathcal{R}$. This makes finding the completion of free monoids particularly simple.
 
 \begin{prop}\label{Zobj} The object monoid of $L\mathbb{G}_n$ is $\mathbb{Z}^{*n}$, and the restriction of $\eta$ to objects $\mathrm{Ob}(\eta)$ is the obvious inclusion $\mathbb{N}^{*n} \hookrightarrow \mathbb{Z}^{*n}$.
 \end{prop}
@@ -213,13 +214,13 @@ and thus some $\mathrm{E}G$-algebra map $h': \mathbb{G}_n \to \mathrm{D}A$ corre
 & & & & & & \\
 L\mathbb{G}_n \ar[rr, "u"'] & & \mathrm{D}A & & \pi_0(L\mathbb{G}_n) \ar[rr, "\pi_0(u)"'] & & A
 \end{tikzcd} \end{eq*}
-Applying the functor $\pi_0$ everywhere, we see that $\pi_0(u)$ must also factor $h$ through the homomorphism $\pi_0(\eta)$. Moreover, $\pi_0(u)$ is the only map with this property, since for any other map $v: \pi_0(L\mathbb{G}_n) \to A$ with $v \circ \pi_0(\eta) = h$, its image under the adjunction isomorphism $v': L\mathbb{G}_n \to \mathrm{D}A$ would have $v' \circ \eta = h'$ by naturality, which would mean that it was actually $u$. Therefore, any homomorphism $\mathrm{Ob}(\mathbb{G}_n) \to A$ will factor uniquely through $\mathrm{Ob}(L\mathbb{G}_n)$, so long as $A$ is an abelian group. 
+Applying the functor $\pi_0$ everywhere, we see that $\pi_0(u)$ must also factor $h$ through the homomorphism $\pi_0(\eta)$. Moreover, $\pi_0(u)$ is the only map with this property, since for any other map $v: \pi_0(L\mathbb{G}_n) \to A$ with $v \circ \pi_0(\eta) = h$, its image under the adjunction isomorphism $v': L\mathbb{G}_n \to \mathrm{D}A$ would have $v' \circ \eta = h'$ by naturality, which would mean that it was actually $u$. Therefore, any homomorphism $\pi_0(\mathbb{G}_n) \to A$ will factor uniquely through $\pi_0(L\mathbb{G}_n)$, so long as $A$ is an abelian group. 
 
-Now assume that $h: \mathrm{Ob}(\mathbb{G}_n) \to H$ is more general sort of homomorphism, where $H$ is a group but not neccessarily an abelian one. Since $\pi_0(L\mathbb{G}_n)$ is a commutative monoid, it follows that its image $\langle \mathrm{im}(h) \rangle$ will be commutative too:
-\begin{eq*} h(x)h(y) \, = \, h(xy) \, = \, h(yx) \, = \, h(y)h(x) \end{eq*}
-But then $\langle \mathrm{im}(h) \rangle$ is a commutative submonoid of the group $H$, and so it is really an abelian group. If we denote by $h_{\mathrm{im}}: \mathrm{Ob}(\mathbb{G}_n) \to \langle \mathrm{im}(h) \rangle$ the restriction of $h$ to it image, then from what we have already shown we can conclude that there will be a unique homomorphism $v: \mathrm{Ob}(L\mathbb{G}_n) \to \langle \mathrm{im}(h) \rangle$ with the property $v \circ \pi_0(\eta) = h_{\mathrm{im}}$. Composing this $v$ with the inclusion $i: \langle \mathrm{im}(h) \rangle \hookrightarrow A$, we see that
-\begin{eq*} i \circ v \circ \pi_0(\eta) \, = \, i \circ h_{\mathrm{im}} \, = \, h \end{eq*}
-and $i \circ v$ must be the only map for which this is true, for restricting this equation back on $\langle \mathrm{im}(h) \rangle$ yields the unique property of $v$ again. Thus $\pi_0(L\mathbb{G}_n)$ will actually factor any homomorphism $\mathrm{Ob}(\mathbb{G}_n) \to H$ in a unique way, and hence by \cref{Gnconcomp} it is the group completion
+Now consider another monoid homomorphism $k: \pi_0(\mathbb{G}_n) \to H$, where this time $H$ is a group but not neccessarily an abelian one. Since $\pi_0(\mathbb{G}_n)$ is a commutative monoid, it follows that the image $\mathrm{im}(k)$ will be commutative too:
+\begin{eq*} k(x)k(y) \, = \, k(xy) \, = \, k(yx) \, = \, k(y)k(x) \end{eq*}
+But then $\mathrm{im}(k)$ is a commutative submonoid of the group $H$, and so it is really an abelian group. If we denote by $k_{\mathrm{im}}: \mathrm{Ob}(\mathbb{G}_n) \to \mathrm{im}(k)$ the restriction of $h$ to it image, then from what we have already shown we can conclude that there will be a unique homomorphism $v: \mathrm{Ob}(L\mathbb{G}_n) \to \mathrm{im}(k)$ with the property $v \circ \pi_0(\eta) = k_{\mathrm{im}}$. Composing this $v$ with the inclusion $i: \mathrm{im}(k) \hookrightarrow A$, we see that
+\begin{eq*} i \circ v \circ \pi_0(\eta) \, = \, i \circ k_{\mathrm{im}} \, = \, k \end{eq*}
+and $i \circ v$ must be the only map for which this is true, for restricting this equation back on $\mathrm{im}(k)$ yields the unique property of $v$ again. Thus $\pi_0(L\mathbb{G}_n)$ will actually factor any homomorphism $\mathrm{Ob}(\mathbb{G}_n) \to H$ in a unique way, and hence by \cref{Gnconcomp} it is the group completion
 \begin{eq*} \pi_0(L\mathbb{G}_n) \, = \, \pi_0(\mathbb{G}_n) ^{\mathrm{gp}} \, = \, (\mathbb{N}^n)^{\mathrm{gp}} \, = \, \mathbb{Z}^n \end{eq*}
 The map $\mathrm{Ob}(\eta)$ is then the inclusion of $\mathrm{Ob}(\mathbb{G}_n)$ into its completion, $\mathbb{N}^{*n} \hookrightarrow \mathbb{Z}^{*n}$.
 
@@ -234,7 +235,7 @@ commutes. Using the values of $[ \, \_ \, ]$ from \cref{Gnconcomp}, $\mathrm{Ob}
 But this description of $[ \, \_ \, ]: \mathrm{Ob}(L\mathbb{G}_n) \to \pi_0(L\mathbb{G}_n)$ on generators is then just the definition of the quotient map of abelianisation $\mathbb{Z}^{\ast n} \to (\mathbb{Z}^{\ast n})^{\mathrm{ab}}$, as required
 \end{proof}
  
-\subsection{The morphisms of $L\mathbb{G}_n$}
+\section{The abelianised morphisms of $L\mathbb{G}_n$}
 
 Now that we understand the objects of the algebra $L\mathbb{G}_n$, the next most obvious thing to look for are its morphisms, $\mathrm{Mor}(L\mathbb{G}_n)$. It would be nice to construct this collection in the same way we constructed $\mathrm{Ob}(L\mathbb{G}_n)$ and $\pi_0(L\mathbb{G}_n)$, by applying the left adjoint of some adjunction to the initial map $\eta$. Before we can do this however, we need to ask ourselves a question. What sort of mathematical object is $\mathrm{Mor}(L\mathbb{G}_n)$, exactly?
 
@@ -334,11 +335,58 @@ In other words, $\eta_X$ and $\epsilon_A$ really are the unit and counit of an a
 is given by the assigments $F \mapsto F'$ and $h \mapsto h'$.
 \end{proof}
 
-\cref{Moradj} is very similar to \cref{Obadj,concompadj}, but it falls short in a few very important ways. First, if we want to use an adjunction to find a relationship between the morphisms of $\mathbb{G}_n$ and $L\mathbb{G}_n$, like what we did in \cref{Zobj,Zconcomp}, then what we need is an adjunction involving $\mathrm{E}G\mathrm{Alg}_{S}$, not $\mathrm{MonCat}$. This is because $\eta$ can only be used to factor algebra maps $\mathbb{G}_n \to X_{\mathrm{inv}}$ through $L\mathbb{G}_n$, and not arbitrary monoidal functors. Likewise, we would rather have the other side of the adjunction be $\mathrm{Mon}$ instead of $\mathrm{Ab}$ so that we could work with the functor $\mathrm{Mor}$ directly, and not its group completed, abelianised version.
+\cref{Moradj} is very similar to \cref{Obadj,concompadj}, but it falls short in a few very important ways. First, if we want to use an adjunction to find a relationship between the morphisms of $\mathbb{G}_n$ and $L\mathbb{G}_n$, like what we did in \cref{Zobj,Zconcomp}, then what we need is an adjunction involving $\mathrm{E}G\mathrm{Alg}_{S}$, not $\mathrm{MonCat}$. This is because $\eta$ can only be used to factor algebra maps $\mathbb{G}_n \to X_{\mathrm{inv}}$ through $L\mathbb{G}_n$, and not arbitrary monoidal functors. Likewise, we would rather have the other side of the adjunction be $\mathrm{Mon}$ instead of $\mathrm{Ab}$ so that we could work with the functor $\mathrm{Mor}$ directly, and not its group completed, abelianised version. Unfortunately this adjunction seems to be the best we can do. We already saw that we need $A$ to be an abelian group for $C(A)$ to have composition and interchange, and given an arbitrary abelian group that we want to be the morphisms of an algebra, there is no general method for assigning it an $\mathrm{E}G$-action. 
 
-Unfortunately this adjunction seems to be the best we can do. We already saw that we need $A$ to be an abelian group for $C(A)$ to have composition and interchange, and given an arbitrary abelian group that we want to be the morphisms of an algebra, there is no general method for assigning it an $\mathrm{E}G$-action. As this is what we are stuck with, we will not be able to use the $\eta$ method to extract the information we need about the morphisms of $L\mathbb{G}_n$, and so we must try a less straightforward approach.
+However, it turns out that this approach is fixable, and \cref{Moradj} can be used to find the original monoid $\mathrm{Mor}(L\mathbb{G}_n)$.  In order to do so, we need to employ the following result:
 
-\subsection{Sources and targets in $L\mathbb{G}_n$}  
+\begin{prop} \label{qprop} There exists a surjective map of $\mathrm{E}G$-algebras $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ \end{prop} 
+
+The proof of this fact is a long process that will require many subproofs, and so to allow us to remain focused on our current task we will gloss over the details for the time being. Instead, the question of the existence and surjectivity of $q$ will be covered at length in \cref{coeqalgebra}. 
+
+The first problem that this map $q$ will allow us to tackle is the task of finding the $\mathrm{E}G$-action of $L\mathbb{G}_n$.
+
+\begin{prop}
+\end{prop}
+
+With this result under our belts, we no longer need to worry about how our adjunction $\mathrm{Mor}(\, \_ \,)^{\mathrm{gp, ab}} \dashv C$ only involves $\mathrm{MonCat}$ rather than $\mathrm{E}G\mathrm{Alg}_{S}$. Once we have figured out what $L\mathbb{G}_n$'s monoid of morphisms needs to be, all we need to do is use the surjectivity of $q$ recover the action in its entirety.
+
+But how will we find $\mathrm{Mor}(L\mathbb{G}_n)$ when we only have access to 
+
+
+
+
+
+
+
+
+
+This functor will let us take \cref{Gnmapsaction}, a statement about the morphisms $\mathbb{G}_{2n}$, and extend the result onto $L\mathbb{G}_n$:
+
+\begin{lem} \label{allmapsaction} Every morphism in $L\mathbb{G}_n$ can be expressed as $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \mathbb{Z}^{\ast n}$.
+\end{lem}
+\begin{proof}
+Let $f$ be an arbitrary morphism in $L\mathbb{G}_n$, and  By surjectivity of $q$, there must exist at least one morphism $f'$ in $\mathbb{G}_{2n}$ such that $q(f') = f$, and from \cref{Gnmapsaction} we know that this $f'$ can be expressed uniquely as $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ for some $g \in G(m)$ and $x'_i \in \{z_1, ..., z_{2n} \}$. Thus, because $q$ is a map of $\mathrm{E}G$-algebras, we will have
+\begin{eq*} f \, = \, q(f') \, = \, q \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) \, \big)  \, = \, \alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{q(x'_1)}, ..., \mathrm{id}_{q(x'_m)}) \end{eq*}
+Therefore, there is at least one collection of $x_i = q(x'_i)$ for which the statement of the proposition holds.
+\end{proof}
+
+It is worth noting that, unlike with $\mathbb{G}_n$, this ability to express a morphism from $L\mathbb{G}_n$ as an action morphism is \emph{not} necessarily unique.
+
+
+
+
+
+
+
+
+
+
+
+
+
+As this is what we are stuck with, we will not be able to use the $\eta$ method directly to extract the neccessary information about the morphisms of $L\mathbb{G}_n$. We need to try a less straightforward approach.
+
+\section{Sources and targets in $L\mathbb{G}_n$}  
 
 The goal of these next couple of sections will be to show that we can reconstruct the all of morphisms of $L\mathbb{G}_n$ from just the abelian group $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$, and therefore that we can actually use the adjunction from \cref{Moadj} to help find a description of $L\mathbb{G}_n$. The way we will do this is by splitting $\mathrm{Mor}(L\mathbb{G}_n)$ up as the product of two other monoids. The first of these will encode all of the possible combinations of source and target data for morphisms in $L\mathbb{G}_n$, while the second will just be the endomorphisms of the unit object, $L\mathbb{G}_n(I, I)$. In other words, we will see that the monoid $\mathrm{Mor}(L\mathbb{G}_n)$ can be broken down into a context where source and target are the only thing that matters, and another where they are irrelevant. Once we have done this, we can then use the fact that $L\mathbb{G}_n(I, I)$ is always an abelian group to rewrite $\mathrm{Mor}(L\mathbb{G}_n)$ in terms of $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$.
 
@@ -421,7 +469,7 @@ But by \cref{Gnmapsaction}, each element of $\mathrm{Mor}(\mathbb{G}_n)$ can be 
 and hence it is a monoid isomorphism, as required.
 \end{proof}
 
-Now, we want to know if $(s \times t)(\mathbb{G}_n)$ can be seen as a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$, which we now see is the same as asking if we can find an injective homomorphism $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$. Creating a \emph{function} like this would not be especially hard. For any pair $(w, w') \in \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, the image of $w$ and $w'$ in the abelian group $\mathbb{N}^n$ is the same, which is to say that the words $w, w' \in \mathbb{N}^{\ast n}$ are permuations of each other. Since the underlying permutation maps $\pi : G(m) \to \mathrm{S}_m$ in the definition of the action operad $G$ are all surjective, we can therefore always find an element of $g \in G(|w|)$ for which $\pi(g)(w) = w'$. Thus in order to make an injective function $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$, all we need to do is make a choice $g_{(w, w')}$ like this for each $(w, w')$, and then set
+Now, we want to know if $(s \times t)(\mathbb{G}_n)$ can be seen as a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$, which we now see is the same as asking if we can find an injective homomorphism $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$. Creating a \emph{function} like this would not be especially hard. For any pair $(w, w') \in \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, the image of $w$ and $w'$ in the abelian group $\mathbb{N}^n$ is the same, which is to say that the words $w, w' \in \mathbb{N}^{\ast n}$ are permuations of each other. Since the underlying permutation maps $\pi : G(m) \to \mathrm{S}_m$ in the definition of the action operad $G$ are all surjective, we can always find an element of $g \in G(|w|)$ for which $\pi(g)(w) = w'$. Thus in order to make an injective function $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$, all we need to do is make a choice $g_{(w, w')}$ like this for each $(w, w')$, and then set
 \begin{eq*} \begin{array}{rll}
 			\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} & \to & G \times_{\mathbb{N}} \mathbb{N}^{\ast n} \\
 			(w, w') & \mapsto & ( \, g_{(w, w')}, w \, )
@@ -498,18 +546,12 @@ on generators. Since  by \cref{freemon} $\mathbb{N}^{\ast n} \times_{\mathbb{N}^
 and thus $i$ is injective. Therefore the image of $i$ is a submonoid of $G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ which is isomorphic to $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, which we can see as a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$ isomorphic to $(s \times t)(\mathbb{G}_n)$, as required.
 \end{proof}
 
-So, now we know that $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$. But what we are really interested in is whether $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$, and it is not really clear how we can recover this result from the former. In order to do this, we will need to employ the following result:
-
-\begin{prop*} There exists a surjective map of $\mathrm{E}G$-algebras $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ \end{prop*} 
-
-The proof of this fact is a long process that will require many subproofs, and so to allow us to remain focused on our current task we will gloss over the details for the time being. Instead, the question of the existence and surjectivity of $q$ will be covered at length in \cref{coeqalgebra}. 
-
-Now, consider again \cref{stGnsub}, in particular the case $(s \times t)(\mathbb{G}_{2n}) \subseteq \mathrm{Mor}(\mathbb{G}_{2n})$. From this we can use the map $q$ to immediately conclude that $(s \times t)(L\mathbb{G}_n) \subseteq \mathrm{Mor}(L\mathbb{G}_n)$ as well, since by surjectivity of $q$ this statement is just equivalent to saying $q\big( \, (s \times t)(\mathbb{G}_{2n}) \, \big) \subseteq q\big( \, \mathrm{Mor}(\mathbb{G}_{2n}) \, \big)$. More precisely, we have the following:
+So, now we know that $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$, but what we are really interested in is whether $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$. To recover the latter result from the former, recall our assumption from the previous section, which will be proven in \cref{coeqalgebra}: there exists a surjective $\mathrm{E}G$-algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$. Combining this with \cref{stGnsub} --- in particular the case $(s \times t)(\mathbb{G}_{2n}) \subseteq \mathrm{Mor}(\mathbb{G}_{2n})$ --- we can immediately conclude that $(s \times t)(L\mathbb{G}_n) \subseteq \mathrm{Mor}(L\mathbb{G}_n)$ as well, using the surjectivity of $q$:
 
 \begin{cor} \label{stZsub} $(s \times t)(L\mathbb{G}_n)$ is (isomorphic to) a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$
 \end{cor}
 \begin{proof}
-Let $i: (s \times t)(\mathbb{G}_{2n}) \hookrightarrow \mathrm{Mor}(\mathbb{G}_{2n})$ be an inclusion which allows us to view $(s \times t)(\mathbb{G}_{2n})$ as a submonoid of $\mathrm{Mor}(\mathbb{G}_{2n})$, as in \cref{stGnsub}. Also, let $\mathrm{Mor}(q): \mathrm{Mor}(\mathbb{G}_{2n}) \to \mathrm{Mor}(L\mathbb{G}_n)$ be the restriction of the monoidal functor $q$ on morphisms. Then the image of the composite of these two homomorphisms,
+Let $i: (s \times t)(\mathbb{G}_{2n}) \hookrightarrow \mathrm{Mor}(\mathbb{G}_{2n})$ be an inclusion which allows us to view $(s \times t)(\mathbb{G}_{2n})$ as a submonoid of $\mathrm{Mor}(\mathbb{G}_{2n})$, as in \cref{stGnsub}. Also, let $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ be as in \cref{qprop} and $\mathrm{Mor}(q): \mathrm{Mor}(\mathbb{G}_{2n}) \to \mathrm{Mor}(L\mathbb{G}_n)$ the restriction of the monoidal functor $q$ to morphisms. Then the image of the composite of these two homomorphisms,
 \begin{eq*} \mathrm{im}\big( \, \mathrm{Mor}(q) \circ i \, \big) \, = \, q\big( \, \mathrm{im}(i) \, \big) \, \cong \, q\big( \, (s \times t)(\mathbb{G}_{2n}) \, \big)\end{eq*}
 is clearly a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$. 
 
@@ -518,11 +560,13 @@ But by supposition $q$ is a surjective functor. This means that there can exist 
 and therefore the monoid $\mathrm{im}\big( \, \mathrm{Mor}(q) \circ i \, \big)$ that we saw above is really a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$ isomorphic to $(s \times t)(L\mathbb{G}_n)$, as required.
 \end{proof} 
 
-\subsection{Unit endomorphisms of $L\mathbb{G}_n$}
+\section{Unit endomorphisms of $L\mathbb{G}_n$}
 
-To help understand $\mathrm{Mor}(L\mathbb{G}_n)$, we intended to break it down into two pieces. The first was the source/target data $(s \times t)(L\mathbb{G}_n)$ which we explored in the previous section, and the second is the monoid of unit endomorphisms $L\mathbb{G}_n(I,I)$.
+To help us understand $\mathrm{Mor}(L\mathbb{G}_n)$, we decided to break it down into two smaller pieces. The first of these was the source/target data $(s \times t)(L\mathbb{G}_n)$, which we explored in the previous section. The other piece that we now have to consider is the monoid of unit endomorphisms, $L\mathbb{G}_n(I,I)$. 
 
-\begin{lem} \label{endcom} $L\mathbb{G}_n(I,I)$ is a commutative monoid.
+This is a particularly important submonoid of the morphisms $\mathrm{Mor}(L\mathbb{G}_n)$, since it is the only submonoid which is also a homset of the category $L\mathbb{G}_n$. Moreover, because the maps in $L\mathbb{G}_n(I,I)$ all share the same source and target, what we have is not just a monoid under tensor product but also under composition as well. This fact leads to a series of special properties for $L\mathbb{G}_n(I,I)$, the first of which is just another instance of the classic Eckmann-Hilton argument.
+
+\begin{lem} \label{endcom} $L\mathbb{G}_n(I,I)$ is a commutative monoid under both tensor product and composition, with $f \otimes f' = f \circ f'$.
 \end{lem}
 \begin{proof}
 Let $f, f'$ be arbitrary elements of the monoid $L\mathbb{G}_n(I,I)$. Since both of these are morphisms in the monoidal category $L\mathbb{G}_n$, we can use the law of interchange to show that
@@ -535,23 +579,12 @@ Let $f, f'$ be arbitrary elements of the monoid $L\mathbb{G}_n(I,I)$. Since both
 			& = & f' \otimes f
 		\end{array}
 \end{eq*}
-This is another instance of the Eckmann-Hilton argument.
 \end{proof}
 
-We can actually conclude even more from the above proof. $f \otimes f' = f \circ f'$.  Recall our assumption from the previous section, which will be proven in the following chapter: that there exists a surjective $\mathrm{E}G$-algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$. This map lets us extend the result from \cref{Gnmapsaction} onto $L\mathbb{G}_n$.
+Knowing that the operations of composition and tensor product happen to coincide on $L\mathbb{G}_n(I,I)$, we can now translate categorical information about the morphisms of $L\mathbb{G}_n$ into monoidal information for its unit endomorphisms. Of course, we still do not know much about $\mathrm{Mor}(L\mathbb{G}_n)$, and so it might not be immediately obvious what facts we could use in this way. However, in order to prove \cref{stZsub} we just recently made the assumption that there exists some surjective map of $\mathrm{E}G$-algebras $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$. \cref{allmapsaction} then gives us the next important property of $L\mathbb{G}_n(I,I)$, namely:
 
-\begin{lem} \label{allmapsaction} Every morphism in $L\mathbb{G}_n$ can be expressed as $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \mathbb{Z}^{\ast n}$.
-\end{lem}
-\begin{proof}
-Let $f$ be an arbitrary morphism in $L\mathbb{G}_n$. By surjectivity of $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$, there exists at least one morphism $f'$ in $\mathbb{G}_{2n}$ such that $q(f') = f$, and from \cref{Gnmapsaction} we know that this $f'$ can be expressed uniquely as $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ for some $g \in G(m)$ and $x'_i \in \{z_1, ..., z_{2n} \}$. Thus, because $q$ is a map of $\mathrm{E}G$-algebras, we will have
-\begin{eq*} f \, = \, q(f') \, = \, q \big( \, \alpha_{\mathbb{G}_{2n}}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) \, \big)  \, = \, \alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{q(x'_1)}, ..., \mathrm{id}_{q(x'_m)}) \end{eq*}
-Therefore, there is at least one collection of $x_i = q(x'_i)$ for which the statement of the proposition holds.
-\end{proof}
-
-It is worth noting that, unlike with $\mathbb{G}_n$, this ability to express a morphism from $L\mathbb{G}_n$ as an action morphism is \emph{not} necessarily unique. Regardless, \cref{allmapsaction} still tells us a very important fact about the morphisms of $L\mathbb{G}_n$, namely:
-
-\begin{cor} \label{compinv} Every morphism $f: w \to v$ in $L\mathbb{G}_n$ has an inverse under composition, $f^{-1}: v \to w$.
-\end{cor}
+\begin{prop} \label{endab} $L\mathbb{G}_n(I,I)$ is an abelian group.
+\end{prop}
 \begin{proof}
 From \cref{allmapsaction} we know that every morphism $f$ in $L\mathbb{G}_n$ is of the form $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \mathbb{Z}^{\ast n}$. It follows immediately that
 \begin{eq*} \begin{array}{rl}
@@ -566,15 +599,9 @@ From \cref{allmapsaction} we know that every morphism $f$ in $L\mathbb{G}_n$ is 
 			= & \mathrm{id}_{x_1 \otimes ... \otimes x_m}
 		\end{array}
 \end{eq*}
-In other words, $f^{-1} : = \alpha(g^{-1}; \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}})$ is the inverse of $f$.
-\end{proof}
-
-This result will now allow us to increase the results of our Eckmann-Hilton argument.
-
-\begin{lem} \label{endab} $L\mathbb{G}_n(I,I)$ is an abelian group
-\end{lem}
-\begin{proof}
-As we saw in the proof of \cref{endcom}, the operations of tensor product and composition coincide for endomorphisms of the unit object of $L\mathbb{G}_n$. In particular this means that if some morphism $f: I \to I$ has a compositional inverse $f^{-1}$, then it will also be an invertible element of the monoid $\big( \, L\mathbb{G}_n(I,I), \otimes \, \big)$. Thus by \cref{compinv}, every element of the commutative monoid $L\mathbb{G}_n(I,I)$ is invertible, or in other words $L\mathbb{G}_n(I,I)$ is an abelian group.
+In other words, every morphism $f: w \to v$ in $L\mathbb{G}_n$ has an inverse under composition, 
+\begin{eq*} f^{-1} \quad := \quad \alpha(g^{-1}; \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}}) \end{eq*}
+But we know from \cref{endcom} that tensor product and composition are the same for endomorphisms of the unit object of $L\mathbb{G}_n$. In particular this means that if some morphism $f: I \to I$ has a compositional inverse $f^{-1}$, then it will also be its monoidal inverse $f^*$. Thus every element of the commutative monoid $L\mathbb{G}_n(I,I)$ is invertible, or in other words $L\mathbb{G}_n(I,I)$ is an abelian group.
 \end{proof}
 
 In fact, with a slightly broader argument we can extend this result to every morphism of $L\mathbb{G}_n$.
@@ -582,7 +609,7 @@ In fact, with a slightly broader argument we can extend this result to every mor
 \begin{prop} \label{tensinv} Every morphism $f: w \to v$ in $L\mathbb{G}_n$ has an inverse under tensor product, $f^*: w^* \to v^*$. That is, the monoid $\mathrm{Mor}(L\mathbb{G}_n)$ is actually a group.
 \end{prop}
 \begin{proof}
-For any $f: w \to v$ in $L\mathbb{G}_n$, consider the map $\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}$, where $f^{-1}$ is the compositional inverse of $f$ as in \cref{compinv}. This morphism has source $w^* \otimes v \otimes v^* = w^*$ and target $w^* \otimes w \otimes v^* = v^*$, which allows us to apply the law of interchange to get
+For any $f: w \to v$ in $L\mathbb{G}_n$, consider the map $\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}$, where $f^{-1}$ is the compositional inverse of $f$, as in the proof of \cref{endab}. This morphism has source $w^* \otimes v \otimes v^* = w^*$ and target $w^* \otimes w \otimes v^* = v^*$, which allows us to apply the law of interchange to get
 \begin{eq*} \begin{array}{rll}
 			f \otimes (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) & = & \big( \, f \circ \mathrm{id}_w \, \big) \otimes \big( \, \mathrm{id}_{v^*} \circ  (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \, \big) \\
 			& = & \big( \, f \otimes \mathrm{id}_{v^*} \, \big) \circ \big( \, \mathrm{id}_w \otimes (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \, \big) \\
@@ -605,11 +632,12 @@ and likewise
 In other words, $f^* := \mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}$ is the inverse of $f$ in the monoid $\mathrm{Mor}(L\mathbb{G}_n)$, as required.
 \end{proof}
 
-\begin{prop} \label{morprod}
-\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I,I) \end{eq*}
+So $\mathrm{Mor}(L\mathbb{G}_n)$ and $L\mathbb{G}_n(I,I)$ both turn out to be groups under tensor product. Obviously it follows from this that $L\mathbb{G}_n(I,I)$ is a subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$ --- in particular an abelian subgroup, going by \cref{endab}. But $L\mathbb{G}_n(I,I)$ is actually an even more special subgroup than this:
+
+\begin{prop} $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$.
 \end{prop}
 \begin{proof}
-The first step in this proof will be to show that $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$. From the definition of $L\mathbb{G}_n(I,I)$ we already know that it is a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$, and \cref{endab,tensinv} tell us that it is also a subgroup. For normality, recall from \cref{spacial} that all $\mathrm{E}G$-algebras are spacial, and so in particular $L\mathbb{G}_n$ is. This means that for any $h \in L\mathbb{G}_n(I,I)$ and $w \in \mathrm{Ob}(L\mathbb{G}_n)$ we will always have $h \otimes \mathrm{id}_w = \mathrm{id}_w \otimes h$, and thus for any $f:w \to v$ in $\mathrm{Mor}(L\mathbb{G}_n)$ we get
+From \cref{endab,tensinv}, we know that $L\mathbb{G}_n(I,I)$ is a subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$. For normality, recall from \cref{spacial} that all $\mathrm{E}G$-algebras are spacial, and so in particular $L\mathbb{G}_n$ is. This means that for any $h \in L\mathbb{G}_n(I,I)$ and $w \in \mathrm{Ob}(L\mathbb{G}_n)$ we will always have $h \otimes \mathrm{id}_w = \mathrm{id}_w \otimes h$. Thus for any $f:w \to v$ in $\mathrm{Mor}(L\mathbb{G}_n)$, we get
 \begin{eq*} \begin{array}{rll}
 		h \otimes f & = & (\mathrm{id}_I \circ h) \otimes (f \circ \mathrm{id}_w) \\
 		& = & (\mathrm{id}_I \otimes f) \circ (h \otimes \mathrm{id}_w) \\
@@ -618,11 +646,20 @@ The first step in this proof will be to show that $L\mathbb{G}_n(I,I)$ is a norm
 		& = & f \otimes h
 		\end{array}
 \end{eq*}
-That is, $L\mathbb{G}_n(I,I)$ is a subgroup of the centre of $\mathrm{Mor}(L\mathbb{G}_n)$, and so because
+That is, $L\mathbb{G}_n(I,I)$ is a subgroup of the centre of $\mathrm{Mor}(L\mathbb{G}_n)$. Then because
 \begin{eq*} f \otimes h \otimes f^* \, = \, h \otimes f \otimes f^* \, = \, h \, \in L\mathbb{G}_n(I,I) \end{eq*}
 it follows that $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$.
+\end{proof}
 
-Next, because we know that $L\mathbb{G}_n(I,I)$ is normal we can consider the quotient group
+This is the last important property of $L\mathbb{G}_n(I,I)$ that we need. Now we finally have enough information to show that the morphism monoid of $L\mathbb{G}_n$ really does split apart into the smaller pieces that we claimed it did.
+
+\section{Recovering the morphisms of $L\mathbb{G}_n$}
+
+\begin{prop} \label{morprod}
+\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I,I) \end{eq*}
+\end{prop}
+\begin{proof}
+Because we know that $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$, we can consider the quotient group
 \begin{eq*} \begin{tikzcd}
 L\mathbb{G}_n(I,I) \ar[r, hookrightarrow] & \mathrm{Mor}(L\mathbb{G}_n) \ar[r] & \bigquotient{\mathrm{Mor}(L\mathbb{G}_n)}{L\mathbb{G}_n(I,I)}
 \end{tikzcd} \end{eq*}
@@ -632,15 +669,17 @@ Whenever they exist, quotient groups are an example of a cokernel in the categor
 & & \\
 \bigquotient{\mathrm{Mor}(L\mathbb{G}_n)}{L\mathbb{G}_n(I,I)} \ar[rr, "u"] & & (s \times t)(L\mathbb{G}_n)
 \end{tikzcd} \end{eq*}
-This map $u$ will be surjective, because $s \times t$ is, but in fact it will also be injective. This is because if two morphisms $f, f'$ in $L\mathbb{G}_n$ are not parallel, then there can be no $h \in L\mathbb{G}_n(I,I)$ for which $f \otimes h = f'$ --- the sources and targets just wouldn't match up --- and so $f$ and $f'$ must be in different equivalence classes in $\mathrm{Mor}(L\mathbb{G}_n)/L\mathbb{G}_n(I,I)$. More precisely,
+This map $u$ will be surjective --- because $s \times t$ is --- but in fact it will also be injective. This is because if two morphisms $f, f'$ of $L\mathbb{G}_n$ have the same source and target, then the map $h = f^* \otimes f'$ is an element of $L\mathbb{G}_n(I,I)$ for which $f \otimes h = f'$, and so $f$ and $f'$ are a part of the same equivalence classes in $\mathrm{Mor}(L\mathbb{G}_n)/L\mathbb{G}_n(I,I)$. More precisely, 
 \begin{eq*} \begin{array}{rclcrcl}
-		(s \times t)(f') & \neq & (s \times t)(f) \\
-		& = & (s \times t)(f) \otimes (I, I) \\
-		& = & (s \times t)(f) \otimes (s \times t)(h) \\
-		& = & (s \times t)(f \otimes h) \\
-		& & \\
-		\implies \quad f \otimes h & \neq & f' \\
-		\implies \quad [f] & \neq & [f'] \\
+		[f] & \neq & [f'] & \implies & [f]^* \otimes [f'] & \neq & [I] \\
+		& & & \implies & [f^* \otimes f'] & \neq & [I] \\
+		& & & \implies & f^* \otimes f' & \notin & L\mathbb{G}_n(I,I)
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rrcl}
+		\implies & (s \times t)(f^* \otimes f') & \neq & (I, I) \\
+		\implies & (s \times t)(f)^* \otimes (s \times t)(f') & \neq & (I, I) \\
+		\implies & (s \times t)(f) & \neq & (s \times t)(f')
 		\end{array}
 \end{eq*}
 Thus $u$ is bijective, or in other words
