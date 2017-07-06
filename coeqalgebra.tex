@@ -1,49 +1,38 @@
-\chapter{Free invertible algebras as coequalizers}
-\label{coeqalgebra}
+\chapter{Free invertible algebras as cokernels}
+\label{cokeralgebra}
 
-In the previous chapter, we made progress towards understanding the strucutre of $L\mathbb{G}_n$ by showing that the algebra was an initial object in a certain comma category. Specifically, we saw that the map $\eta: \mathbb{G}_n \to L\mathbb{G}_n$ is initial among all $\mathrm{E}G$-algebra maps $\mathbb{G}_n \to X_{\mathrm{inv}}$. This fact is the rigourous way of expressing a fairly obvious intuition about $L\mathbb{G}_n$ --- that we should expect the free algebra on $n$ invertible objects to be like the free algebra on $n$ objects, except that its objects are invertible.
+In the previous chapter, we made progress towards understanding the structure of $L\mathbb{G}_n$ by showing that the algebra was an initial object in a certain comma category. Specifically, we saw that the map $\eta: \mathbb{G}_n \to L\mathbb{G}_n$ is initial among all $\mathrm{E}G$-algebra maps $\mathbb{G}_n \to X_{\mathrm{inv}}$. This fact is the rigourous way of expressing a fairly obvious intuition about $L\mathbb{G}_n$ --- that we should expect the free algebra on $n$ invertible objects to be like the free algebra on $n$ objects, except that its objects are invertible.
 
 However, this not the only way of thinking about $L\mathbb{G}_n$. Consider for a moment the free $\mathrm{E}G$-algebra on $2n$ objects, $\mathbb{G}_{2n}$. Intuitively, if we were to take this algebra and then enforce upon it the extra relations $z_{n+1} = z_1^*, ..., z_{2n} = z_n^*$, then we would be changing it from a structure with $2n$ independent generators into one with $n$ indepedent generators and their inverses. That is, there seems to be a natural way to think about $L\mathbb{G}_n$ as a quotient of the larger algebra $\mathbb{G}_{2n}$. In this chapter we will work towards making this idea precise, and then examine some of its consequences. Together with the information we have already gleaned from the initial object persepctive, this will then provide us with a complete description of the algebra $L\mathbb{G}_n$.
 
-\section{$L\mathbb{G}_n$ as a coequalizer in $\mathrm{E}G\mathrm{Alg}_S$} 
+\section{$L\mathbb{G}_n$ as a cokernel} 
 
 We'll begin with some definitions.
 
 \begin{defn}\label{qdef} Let $\delta$ be the map of $\mathrm{E}G$-algebras defined on generators by
 \begin{eq*} \begin{array}{rlrlll}
-			\delta & : & \mathbb{G}_{4n} & \to & \mathbb{G}_{2n} \\
-			& : & z_i & \mapsto & z_i  \\
-			& : & z_{n+i} & \mapsto & z_{n+i} \\
-			& : & z_{2n+i} & \mapsto & z_i \otimes z_{n+i} \\
-			& : & z_{3n+i} & \mapsto & z_{n+i} \otimes z_i			
+			\delta & : & \mathbb{G}_{2n} & \to & \mathbb{G}_{2n} \\
+			& : & z_{i} & \mapsto & z_i \otimes z_{n+i} \\
+			& : & z_{n+i} & \mapsto & z_{n+i} \otimes z_i			
 		\end{array}
 \end{eq*}
-for $1 \le i \le n$. Similarly, let $\zeta$ be the $\mathrm{E}G$-algebra map defined by
-\begin{eq*} \begin{array}{rlrlll}
-			\zeta & : & \mathbb{G}_{4n} & \to & \mathbb{G}_{2n} \\
-			& : & z_i & \mapsto & z_i  \\
-			& : & z_{n+i} & \mapsto & z_{n+i} \\
-			& : & z_{2n+i} & \mapsto & I \\
-			& : & z_{3n+i} & \mapsto & I
-		\end{array}
-\end{eq*}
-We will denote by $q: \mathbb{G}_{2n} \to Q$ the coequalizer these two maps.
+for $1 \le i \le n$. We will also denote by $q: \mathbb{G}_{2n} \to \mathrm{coker}(\delta)$ the cokernel this map.
 \end{defn}
 
-Note that the above definitions do actually make sense. The given descriptions of $\delta$ and $\zeta$ are enough to specify those maps uniquely because $\mathbb{G}_k$ is the free $\mathrm{E}G$-algebra on $k$ objects, and hence algebra maps $\mathbb{G}_k \to \mathbb{G}_{k'}$ are canonically isomorphic to functors $\{z_1, ..., z_k\} \to \mathbb{G}_{k'}$. Also we can be sure that the map $q$ exists, because $\mathrm{E}G\mathrm{Alg}_S$ is a locally finitely presentable category and thus has all finite colimits.
+Note that the above definition does actually make sense. The given descriptions of $\delta$ is enough to specify it uniquely because $\mathbb{G}_{2n}$ is the free $\mathrm{E}G$-algebra on $2n$ objects, and hence algebra maps $\mathbb{G}_{2n} \to \mathbb{G}_{2n}$ are canonically isomorphic to functions $\{z_1, ..., z_{2n}\} \to \mathrm{ob}(\mathbb{G}_{2n})$. Also we can be sure that the map $q$ exists, because $\mathrm{E}G\mathrm{Alg}_S$ is a locally finitely presentable category and thus has all finite colimits.
 
-The goal of this approach will be show that $Q$ is in fact that same algebra as $L\mathbb{G}_n$. In order to do this, it would help if we could easily compare $q: \mathbb{G}_{2n} \to Q$ to our initial object $\eta: \mathbb{G}_{2n} \to L\mathbb{G}_n$. In other words, we really want to show that $q$ is an object of $(\mathbb{G}_n \downarrow \mathrm{inv})$ --- that $Q$ has only invertible objects. This can be done using the adjunction we found in \cref{Obadj}.
+The goal of this approach will be show that $\mathrm{coker}(\delta)$ is in fact that same algebra as $L\mathbb{G}_n$. In order to do this, it would help if we could easily compare $q: \mathbb{G}_{2n} \to \mathrm{coker}(\delta)$ to our initial object $\eta: \mathbb{G}_{2n} \to L\mathbb{G}_n$. In other words, we really want to show that $q$ is an object of $(\mathbb{G}_n \downarrow \mathrm{inv})$ --- that $\mathrm{coker}(\delta)$ has only invertible objects. This can be done using the adjunction we found in \cref{Obadj}.
 
-\begin{lem}\label{Qobj} The object monoid of $Q$ is $\mathbb{Z}^{*n}$, and the restriction of $q$ to objects $\mathrm{Ob}(q): \mathrm{Ob}(\mathbb{G}_{2n}) \to \mathrm{Ob}(Q)$ is the monoid homomorphism defined on generators as
+\begin{prop}\label{Qobj} The object monoid of $\mathrm{coker}(\delta)$ is $\mathbb{Z}^{*n}$, and the restriction of $q$ to objects $\mathrm{Ob}(q): \mathrm{Ob}(\mathbb{G}_{2n}) \to \mathrm{Ob}(\mathrm{coker}(\delta))$ is the monoid homomorphism defined on generators as
 \begin{eq*} \begin{array}{rlrlll}
-			\mathrm{Ob}(q) & : & \mathbb{N}^{*2n} & \to & \mathbb{Z}^{*n} \\
+			\mathrm{Ob}(q) & : & \mathbb{N}^{\ast 2n} & \to & \mathbb{Z}^{\ast n} \\
 			& : & z_i & \mapsto & z_i  \\
 			& : & z_{n+i} & \mapsto & z_i^*		
 		\end{array}
 \end{eq*}
-\end{lem}
+\end{prop}
 \begin{proof}
-Consider $\mathrm{Ob}(\delta)$ and $\mathrm{Ob}(\zeta)$, the restrictions on objects of the algebra maps $\delta, \zeta: \mathbb{G}_{4n} \to \mathbb{G}_{2n}$. By \cref{Gnobj}, these are monoid homomorphisms $\mathbb{N}^{\ast 4n} \to \mathbb{N}^{\ast 2n}$, and since $\mathrm{Mon}$ is cocomplete we can take their coequalizer in that category. This will give us a new homomorphism, whose source is $\mathbb{N}^{\ast 2n}$ and whose target is the quotient of $\mathbb{N}^{\ast 2n}$ by the relations $\mathrm{Ob}(\delta)(x) = \mathrm{Ob}(\zeta)(x)$. Remembering \cref{qdef}, and that $\mathbb{N}^{\ast 2n}$ is the free monoid on $2n$ generators, this quotient monoid will have the following presentation:
+Consider $\mathrm{Ob}(\delta)$, the restrictions on objects of the algebra maps $\delta: \mathbb{G}_{2n} \to \mathbb{G}_{2n}$. By \cref{Gnobj}, this is a monoid homomorphism $\mathbb{N}^{\ast 2n} \to \mathbb{N}^{\ast 2n}$, and since $\mathrm{Mon}$ is cocomplete it too must have a cokernel. This will be a new homomorphism whose source is $\mathbb{N}^{\ast 2n}$ and whose target is the quotient of $\mathbb{N}^{\ast 2n}$ by the relations $\mathrm{Ob}(\delta)(x) = I$. Remembering \cref{qdef}, and that $\mathbb{N}^{\ast 2n}$ is the free monoid on $2n$ generators, this quotient monoid will have the following presentation:
 \begin{eq*}\begin{array}{ll}
 			\text{Generators:} & z_1, \, ..., \, z_{2n} \\
 			\text{Relations:} & z_i \otimes z_{n+i} = I, \\
@@ -58,26 +47,24 @@ This is just the same as
 \end{eq*}
 which is the presentation of $\mathbb{Z}^{\ast n}$. 
 
-But by \cref{Obadj}, $\mathrm{Ob}$ is a left adjoint and hence preserves all colimits. Thus the coequalizer of $\mathrm{Ob}(\delta)$ and $\mathrm{Ob}(\zeta)$ is just the underlying homomorphism $\mathrm{Ob}(q)$ of the coequalizer $q$ of $\delta, \zeta$. Therefore $\mathrm{Ob}(Q) = \mathbb{Z}^{\ast n}$, and $\mathrm{Ob}(q)$ is the quotient map $\mathbb{N}^{*2n} \to \mathbb{Z}^{*n}$ sending $z_i \mapsto z_i$ and $z_{n+i} \mapsto z_i^*$ for $1 \le i \le n$.
+But by \cref{Obadj}, $\mathrm{Ob}$ is a left adjoint and hence preserves all colimits. Thus the cokernel of $\mathrm{Ob}(\delta)$ is just the underlying homomorphism of the cokernel of $\delta$. Therefore $\mathrm{Ob}(\mathrm{coker}(\delta)) = \mathbb{Z}^{\ast n}$, and $\mathrm{Ob}(q)$ is the quotient map $\mathbb{N}^{\ast 2n} \to \mathbb{Z}^{\ast n}$ sending $z_i \mapsto z_i$ and $z_{n+i} \mapsto z_i^*$ for $1 \le i \le n$.
 \end{proof}
 
-An immediate corollary of \cref{Qobj} is that every object of the coequalizer algebra $Q$ is invertible. Thus $q: \mathbb{G}_{2n} \to Q$ is an object of the category $(\mathbb{G}_n \downarrow \mathrm{inv})$, and hence we can use the initiality of $\eta$ to determine the following result:
+An immediate corollary of \cref{Qobj} is that every object of the cokernel algebra $\mathrm{coker}(\delta)$ is invertible. Thus $q: \mathbb{G}_{2n} \to \mathrm{coker}(\delta)$ is an object of the category $(\mathbb{G}_n \downarrow \mathrm{inv})$, and hence we can use the initiality of $\eta$ to determine the following result:
 
-\begin{prop}\label{coeq} Let $i: \mathbb{G}_n \to \mathbb{G}_{2n}$ be the inclusion of $\mathrm{E}G$-algebras defined on generators by
-\begin{eq*} i(z_i) \, = \, z_i \end{eq*}
-Then $i \circ q$ is an initial object of $(\mathbb{G}_n \downarrow \mathrm{inv})$. In particular, this means that
-\begin{eq*} Q \, \cong \, L\mathbb{G}_n \end{eq*}
+\begin{prop}\label{coker} Let $i: \mathbb{G}_n \to \mathbb{G}_{2n}$ be the inclusion of $\mathrm{E}G$-algebras defined on generators by $i(z_i) = z_i$. Then $i \circ q$ is an initial object of $(\mathbb{G}_n \downarrow \mathrm{inv})$. In particular, this means that
+\begin{eq*} \mathrm{coker}(\delta) \quad \cong \quad L\mathbb{G}_n \end{eq*}
 \end{prop}
 \begin{proof}
-Let $\psi: \mathbb{G}_n \to X$ be an arbitrary object of $(\mathbb{G}_n \downarrow \mathrm{inv})$. The map $\psi^*: \mathbb{G}_n \to X$ which takes values
-\begin{eq*} \psi^*(z_i) \, = \, \psi(z_i)^* \end{eq*}
-is also an object of $(\mathbb{G}_n \downarrow \mathrm{inv})$, and using these two we can define a new map, $\psi + \psi^*$, using the universal property of the colimit:
+Let $\psi: \mathbb{G}_n \to X$ be an arbitrary object of $(\mathbb{G}_n \downarrow \mathrm{inv})$. Since $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects, we can use it and $\psi$ to define a new map, $\psi^*: \mathbb{G}_n \to X$, which takes the values
+\begin{eq*} \psi^*(z_i) \quad := \quad \psi(z_i)^* \end{eq*}
+on generators. Clearly $psi^*$ is also an object of $(\mathbb{G}_n \downarrow \mathrm{inv})$, and so using these two we can define a new map, $\psi + \psi^*$, via the universal property of the colimit:
 \begin{eq*} \begin{tikzcd}
 & \mathbb{G}_n + \mathbb{G}_n \ar[dd, dashed, "\psi + \psi^*"] & \\
 \mathbb{G}_n \ar[ur, hookrightarrow, "i"] \ar[dr, "\psi"'] & & \mathbb{G}_n \ar[ul, hookrightarrow, "i'"'] \ar[dl, "\psi^*"] \\
 & X & 
 \end{tikzcd} \end{eq*}
-But $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects, and the free functor $F : \mathrm{Cat} \to \mathrm{E}G\mathrm{Alg}_S$ preserves colimits because it is a left adjoint, so clearly
+But because $\mathbb{G}_n$ is the free algebra on $n$ objects, and the free functor $F : \mathrm{Cat} \to \mathrm{E}G\mathrm{Alg}_S$ is a left adjoint and thus preserves colimits, we must have
 \begin{eq*} \begin{array}{rll}
 		\mathbb{G}_n + \mathbb{G}_n & = & F(\{ z_1, ..., z_n\}) + F(\{ z'_1, ..., z'_n\}) \\
 		& = & F( \, \{ z_1, ..., z_n\} + \{ z'_1, ..., z'_n\} \, ) \\
@@ -85,36 +72,26 @@ But $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects, and the fre
 		& = & \mathbb{G}_{2n} 
 		\end{array}
 \end{eq*}
-This means that we can compose $\psi + \psi^*: \mathbb{G}_{2n} \to X$ with the maps $\delta, \zeta:  \mathbb{G}_{4n} \to  \mathbb{G}_{2n} $, though we need to be careful to specify which inclusions we really used in the definition of $\psi + \psi^*$. Suppose that the lefthand inclusion is $i$, the one given in the statement of the proposition, and the other is defined by the assignment $z_i \mapsto z_{i+n}$. Then for $1 \leq i \leq n$,
-\begin{eq*}\begin{array}{rll}
-		(\psi + \psi^*)\delta(z_i) & = & (\psi + \psi^*)(z_i) \\
-		& = & (\psi + \psi^*)\zeta(z_i) \\
-		& & \\
-		(\psi + \psi^*)\delta(z_{n+i}) & = & (\psi + \psi^*)(z_{n+i})  \\
-		& = & (\psi + \psi^*)\zeta(z_i) \\
-		& & \\
-		(\psi + \psi^*)\delta(z_{2n+i}) & = & (\psi + \psi^*)(z_i \otimes z_{n+i}) \\
-		& = & \psi(z_i) \otimes \psi(z_i)^* \\
-		& = & I \\
-		& = & (\psi + \psi^*)(I) \\
-		& = & (\psi + \psi^*)\zeta(z_{2n+i}) \\
-		& & \\
-		(\psi + \psi^*)\delta(z_{3n+i}) & = & (\psi + \psi^*)(z_{n+i} \otimes z_i) \\
-		& = & \psi(z_i)^* \otimes \psi(z_i) \\
-		& = & I \\
-		& = & (\psi + \psi^*)(I) \\
-		& = & (\psi + \psi^*)\zeta(z_{3n+i})
+This means that we can compose $\psi + \psi^*: \mathbb{G}_{2n} \to X$ with the maps $\delta: \mathbb{G}_{2n} \to  \mathbb{G}_{2n}$, though we need to be careful to specify exactly which inclusions we used in the definition of $\psi + \psi^*$. Suppose that the lefthand inclusion is $i$, the one given in the statement of the proposition, and the other is defined by the assignment $z_i \mapsto z_{i+n}$. Then for $1 \leq i \leq n$,
+\begin{eq*} \begin{array}{rll}
+			(\psi + \psi^*)\delta(z_i) & = & (\psi + \psi^*)(z_i \otimes z_{n+i}) \\
+			& = & \psi(z_i) \otimes \psi(z_i)^* \\
+			& = & I \\
+			& & \\
+			(\psi + \psi^*)\delta(z_{n+i}) & = & (\psi + \psi^*)(z_{n+i} \otimes z_i) \\
+			& = & \psi(z_i)^* \otimes \psi(z_i) \\
+			& = & I
 		\end{array}
 \end{eq*}
-That is, $(\psi + \psi^*) \circ \delta = (\psi + \psi^*) \circ \zeta$. However, we've already defined $q: \mathbb{G}_{2n} \to Q$ to be the coequalizer of $\delta$ and $\zeta$, the universal map such that its composites with them are equal. Therefore, there must exist a unique  $\mathrm{E}G$-algebra map $u: Q\to X$ making the righthand triangle below diagram commute:
+That is, $(\psi + \psi^*) \circ \delta = I$. But we've already defined $q: \mathbb{G}_{2n} \to \mathrm{coker}(\delta)$ to be the cokernel of $\delta$, the universal map with this property, and so there must exist a unique $\mathrm{E}G$-algebra map $u: \mathrm{coker}(\delta) \to X$ making the righthand triangle below diagram commute:
 \begin{eq*} \begin{tikzcd}
-\mathbb{G}_n \ar[rr, "i"] \ar[ddrr, "\psi"'] & & \mathbb{G}_{2n} \ar[rr, "q"] \ar[dd, "\psi + \psi^*", near start] & & Q \ar[ddll, "u"] \\
+\mathbb{G}_n \ar[rr, hookrightarrow, "i"] \ar[ddrr, "\psi"'] & & \mathbb{G}_{2n} \ar[rr, "q"] \ar[dd, "\psi + \psi^*", near start] & & \mathrm{coker}(\delta) \ar[ddll, "u"] \\
 & & & & \\ 
 & & X & &
 \end{tikzcd} \end{eq*}
 The other triangle commutes by the definition of $\psi + \psi^*$, and so together the diagram tells us that for any object $\psi$ of $(\mathbb{G}_n \downarrow \mathrm{inv})$, there exists at least one morphism $u$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$ going from $q \circ i$ to $\psi$. 
 
-Next, let $v: Q \to X$ be an arbitrary morphism $q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. By definition, this means that
+Next, let $v: \mathrm{coker}(\delta) \to X$ be an arbitrary morphism $q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. By definition, this means that
 \begin{eq*}\begin{array}{rll}
 			\psi & = & vqi \\
 			\implies \quad \psi + \psi^* & = & vqi + (vqi)^* 
@@ -122,8 +99,8 @@ Next, let $v: Q \to X$ be an arbitrary morphism $q \circ i \to \psi$ in $(\mathb
 \end{eq*}
 Also, for $1 \leq i \leq n$ we have
 \begin{eq*}\begin{array}{rcrllcccl}
-			q(z_i) \otimes q(z_{n+i}) & = & q(z_{i-n} \otimes z_i) & = & q\delta(z_{2n+i}) & = & q\zeta(z_{2n+i}) & = & I \\
-			q(z_{n+i}) \otimes q(z_i) & = & q(z_i \otimes z_{n+i}) & = & q\delta(z_{3n+i}) & = & q\zeta(z_{3n+i}) & = & I \\
+			q(z_i) \otimes q(z_{n+i}) & = & q(z_{i-n} \otimes z_i) & = & q\delta(z_i) & = &  I \\
+			q(z_{n+i}) \otimes q(z_i) & = & q(z_i \otimes z_{n+i}) & = & q\delta(z_{n+i}) & = & I \\
 			& \implies & q(z_{n+i}) & = & q(z_i)^* & & & &
 		\end{array}
 \end{eq*}
@@ -132,955 +109,107 @@ Therefore,
 			(\psi + \psi^*)(z_i) & = & \big( vqi + (vqi)^* \big)(z_i) \\
 			& = & vqi(z_i) \\
 			& = & vq(z_i) \\
-			& & \\
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rll}
 			(\psi + \psi^*)(z_{n+i}) & = & \big( vqi + (vqi)^* \big)(z_{n+i}) \\
 			& = & vqi(z_i)^* \\
 			& = & v \big( q(z_i)^* \big) \\
 			& = & vq(z_{n+i})
 		\end{array}
 \end{eq*}
-or in other words $\psi + \psi^* = v \circ q$ for any morphism $v: q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. But this is the property that the map $u$ was supposed to satisfy uniquely, and thus it must be the only morphism $q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. Therefore $q \circ i$ is an initial object, and hence it is isomorphic in $(\mathbb{G}_n \downarrow \mathrm{inv})$ to any other initial object, such as $\eta$. It follows that the targets of these two maps, $Q$ and $L\mathbb{G}_n$ respectively, are isomorphic as $\mathrm{E}G$-algebras.
+or in other words $\psi + \psi^* = v \circ q$ for any morphism $v: q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. But this is the property that the map $u$ was supposed to satisfy uniquely, and thus it must be the only morphism $q \circ i \to \psi$ in $(\mathbb{G}_n \downarrow \mathrm{inv})$. Therefore $q \circ i$ is an initial object, and hence it is isomorphic in $(\mathbb{G}_n \downarrow \mathrm{inv})$ to any other initial object, such as $\eta$. It follows that the targets of these two maps, $\mathrm{coker}(\delta)$ and $L\mathbb{G}_n$ respectively, are isomorphic as $\mathrm{E}G$-algebras.
 \end{proof}
 
-It's worth noting that we have not given a method for actually taking coequalizers in $\mathrm{E}G\mathrm{Alg}_S$, and so \cref{coeq} doesn't immediately provide an explicit description of $L\mathbb{G}_n$. However, it does let us answer a lingering question about \cref{Zmor1}. Recall that we found that
-\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\mathbb{Z}^n} \end{eq*}
-but at the time it was not obvious which $\mathbb{Z}^n$ subgroup of ${\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{gp, ab}}$ this equation was refering to.  But now we have \cref{Qobj, coeq} to tell us how $q$ acts on objects, which allows us conclude the following:
+It's worth noting that we have not given a method for actually taking cokernels in $\mathrm{E}G\mathrm{Alg}_S$, and so \cref{coker} doesn't immediately provide an explicit description for the whole of $L\mathbb{G}_n$. However, it does offer us another way to extract partial information, like what we were doing in \cref{initialalgebra}. Consider \cref{Qobj}; now that we know that $\mathrm{coker}(\delta)$ is actually $L\mathbb{G}_n$, the statement of this proposition is just the same as that of \cref{Zobj}. But the proof of the former uses the ability of cokernels to preserve left adjoint functors, rather than any of the initial algebra and group completion properties that appear in the latter.
 
-\begin{prop} \label{identityquot}
+Of course, by \cref{coker} the fact that $q$ is a cokernel is equivalent to it being initial, and so while they may not look it at first glance, these two approaches are secretly the same. Thus from now on whenever we are trying to determine some aspect of $L\mathbb{G}_n$, we will make sure to take a look at both methods, just in case there are some properties of our free algebra which are more readily apparent from one description than another.
 
-\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\langle \, [\mathrm{id}_x] \, : \, x \in \mathrm{Ob}(L\mathbb{G}_n) \, \rangle} \end{eq*}
+\section{$L\mathbb{G}_n$ as a surjective cokernel}
 
+One immediate consequence our new cokernel perspective of $L\mathbb{G}_n$ is that, since left adjoint functor all preserve colimits, \cref{Obadj,concompadj} now both imply results about the partial surjectivity of this new map $q$. The former says that since $\mathrm{Ob}(q)$ is a cokernel map of monoids, and hence that every object of $L\mathbb{G}_n$ is the image under $q$ of some object of $\mathbb{G}_{2n}$; the latter says a similar thing for connected components. From this one might guess that $q$ is will just turn out to be a surjective map of $\mathrm{E}G$-algebras, and indeed this is the case. Moreover, much as \cref{Zobj} is an analogue of \cref{Gnobj}, the fact that $q$ is surjective on morphisms means that there will be a result analagous to \cref{Gnmapsaction} as well. That is, since every morphism of $\mathbb{G}_{2n}$ is an action morphism, and since $\mathrm{E}G$-algebra maps always send action morphisms to action morphisms, if $q$ is surjective then every morphism of $L\mathbb{G}_n$ is also an action morphism. 
+
+Unfortunately, we can not go about proving that $q$ is surjective on morphisms by a similar adjunction technique, since this best we have is the one from \cref{Moradj} and it will only tell us about the map $\mathrm{Mor}(q)^{\mathrm{gp}, \mathrm{ab}}$. However, there is a general result about the coequalisers of $\mathrm{E}G$-algebras that we can prove to get us around this.
+
+\begin{prop}\label{coeqsurj} Let $\phi, \phi' : X \to Y$ be a pair of parallel $\mathrm{E}G$-algebra maps, and $k: Y \to Z$ their coequalizer in $\mathrm{E}G\mathrm{Alg}_S$. If the monoid $\mathrm{Ob}(Z)$ is also a group, then the functor $k$ is surjective.
 \end{prop}
 \begin{proof}
-In the proof of \cref{Zmor1}, the $\mathbb{Z}^n$ term first appears when we form the quotient group for the inclusion
+We begin by mirroring the proof of \cref{Qobj}. We know that the functor $\mathrm{Ob} : \mathrm{E}G\mathrm{Alg}_S \to \mathrm{Mon}$ is a left adjoint, by \cref{Obadj}, and thus preserves all colimits. It follows that the monoid homomorphism $\mathrm{Ob}(k): \mathrm{Ob}(Y) \to \mathrm{Ob}(Z)$ is the coequaliser of the parallel pair $\mathrm{Ob}(\phi), \mathrm{Ob}(\phi') : \mathrm{Ob}(X) \to \mathrm{Ob}(Y)$ in $\mathrm{Mon}$, or in other words
+\begin{eq*} \mathrm{Ob}(Z) \quad = \quad \bigquotient{\mathrm{Ob}(Y)}{\sim}\end{eq*}
+where $\sim$ is the relation defined by
+\begin{eq*}\mathrm{Ob}(\phi)(y) \sim \mathrm{Ob}(\phi')(y), \quad \quad \quad a \sim a', b \sim b' \implies ab \sim a'b' \end{eq*}
+The map $\mathrm{Ob}(k): \mathrm{Ob}(Y) \to \mathrm{Ob}(Y)/\sim$ is then clearly surjective.
+
+Next, let $f: v \to w$ and $f' : w' \to v'$ be any two morphisms of the algebra $Y$ for which $k(f)$ and $k(f')$ are composable in $Z$. Since these maps are composable we know that $k(w)$ and $k(w')$ must be the same object of $Z$, and since $Z$ is a group we know this object has an inverse $k(w)^* = k(w')^*$. So by the surjectivity of $k$ we can find another object $y$ of $Y$ for which $k(y) = k(w)^*$. Using this, define the morphism $h: x \to x'$ to be the tensor product $f' \otimes \mathrm{id}_y \otimes f$. Then
+\begin{eq*} \begin{array}{rll}
+		k(h) & = & k(f' \otimes \mathrm{id}_y \otimes f) \\
+		& = & k(f') \otimes \mathrm{id}_{k(y)} \otimes k(f) \\
+		& = & k(f') \otimes \mathrm{id}_{k(w)^*} \otimes k(f)
+		\end{array}
+\end{eq*}
+But by \cref{tenscomp}, this is really just the composite $k(f') \circ k(f)$. Thus the set of morphisms of $Z$ which are images of morphisms of $Y$ is closed under composition. 
+
+So now consider $k(Y)$, the subcategory of $Z$ that contains every object $x'$ for which there exists $x$ in $Y$ with $k(x) = x'$, and every morphism $f'$ for which there exists $f$ in $Y$ with $q(f) = f'$. We know that the morphisms of $k(Y)$ are closed under composition, and so this is indeed a well-defined category. Moreover, for any collection of morphisms $f'_1, ..., f'_m$ of $k(Y)$ we'll have
+\begin{eq*} \begin{array}{rll}
+ 			\alpha_{Z}(g; f'_1, ..., f'_m) & = & \alpha_Z\big( \, g \, ; \, k(f_1), ..., k(f_m) \, \big) \\
+			& = & k \big( \, \alpha_{Y}(g; f_1, ..., f_m) \, \big) \\
+			& \in & k(Y) 
+		\end{array}
+\end{eq*}
+for some $f_1, ..., f_m$, since $k$ is a map of $\mathrm{E}G$-algebras. Thus $k(Y)$ is also a well-defined sub-$\mathrm{E}G$-algebra of $Z$. There is also clearly a canonical map $k': Y \to k(Y)$, the unique surjective map of $\mathrm{E}G$-algebras with the property that $k'(x) = k(x)$ for any object $x$ and $k'(f) = k(f)$ for any morphism $f$. If we denote by $i$ the evident inclusion of algebras $i: k(Y) \hookrightarrow Z$, then these maps are related by the fact that $i \circ k' = k$.
 \begin{eq*} \begin{tikzcd}
-\mathbb{Z}^n \quad = \quad {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} \ar[r, hookrightarrow] & (s \times t)(L\mathbb{G}_n)^{\mathrm{ab}} \times L\mathbb{G}_n(I, I) \quad = \quad {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}
+& & X \ar[dd, bend right, "\phi"'] \ar[dd, bend left, "\phi'"] & & \\
+& & & & \\
+& & Y \ar[ddll, "k'"'] \ar[dd, "k"] \ar[ddrr, "j"] & & \\ 
+& & & & \\
+k(Y) \ar[rr, hookrightarrow, "i"] & & Z \ar[rr, "u"] & & U
 \end{tikzcd} \end{eq*}
-This is just the image under the abelianisation functor $\mathrm{ab}: \mathrm{Grp} \to \mathrm{Ab}$ of the inclusion
-\begin{eq*} \begin{tikzcd}
-(s \times t)(L\mathbb{G}_n) \ar[r, hookrightarrow] & \mathrm{Mor}(L\mathbb{G}_n)
-\end{tikzcd} \end{eq*}
-given in \cref{stZmon}, which is in turn just the image under the algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ of whichever inclusion
-\begin{eq*} \begin{tikzcd}
-i \, : \, (s \times t)(\mathbb{G}_{2n}) \ar[r, hookrightarrow] & \mathrm{Mor}(\mathbb{G}_{2n})
-\end{tikzcd} \end{eq*}
-we decided to use in \cref{stGnmon}.
-
-Now, rememeber that making a choice for this inclusion amounted to choosing for each generator $(z, z')$ of $\mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$ an element $g_{z, z'}$ of $G(|z|)$ for which $\pi(g_{z, z'})(z) = z'$. Moreover, for each of the generators $z_1, ..., z_{2n}$ of the monoid $\mathbb{N}^{\ast 2n}$, the pair $(z_i, z_i)$ is definitely a generator of $\mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$. This is because there are no non-unit elements $a, b \in \mathbb{N}^{\ast 2n}$ with the property that $a \otimes b = z_i$, and hence no non-unit elements $(a, a'), (b, b') \in \mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$ for which $(a, a') \otimes (b, b') = (a \otimes b, a' \otimes b') = (z_i, z_i)$. Therefore, when we are making a choice for the inclusion $i$ we must at some point pick a sequence $g_{z_1, z_1}, ..., g_{z_{2n}, z_{2n}}$ of independent elements of $G(1)$. We would need to ask that their underlying permutations satisfy $\pi(g_{z_i, z_i})(z_i) = z_i$ as well, but this will always be true, since in this case $\pi$ is a map $\pi_1 : G(1) \to \mathrm{S}_1$, and $\mathrm{S}_1 = \{e\}$.
-
-However, notice that regardless of which $G$ we are using we are always free to choose each of the $g_{z_i, z_i}$ to be the identity element $e_1 \in G(1)$. If we do this then our inclusion $i$ will end up sending the $(z_i, z_i)$ to the elements $(e_1, z_i)$ of $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \cong \mathrm{Mor}(\mathbb{G}_{2n})$, which correspond to the identity morphisms $\mathrm{id}_{z_i}$ of $\mathbb{G}_{2n}$.
-\begin{eq*} \begin{array}{rrrll}
-		i & : & (s \times t)(\mathbb{G}_{2n}) & \hookrightarrow & \mathrm{Mor}(\mathbb{G}_{2n}) \\
-		& : & (z_i, z_i) & \mapsto & \mathrm{id}_{z_i}
-		\end{array}
-\end{eq*}
-Working our way back towards the statement of \cref{Zmor1} again, we then have
-\begin{eq*} \begin{array}{rrrll}
-		q(i) & : & (s \times t)(L\mathbb{G}_n) & \hookrightarrow & \mathrm{Mor}(L\mathbb{G}_n) \\
-		& : & \big( \, q(z_i), q(z_i) \, \big) & \mapsto & q(\mathrm{id}_{z_i}) \\
-		& & & & \\
-		\implies \quad q(i) & : & (z_i, z_i) & \mapsto & \mathrm{id}_{z_i} \\
-		& & (z^*_i, z^*_i) & \mapsto & \mathrm{id}_{z^*_i} \\
-		& & & & \\
-		q(i)^{\mathrm{ab}} & : & {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} & \hookrightarrow & {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}} \\
-		& : & [ \, (z_i, z_i) \, ] & \mapsto & [\mathrm{id}_{z_i}] \\
-		& : & [ \, (z^*_i, z^*_i) \, ] & \mapsto & [\mathrm{id}_{z^*_i}] \\
-		& & & & \\
-		\implies q(i)^{\mathrm{ab}} & : & \mathbb{Z}^n & \hookrightarrow & {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}} \\
-		& : & z_i & \mapsto & [\mathrm{id}_{z_i}] \\
-		& : & z^*_i & \mapsto & [\mathrm{id}_{z^*_i}] \\
-		\end{array}
-\end{eq*}
-Therefore the particular $\mathbb{Z}^n$ that we are quotienting out of $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{ab}}$ is the one generated by the equivalence classes of the identity maps $\mathrm{id}_{z_i}, \mathrm{id}_{z^*_i}$ under abelianisation. But since $\mathrm{Ob}(L\mathbb{G}_n) = \mathrm{Z}^{\ast n}$ is generated by the objects $z_i, z^*_i$, and
-\begin{eq*} [\mathrm{id}_{x}] \otimes [\mathrm{id}_{y}] \, = \, [\mathrm{id}_{x} \otimes \mathrm{id}_{y}] \, = \, [\mathrm{id}_{x \otimes y}] \end{eq*}
-the group generated by the $[\mathrm{id}_{z_i}], [\mathrm{id}_{z^*_i}]$ will just contain the equivalence classes for every identity morphism of $L\mathbb{G}_n$. That is, we will have
-\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\langle \, [\mathrm{id}_x] \, : \, x \in \mathrm{Ob}(L\mathbb{G}_n) \, \rangle} \end{eq*}
-as required.
-\end{proof}
-
-\section{$L\mathbb{G}_n$ as a reflexive coequalizer}
-
-Since left adjoint functor preserve colimits, \cref{Obadj,concompadj} both imply results about the partial surjectivity of this new map $q$. The former says that since $\mathrm{Ob}(q)$ is a coequalizer map of monoids, and hence that every object of $L\mathbb{G}_n$ is the image under $q$ of some object of $\mathbb{G}_{2n}$; the latter says a similar thing for connected components. From this one might guess that $q$ is will just turn out to be a surjective map of $\mathrm{E}G$-algebras, and indeed this is the case. Moreover, much as \cref{Zobj,Zconcomp} are analogues of \cref{Gnobj,Gnconcomp} respectively, the fact that $q$ is surjective on morphisms means that there is a result analagous to \cref{Gnmapsaction} as well. That is, since every morphism of $\mathbb{G}_{2n}$ is an action morphism, and since $\mathrm{E}G$-algebra maps always send action morphisms to action morphisms, if $q$ is surjective then every morphism of $L\mathbb{G}_n$ is also an action morphism. 
-
-However, the proof of this is not so simple. Unfortunately, we can not go about proving that $q$ is surjective on morphisms by using the adjunction from \cref{Moradj}, since this will only tell us about the map $\mathrm{Mor}(q)^{gp, ab}$. Without this, it is not obvious how the morphisms of some algebras should be related to the morphisms of their coequalizer in this way. In particular, for it to make sense that $q$ is surjective, we would need the image of $q$ to be closed under composition, since it is supposed to be the whole algebra $L\mathbb{G}_n$. Again by \cref{Gnmapsaction}, this is equivalent to saying that the set of all action morphisms of $L\mathbb{G}_n$ would have to be closed under composition, a statement which is not at all obvious. In the case of $\mathbb{G}_{2n}$, we know that the action morphism are closed because maps $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, $\alpha(g'; \mathrm{id}_{x'_1}, ..., \mathrm{id}_{x'_m})$, $x_i, x'_i \in \{ z_1, ..., z_{2n} \}$ are composable only if the target of the first is equal to the source of the second, and hence
-\begin{eq*}\begin{array}{rrll}
-		& x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)} & = & x'_1 \otimes ... \otimes x'_m, \quad \quad \, x_i, x'_i \in \{ z_1, ..., z_{2n} \} \\
-		\implies & x_{\pi(g^{-1})(i)} & = & x'_i, \quad \quad \quad \quad \quad \quad \quad 1 \le i \le m \\
-		\implies & \alpha(gg'; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) & = & \alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) \circ \alpha(g'; \mathrm{id}_{x'_1}, ..., \mathrm{id}_{x'_m})
-		\end{array}
-\end{eq*}
-However, in $L\mathbb{G}_n$ this line of reasoning does not work, because for example
-\begin{eq*} z_1 \otimes z^*_1 \quad = \quad I \quad = \quad z_2 \otimes z^*_2 \end{eq*}
-but this does not imply that $z_1 = z_2$. 
-
-The key to soving this problem is noticing that the maps $\delta$ and $\zeta$ form a reflexive pair --- parallel maps which share a right-inverse.
-
-\begin{lem} \label{sect} Let $\iota: \mathbb{G}_{2n} \to \mathbb{G}_{4n}$ be the inclusion defined on generators by $z_i \mapsto z_i$. Then $\iota$ is a right-inverse of both $\delta$ and $\zeta$. \end{lem} 
-\begin{proof}
-For $1 \le i \le 2n$,
-\begin{eq*}\begin{array}{rcccl}
-			\delta \iota(z_i) & = & \delta(z_i) & = & z_i \\
-			\zeta \iota(z_i) & = & \zeta(z_i) & = & z_i \\
-			& & & & \\
-			\implies \quad \delta \circ \iota & = & \mathrm{id}_{\mathbb{G}_{2n}} & = & \zeta \circ \iota
-		\end{array}
-\end{eq*}
-\end{proof}
-
-In other words, $q$ is a reflexive coequalizer. Using this property of $q$, we will eventually be able to prove that the image of $q$ is closed under composition. First though, we need some intermediate results.
-
-\begin{defn}\label{decompdef} Let $x$ be an object of $\mathbb{G}_m$ for some $m \in \mathbb{N}$, and hence an element of $\mathbb{N}^{\ast m}$, the free monoid on $m$ generators $\{ z_1, ..., z_m \}$. Then by the definition of the free product of monoids, $x$ will have a unique decomposition of the form
-\begin{eq*} x \, = \, \bigotimes_{i=1}^{|x|} g(x, i) \end{eq*}
-where the upper bound $|x|$ is the length of the element $x$ as in \cref{lengthdef}, and each $g(x, i)$ is a generator of one of the $m$ copies of $\mathbb{N}$, so $g(x, i) \in \{ z_1, ..., z_m \}$.
-\end{defn}
-
-Note that this decomposition shows that the length of $x$ is just the sum of all of the coordinates of its connected component, $[x] \in \mathbb{N}^m$:
-\begin{lem}
-\begin{eq*} |x| \, = \, \sum_{i = 1}^{m} [x]_i \end{eq*}
-\end{lem}
-\begin{proof}
-For any generator $z_j$ its connected component has coordinates
-\begin{eq*} [z_j]_i \, = \, \begin{cases}
-					1 & \text{if} \quad i = j \\
-					0 & \text{otherwise}
-				\end{cases}
-\end{eq*}
-and hence
-\begin{eq*} \begin{array}{rll}
-		\sum_{i = 1}^{m} [x]_i & = & \sum_{i = 1}^{m} \left[ \, \bigotimes_{j=1}^{|x|} g(x, j) \, \right]_i \\
-		& = & \sum_{i = 1}^{m} \sum_{j=1}^{|x|} [ \, g(x, j) \, ]_i \\
-		& = & \sum_{j=1}^{|x|} \sum_{i = 1}^{m} [ \, g(x, j) \, ]_i \\
-		& = & \sum_{j=1}^{|x|} 1 \\
-		& = & |x|	
-		\end{array}
-\end{eq*}
-\end{proof}
-
-\begin{prop}\label{qsurj1} Let $w$ be an object of $\mathbb{G}_{2n}$. Then there exist objects $w_1, ..., w_k$ in $\mathbb{G}_{2n}$ and $u_1, ..., u_k$ in $\mathbb{G}_{4n}$, for some value of $k \in \mathbb{N}$, such that
-\begin{eq*} w_1 \, = \, w, \quad \quad \zeta(u_{i-1}) \, = \, w_i \, = \, \delta(u_i), \quad \quad u_k \, = \, \iota(w_k) \end{eq*}
-for $1 \le i \le k$, and for any object $u$ of $\mathbb{G}_{4n}$,
-\begin{eq*} \delta(u) \, = \, w_k \quad \implies \quad u \, = \, u_k \end{eq*}
-\end{prop}
-\begin{proof}
-From \cref{lengthdef,qdef}, we know that for any generator $z_i$ of $\mathbb{G}_{4n}$,
-\begin{eq*}\begin{array}{rllll}
-				 | \delta(z_i) |  & = & \left. \begin{cases}
-								1 & \text{if} \quad 1 \le i \le 2n \\
-								2 & \text{if} \quad 2n+1 \le i \le 4n
-							\end{cases} \right \rbrace & \ge 1 \\
-				& & \\
-				| \zeta(z_i) |  & = & \left. \begin{cases}
-								1 & \text{if} \quad 1 \le i \le 2n \\
-								0 & \text{if} \quad 2n+1 \le i \le 4n
-							\end{cases} \right \rbrace & \le 1 
-		\end{array}
-\end{eq*}
-Also these lengths are additive across tensor products, since $| \, \_ \, |$ is a monoid homomorphism $\mathbb{G}_{2n} \to \mathbb{N}$. Thus for any object $u$ in $\mathbb{G}_{4n}$, we can conclude that
-\begin{eq*}\begin{array}{rllllllll}
-			| \delta(u) | & = & | \, \delta\big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \, | & = & | \, \mathlarger{\bigotimes_{i=1}^{|u|} \delta \big( \, g(u, i) \, \big)} \, | & = & \mathlarger{\sum_{i=1}^{|u|} | \, \delta \big( \, g(u, i) \, \big) \, |} & \ge & |u| \\
-			| \zeta(u) | & = & | \, \zeta\big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \, | & = & | \, \mathlarger{\bigotimes_{i=1}^{|u|} \zeta \big( \, g(u, i) \, \big)} \, | & = & \mathlarger{\sum_{i=1}^{|u|} | \, \zeta \big( \, g(u, i) \, \big) \, |} & \le & |u|
-		\end{array}
-\end{eq*}
-Also, since the only generators that have $| \delta(z_i) | = | \zeta(z_i) | = 1$ are those from the $\mathbb{G}_{2n}$ subalgebra associated with $\iota$, the inequality above becomes an equality if and only if $u$ is in the image of $\iota$. That is,
-\begin{eq*} | \zeta(u) | \, = \, |u| \, = \, |\delta(u)|  \quad \iff \quad \exists \, v \in \mathbb{N}^{\ast 2n} \, : \, u \, = \, \iota(v) \end{eq*}
-
-Next, consider the set
-\begin{eq*} \delta^{-1}(w) \, = \, \{ \, u \in \mathrm{N}^{\ast 4n} : \delta(u) = w \, \} \end{eq*}
-of all objects in $\mathbb{G}_{4n}$ which $\delta$ sends to $w$. This set is always nonempty, since by \cref{sect} $\iota$ is a right-inverse of $\delta$:
-\begin{eq*} \delta \iota(w) \, = \, w \quad \implies \quad \iota(w) \in \delta^{-1}(w) \end{eq*}
-Moreover, $\iota(w)$ is the only element of $\delta^{-1}(w)$ which can be expessed as $\iota(v)$ for some object $v$ in $\mathbb{G}_{2n}$, because
-\begin{eq*} \delta \big( \, \iota(v) \, \big) \, = \, w \quad \implies v \, = \, w \end{eq*}
-
-With all of this now in place, we can begin constructing the sequences $w_1, ..., w_k$ and $u_1, ..., u_k$. Start by setting $w_1 = w$ and $i=1$, then apply the following algorithm:
-\begin{enumerate}
-\item If $\delta^{-1}(w_i)$ is just the set $\{ \iota(w_i) \}$, choose $u_i = \iota(w_i)$, set $k$ to be the current value of $i$, and terminate.
-\item Otherwise, choose $u_i$ to be any element of $\delta^{-1}(w_i)$ other than $\iota(w_i)$.
-\item Set $w_{i+1} = \zeta(u_i)$.
-\item Increase the value of $i$ by 1, then return to step 1.
-\end{enumerate}
-By design, none of the $u_i$ produced by this process can be expressed as $u_i = \iota(v)$ for some $v$ in $\mathbb{G}_{2n}$, with the possible exception of $u_k$ if the algorithm terminates. This is because $\iota(w_i)$ is the only element of $\delta^{-1}(w_i)$ that can be expressed that way, and the above process will terminate the first time it has to pick $u_i = \iota(w_i)$, at which point $i$ is set equal to $k$. Therefore, for any $i \neq k$, we will have the following strict inequalities:
-\begin{eq*} |w_{i+1}| \, = \, | \zeta(u_i) | \, < \, |u_i| \, < \, |\delta(u_i)| \, = \, |w_i| \end{eq*}
-That is, the $w_i$ generated by this algorithm form a sequence with strictly decreasing length. However, it is impossible to have a infinite sequence of strictly decreasing natural numbers, and hence we can be sure that this process will terminate at some finite $k$. 
-
-But in order for the algorithm to have terminate, it must be the case that 
-\begin{eq*} \delta^{-1}(w_k) \, = \, \{ \iota(w_k) \} \end{eq*}
-and hence
-\begin{eq*} \delta(u) \, = \, w_k \quad \implies \quad u \, = \, \iota(w_k) \, = \, u_k \end{eq*}
-Thus the sequences $w_1, ..., w_k$ and $u_1, ..., u_k$ satisfy all of the conditions in the statement of the lemma.
-\end{proof}
-
-The intuition behind \cref{qsurj1} is that we are successively removing parts of the object $w$, without changing its image under $q$. The map $\delta$ sends $z_{2n+i} \mapsto z_i \otimes z_{n+i}$ and $z_{3n+i} \mapsto z_{n+1} \otimes z_i$ while $\zeta$ sends these all to $I$, and so for any $u$ in $\mathbb{G}_{4n}$ the object $\zeta(u)$ will look like $\delta(u)$ except missing some number of $z_i \otimes z_{n+i}$ or $z_{n+1} \otimes z_i$ substrings. But since $q$ sends $z_{n+i} \mapsto z_i^*$, these are exactly the sort of omissions which the coequaliser doesn't care about. If we repeat this process then it will eventually terminate at $u_k = \iota(w_k)$, so we really have a method for removing \emph{all} of the relevent substrings from objects of $\mathbb{G}_{2n}$. In other words, $w_k$ has the smallest possible length while still having $q(w_k) = q(w)$. In fact, we will show that it is the unique shortest object of $\mathbb{G}_{2n}$ with this property.
-
-\begin{defn}\label{Zlengthdef} Let $x$ be an object of $L\mathbb{G}_m$ for some $m \in \mathbb{N}$, and hence an element of $\mathbb{Z}^{\ast m}$, the free monoid on $m$ invertible generators $\{ z_1, ..., z_m \}$. Then as in \cref{decompdef} we can use the definition of the free product of monoids to write $x$ uniquely in the form
-\begin{eq*} x \, = \, \bigotimes_{i=1}^{|x|} g(x, i) \end{eq*}
-This time each $g(x, i)$ is either a generator of one of the copies of $\mathbb{N}$ or the inverse of a generator, $g(x, i) \in \{ z_1, ..., z_m, z_1^*, ..., z_m^* \}$, and for any $1 \le i < |x|$ we will always have $g(x, i+1) \neq g(x, i)^*$. As before, we will call the upper bound $|x|$ of this tensor product the \emph{length} of the element $x$. 
-\end{defn}
-
-\begin{prop}\label{qsurj2} Let $w$, $w'$ be objects of $\mathbb{G}_{2n}$ such that $q(w) = q(w')$. If $w_1, ..., w_k$ and $u_1, ..., u_k$ are sequences generated from $w$ via \cref{qsurj1}, and likewise $w'_1, ..., w'_{k'}$ and $u'_1, ..., u'_{k'}$ from $w'$, then $w_k = w'_{k'}$ and $u_k = u'_{k'}$.
-\end{prop}
-\begin{proof}
-Consider the decomposition of the object $w_k \in \mathbb{N}^{\ast 2n}$ as in \cref{decompdef}. Assume, for the sake of contradiction, that there exist $1 \le j < |w_k|$ and $1 \le m \le n$ such that
-\begin{eq*} g(w_k, j) \, = \, z_m, \quad \quad g(w_k, j+1) \, = \, z_{n+m} \end{eq*}
-Then we can use $j, m$ to contruct an element $u \in \mathbb{N}^{\ast 4n}$, defined by
-\begin{eq*} |u| \, = \, |w| - 1, \quad \quad g(u, i) \, = \, \begin{cases}
-									\iota \big( \, g(w_k, i) \, ) & \text{if} \quad 1 \le i < j \\
-									z_{2n + m} & \text{if} \quad i = j \\
-									\iota \big( \, g(w_k, i+1) \, ) & \text{if} \quad j < i \le |u|
-								\end{cases}
-\end{eq*}
-This $u$ will then have the property that
-\begin{eq*} \begin{array}{rll}
-			\delta(u) & = & \delta \big( \, \mathlarger{\bigotimes_{i=1}^{|u|} g(u, i)} \, \big) \\
-			& = & \mathlarger{\bigotimes_{i=1}^{|u|} \delta \big( \, g(u, i) \, \big)} \\
-			& = & \mathlarger{\bigotimes_{i=1}^{j-1} \delta \iota \big( \, g(w_k, i) \, )} \otimes \delta(z_{2n + m}) \otimes \mathlarger{\bigotimes_{i=j+1}^{|u|} \delta \iota \big( \, g(w_k, i+1) \, \big)} \\
-			& = & \mathlarger{\bigotimes_{i=1}^{j-1} g(w_k, i)} \otimes g(w_k, j) \otimes g(w_k, j+1) \otimes \mathlarger{\bigotimes_{i=j+2}^{|u|+1} g(w_k, i)} \\
-			& = & w_k
-		\end{array}
-\end{eq*}
-But this is impossible, since by \cref{qsurj1} $u_k$ is the only object of $\mathbb{G}_{4n}$ whose image under $\delta$ is $w_k$, and this $u$ we have constructed is manifestly not $w_k$. Thus we can conclude that there are no values of $j$ and $m$ for which
-\begin{eq*} g(w_k, j) \, = \, z_m, \quad \quad g(w_k, j+1) \, = \, z_{n+m} \end{eq*}
-An analogous line of reasoning --- using $z_{3n + m}$ rather than $z_{2n + m}$ in the definition of $u$ --- demonstrates that there are also no $j, m$ with
-\begin{eq*} g(w_k, j) \, = \, z_{n+m}, \quad \quad g(w_k, j+1) \, = \, z_m \end{eq*}
-As a result, for all $1 \le i < |w_k|$
-\begin{eq*} q \big( \, g(w_k, i+1) \, \big) \, \neq \, q \big( \, g(w_k, i) \, \big)^* \end{eq*}
- and this combined with the fact that
-\begin{eq*} \mathlarger{\bigotimes_{i=1}^{|w_k|} q \big( \, g(w_k, i) \, \big)} \, = \, q \big( \, \mathlarger{\bigotimes_{i=1}^{|w_k|} g(w_k, i)} \, \big) \, = \, q(w_k) \end{eq*}
-shows that the unique decomposition of $q(w_k)$ as in \cref{Zlengthdef} is given by
-\begin{eq*} |q(w_k)| \, = \, |w_k|, \quad \quad g\big( \, q(w_k), i \, \big) \, = \, q \big( \, g(w_k, i) \, \big) \end{eq*}
-
-Next, let $s$ be a function defined by
-\begin{eq*} \begin{array}{rllll}
-			s & : & \mathbb{Z}^{\ast n} & \to & \mathbb{N}^{\ast 2n} \\
-			& : & z_i & \mapsto & z_i \\
-			& : & z_i^* & \mapsto & z_{n+i} \\
-			& : & x & \mapsto & \bigotimes_{i=1}^{|x|} s \big( \, g(x, i) \, \big)
-		\end{array}
-\end{eq*}
-Then for $1 \le i \le n$,
-\begin{eq*} sq(z_i) \, = \, s(z_i) \, = \, z_i, \quad \quad sq(z_{n+i}) \, = \, s(z_i^*) \, = \, z_{n+i} \end{eq*}
-and so it follows that
-\begin{eq*} \begin{array}{rll}
-			sq(w_k) & = & \mathlarger{\bigotimes_{i=1}^{|w_k|} s \Big( \, g\big( \, q(w_k), i \, \big) \, \Big)} \\
-			& = & \mathlarger{\bigotimes_{i=1}^{|w_k|} sq \big( \, g(w_k, i) \, \big)} \\
-			& = & \mathlarger{\bigotimes_{i=1}^{|w_k|} g(w_k, i)} \\
-			& = & w_k
-		\end{array}
-\end{eq*}
-
-Finally, notice that the exact same logic as we've used above will also work for $w'_{k'}$, so that $sq(w'_{k'}) = w'_{k'}$. Therefore,
-\begin{eq*} \begin{array}{rll}
-			w_k & = & sq(w_k) \\
-			& = & sq\zeta(u_{k-1}) \\
-			& = & sq\delta(u_{k-1}) \\
-			& = & sq(w_{k-1}) \\
-			& \vdots & \\
-			& = & sq(w) \\
-			& = & sq(w') \\
-			& = & sq\delta(u'_1) \\
-			& = & sq\zeta(u'_1) \\
-			& = & sq(w'_2) \\
-			& \vdots & \\
-			& = & sq(w'_{k'}) \\
-			& = & w'_{k'}			
-		\end{array}
-\end{eq*}
-as required.
-\end{proof}
-
-Next, we need to take things one step further. We've already shown that we can find an object $w_k$ which is like $w$ but with all $z_i \otimes z_{n+i}$ and $z_{n+i} \otimes z_i$ substrings removed. In order to prove the closure of $\mathrm{im}(q)$, we will need to construct a morphism of $\mathbb{G}_{2n}$ which witnesses this removal --- that is, a map $h: w \to v \otimes w_k$ where $v$ is made up of all of the $z_i \otimes z_{n+i}$ that need to be taken out of $w$ to make $w_k$. Likewise, the fact that $q(w_k) = q(w)$ will be embodied by the fact that this $h$ becomes an identity morphism under $q$. This map $h$ will need to be built out of smaller pieces, using the sequence $u_1, ..., u_k$ and the following proposition:
-
-\begin{prop}\label{qsurj3} Let $u$ be an object of $\mathbb{G}_{4n}$. Then there exists another object $x$ in $\mathbb{G}_{4n}$ and a morphism $h: \delta(u) \to \delta(x) \otimes \zeta(u)$ in $\mathbb{G}_{2n}$ such that $q(h) = \mathrm{id}_{q\delta(u)}$.
-\end{prop}
-\begin{proof}
-First, consider the object $\iota \zeta(u) \in \mathbb{N}^{\ast 4n}$. Because $\zeta$ acts by sending the generator $z_{2n+i}$ to $I$ for each $1 \le i \le n$, and since $\iota$ is an inclusion, the connected component $[\iota \zeta(u)] \in \mathbb{N}^{4n}$ will have $i$th coordinate
-\begin{eq*} 
-[ \, \iota \zeta(u) \, ]_i \, = \, [ \, \zeta(u) \, ]_i \, = \, 
-									\begin{cases}
-										[u]_i & \text{if} \quad 1 \le i \le 2n \\
-										0 & \text{if} \quad 2n+1 \le i \le 4n \\
-									\end{cases}
-\end{eq*}
-Intuitively, $\iota \zeta(u)$ is what would be left if we were to remove all of the $z_{2n+i}$ generators from $u$. Conversely, the object $x \in \mathbb{G}_{4n}$ defined as
-\begin{eq*} x \, = \, {z_{2n+1}}^{\otimes [u]_{2n+1}} \otimes ... \otimes {z_{4n}}^{\otimes [u]_{4n}} \end{eq*}
-is like a reordered list of all of the $z_{2n+i}$ that we would have to remove from $u$ in order to make $\iota \zeta(u)$, and will have the property that
-\begin{eq*} 
-[x]_i \, = \, 
-		\begin{cases}
-			0 & \text{if} \quad 1 \le i \le 2n \\
-			[u]_i  & \text{if} \quad 2n+1 \le i \le 4n \\
-		\end{cases}
-\end{eq*}
-Thus the object $x \otimes \iota \zeta(u)$ is simply a reordered version of $u$, or more concretely
-\begin{eq*} 
-[ \, x \otimes \iota \zeta(u) \, ]_i \, = \, [x]_i + [ \, \iota \zeta(u) \, ]_i \, = \, \left.
-												\begin{cases}
-													0 + [u]_i & \text{if} \quad 1 \le i \le 2n \\
-													[u]_i + 0 & \text{if} \quad 2n+1 \le i \le 4n \\
-												\end{cases}
-\right \rbrace \, = \, [u]_i
-\end{eq*}
-for all $i$, and hence $u$ and $x \otimes \iota \zeta(u)$ are part of the same connected component.
-
-Knowing this, we can now choose an arbitrary morphism $f: u \to x \otimes \iota \zeta(u)$ from $\mathbb{G}_{4n}$. The map $\zeta(f)$ will then have source $\zeta(u)$ and target
-\begin{eq*} \zeta \big( \, x \otimes  \iota \zeta(u) \, \big) \, = \, \zeta(x) \otimes \zeta \iota \zeta (u) \, = \, \zeta(u) \end{eq*}
-because $\iota$ is a right inverse of $\zeta$, and $x$ was defined in such a way that $\zeta(x) = I$. It follows that $\iota \zeta(f)$ is a map $\iota \zeta(u) \to \iota \zeta(u)$, and therefore it is possible to form the composite
-\begin{eq*} \begin{tikzcd}
-u \ar[r, "f"] & x \otimes \iota \zeta(u) \ar[rrr, "\mathrm{id}_x \, \otimes \, \iota \zeta(f)^{-1}"] & & & x \otimes \iota \zeta(u)
-\end{tikzcd} \end{eq*}
-which we'll call $g$. Effectively, what $g$ does is to first apply the map $f$, and then `undo' its effect on the generators $z_1, ..., z_{2n}$, while leaving the $z_{2n+1}, ..., z_{3n}$ in $x$ untouched. It should not be surprising then that if we take the image of $g$ under $\zeta$, we get
-\begin{eq*} \begin{array}{rll}
-		\zeta(g) & = & \zeta \Big( \, \big( \, \mathrm{id}_x \otimes \iota \zeta(f)^{-1} \, ) \circ f \, \Big) \\
-		& = & \big( \, \zeta( \mathrm{id}_x ) \otimes \zeta \iota \zeta(f)^{-1} \, \big) \circ \zeta(f) \\
-		& = & \zeta(f)^{-1} \circ \zeta(f) \\
-		& = & \mathrm{id}_{\zeta(u)}
-		\end{array}
-\end{eq*}
-
-Finally, consider the morphism $\delta(g)$. This has source $\delta(u)$ and target
-\begin{eq*} \delta \big( \, x \otimes \iota \zeta(u) \, \big) \, = \, \delta(x) \otimes \delta \iota \zeta (u) \, = \, \zeta(u) \end{eq*}
-because $\iota$ is also the right inverse of $\delta$, and so we can choose $\delta(g)$ to be the map $h$ that we are looking for. If we do, then since $q$ is the coequalizer of $\delta$ and $\zeta$ we'll have
-\begin{eq*} q(h) \, = \, q \delta(g) \, = \, q \zeta(g) \, = \, q(\mathrm{id}_{\zeta(u)}) \, = \, \mathrm{id}_{q \zeta(u)} \, = \, \mathrm{id}_{q \delta(u)} \end{eq*}
-as required.
-\end{proof}
-
-Hopefully it is clear that nothing in the proof of \cref{qsurj3} really depended on the order in which we tensored together $\delta(x) \otimes \zeta(u)$. Consequently, the same basic proof will also work when this order is reversed:
-
-\begin{cor}\label{qsurj4} Let $u$ be an object of $\mathbb{G}_{4n}$. Then there exists another object $x$ in $\mathbb{G}_{4n}$ and a morphism $h: \delta(u) \to \zeta(u) \otimes \delta(x)$ in $\mathbb{G}_{2n}$ such that $q(h) = \mathrm{id}_{q\delta(u)}$.
-\end{cor}
-
-Now we finally have enough results in place to show that the image of $q$ is closed under composition.
-
-\afterpage{
-\begin{figure}[ht]
-\begin{eq*} \begin{tikzcd}
-\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \, \, v \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd, "f \, \otimes \, \mathrm{id}"'] \\
-\\
-\quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \, \, w \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd, "h_1 \, \otimes \, \mathrm{id}"'] \\
-\\
-\quad \quad \quad \quad \quad \quad \quad \delta(x_1) \otimes w_2 \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd,  "\mathrm{id} \, \otimes \, h_2 \, \otimes \, \mathrm{id}"'] \\
-\\
-\quad \quad \quad \delta(x_1) \otimes \delta(x_2) \otimes w_3 \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd,  "\mathrm{id} \, \otimes \, h_3 \, \otimes \, \mathrm{id}"'] \\
-\\
-\vdots \ar[dd, "\mathrm{id} \, \otimes \, h_{k-1} \, \otimes \, \mathrm{id}"'] \\
-\\
-\, \delta(x_1) \otimes ... \otimes \delta(x_{k-1}) \otimes w_k \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd, equals] \\
-\\
-\, \delta(x_1) \otimes ... \otimes \delta(x_{k-1}) \otimes w'_{k'} \otimes \delta(x'_{k'-1}) \otimes ... \otimes \delta(x'_1) \ar[dd, "\mathrm{id} \, \otimes \, h'_{k'-1} \, \otimes \, \mathrm{id}"] \\
-\\
-\vdots \ar[dd, "\mathrm{id} \, \otimes \, h'_1"] \\
-\\
-\delta(x_1) \otimes ... \otimes \delta(x_{k-1}) \otimes w' \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad \ar[dd, "\mathrm{id} \, \otimes \, f'"] \\
-\\
-\delta(x_1) \otimes ... \otimes \delta(x_{k-1}) \otimes v' \quad \quad \quad \quad \quad \quad \quad \quad \quad \quad
-\end{tikzcd} \end{eq*}
-\caption{The composite $h$ from \cref{qsurj5} }
-\label{composite}
-\end{figure}
-\clearpage
-}
-
-\begin{prop}\label{qsurj5} Let $f: v \to w$ and $f' : w' \to v'$ be two morphisms of $\mathbb{G}_{2n}$ such that $q(f)$ and $q(f')$ are composable. Then there exist objects $y, y'$ and a morphism $h: y \to y'$ in $\mathbb{G}_{2n}$ such that $q(h) = q(f') \circ q(f)$.
-\end{prop}
-\begin{proof}
-To begin, we'll use \cref{qsurj1} to contruct from $w$ the sequences of objects $w_1, ..., w_k$ in $\mathbb{G}_{2n}$ and $u_1, ..., u_k$ in $\mathbb{G}_{4n}$, for some $k \in \mathbb{N}$. These have
-\begin{eq*} w_1 \, = \, w, \quad \quad \zeta(u_{i-1}) \, = \, w_i \, = \, \delta(u_i), \quad \quad \iota(w_k) \, = \, u_k \end{eq*}
-Then we can apply \cref{qsurj3} to each $u_i$ in turn, producing a new sequence of object $x_1, ..., x_{k-1}$ in $\mathbb{G}_{4n}$ and morphisms 
-\begin{eq*} \begin{array}{rrrll}
-			h_i & : & \delta(u_i) & \to & \delta(x_i) \otimes \zeta(u_i) \\
-			& : & w_i & \to & \delta(x_i) \otimes w_{i+1}
-		\end{array}
-\end{eq*}
-for each $1 \le i < k$, with the properties
-\begin{eq*} \zeta(x_i) \, = \, I, \quad \quad \quad q(h_i) \, = \, \mathrm{id}_{q(w_i)} \end{eq*}
-We can do a similar thing with $w'$, first using \cref{qsurj1} to get sequences $w'_1, ..., w'_{k'}$ and $u'_1, ..., u'_{k'}$ with the appropriate properties, but this time applying \cref{qsurj4} to find objects $x'_1, ..., x'_{k'-1}$ and morphisms $h'_i: w'_i \to w_{i+1} \otimes \delta(x_i)$. Moreover, since the morphisms $q(f): q(v) \to q(w)$ and $q(f') : q(w') \to q(v')$ arecomposable, it must be the case that $q(w)$ and $q(w')$ are equal.
-By \cref{qsurj2}, this means that $w_k = w'_{k'}$
-
-Putting all of this together, we can form the composite morphism shown in \cref{composite}. Here the subscripts of the identity maps have been suppressed for clarity. This morphism will be our choice of $h: y \to y'$. To complete the proof, notice that 
-\begin{eq*} \begin{array}{rrrcccccccl}
-			& & q\delta(x_i) & = & q \zeta(x_i) & = & I & = & q \zeta(x'_i) & = & q\delta(x'_i) \\
-			\implies & & q( \mathrm{id}_{\delta(x_i)} ) & = & \mathrm{id}_{q\delta(x_i)} & = & \mathrm{id}_I & = & \mathrm{id}_{q\delta(x'_i)} & = & q( \mathrm{id}_{\delta(x'_i)} )
-		\end{array}
-\end{eq*}
-for each value of $i$, and so when we take the image of the composite $h$ under $q$ all of the $\mathrm{id}_{\delta(x_i)}$ and $\mathrm{id}_{\delta(x'_i)}$ terms will cancel out, leaving just
-\begin{eq*} \begin{array}{rll}
-			q(h) & = & q(f') \circ q(h'_1) \circ ... \circ q(h'_{k'-1}) \circ q(h_{k-1}) \circ ... \circ q(h_1) \circ q(f) \\
-			& = & q(f') \circ \mathrm{id}_{q(w)} \circ ... \circ \mathrm{id}_{q(w)} \circ \mathrm{id}_{q(w)} \circ ... \circ \mathrm{id}_{q(w)} \circ q(f) \\
-			& = &  q(f') \circ q(f)
-		\end{array}
-\end{eq*}
-as required.
-\end{proof}
-
-Finally, we can return to how we began this section. We wished to show that the map $q$ is surjective, and from this conclude that all morphisms of $L\mathbb{G}_n$ are action morphisms. However, it was not obvious that such a statement would even make sense, since the image of $q$ would consist entirely of morphisms of the form $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, and these are not a priori closed under composition. But with \cref{qsurj5} we now know that the image of $q$ is indeed closed, and we can immediately use this to demonstrate surjectivity.
-
-\begin{prop}\label{qsurj} The quotient map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ is surjective.
-\end{prop}
-\begin{proof}
-Consider $q(\mathbb{G}_{2n})$, the subcategory of $L\mathbb{G}_n$ that contains every object $x'$ for which there exists $x$ in $\mathbb{G}_{2n}$ with $q(x) = x'$, and every morphism $f'$ for which there exists $f$ in $\mathbb{G}_{2n}$ with $q(f) = f'$. By \cref{qsurj5} the morphisms of $q(\mathbb{G}_{2n})$ are closed under composition, and so this is a well-defined category. Moreover, since $q$ is a map of $\mathrm{E}G$-algebras then  for any morphisms $f'_1, ..., f'_m$ of $q(\mathbb{G}_{2n})$ we'll have
-\begin{eq*} \begin{array}{rll}
- 			\alpha_{L\mathbb{G}_n}(g; f'_1, ..., f'_m) & = & \alpha_{L\mathbb{G}_n}\big( \, g \, ; \, q(f_1), ..., q(f_m) \, \big) \\
-			& = & q \big( \, \alpha_{\mathbb{G}_{2n}}(g; f_1, ..., f_m) \, \big) \\
-			& \in & q(\mathbb{G}_{2n}) 
-		\end{array}
-\end{eq*}
-Thus $q(\mathbb{G}_{2n})$ is also a well-defined sub-$\mathrm{E}G$-algebra of $L\mathbb{G}_n$. 
-
-Next, let $q': \mathbb{G}_{2n} \to q(\mathbb{G}_{2n})$ be the unique surjective map with the property that $q'(x) = q(x)$ for any object $x$ and $q'(f) = q(f)$ for any morphism $f$. Also denote by $i$ the evident inclusion of algebras $q(\mathbb{G}_{2n}) \hookrightarrow L\mathbb{G}_n$, so that for instance $i \circ q' = q$.
-\begin{eq*} \begin{tikzcd}
-& \mathbb{G}_{4n} \ar[dd, bend right, "\delta"'] \ar[dd, bend left, "\zeta"] & \\
-& & \\
-& \mathbb{G}_{2n} \ar[ddl, "q'"'] \ar[dd, "q"] \ar[ddr, "p"] & \\ 
-& & \\
-q(\mathbb{G}_{2n}) \ar[r, hookrightarrow, "i"] & L\mathbb{G}_n \ar[r, "u"] & X
-\end{tikzcd} \end{eq*}
-Further, let $p: \mathbb{G}_{2n} \to X$ be any map of $\mathrm{E}G$-algebras with the property that $p \circ \delta = p \circ \zeta$. Since $q$ is the coequalizer of $\delta$ and $\zeta$, there will then exist a unique map $u:  L\mathbb{G}_n \to X$ such that $p = u \circ q$. This means that $p = u \circ i \circ q'$, and hence there is obviously at least one map, $u \circ i$, which lets us factors $p$ through $q'$. But for any other map $v: q(\mathbb{G}_{2n}) \to X$ that factors $p$ like this, we have
+Given all of this, let $j: Y \to U$ be any map of $\mathrm{E}G$-algebras with the property that $j \circ \phi = j \circ \phi'$. Since $h$ is the coequaliser of $\phi$ and $\phi'$, it follows that there exists a unique map $u:  Y \to U$ such that $j = u \circ k$. This means that $j = u \circ i \circ k'$, and hence there is obviously at least one map, $u \circ i$, which lets us factors $j$ through $k'$. But for any other map $v: k(Y) \to U$ that factors $j$ like this, we'll have
 \begin{eq*} \begin{array}{rrll}
-			& v \circ q' & = & p \\
-			& & = & u \circ i \circ q' \\
+			& v \circ k' & = & j \\
+			& & = & u \circ i \circ k' \\
 			\implies \quad & v & = & u \circ i
 		\end{array}
 \end{eq*}
-because $q'$ is surjective, and thus $u \circ i$ is the unique map with this property. That is, $q'$ is also a coequalizer of $\delta$ and $\zeta$. But colimits are always unique up to a unique isomorphism, and so there should be a unique invertible map $j: q(\mathbb{G}_{2n}) \to L\mathbb{G}_n$ such that $q = j \circ q'$. This is clearly just the inclusion $i$, and as a result $q(\mathbb{G}_{2n}) = L\mathbb{G}_n$ and $q' = q$. In other words, $q$ is surjective. 
+because $k'$ is surjective, and thus $u \circ i$ is the unique map with this property. That is, $k'$ is also a coequaliser of $\phi$ and $\phi'$. But colimits are always unique up to a unique isomorphism, and so there should be a unique invertible map $k(Y) \to Z$ factoring $k$ through $k'$. This is clearly just the inclusion $i$, and as a result $k(Y) = Z$ and $k' = k$. In other words, the map coequaliser mapm $k$ is surjective. 
+\end{proof}
+
+Because a cokernel of a morphism is just its coequaliser with the zero map, and since we know that the objects of $L\mathbb{G}_n$ form a group, we can immediately apply this result to the functor $q$.
+
+\begin{cor}\label{qsurj} The cokernel map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ is surjective.
+\end{cor}
+
+As we noted earlier, knowing that $q$ is surjective will now allow use to take \cref{Gnmapsaction}, a statement about the morphisms $\mathbb{G}_{2n}$, and extend the result onto $L\mathbb{G}_n$:
+
+\begin{lem} \label{allmapsaction} Every morphism in $L\mathbb{G}_n$ can be expressed as $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \{z_1, ..., z_n, z_1^*, ..., z_n^* \}$.
+\end{lem}
+\begin{proof}
+Let $f$ be an arbitrary morphism in $L\mathbb{G}_n$. By surjectivity of $q$, there must exist at least one morphism $f'$ in $\mathbb{G}_{2n}$ such that $q(f') = f$, and from \cref{Gnmapsaction} we know that this $f'$ can be expressed uniquely as $\alpha(g; \mathrm{id}_{x'_1}, ..., \mathrm{id}_{x'_m})$ for some $g \in G(m)$ and $x'_i \in \{z_1, ..., z_{2n} \}$. Thus, because $q$ is a map of $\mathrm{E}G$-algebras, we will have
+\begin{eq*}\begin{array}{rll}
+			f & = & q(f') \\
+			& = & q\big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{x'_1}, ..., \mathrm{id}_{x'_m} \, ) \, \big) \\
+			& = & \alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{q(x'_1)}, ..., \mathrm{id}_{q(x'_m)} \, ) 
+		\end{array}
+\end{eq*}
+Therefore there is at least one collection of $x_i = q(x'_i)$ for which the statement of the proposition holds.
 \end{proof}
 
 \cref{allmapsaction} formalises a certain intuition about how the functor $L$ should act on algebras, the idea that a `free' structure really shouldn't have any `superfluous' components, only whatever data is absolutely required for it to be well-defined. In the case of $L\mathbb{G}_n$, we have proven that the only morphisms contained in the free $\mathrm{E}G$-algebra on invertible objects are $\mathrm{E}G$-action morphisms. However, while this is very similar to what we have in the non-invertible case it should be stressed that \cref{allmapsaction} does \emph{not} prove that the morphisms of $L\mathbb{G}_n$ have \emph{unique} representations $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$, as morphisms of $\mathbb{G}_n$ do.
 
-\section{$L\mathbb{G}_n$ as a coequalizer in $\mathrm{MonCat}$}
+Before moving on, its worth noting that in the proof of \cref{coeqsurj} we never needed to use the fact that $\phi$, $\phi'$ and $k$ were maps of $\mathrm{E}G$-algebras, only that they were monoidal functors. Because we had assumed from the beginning that we were working in $mathrm{E}G\mathrm{Alg}_S$, we did at one point have to show that the category $k(Y)$ was an algebra, so that we could then use the universal property of $k$ in $\mathrm{E}G\mathrm{Alg}_S$, but if $k$ had just been a coequaliser in $\mathrm{MonCat}$ from the start then this part would not have been necessary. We also had to invoke \cref{Obadj} --- which says that $\mathrm{Ob}: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{Mon}$ is a left adjoint --- so that we could exploit preservation of colimits. But since $\mathrm{Ob}$ clearly doesn't care about the morphisms of an algebra, it doesn't really matter whether we are applying it to an algebra in the first place. The actions of $X$, $Y$ and $Z$ just never came into play.
 
-Notice that at no point in the proofs of \cref{qsurj2,qsurj3,qsurj4,qsurj5} did we make use of the fact that $q$ was a map of $\mathrm{E}G$-algebras, rather than just a monoidal functor. The actions of $\mathbb{G}_{4n}$, $\mathbb{G}_{2n}$, and $L\mathbb{G}_n$ never came into play, and whilst we repeatedly exploited the property $q \circ \delta = q \circ \zeta$, we did not require $q$ to be universal as such in $\mathrm{E}G\mathrm{Alg}_S$ until the proof of \cref{qsurj}.
+With that in mind, we can co-opt all of these previous proofs about $\mathrm{E}G$-algebra maps to prove the analagous statements about monoidal functors.
 
-With that in mind, let the monoidal functor $c: \mathbb{G}_{2n} \to C$ onto some monoidal category $C$ be the coequalizer of (the underlying monoidal funcotrs of) $\delta$ and $\zeta$ in $\mathrm{MonCat}$. This map does exist because $\mathrm{MonCat}$ is cocomplete, and clearly it will also have the $c \circ \delta = c \circ \zeta$. Thus we can co-opt our previous proofs about the map $q$ to prove analagous statements for $c$.
-
-\begin{prop} \label{csurj2} Let $w$, $w'$ be objects of $\mathbb{G}_{2n}$ such that $c(w) = c(w')$. If $w_1, ..., w_k$ and $u_1, ..., u_k$ are sequences generated from $w$ via \cref{qsurj1}, and likewise $w'_1, ..., w'_{k'}$ and $u'_1, ..., u'_{k'}$ from $w'$, then $w_k = w'_{k'}$ and $u_k = u'_{k'}$.
+\begin{prop}\label{Obadjmon} Let the functors 
+\begin{eq*} \mathrm{Ob} \, : \, \mathrm{MonCat} \to \mathrm{Mon}, \quad \quad \quad \mathrm{E} \, : \, \mathrm{Mon} \to \mathrm{MonCat} \end{eq*}
+be defined exactly as those from \cref{Obdef,Edef}, except without the requirement that the monoidal categories be $\mathrm{E}G$-algebras. Then $\mathrm{E}$ is a right adjoint to the functor $\mathrm{Ob}$. 
 \end{prop}
 \begin{proof}
-The same as the proof of \cref{qsurj2}, but with $c: \mathbb{G}_{2n} \to C$ in place of $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$.
+The same as the proof of \cref{Obadj}.
 \end{proof}
 
-\begin{prop} \label{csurj34} Let $u$ be an object of $\mathbb{G}_{4n}$. Then there exists an object $x$ in $\mathbb{G}_{4n}$ and a morphism $h: \delta(u) \to \delta(x) \otimes \zeta(u)$ in $\mathbb{G}_{2n}$ such that $c(h) = \mathrm{id}_{c\delta(u)}$. Symmetrically, there also exists an object $x'$ and morphism $h': \delta(u) \to \zeta(u) \otimes \delta(x')$ such that $c(h') = \mathrm{id}_{c\delta(u)}$
+\begin{prop} \label{coeqsurjmon} Let $\phi, \phi' : X \to Y$ be a pair of parallel monoidal functors, and $k: Y \to Z$ their coequalizer in $\mathrm{Mon}$. If the monoid $\mathrm{Ob}(Z)$ is also a group, then the functor $k$ is surjective.
 \end{prop}
 \begin{proof}
-The same as the proof of \cref{qsurj3,qsurj4}, but with $c: \mathbb{G}_{2n} \to C$ in place of $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$.
-\end{proof}
-
-\begin{prop} \label{csurj5} Let $f: v \to w$ and $f' : w' \to v'$ be two morphisms of $\mathbb{G}_{2n}$ such that $c(f)$ and $c(f')$ are composable. Then there exist objects $y, y'$ and a morphism $h: y \to y'$ in $\mathbb{G}_{2n}$ such that $c(h) = c(f') \circ c(f)$.
-\end{prop}
-\begin{proof}
-The same as the proof of \cref{qsurj5}, but with $c: \mathbb{G}_{2n} \to C$ in place of $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$, \cref{csruj2} in place of \cref{qsurj2}, and \cref{csurj34} in place of \cref{qsurj3,qsurj4}.
-\end{proof}
-
-With these, we can prove a somewhat surprising fact about the map $c$.
-
-\begin{prop} \label{c=q} The coequalizer $c: \mathbb{G}_{2n} \to C$ of $\delta$ and $\zeta$ in $\mathrm{MonCat}$ is just the underlying monoidal functor of $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$, their coequalizer in $\mathrm{E}G\mathrm{Alg}_S$.
-\end{prop}
-\begin{proof}
-Consider $c(\mathbb{G}_{2n})$, the subcategory of $C$ containing the objects $c(x)$ and morphisms $c(f)$ for each object $x$ and morphism $f$ in $\mathbb{G}_{2n}$. Note that this is indeed a well-defined category, as by \cref{csurj5} the morphisms of $c(\mathbb{G}_{2n})$ are closed under composition. 
-
-We can use this subcategory to prove that the map $c$ is surjective, in the same way we did for $q$ in \cref{qsurj}. Let $c': \mathbb{G}_{2n} \to c(\mathbb{G}_{2n})$ be the obvious surjective functor which acts on objects and morphism exactly as $c$ does, $i: c(\mathbb{G}_{2n}) \hookrightarrow C$ the appropriate inclusion, and $d: \mathbb{G}_{2n} \to X$ any monoidal functor for which $d \circ \delta = d \circ \zeta$. Then since $c$ is the coequalizer of $\delta$ and $\zeta$, we will have a unique monoidal functor $u:  C \to X$ with the property that $d = u \circ c$.
-\begin{eq*} \begin{tikzcd}
-& \mathbb{G}_{4n} \ar[dd, bend right, "\delta"'] \ar[dd, bend left, "\zeta"] & \\
-& & \\
-& \mathbb{G}_{2n} \ar[ddl, "c'"'] \ar[dd, "c"] \ar[ddr, "d"] & \\ 
-& & \\
-c(\mathbb{G}_{2n}) \ar[r, hookrightarrow, "i"] & C \ar[r, "u"] & X
-\end{tikzcd} \end{eq*}
-It follows that $d = u \circ i \circ c'$, and hence that there is at least one map, $u \circ i$, which factors $d$ through $c'$. Moreover, $u \circ i$ is the only functor that does this, since for any other $v: c(\mathbb{G}_{2n}) \to X$,
-\begin{eq*} \begin{array}{rclrrcl}
-			v \circ c' & = & d & \quad \implies \quad & v \circ c' & = & u \circ i \circ c' \\
-			& & & \implies \quad & v & = & u \circ i
-		\end{array}
-\end{eq*}
-by surjectivity of $c'$. Thus $c'$ is also a coequalizer of $\delta$ and $\zeta$, and since colimits are always unique up to unique isomorphism we can conclude that $c(\mathbb{G}_{2n}) = C$, $c' = c$, and that $c$ is surjective. 
-
-By \cref{???}, a surjective monoidal functor out of an $\mathrm{E}G$-algebra will always induce an algebra structure upon its target category, such that the original functor becomes a map of algebras between them. Thus it follows immediately that any coequalizer $c: \mathbb{G}_{2n} \to C$ of $\delta$ and $\zeta$ in $\mathrm{MonCat}$ is also a map in $\mathrm{E}G\mathrm{Alg}_S$. So $c$ is an algebra map with $c \circ \delta = c \circ \zeta$, while $q$ is the universal map of algebras with this property. Likewise, $q$ has an underlying monoidal functor for which $q \circ \delta = q \circ \zeta$, while $c$ is the universal monoidal functor with that property. It follows that there exists a unique pair of maps, $u: L\mathbb{G}_n \to C$ in $\mathrm{E}G\mathrm{Alg}_S$ and $u': C \to L\mathbb{G}_n$ in $\mathrm{MonCat}$, such that $c = u \circ q$ and $q = u' \circ c$. But then, viewing $u$ as its underlying monoidal functor, we have
-\begin{eq*} \begin{array}{rccccrrcl}
-			c & = & u \circ q & = & u \circ u' \circ c & \quad \implies \quad & u \circ u' & = & \mathrm{id}_C \\
-			q & = & u' \circ q & = & u' \circ u \circ q & \quad \implies \quad & u' \circ u & = & \mathrm{id}_{L\mathbb{G}_n}
-		\end{array} 
-\end{eq*}
-in $\mathrm{MonCat}$, by surjectivity of $q$ and $c$. Therefore $L\mathbb{G}_n$ and $C$ are isomorphic as monoidal categories, and since coequalizers are only unique up to isomorphism, $q = u' \circ c$ is also a coequalizer of $\delta$ and $\zeta$ in $\mathrm{MonCat}$. 
-\end{proof}
-
-\begin{defn} Denote by $\Delta(G,n)$ the subgroup of $\mathrm{Mor}(\mathbb{G}_{2n})^{\mathrm{gp,ab}}$ generated by the equivalence classes of morphisms of the form $\delta(f) \otimes \zeta(f)^*$, for some $f \in \mathrm{Mor}(\mathbb{G}_{4n})$. This is a well defined abelian group of course, since
-\begin{eq*} \begin{array}{rll}
-			\big( \, \delta(f) \otimes \zeta(f)^* \, \big) \otimes \big( \, \delta(f') \otimes \zeta(f')^* \, \big) & = & \delta(f) \otimes \delta(f') \otimes \zeta(f)^* \otimes \zeta(f)^* \\
-			& = & \delta(f \otimes f') \otimes \zeta(f \otimes f')^*
-		\end{array}
-\end{eq*}
-\end{defn} 
-
-\begin{prop} \label{Zmor2}
-\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{ab}} \quad = \quad \bigquotient{(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp, ab}}}{\Delta(G,n)} \end{eq*}
-\end{prop}
-\begin{proof}
-From \cref{Moradj}, we know that $\mathrm{Mor}(\, \_ \,)^{\mathrm{gp, ab}}: \mathrm{MonCat} \to \mathrm{Ab}$ is a left adjoint functor. This means that it preserves all colimits in $\mathrm{MonCat}$, which by \cref{c=q} will include the coequalizer $q$. Thus
-\begin{eq*} \mathrm{coeq}\big( \, \mathrm{Mor}(\delta)^{\mathrm{gp, ab}}, \, \mathrm{Mor}(\zeta)^{\mathrm{gp, ab}} \, \big) \, = \, \mathrm{Mor}\big( \, \mathrm{coeq}(\delta, \zeta) \, \big)^{\mathrm{gp, ab}} \, = \, \mathrm{Mor}(q)^{\mathrm{gp, ab}} \end{eq*}
-In other words, the following is a coequalizer diagram in the category of abelian groups:
-\begin{eq*} \begin{tikzcd}
-\mathrm{Mor}(\mathbb{G}_{4n})^{\mathrm{gp, ab}} \ar[dd, "\mathrm{Mor}(\delta)^{\mathrm{gp, ab}}"', shift right=2] \ar[dd, "\mathrm{Mor}(\zeta)^{\mathrm{gp, ab}}", shift left=2] \\
-\\
-\mathrm{Mor}(\mathbb{G}_{2n})^{\mathrm{gp, ab}} \ar[dd, "\mathrm{Mor}(q)^{\mathrm{gp, ab}}"] \\
-\\
-\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}
-\end{tikzcd} \end{eq*} 
-But the coequalizer of two abelian group homomorphisms $h_1, h_2$ is just the quotient of their target group by the image of their difference map $h_1 - h_2$, the homomorphism that sends $x$ to $h_1(x)h_2(x)^*$. Hence in this case we have
-\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}} \quad = \quad \bigquotient{{\mathrm{Mor}(\mathbb{G}_{2n})}^{\mathrm{gp, ab}}}{\mathrm{im}\big( \, {\mathrm{Mor}(\delta)}^{\mathrm{gp, ab}} - {\mathrm{Mor}(\zeta)}^{\mathrm{gp, ab}} \, \big)} \end{eq*}
-By definition this denominator is just $\Delta(G,n)$. Substituting this into the quotient, along with the value of $\mathrm{Mor}(\mathbb{G}_{2n})$ from \cref{Gnmor} and remembering from \cref{tensinv} that $\mathrm{Mor}(L\mathbb{G}_n)$ is already a group, we obtain
-\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{ab}} \quad = \quad \bigquotient{{(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})}^{\mathrm{gp, ab}}}{\Delta(G,n)} \end{eq*}
-as required.
-\end{proof}  
-
-At this stage, the obvious next question to ask is can we simplify the expression $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp, ab}}$? 
-
-\section{Freely generated action operads}
-
-\begin{defn} Let $G$ be an action operad and $\mathcal{G} \subseteq G$ a subset. If
-\begin{itemize}
-\item the monoid $G$ is freely generated by the set $\mathcal{G}$ under tensor product
-\item the group $G(0) \subseteq G$ is the trivial group $\{I\}$
-\end{itemize}
-the we say that $(G, \mathcal{G})$ is a
-\end{defn}
-
-\begin{lem} If $(G, \mathcal{G})$ is , then $e_1 \in \mathcal{G}$, where $e_1$ is the identity element of the group $G(1) \subseteq G$.
-\end{lem}
-\begin{proof}
-Consider the identity element $e_1 \in G(1)$. By definition, $|e_1| = 1$, which means that
-\begin{eq*} \begin{array}{rclcrcl}
-			g_1 \otimes ... \otimes g_k & = & e_1 & \implies & |g_1| + ... + |g_k| & = & |g_1 \otimes ... \otimes g_k| \\
-			& & & & & = & |e_1| \\
-			& & & & & = & 1 \\
-			& & & & & & \\
-			\implies \quad \exists i & \in & \mathbb{N} & : & |g_i| & = & 1 \\
-			& & & & |g_j| & = & 0, \quad i \neq j 
-		\end{array}
-\end{eq*}
-But since $G(0) = \{I\}$, the only element of $G$ of length $0$ is $I$, and thus the only ways to express $e_1$ as a tensor product of other elements are the trivial ones,
-\begin{eq*} e_1 \, = \, I \otimes ... \otimes I \otimes e_1 \otimes I \otimes ... \otimes I \end{eq*}
-Therefore $e_1$ cannot be generated by the set $\mathcal{G}$ unless $e_1$ itself is in $\mathcal{G}$, and so since $\mathcal{G}$ does generate all of the elements of $G$, this will in fact be the case.
-\end{proof}
-
-\begin{prop} Let $(G, \mathcal{G})$ be a . Then
-\begin{eq*} {(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})}^{\mathrm{gp}} \quad = \quad {G}^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
-\end{prop}
-\begin{proof}
-First, consider the fact that the monoid $G$ is freely generated by the set $\mathcal{G}$, and that $\mathbb{N}^{\ast 2n}$ is not only a free monoid but one whose generators $z_1, ..., z_{2n}$ all have length $|z_i| = 1$. This means that we can factorise any $(g,w)$ in the pullback monoid $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ as a tensor product of elements of the pullback set $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$:
-\begin{eq*} \begin{array}{c}
-			\begin{array}{rcll}
- 				g & = & g_1 \otimes ... \otimes g_k, & g_i \in \mathcal{G} \\
-				w & = & x_1 \otimes ... \otimes x_{|w|}, & x_i \in \{z_1, ..., z_{2n}\} \\
-				|g| & = & |w| &
-			\end{array} \\
-			\\
-			\begin{array}{rcl}
-				\implies \quad (g, w) & = & ( \, g_1, \, x_1 \otimes ... \otimes x_{|g_1|} \, ) \otimes ... \otimes ( \, g_k, \, x_{|w|-|g_k|} \otimes ... \otimes x_{|w|} \, ) \\
-				& =: & (g_1, w_1) \otimes ... \otimes (g_k, w_k), \\
-				& & (g_i, w_i) \in \mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}
-			\end{array}
-		\end{array} 
-\end{eq*}
-This expansion will also always be unique, since
-\begin{eq*} \begin{array}{rcl}
-			(g_1, w_1) \otimes ... \otimes (g_k, w_k) & = & (g'_1, w'_1) \otimes ... \otimes (g'_{k'}, w_{k'}), \\
-			& & (g_i, w_i), (g'_i, w'_i) \in \mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \\
-			& & \\
-			\implies \quad ( \, g_1 \otimes ... \otimes g_k, \, w_1 \otimes ... \otimes w_k \, ) & = & ( \, g'_1 \otimes ... \otimes g'_{k'}, \, w'_1 \otimes ... \otimes w_{k'} \, ) \\
-			& & \\
-			\implies \quad g_1 \otimes ... \otimes g_k & = & g'_1 \otimes ... \otimes g'_{k'} \\
-			w_1 \otimes ... \otimes w_k & = & w'_1 \otimes ... \otimes w_{k'} \\
-			& & \\
-			\implies \quad g_i & = & g'_i \\
-			k & = & k' \\
-			\implies \quad |g_i| & = & |g'_i| \\
-			\implies \quad |w_i| & = & |w'_i| \\
-			\implies \quad w_i & = & w'_i \\
-			& & \\
-			\implies \quad (g_i, w_i) & = & (g'_i, w'_i)		
-		\end{array}
-\end{eq*}
-In other words, the monoid $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ is freely generated by its subset $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$.
-
-Now, recall that if $M$ is a monoid which is presented by some generators $\mathcal{M}$ subject to relations $\mathcal{R}$, then the group completion $M^{\mathrm{gp}}$ will be the group given by the \emph{group} presentation $(\mathcal{M}, \mathcal{R})$. In particular, if $M$ is a free monoid, then $M^{\mathrm{gp}}$ is the free group on the set $\mathcal{M}$, and so it follows that $G^{\mathrm{gp}}$ is the free group on the set $\mathcal{G}$, $(\mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is the free group on $\{z_1, ..., z_{2n}\}$ --- that is, $\mathbb{Z}^{\ast 2n}$ --- and $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is the free group on $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$. Moreover, the canonical maps $G \to G^{\mathrm{gp}}$ and $\mathbb{N}^{\ast 2n} \to (\mathbb{N}^{\ast 2n})^{\mathrm{gp}} = \mathbb{Z}^{\ast 2n}$ act as the identity on the shared generating sets $\mathcal{G}$ and $\{z_1, ..., z_{2n}\}$ respectively, and so these homomorphisms are actually inclusions of monoids.
-
-Finally, define the pullback
-\begin{eq*} \begin{tikzcd}[column sep=tiny]
-& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}  \ar[dl] \ar[dr] \ar[dd, phantom, "\pullback", very near start] & \\
-G^{\mathrm{gp}} \ar[dr, "| \, \_ \, |^{\mathrm{gp}}"'] & & \mathbb{Z}^{\ast 2n} \ar[dl, "| \, \_ \, |^{\mathrm{gp}}"] \\
-& \mathbb{Z} &
-\end{tikzcd} \end{eq*}
-where the $| \, \_ \, |^{\mathrm{gp}}$ are the obvious extensions of the length homomorphisms $| \, \_ \, |$ defined on their generators by
-\begin{eq*} \begin{array}{rcrcll}
-			| \, \_ \, |^{\mathrm{gp}} & : & G^{\mathrm{gp}} & \to & \mathbb{Z} & \\
-			& : & g & \mapsto & \, \, \, \, |g|, &  g \in \mathcal{G} \\
-			& : & g^* & \mapsto & -|g|, & g \in \mathcal{G} \\
-			& & & & & \\
-			| \, \_ \, |^{\mathrm{gp}} & : & \mathbb{Z}^{\ast 2n} & \to & \mathbb{Z} & \\
-			& : & z_i & \mapsto & \, \, \, \, 1 & \\
-			& : & z_i^* & \mapsto & -1 &
-		\end{array}
-\end{eq*}
-Notice that we can use the inclusions $\mathcal{G} \hookrightarrow G \hookrightarrow G^{\mathrm{gp}}$ and $\mathbb{N}^{\ast 2n} \hookrightarrow \mathbb{Z}^{\ast 2n}$ to see any element $(g, w)$ of our generator pullback $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ as an element $( \, i(g), i(w) \, )$ of this new pullback $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$, because
-\begin{eq*} |i(g)|^{\mathrm{gp}} \, = \, |g| \, = \, |w| \, = \, |i(w)|^{\mathrm{gp}} \end{eq*}
-Furthermore, for any $(g, w) \in G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ we must have some
-\begin{eq*} g_1, ..., g_k \in \{ \, h \in G^{\mathrm{gp}} \, : \, h \in \mathcal{G} \text{ or }  h^* \in \mathcal{G} \, \}, \quad \quad  g \, = \, g_1 \otimes ... \otimes g_k \end{eq*}
-and hence
-\begin{eq*} \begin{array}{c}
-			\begin{array}{rcl}
-				(g, w) & = & ( \, g_1 \otimes ... \otimes g_k, \, w \, ) \\
-				& = & \big( \, g_1 \otimes ... \otimes g_k \otimes {e_{|g|}}^* \otimes e_{|g|}, \, \, z_1^{|g|} \otimes (z_1^{|g|})^* \otimes w \, \big) \\
-				& = & \big( \, g_1 \otimes ... \otimes g_k \otimes {e_{|g|}}^* \otimes e_{|w|}, \, \, z_1^{|g_1|+...+|g_k|} \otimes (z_1^{|g|})^* \otimes w \, \big) \\
-				& = & \big( g_1, {z_1}^{|g_1|} \big) \otimes ... \otimes \big( g_k, {z_1}^{|g_k|} \big) \otimes \big({e_{|g|}}^*, (z_1^{|g|})^* \big) \otimes \big(e_{|w|}, w\big) \\
-				& = & ( g_1, {z_1}^{|g_1|} ) \otimes ... \otimes ( g_k, {z_1}^{|g_k|} ) \otimes (e_{|g|}, {z_1}^{|g|})^* \otimes (e_{|w|}, w) \\
-			\end{array} \\
-			\\
-			( g_1, {z_1}^{|g_1|} ), \, ..., \, ( g_k, {z_1}^{|g_k|} ), \, (e_{|g|}, {z_1}^{|g|}), \, (e_{|w|}, w) \, \in \, G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}
-		\end{array}
-\end{eq*}
-Therefore the subset $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ generates the whole of the free group $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$, and thus since $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is also freely generated by the same set, we must have
-\begin{eq*} {(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})}^{\mathrm{gp}} \quad = \quad {G}^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
-as required.
-\end{proof}
-
-\begin{prop} 
-\begin{eq*} {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \quad \cong \quad {G}^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
-\end{prop}
-\begin{proof}
-Recall that the monoid $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ is a pullback over the length homomorphisms $| \, \_ \, |^{\mathrm{gp}} : G \to \mathbb{N}$ and $| \, \_ \, |^{\mathrm{gp}} : \mathbb{N}^{\ast 2n} \to \mathbb{N}$, which from now on we will just write as $| \, \_ \, |$ to avoid clutter. Their shared target, $\mathbb{Z}$, is a abelian group, and this means that the $| \, \_ \, |$ will factor through the abelianisations $(G^{\mathrm{gp}})^{\mathrm{ab}}$ and $(\mathbb{Z}^{\ast 2n})^{\mathrm{ab}} = \mathbb{Z}^{2n}$, respectively. Expanding them like this, the pullback square for $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ becomes the following commutative diagram:
-\begin{eq*} \begin{tikzcd}[column sep=tiny]
-& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}  \ar[dl] \ar[dr] & \\
-G^{\mathrm{gp}} \ar[dd, "\mathrm{ab}"'] \ar[dddr, "| \, \_ \, |"] & & \mathbb{Z}^{\ast 2n} \ar[dd, "\mathrm{ab}"] \ar[dddl, "| \, \_ \, |"'] \\
-& & \\
-G^{\mathrm{gp,ab}} \ar[dr, "| \, \_ \, |^{\mathrm{ab}}"'] & & \mathbb{Z}^{2n} \ar[dl, "| \, \_ \, |^{\mathrm{ab}}"] \\
-& \mathbb{Z} &
-\end{tikzcd} \end{eq*}
-Now, if we take the pullback of the bottom two maps in this diagram, the $| \, \_ \, |^{\mathrm{ab}}$, then we obtain a new monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$. Then because the diagram above also forms a commutative square over the maps $| \, \_ \, |^{\mathrm{ab}}$, the universal property of the pullback $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ will give us a unique homomorphism $u: G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \to G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$, making the top-left and top-right regions in the following diagram commute:
-\begin{eq*} \begin{tikzcd}[column sep=tiny]
-& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \ar[dl] \ar[dr] \ar[dd, dashed, "u"] & \\
-G^{\mathrm{gp}} \ar[dd, "\mathrm{ab}"'] & & \mathbb{Z}^{\ast 2n} \ar[dd, "\mathrm{ab}"] \\
-& G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \ar[dl] \ar[dr] \ar[dd, phantom, "\pullback", very near start] & \\
-G^{\mathrm{gp,ab}} \ar[dr, "| \, \_ \, |^{\mathrm{ab}}"'] & & \mathbb{Z}^{2n} \ar[dl, "| \, \_ \, |^{\mathrm{ab}}"] \\
-& \mathbb{Z} &
-\end{tikzcd} \end{eq*}
-However, since the monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ is a pullback of abelian groups, it must be abelian itself. It follows then that the map $u$ will also factor through the abelianisation of its source monoid, via a new homomorphism that we shall call $u^{\mathrm{ab}}$.
-\begin{eq*} \begin{tikzcd}
-& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \ar[ddl, "\mathrm{ab}"'] \ar[ddr, "u"] & \\
-& & \\
-{(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \ar[rr, dashed, "u^{\mathrm{ab}}"] & & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}
-\end{tikzcd} \end{eq*}
-
-It is not too hard to find an explicit description of the map $u^{\mathrm{ab}}$. For any group $H$, the abelianisation $H^{\mathrm{ab}}$ is just the quotient group $H/[H,H]$, where
-\begin{eq*} [H, H] \, = \, \{ \, h \in H \, : \, \exists a, b \in H, \, h \, = \, aba^{-1}b^{-1} \, \} \end{eq*}
-is the commutator subgroup of $H$. Thus elements of the monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ are pairs of equivalence classes
-\begin{eq*} \big( \, [g], [w] \, \big), \quad \text{for} \quad g \in G^{\mathrm{gp}}, \, w \in \mathbb{Z}^{\ast 2n}, \quad | \, [g] \, |^{\mathrm{ab}} \, = \, | \, [w] \, |^{\mathrm{ab}} \end{eq*}
-and the elements of $(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})^{\mathrm{ab}}$ are equivalence classes of pairs
-\begin{eq*} \big[ \, (g, w) \, \big], \quad \text{for} \quad g \in G^{\mathrm{gp}}, \, w \in \mathbb{Z}^{\ast 2n}, \quad |g| \, = \, |w| \end{eq*}
-By the universal property of pullbacks, the unique map $u$ is then simply the monoid homomorphism defined by
-\begin{eq*} \begin{array}{rrrll}
-			u & : & (G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}) & \to & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \\
-			& : & (g, w) & \mapsto & \big( \, [g], [w] \, \big)
-		\end{array}
-\end{eq*}
-and hence $u^{\mathrm{ab}}$ is
-\begin{eq*} \begin{array}{rrrll}
-			u^{\mathrm{ab}} & : & {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} & \to & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \\
-			& : & \big[ \, (g, w) \, \big] & \mapsto & \big( \, [g], [w] \, \big)
-		\end{array}
-\end{eq*}
-To complete the proof, we just need to demonstrate that this map is actually an isomorphism of monoids. In other words, we must show that the obvious reverse assignment, $([g], [w]) \mapsto [(g, w)]$, is well-defined.
-
-Let $g, g' \in G^{\mathrm{gp}}$ and $w, w' \in \mathbb{Z}^{\ast 2n}$ with $|g| = |g'| = |w| = |w'|$, so that $(g, w)$ and $(g', w')$ are valid elements of $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ and $([g], [w]), ([g'], [w'])$ are valid elements of $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$, and furthermore let $([g], [w]) = ([g'], [w'])$. It follows immediately that $[g] = [g']$ and $[w] = [w']$, or equivalently
-\begin{eq*} \begin{array}{rcrcl} 
-			\exists \, h, h' \in [G^{\mathrm{gp}}, G^{\mathrm{gp}}] & : & gh & = & g'h' \\
-			\exists \, v, v' \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & : & wv & = & w'v'
-		\end{array}
-\end{eq*}
-But notice that
-\begin{eq*} \begin{array}{c}
-			\begin{array}{rcrcll}
-				h \in [G^{\mathrm{gp}},G^{\mathrm{gp}}] & \implies & h & = & a \otimes b \otimes a^* \otimes b^*, & a, b \in G^{\mathrm{gp}}  \\
-				& & & & & \\
-				& \implies & |h| & = & |a|+|b|+|a^*|+|b^*| & \\
-				& & & = & |a|+|b|-|a|-|b| & \\
-				& & & = & 0 & 
-			\end{array} \\
-			\\
-			\begin{array}{rcl}
-				h' \in [G^{\mathrm{gp}},G^{\mathrm{gp}}] & \implies & |h'| \, = \, 0 \\
-				v \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & \implies & |v| \, = \, 0 \\
-				v' \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & \implies & |v'| \, = \, 0
-			\end{array}
-		\end{array}
-\end{eq*}
-and so in particular
-\begin{eq*}|h| \, = \, |v|, \quad |h'| \, = \, |v'| \quad \implies \quad (h,v), (h',v')  \in G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \end{eq*}
-Moreover, if $e_1$ is the identity element of the group $G(1) \subseteq G \subseteq G^{\mathrm{gp}}$ and $z_1$ is the first generator of ${Z}^{\ast 2n}$ then $|e_1| = |z_1| = 1$, and thus
-\begin{eq*} \begin{array}{c}
-			\begin{array}{rcrcl}
-				\exists \, a, b \in G^{\mathrm{gp}} & : & h & = & a \otimes b \otimes a^* \otimes b^* \\
-				\exists \, x, y \in \mathbb{Z}^{\ast 2n} & : & v & = & x \otimes y \otimes x^* \otimes y^* 
-			\end{array} \\
-			\\
-			\begin{array}{rcl}
-				\implies \quad h & = & a \otimes b \otimes a^* \otimes b^* \\
-				& = & a \otimes b \otimes a^* \otimes b^* \otimes e_1^{|x|+|y|} \otimes (e_1^{|x|+|y|})^* \\
-				& = & a \otimes b \otimes a^* \otimes b^* \otimes e_1^{|x|} \otimes e_1^{|y|} \otimes (e_1^{|x|})^* \otimes (e_1^{|y|})^* \\
-				& & \\
-				v & = & x \otimes y \otimes x^* \otimes y^* \\
-				& = & z_1^{|a|+|b|} \otimes (z_1^{|a|+|b|})^* \otimes x \otimes y \otimes x^* \otimes y^* \\
-				& = & z_1^{|a|} \otimes z_1^{|b|} \otimes (z_1^{|a|})^* \otimes (z_1^{|b|})^* \otimes x \otimes y \otimes x^* \otimes y^* \\
-				& & \\
-				\implies \quad (h, v) & = & \big( \, a, \, z_1^{|a|} \, \big) \otimes \big( \, b, \, z_1^{|b|} \, \big) \otimes \big( \, a^*, \, (z_1^{|a|})^* \, \big) \otimes \big( \, b^*, \, (z_1^{|b|})^* \, \big) \\
-				& & \otimes \, \big( \, e_1^{|x|}, \, x \, \big) \otimes \big( \, e_1^{|y|}, \, y \, \big) \otimes \big( \, (e_1^{|x|})^*, \, x^* \, \big) \otimes \big( \, (e_1^{|y|})^*, \, y^* \, \big) \\
-				& \in & [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ]
-			\end{array}
-		\end{array}
-\end{eq*}
-and also
-\begin{eq*} (h', v') \in [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ] \end{eq*}
-for similar reasons. Therefore
-\begin{eq*} \begin{array}{c}
-			\exists \, (h,v), (h', v') \in [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ] \quad \text{such that} \\
-			\\
-			\begin{array}{rcl}
-				(g, w) \otimes (h, v) & = & (g \otimes h, w \otimes v) \\
-				& = & (g' \otimes h', w' \otimes v') \\
-				& = & (g', w') \otimes (h, v) \\
-				& & \\
-				\implies \big[ \, (g, w) \, \big] & = & \big[ \, (g', w') \, \big]
-			\end{array}
-		\end{array}
-\end{eq*}
-That is, we have shown that
-\begin{eq*} \big( \, [g], [w] \, \big) \, = \, \big( \, [g'], [w'] \, \big) \quad \implies \quad \big[ \, (g, w) \, \big] \, = \, \big[ \, (g', w') \, \big] \end{eq*}
-and so the mapping $([g], [w]) \mapsto [(g, w)]$ is indeed well-defined. From this we can conclude that the homomorphism $u^{\mathrm{ab}}$ has an inverse, and hence we have an isomorphism
-\begin{eq*} {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \quad \cong \quad {G}^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
-as required
-\end{proof} 
-
-
-
-\begin{defn} We say that a monoid $M$ is \emph{left-cancellative} if for any $x, y, z \in M$, we have
-\begin{eq*} x \otimes y \, = \, x \otimes z \quad \implies \quad y \, = \, z \end{eq*}
-That is, common factors in tensor products may be cancelled out on the left. Similarly, we call $M$ \emph{right-cancellative} if common factorscan be cancelled on the left:
-\begin{eq*} x \otimes z \, = \, y \otimes z \quad \implies \quad x \, = \, y \end{eq*}
-A monoid that is both left- and right-cancellative is simply referred to as \emph{cancellative}
-\end{defn}
-
-\begin{prop} Let $G$ be an action operad. Then $(G, \otimes)$ is a cancellative monoid.
-\end{prop}
-\begin{proof}
-Let $g$, $g'$, and $h$ be elements of $G$ with the property that $g \otimes h = g' \otimes h$. Since the length map $| \, \_ \, | : G \to \mathbb{N}$ is a monoid homomorphism, applying it to both sides of this equation yields
-\begin{eq*} \begin{array}{rll} 
-			|g \otimes h| & = & |g' \otimes h| \\
-			\implies \quad |g| \otimes |h| & = & |g'| \otimes |h| 
-		\end{array}
-\end{eq*}
-Then because $\mathbb{N}$ is a definitely a cancellative monoid, it follows from this that ${|g| = |g'|}$. In other words, $g$ and $g'$ are both elements of the same group of operations, $G( \, |g| \, )$, and so in particular it makes sense to multiply them. Thus
-\begin{eq*} \begin{array}{rclcrcl}
-		g \otimes h & = & g' \otimes h & \implies & e_{|g| + |h|} & = & {(g \otimes h)}^{-1} ( g' \otimes h) \\
-		& & & & & = & (g^{-1} \otimes h^{-1}) ( g' \otimes h) \\
-		& & & & & = & (g^{-1}g') \otimes (h^{-1}h) \\
-		& & & & & = & (g^{-1}g') \otimes e_{|h|} \\
-		\end{array}
-\end{eq*}
-But then 
-\begin{eq*} e_{|g|} \otimes e_{|h|} \, =  \,  e_{|g| + |h|} \, = \, (g^{-1}g') \otimes e_{|h|} \end{eq*}
-
-\end{proof}
-
-
-
-\begin{lem} Let  be a subset of  whose elements generate $G$ by tensor product and group multiplication, subject to some relations $\mathcal{R}$. Then ${G}^{\mathrm{gp, ab}}$ is just the group with generators $\mathcal{G}$, subject to relations 
-\begin{eq*} \mathcal{R}' \, = \, \mathcal{R} \cup \{ \, ab = ba \, : \, \forall a, b \in \mathcal{G} \, \} \end{eq*}
-\end{lem}
-\begin{proof}
-\end{proof}
-
-
-
-
-\section{The action of $L\mathbb{G}_n$} 
-
-\begin{prop} The action of $L\mathbb{G}_n$ is given by the following map:
-\end{prop}
-\begin{proof}
-\end{proof}
-
-\section{A full description of $L\mathbb{G}_n$}
-
-With this last proposition proven, the results in these previous two chapters now collectively describe how to construct free $\mathrm{E}G$-algebras on $n$ invertible objects. However, since this charachterization was discovered by us in such a piecemeal fashion, it would be best to restate the complete conclusion all in one place.
-
-\begin{thm}\label{freeinvalg} Let $\mathbb{G}_n$ be the free $\mathrm{E}G$-algebra on $n$ objects. Then the free $\mathrm{E}G$-algebra on $n$ invertible objects, $L\mathbb{G}_n$, is the algebra described by
-\end{thm}
-\begin{proof}
-\end{proof}
-
-With \cref{freeinvalg} proven we can now finally achieve the first main goal of this paper --- to describe the free braided monoidal category on $n$ invertible objects. In addition, this section will provide a few other simple applications of the theorem, in an effort to build up to the main result more gently. The definition of $L\mathbb{G}_n$ given in \ref{freeinvalg} is after all a little difficult to parse on first reading, because of the fairly abstract way it is presented, and hopefully the following concrete examples should allow the braided case to be properly understood.
-
-\begin{prop} One object case
-\end{prop}
-
-\begin{prop} Symmetric case
-\end{prop}
-
-\begin{prop} Braided case
-\end{prop}
-
-\begin{prop} Cactus group case
-\end{prop}
-
-.
-.
-.
-.
-.
-
-
-\section{The free algebra on $n$ weakly invertible objects}
-
-Up until now, we've been working under the convention that by `invertible' objects we mean stictly invertible --- $x \otimes x^* = I$. As an additional exercise, we can ask ourselves how all of this would change if we permitted our objects to be only weakly invertible, that is $x \otimes x^* \cong I$. The situation is actually quite elegant, in that the effect of weakening in our objects can be offset completely by the effect of also weakening our algebra homomorphisms, such that we won't need to calculate any new free algebras other than those given by \cref{freeinvalg}. Before proving this though, we first to need to set out some definitions.
-
-\begin{defn} Given an $\mathrm{E}G$-algebra $X$, we denote by $X_{\mathrm{wkinv}}$ the category whose
-\begin{itemize}
-\item objects are tuples $(x, x^*, \eta, \epsilon)$, where $x$ and $x^*$ are objects of $X$ and $\eta: I \to x^* \otimes x$ and $\epsilon : x \otimes x^* \to I$ are morphisms such that the composites
-\begin{eq*} \begin{tikzcd}
-x \ar[r, "\mathrm{id} \otimes \eta"] & x \otimes x^* \otimes x \ar[r, "\epsilon \otimes \mathrm{id}"] & x &
-x^* \ar[r, "\eta \otimes \mathrm{id}"] & x^* \otimes x \otimes x^* \ar[r, "\mathrm{id} \otimes \epsilon"] & x^* 
-\end{tikzcd} \end{eq*}
-are identity morphisms.
-\item maps $(f, f^*): (x, x^*, \eta_x, \epsilon_x) \to (y, y^*, \eta_y, \epsilon_y)$ are pairs $f: x \to y$, $f^* : x^* \to y^*$ of morphisms such that the diagrams
-\begin{eq*} \begin{tikzcd}
-& I \ar[dl, "\eta_x"'] \ar[dr, "\eta_y"] & & x \otimes x^* \ar[rr, "f \otimes f^*"] \ar[dr, "\epsilon_x"'] & & y \otimes y^* \ar[dl, "\epsilon_y"] \\
-x^* \otimes x \ar[rr, "f^* \otimes f"] & & y \otimes y^* & & I &
-\end{tikzcd} \end{eq*}
-commute.
-\end{itemize}
-\end{defn}
-
-\begin{defn}\label{weakmonfunc} Let $(X, \alpha)$ and $(Y, \beta)$ be $\mathrm{E}G$-algebras. A \emph{weak $\mathrm{E}G$-algebra homorphism} between them is a weak monoidal functor $\psi: X \to Y$ such that all diagrams of the form
-\begin{eq*} \begin{tikzcd}
-\psi( x_1 \otimes ... \otimes x_m) \ar[r, "\sim"] \arrow{d}[']{\psi(\alpha(g; h_1, ... , h_m))} & \psi(x_1) \otimes ... \otimes \psi(x_m) \arrow{d}{\beta(g; \psi(h_1), ..., \psi(h_m))} \\
-\psi( y_{\pi(g)^{-1}(1)} \otimes ... \otimes y_{\pi(g)^{-1}(m)}) \ar[r, "\sim"] & \psi(y_{\pi(g)^{-1}(1)}) \otimes ... \otimes \psi(y_{\pi(g)^{-1}(m)})
-\end{tikzcd} \end{eq*}
-commute.
-\end{defn} 
-
-\begin{defn} We denote by $\mathrm{E}G\mathrm{Alg}_W$ the 2-category of $\mathrm{E}G$-algebras, weak $\mathrm{E}G$-algebra homomorphisms, and weak monoidal transformations.\end{defn}
-
-Now we can properly express what we mean by the free algebras on weakly invertible objects being the same as those in the strict case.
-
-\begin{thm} The algebra $L\mathbb{G}_n$ is also the free $\mathrm{E}G$-algebra on $n$ weakly invertible objects. Specifically, for any other $\mathrm{E}G$-algebra $X$ there is an equivalence of categories
-\begin{eq*} \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \simeq (X_{\mathrm{wkinv}})^n \end{eq*}
-\end{thm}
-\begin{proof}
-We begin by defining a functor $F : \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \to (X_{\mathrm{wkinv}})^n$. On weak maps, $F$ acts as 
-\begin{eq*} F( \, \psi: L\mathbb{G}_n \to X \, ) = \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \end{eq*}
-where the $z_i$ are the generators of $\mathbb{Z}^{*n}$ and the isomorphisms are those given by $\psi$ being a weak moniodal functor. On weak monoidal transformations, $F$ acts as
-\begin{eq*} F( \, \theta : \psi \to \chi \, ) = \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} }\end{eq*}
-This choice does satisfy the condition on morphisms of $(X_{\mathrm{wkinv}})^n$, since we can build the required commuting diagrams out of smaller ones given by $\theta$ being a weak monoidal transfomation:
-\begin{eq*} \begin{tikzcd}
-& I \ar[dl, "\sim"'] \ar[dr, "\sim"] & & \psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\theta_{z_i} \otimes \theta_{z_i^*}"] \ar[d, "\sim"'] & & \chi(z_i) \otimes \chi(z_i^*) \ar[d, "\sim"] \\
-\psi(I) \ar[d, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[d, "\sim"] & \psi(I) \ar[dr, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[dl, "\sim"] \\
-\psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\theta_{z_i^*} \otimes \theta_{z_i}"] & & \chi(z_i^*) \otimes \chi(z_i) & & I & 
-\end{tikzcd} \end{eq*}
-
-Now we need to check if $F$ is an equivalence of categories. First, let $\big\{ ( x_i, x_i^*, \eta_i, \epsilon_i ) \big\}_{i \in \{z_1, ..., z_n\} }$ be an arbitrary object of $(X_{\mathrm{wkinv}})^n$. We can construct a weak algebra map $\psi: L\mathbb{G}_n \to X$ from it as follows. Define
-\begin{eq*} \psi(I) = I, \quad \psi(z_i) = x_i, \quad \psi(z_i^*) = x_i^* \end{eq*}
-and choose the isomorphisms
-\begin{eq*} \begin{array}{rllllll}
-		\psi_I & : & I \to \psi(I) & = & \mathrm{id}_I & : & I \to I \\
-		\psi_{z_i, z_i^*} & : & \psi(z_i) \otimes \psi(z_i^*) \to \psi(I) & = & \epsilon_i & : & x_i \otimes x_i^* \to I \\
-		\psi_{z_i^*, z_i} & : & \psi(z_i^*) \otimes \psi(z_i) \to \psi(I) & = & \eta_i^{-1} & : & x_i^* \otimes x_i \to I
-		\end{array} .
-\end{eq*}
-Then for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ such that $d(w \otimes w') = d(w) \otimes d(w')$, where $d(-)$ is the minimal generator decomposition from \cref{mgd}, set 
-\begin{eq*} \psi(w \otimes w') = \psi(w) \otimes \psi(w'), \quad \quad \psi_{w, w'} = \mathrm{id}_{\psi(w) \otimes \psi(w')} \end{eq*}
-This is enough to determine the value of $\psi$ on all of the remaining objects, via successive decompositions. For the isomorphisms, first note that the ones we have already defined satisfy the associativity and unitality required of weak monoidal functors. Now consider some $w, w'$ with $d(w \otimes w') \neq d(w) \otimes d(w')$. The fact that they differ implies that tensoring $w$ with $w'$ causes some cancellation of inverses to occur where the end of one sequence meets the beginning of another. In particular, if we let $b$ be the last term in the minimal generator decomposition of $w$, and let $c = w'$, then we conclude that the length $d(b \otimes c)$ is smaller than the length of $d(c)$. Let $a$ be the product of the rest of $d(w)$, so that $a \otimes b = w$. Then we can use requirement for associativity,
-\begin{eq*} \begin{tikzcd}
-\psi(a) \otimes \psi(b) \otimes \psi(c) \ar[rr, "\mathrm{id} \otimes \psi_{b, c}"] \ar[d, "\psi_{a, b} \otimes \mathrm{id}"'] & & \psi(a) \otimes \psi(b \otimes c) \ar[d, "\psi_{a, b \otimes c}"] \\
-\psi(a \otimes b) \otimes \psi(c) \ar[rr, "\psi_{a \otimes b, c}"] && \psi(a \otimes b \otimes c)
-\end{tikzcd} \end{eq*}
-to define $\psi_{w, w'} = \psi{a\otimes b, c}$ in terms of three other isomorphisms that each have strictly smaller decompositions. Repeating this process will therefore eventually yield a definition in terms of our previous isomorphisms.
-
-By \cref{allmapsaction}, every morphism in $L\mathbb{G}_n$ can be written as $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ for some $g \in G(m)$, $w_i \in \mathbb{Z}^{*n}$. The action of $\psi$ on morphisms is thus determined by the diagram in \cref{weakmonfunc}, that is
-\begin{eq*} \psi(\alpha(g; w_1, ... w_m)) \, = \, \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta(\, g \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_m)}\, ) \circ \psi_{\mathbf{w}}^{-1}\end{eq*} 
-However, morphisms do not have a unique representation of this form, so we must check that whenever we have different representations of the same morphism
-\begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha(g'; \mathrm{id}_{w_1'}, ..., \mathrm{id}_{w_{m'}'}) \end{eq*}
-their diagrams give the same image under $\psi$. There are two cases to consider here;
-\begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \end{eq*}
-when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimit diagram $D_n$ in \cref{colimthm}; and
-\begin{eq*} \begin{array}{rll}
-		\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) & = & \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ) \\
-		&& \circ \, \, \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \\
-		&& \circ \, \, \alpha(\, h^{-1} \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}'} \, ) \\
-		&& \circ \, \, \alpha(\, j^{-1} \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \\
-		& = & \mathrm{id}_{w_1 \otimes ... \otimes w_m} 
-		\end{array}
-\end{eq*}
-for $ \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ), \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \in \mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, which comes from the abelianisation of the vertices of $D_n$. All other ways for a morphism to have different representations must be generated by successive examples of these cases, since otherwise they wouldn't be coequalised by the colimit in \cref{colimthm}. In the first case we just have
-\begin{eq*} \begin{array}{rl}
-		& \psi( \, \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \, ) \\
-		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}, \mathbf{v}} \circ \beta(\, g \otimes e_k \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_m)}, \, \mathrm{id}_{\psi(v_1)}, \, ..., \, \mathrm{id}_{\psi(v_k)} \, ) \circ \psi_{\mathbf{w}, \mathbf{v}}^{-1} \\
-		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \otimes \psi_{\mathbf{v}} \big) \circ \big( \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \otimes \mathrm{id}_{\psi(\mathbf{v})} \big) \circ \big( \psi_{\mathbf{w}}^{-1} \otimes \psi_{\mathbf{v}}^{-1} \big) \\
-		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \big) \otimes \big( \psi_{\mathbf{v}} \circ \mathrm{id}_{\psi(\mathbf{v})} \circ \psi_{\mathbf{v}}^{-1} \big) \\
-		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \\
-		=& \psi( \, \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, )
-		\end{array}
-\end{eq*}
-as required. The second case is more subtle. We begin by expanding
-\begin{eq*} \begin{array}{rl}
-		& \psi( \, \alpha( \, g \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m} \, ) \\
-		= & \psi( \, \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ) \, ) \\
-		& \circ \, \, \psi( \, \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \, ) \\
-		& \circ \, \, \psi( \, \alpha(\, h^{-1} \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}'} \, ) \, ) \\
-		&\circ \, \, \psi( \, \alpha(\, j^{-1} \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \, ) \\
-		= & \psi_{\mathbf{w'}} \circ \beta(\, h \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'})} \, ) \circ \psi_{\mathbf{w'}}^{-1} \\
-		& \circ \, \, \psi_{\mathbf{w''}} \circ\beta(\, j \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
-		& \circ \, \, \psi_{\mathbf{w'}} \circ \beta(\, h^{-1} \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'}')} \, ) \circ \psi_{\mathbf{w'}}^{-1}  \\
-		&\circ \, \, \psi_{\mathbf{w''}} \circ \beta(\, j^{-1} \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
-		\end{array}
-\end{eq*}
-Here the objects $w_i, w_i', w_i''$ are all in $\mathbb{G}_n \subseteq L\mathbb{G}_n$, and so we know their minimal generator decompositions are also in $\mathbb{G}_n$. It follows that $d(w_i \otimes w_j) = d(w_i) \otimes d(w_j)$ for all $i,j$, and hence by our definition of $\psi$ we have $\psi(w_i \otimes w_j) = \psi(w_i) \otimes \psi(w_j)$ and also $\psi_{\mathbf{w}_{\sigma}} = id$ for any permuation $\sigma$ --- and the same for $\mathbf{w'}$ and $\mathbf{w''}$. Also, note that since we are working in $\mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, all of the action morphisms in the above composite have the same source and target, $\psi(w_1 \otimes ...\otimes w_m)$. This object is weakly invertible, because each of the $w_i$ are invertible. However, the automorphisms of any weakly invertible object are isomorphic to the automorphisms of the unit object, as in the proof of \cref{zerotree}, and hence form an abelian group, by an Eckmann-Hilton argument like in the proof of \cref{colimthm}. Therefore we may permute these action morphisms freely, and so
-\begin{eq*} \begin{array}{rl}
-& \psi( \, \alpha( \, g \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m} \, ) \\
-		= & \beta(\, h \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'})} \, ) \\
-		& \circ \, \, \beta(\, h^{-1} \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'}')} \, )  \\
-		& \circ \, \, \beta(\, j \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \\
-		& \circ \, \, \beta(\, j^{-1} \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \\
-		= & \mathrm{id}_{\psi(w_1) \otimes ... \otimes \psi(w_m)} \\
-		= & \psi_{\mathbf{w}} \circ \beta(\, e_m \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_{m})} \, ) \circ \psi_{\mathbf{w}}^{-1}
-		\end{array}
-\end{eq*}
-as required. 
-
-With $\psi$ now fully defined, notice that
-\begin{eq*} \begin{array}{rll}
-		F(\psi) & = & \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
-		& = & \big\{ \, ( \, x_i, \, x_i^*, \, \eta_i, \, \epsilon_i \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
-		\end{array}
-\end{eq*}
-which was our arbitrary object in $(X_{\mathrm{wkinv}})^n$. Therefore, $F$ is surjective on objects.
-
-Next, choose an arbitrary monoidal transformation $\theta : \psi \to \chi$ from $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$. By naturality, for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ we have that
-\begin{eq*} \begin{tikzcd}
-\psi(w) \otimes \psi(w') \ar[r, "\sim"] \ar[d, "\theta_w \otimes \theta_{w'}"'] & \psi(w \otimes w') \ar[d, "\theta_{w \otimes w'}"] \\
-\chi(w) \otimes \chi(w') \ar[r, "\sim"] & \chi(w \otimes w')
-\end{tikzcd} \end{eq*}
-or equivalently, $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$. It follows from this that the components of $\theta$ are generated by the components on the generators of $\mathrm{Ob}(L\mathbb{G}_n)$, namely $\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \}_{i \in \{z_1, ..., z_n\} }$. But this is just $F(\theta)$, and thus any monoidal transformation $\theta$ is determined uniquely by its image under $F$, or in other words $F$ is faithful.
-
-Finally, let $\psi, \chi$ be objects of $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$, and choose an arbitrary map $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} } : F(\psi) \to F(\chi)$ from $(X_{\mathrm{wkinv}})^n$. We can use this to construct a monoidal transformation $\theta : \psi \to \chi$ via the reverse of process we just used. Specifically, if we define
-\begin{eq*} \theta_I = \chi_I \circ \psi_I^{-1}, \quad \quad \theta_{z_i} =  f_i, \quad \quad \theta_{z_i^*} = f_i^*\end{eq*}
-then these will automatically form the naturality squares
-\begin{eq*} \begin{tikzcd}
-\psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\psi_{z_i, z_i^*}"] \ar[dd, "f_i \otimes f_i^*"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] & \psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\psi_{z_i^*, z_i}"] \ar[dd, "f_i^* \otimes f_i"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] \\
-& & I \ar[d, "\chi_I"] & & & I \ar[d, "\chi_I"] \\
-\chi(z_i) \otimes \chi(z_i^*) \ar[rr, "\chi_{z_i, z_i^*}"] & & \chi(I) & \chi(z_i^*) \otimes \chi(z_i) \ar[rr, "\chi_{z_i^*, z_i}"] & & \chi(I)
-\end{tikzcd} \end{eq*}
-since these are just the conditions for $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} }$ to be a map $F(\psi) \to F(\chi)$ in $(X_{\mathrm{wkinv}})^n$. Repeatedly applying the naturality condition $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$ will then generate all of the other components of $\theta$, in a way that clearly satisfies naturality. Thus we have a well-defined monoidal transformation $\theta : \psi \to \chi$, and applying $F$ to it gives
-\begin{eq*} \begin{array}{rll}
-		F(\theta) & = & \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
-		& = & \big\{ \, ( \, f_i, \, f_i^* \, ) \, \big\}_{ i \in \{z_1, ..., z_n\} },
-		\end{array}
-\end{eq*}
-our arbitrary map. Therefore $F$ is full and, putting this together with the previous results, is an equivalence of categories.
+The same as the proof of \cref{coeqsurj}, but with \cref{Obadjmon} in place of \cref{Obadj}, and no reference to $k(Y)$ being a sub-$\mathrm{E}G$-algebra.
 \end{proof}

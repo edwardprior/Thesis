@@ -14,6 +14,8 @@
 \usepackage[capitalise]{cleveref}
 \usepackage[T1]{fontenc}
 \usepackage{lmodern}
+\usepackage{array}
+\usepackage{longtable}
 
 
 \usepackage[color=orange!80,bordercolor=black,textwidth=3cm,textsize=small,colorinlistoftodos]{todonotes}
@@ -26,18 +28,18 @@
 
 \numberwithin{equation}{section}
 
-\newtheorem{thm}[equation]{Theorem}
-\newtheorem{prop}[equation]{Proposition}
+\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{prop}[thm]{Proposition}
 \newtheorem*{prop*}{Proposition}
-\newtheorem{lem}[equation]{Lemma}
-\newtheorem{cor}[equation]{Corollary}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{cor}[thm]{Corollary}
 
 \newtheoremstyle{example}{\topsep}{\topsep}{}{}{\bfseries}{.}{2pt}{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}
 \theoremstyle{example}
 
-\newtheorem{nota}[equation]{Notation}
-\newtheorem{example}[equation]{Example}
-\newtheorem{defn}[equation]{Definition}
+\newtheorem{nota}[thm]{Notation}
+\newtheorem{example}[thm]{Example}
+\newtheorem{defn}[thm]{Definition}
 \newtheorem*{rem}{Remark}
 
 %% E.P. notes
@@ -69,8 +71,11 @@
 \newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-12mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
 \newcommand{\pullback}{\mathbin{\text{\rotatebox{45}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
 
+\newcolumntype{L}{>{$}l<{$}}
+\newcolumntype{C}{>{$}c<{$}}
+\newcolumntype{R}{>{$}r<{$}}
+
 %\excludecomment{proof} 
- 
 
 
 \title{Action operads, free algebras on invertible objects, and the classification of 3-groups}
@@ -103,7 +108,6 @@
 
 
 
-
 \mainmatter
 
 
@@ -111,13 +115,15 @@
 
 \input{initialalgebra.tex}
 
-\input{coeqalgebra.tex} 
+\input{coeqalgebra.tex}
+
+\input{mainthm.tex}
 
 \input{2groupclass.tex}
 
 \input{cohomology.tex}
 
-\input{3groupclass.tex} 
+\input{3groupclass.tex}   
 
 
 
@@ -129,13 +135,13 @@ John C. Baez; Aaron D. Lauda.
 https://arxiv.org/pdf/math/0307200.pdf 
 
 \bibitem{picard}
-K. H. Ulbrich
+K. H. Ulbrich.
 \textit{Group cohomology for Picard categories}
 Journal of Algebra, 91 (1984), pp. 464-498 
 http://dx.doi.org/10.1016/0021-8693(84)90114-5
 
 \bibitem{kkg}
-K. H. Ulbrich
+K. H. Ulbrich.
 \textit{Kohärenz in Kategorien mit Gruppenstruktur}
 Journal of Algebra, 72 (1981), pp. 279-295
 http://dx.doi.org/10.1016/0021-8693(81)90295-7
@@ -144,6 +150,16 @@ http://dx.doi.org/10.1016/0021-8693(81)90295-7
 Peter Selinger.
 \textit{A survey of graphical languages for monoidal categories}.
 http://www.mscs.dal.ca/~selinger/papers/graphical.pdf
+
+\bibitem{groupop}
+Wenbin Zhang.
+\textit{Group Operads and Homotopy Theory}
+arXiv:1111.7090 [math.AT]
+
+\bibitem{ogge}
+Alexander S. Corner; Nick Gurski.
+\textit{Operads with general groups of equivariance, and some 2-categorical aspects of operads in Cat}
+arXiv:1312.5910 [math.CT]
 
 \bibitem{operadborel} 
 Nick Gurski. 

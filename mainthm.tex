@@ -1,0 +1,871 @@
+\chapter{Complete descriptions of free invertible algebras}
+\label{mainthm}
+
+The goal of these next couple of sections will be to show that we can reconstruct the all of morphisms of $L\mathbb{G}_n$ from just the abelian group $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$, and therefore that we can actually use the adjunction from \cref{Moadj} to help find a description of $L\mathbb{G}_n$. The way we will do this is by splitting $\mathrm{Mor}(L\mathbb{G}_n)$ up as the product of two other monoids. The first of these will encode all of the possible combinations of source and target data for morphisms in $L\mathbb{G}_n$, while the second will just be the endomorphisms of the unit object, $L\mathbb{G}_n(I, I)$. In other words, we will see that the monoid $\mathrm{Mor}(L\mathbb{G}_n)$ can be broken down into a context where source and target are the only thing that matters, and another where they are irrelevant. Once we have done this, we can then use the fact that $L\mathbb{G}_n(I, I)$ is always an abelian group to rewrite $\mathrm{Mor}(L\mathbb{G}_n)$ in terms of $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$.
+
+\section{Sources and targets in $L\mathbb{G}_n$}  
+
+To get things started, we will spend this section considering the source and target information of morphisms in $L\mathbb{G}_n$. 
+
+\begin{defn}\label{st} For any $\mathrm{E}G$-algebra $X$, denote by $s: \mathrm{Mor}(X) \to \mathrm{Ob}(X)$ and $t: \mathrm{Mor}(X) \to \mathrm{Ob}X)$ the monoid homomorphisms which send each morphism of $X$ to its source and target, respectively. That is,
+\begin{eq*} s( \, f: x \to y) \, = \, x, \quad \quad t( \, f: x \to y) \, = \, y \end{eq*}
+\end{defn}
+
+If we use the universal property of products, we can combine these source and target homomorphisms into a single map, $s \times t: \mathrm{Mor}(X) \to \mathrm{Ob}(X) \times \mathrm{Ob}(X)$. The monoid we are interested in finding is the image $L\mathbb{G}_n$ under its instance of this map.
+
+\begin{lem}\label{stmon} Let $X$ be an $\mathrm{E}G$-algebra, and $s \times t: \mathrm{Mor}(X) \to \mathrm{Ob}(X)^2$ the map built from $s$ and $t$ using the universal property of products. Then the image of this map is
+\begin{eq*} (s \times t)(X) \, = \, \mathrm{Ob}(X) \times_{\pi_0(X)} \mathrm{Ob}(X) \end{eq*}
+where this pullback is taken over the canonical maps sending objects of $X$ to their connected components:
+\begin{eq*} \begin{tikzcd}
+\mathrm{Ob}(X) \times_{\pi_0(X)} \mathrm{Ob}(X) \ar[dd, shift left=12] \ar[rr] \ar[ddrr, phantom, "\lrcorner", near start, shift left=4] & & \mathrm{Ob}(X) \ar[dd, "\lbrack \, \_ \, \rbrack"] & \\
+& & & \\
+\quad \quad \quad \quad \quad \quad \mathrm{Ob}(X) \ar[rr, "\lbrack \, \_ \, \rbrack"] & & \pi_0(X)
+\end{tikzcd} \end{eq*}
+\end{lem} 
+\begin{proof}
+By definition, there exists a morphism $f: x \to y$ between objects $x, y$ of $X$ if and only if they are in the same connected component, $[x] = [y]$. Thus
+\begin{eq*} \begin{array}{rll}
+		(x, y) \, \in \, (s \times t)(X) & \iff & \exists \, f \, : \quad s(f) \, = \, x, \quad t(f) \, = \, y \\
+		& \iff & [x] = [y] \\
+		& \iff & (x, y) \, \in \, \mathrm{Ob}(X) \times_{\pi_0(X)} \mathrm{Ob}(X)
+		\end{array}
+\end{eq*}
+as required.
+\end{proof}
+
+Recalling \cref{Gnobj,Gnconcomp,Zobj,crossconcomp}, we can immediately conclude the following:
+
+\begin{cor} \label{stpullback}
+\begin{eq*} \begin{array}{rll} 
+		(s \times t)(\mathbb{G}_n) & = & \begin{cases}
+								\quad \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} & \text{if $G$ is crossed}\\
+								\quad \mathbb{N}^{\ast n} & \text{otherwise}
+							\end{cases} \\
+		& & \\
+		(s \times t)(L\mathbb{G}_n) & = & \begin{cases}
+								\quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  & \text{if $G$ is crossed}\\
+								\quad \mathbb{Z}^{\ast n} & \text{otherwise}
+							\end{cases} \\
+		\end{array}
+\end{eq*}
+where the pullbacks are taken over the quotients of abelianisation for $(\mathbb{N}^{\ast n})^{\mathrm{ab}} = \mathbb{N}^n$ and $(\mathbb{Z}^{\ast n})^{\mathrm{ab}} = \mathbb{Z}^n$ respectively.
+\end{cor}
+
+Next, we want to show that this $(s \times t)(L\mathbb{G}_n)$ we have described is in fact a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$. This is a little tricky though, since we don't currently know what the morphisms of $L\mathbb{G}_n$ even are. We will sidestep this problem by first proving the analogous statement for all $\mathbb{G}_n$, and then recovering the $L\mathbb{G}_n$ version from it later.
+
+Now, by \cref{Gnmor} we know that wanting $(s \times t)(\mathbb{G}_n)$ to be a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$ is the same as asking if we can find an injective homomorphism $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$, assuming $G$ is crossed, or $\mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ if it is not. The latter case is pretty obvious, so we'll focus on crossed $G$ for the moment. Creating a injective \emph{function} $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ is not especially hard. For any pair $(w, w') \in \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, the image of $w$ and $w'$ in the abelian group $\mathbb{N}^n$ is the same, which is to say that the words $w, w' \in \mathbb{N}^{\ast n}$ are permuations of each other. Since the underlying permutation maps $\pi : G(m) \to \mathrm{S}_m$ of a crossed action operad $G$ are all surjective, we can always find an element of $g \in G(|w|)$ for which $\pi(g)(w) = w'$. Thus in order to make our injective function all we need to do is make a choice $g_{(w, w')}$ like this for each $(w, w')$, and then set
+\begin{eq*} \begin{array}{rll}
+			\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} & \to & G \times_{\mathbb{N}} \mathbb{N}^{\ast n} \\
+			(w, w') & \mapsto & ( \, g_{(w, w')}, w \, )
+		\end{array}
+\end{eq*}
+Injectivity follows from
+\begin{eq*} \begin{array}{rclcrcl}
+		& & & & g_{(w, w')} & = & g_{(v, v')} \\
+		( \, g_{(w, w')}, w \, ) & = & ( \, g_{(v, v')}, v \, ) & \implies & w & = & v \\
+		& & & & w' & = & \pi(g_{(w, w')})(w) \\
+		& & & & & = & \pi(g_{(v, v')})(v) \\
+		& & & & & = & v'
+		\end{array}
+\end{eq*}
+So how do we know if we can choose these $g_{(w, w')}$ in such a way that the resulting function is also a monoid homomorphism? If we could find a presentation of $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ in terms of generators and relations then this would help a little, since we would only need to pick a $g_{(z, z')}$ for each generator $(z, z')$, and then define all other $g$ by way of products.
+\begin{eq*} g_{(vw, v'w')} \, = \, g_{(v, v')} g_{(w, w')} \end{eq*}
+But we would still need to know if our choice of $g_{(z, z')}$ obeyed the necessary relations on the generators of $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$. Luckily for us though, this turns out to be no problem at all. 
+
+\begin{prop}\label{freemon} $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ is a free monoid.
+\end{prop}
+\begin{proof}
+Given an element $(w, w')$ of the monoid $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, let $d(w, w')$ be the following set:
+\begin{eq*} d(w, w') \, = \, \left\{ \begin{array}{rlrll}
+							& & (w, w') & = & (u, u') \otimes (v, v'), \\
+							(u, u'), (v, v') \in \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} & : & (u, u') & \neq & (I, I), \\
+							& & (v, v') & \neq & (I,I)
+					\end{array} \right\} 
+\end{eq*}
+We can use these sets to recursively define a decomposition of any element $(w, w')$ as a product of other elements of $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$. Specifically, if $d(w, w')$ is empty then we say that the decomposition of $(w, w')$ is just $(w, w')$ itself, and otherwise we choose any $\big( \, (u, u'), (v, v') \, \big) \in d(w, w')$ and say that the decomposition of $(w, w')$ is the concatenation of the decomposition of $(u, u')$ with the decomposition of $(v, v')$. Note that this process definitely terminates, since $|u|$ and $|v|$ are always strictly smaller that $|w|$, and any strictly decreasing sequence of natural numbers is finite.
+
+Of course, we need to check that this decomposition of $(w, w')$ is well-defined, which amounts to checking that the choice of $(u, u'), (v, v')$ we make at each stage won't change the eventual output. To that end, suppose for the sake of contradiction that $(u_1, u'_1), ..., (u_m, u'_m)$ and $(v_1, v'_1), ..., (v_m', v'_{m'})$ are distinct decompositions of $(w, w')$ we could arrive at using the above process. Notice that we can assume without loss of generality that $|u_1| < |v_1|$. If instead $|u_1| > |w_1|$, we can just swap the labels of the sequences, and if $|u_1| = |v_1|$ then we can just discard those elements and  instead consider the decompositions $(u_2, u'_2), ..., (u_m, u'_m)$ and $(v_2, v'_2), ..., (v_m', v'_{m'})$ of $(u_1, u'_1) \otimes ... \otimes (u_m, u'_m) = (v_1, v'_1) \otimes ... \otimes (v_m', v'_{m'})$. Since $(u_1, u'_1), ..., (u_m, u'_m)$ and $(v_1, v'_1), ..., (v_m', v'_{m'})$ were distinct decompositions of $(w, w')$, in this way we will eventually reach some subsequences whose first elements are different; once we have, we can relabel them so that $|u_1| < |v_1|$. 
+
+Then by definition,
+\begin{eq*} u_1 \otimes \big( \, \bigotimes_{i=2}^m u_i \, ) \, = \, w \, = \, v_1 \otimes \big( \, \bigotimes_{i=2}^{m'} v_i \, )\end{eq*}
+But $w, u_1, v_1, \bigotimes_{i=2}^m u_i, \bigotimes_{i=2}^{m'} v_i$ are all elements of $\mathbb{N}^{\ast n}$, which is a free monoid, and so they each have a unique decomposition as products of the generators $\{ z_1, ..., z_n \}$, and these all respect tensor products. Therefore, since $|u_1| < |v_1|$, there must exist some element $a$ of $\mathbb{N}^{\ast n}$ such that
+\begin{eq*} w \, = \, u_1 \otimes a \otimes \big( \, \bigotimes_{i=2}^{m'} v_i \, )  \quad \implies \quad v_1 \, = \, u_1 \otimes a \end{eq*}
+Since
+\begin{eq*} |u'_1| \, = \, |u_1| \, < \, |v_1| \, = \, |v'_1| \end{eq*}
+we can also use exactly the same reasoning to find an $a'$ in $\mathbb{N}^{\ast n}$ with $v'_1 = u'_1 \otimes a'$, and hence $(v_1, v'_1) = (u_1, u'_1) \otimes (a, a')$. Moreover, this $(a, a')$ is an element of $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, because
+\begin{eq*}\begin{array}{rrcccl}
+			& v_1 & = & u_1 \otimes a & & \\
+			\implies \quad & [v_1] & = & [u_1 \otimes a] & = & [u_1] + [a] \\
+			& & & & & \\
+			& v'_1 & = & u'_1 \otimes a' & & \\
+			\implies \quad & [v'_1] & = & [u'_1 \otimes a'] & = & [u'_1] + [a'] \\
+			& & & & & \\
+			\implies \quad & [a] & = & [v_1] - [u_1] & & \\
+			& & & [v'_1] - [u'_1] & = & [a']
+		\end{array}
+\end{eq*}
+In other words, we have shown that the pair $\big( \, (u_1, u'_1) (a, a') \, \big)$ is an element of $d(v_1, v'_1)$. But by assumption $(v_1, v'_1), ..., (v_m', v'_{m'})$ was a decomposition of $(w, w')$, and hence the $d(v_i, v'_i)$ were supposed to be empty for each $i$, since that is when the decomposition finding process terminates. This is a contradiction, and hence our assumption that $(u_1, u'_1), ..., (u_m, u'_m)$ and $(v_1, v'_1), ..., (v_m', v'_{m'})$ were distinct decompositions of $(w, w')$ is false. Therefore, each $(w, w')$ in $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ has a unique decomposition in terms of elements $(v_i, v'_i)$ for which $d(v_i, v'_i)$ is empty, and so $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ is the free monoid whose generators are all such elements.
+\end{proof}
+
+It follows immediately from this that our earlier contruction of an injective function $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} \to G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ can be extended to be an inclusion of monoids.
+
+\begin{prop} \label{stGnsub} $(s \times t)(\mathbb{G}_n)$ is (isomorphic to) a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$
+\end{prop}
+\begin{proof}
+First, assume that the action operad $G$ is non-crossed. Then there exists an obvious injective monoid homomorphism
+\begin{eq*} \begin{array}{rlrll}
+			i & : & (s \times t)(\mathbb{G}_n) & \to & \mathrm{Mor}(\mathbb{G}_n) \\
+			& : & \mathbb{N}^{\ast n} & \to & G \times_{\mathbb{N}} \mathbb{N}^{\ast n} \\
+			& : & w & \mapsto & ( \, e_{|w|}, w \, )
+		\end{array}
+\end{eq*}
+The homomorphism property follows from the fact that the length $|w|$ defined in \cref{lengthdef} is itself a homomorphism, so $|w \otimes w'| = |w|+|w'|$. Thus $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$ for non-crossed $G$.
+
+Now assume that $G$ is crossed. For each generator $(z, z')$ of $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, choose an element of $g_{(z, z')} \in G(|z|)$ with the property that $\pi(g_{(z, z')})(z) = z'$. This is always possible, since $(z, z') \in \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ implies that the words $z, z' \in \mathbb{N}^{\ast n}$ are permuations of each other, and the maps $\pi : G(m) \to \mathrm{S}_m$ are always surjective. Then we can define the homomorphism $i$ to be
+\begin{eq*} \begin{array}{rlrll}
+			i & : & (s \times t)(\mathbb{G}_n) & \to & \mathrm{Mor}(\mathbb{G}_n) \\
+			& : & \mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n} & \to & G \times_{\mathbb{N}} \mathbb{N}^{\ast n} \\
+			& : & (z, z') & \mapsto & ( \, g_{(z, z')}, z \, )
+		\end{array}
+\end{eq*}
+on generators. Since by \cref{freemon} $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$ is free, this $i$ extends to a well-defined monoid homomorphism, as long as we choose $g_{(I, I)} = e_0$ so that it preserves the identity. Moreover, for any two generators $(z_1, z'_1), (z_2, z'_2)$, we have
+\begin{eq*} \begin{array}{rclcrcl}
+		& & & & g_{(z_1, z'_1)} & = & g_{(z_2, z'_2)} \\
+		( \, g_{(z_1, z'_1)}, z_1 \, ) & = & ( \, g_{(z_2, z'_2)}, z_2 \, ) & \implies & z_1 & = & z_2 \\
+		& & & & z'_1 & = & \pi(g_{(z_1, z'_1)})(z_1) \\
+		& & & & & = & \pi(g_{(z_2, z'_2)})(z_2) \\
+		& & & & & = & z'_2
+		\end{array}
+\end{eq*}
+and thus $i$ is injective. Therefore the image of this $i$ is a submonoid of $G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ which is isomorphic to $\mathbb{N}^{\ast n} \times_{\mathbb{N}^n} \mathbb{N}^{\ast n}$, so again $(s \times t)(\mathbb{G}_n) \subseteq \mathrm{Mor}(\mathbb{G}_n)$ as required.
+\end{proof}
+
+So, now we know that $(s \times t)(\mathbb{G}_n)$ is a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$, but what we are really interested in is whether $(s \times t)(\mathbb{G}_n)$ is a submonoid of $\mathrm{Mor}(\mathbb{G}_n)$. To recover the latter result from the former, we will use our cokernel map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$. In particular, the surjectivity of $q$ combined with the case $(s \times t)(\mathbb{G}_{2n}) \subseteq \mathrm{Mor}(\mathbb{G}_{2n})$ from \cref{stGnsub}, immediately gives us what we need.
+
+\begin{cor} \label{stZsub} $(s \times t)(L\mathbb{G}_n)$ is (isomorphic to) a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$
+\end{cor}
+\begin{proof}
+Let $i: (s \times t)(\mathbb{G}_{2n}) \hookrightarrow \mathrm{Mor}(\mathbb{G}_{2n})$ be an inclusion which allows us to view $(s \times t)(\mathbb{G}_{2n})$ as a submonoid of $\mathrm{Mor}(\mathbb{G}_{2n})$, as in \cref{stGnsub}. Also, let $\mathrm{Mor}(q): \mathrm{Mor}(\mathbb{G}_{2n}) \to \mathrm{Mor}(L\mathbb{G}_n)$ the restriction of the cokernel map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ onto morphisms. Then the image of the composite of these two homomorphisms,
+\begin{eq*} \mathrm{im}\big( \, \mathrm{Mor}(q) \circ i \, \big) \quad = \quad q\big( \, \mathrm{im}(i) \, \big) \quad \cong \quad q\big( \, (s \times t)(\mathbb{G}_{2n}) \, \big)\end{eq*}
+is clearly a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$. 
+
+But by \cref{qsruj} $q$ is a surjective functor. This means that there can exist a map $w \to v$ in $L\mathbb{G}_n$ if and only if there exists at least one map $w' \to v'$ in $\mathbb{G}_{2n}$, for some $w', v'$ which have $q(w') = w$ and $q(v') = v$. In other words,
+\begin{eq*} q\big( \, (s \times t)(\mathbb{G}_{2n}) \, \big) \, = \, (s \times t)(L\mathbb{G}_n) \end{eq*}
+and therefore the monoid $\mathrm{im}\big( \, \mathrm{Mor}(q) \circ i \, \big)$ that we saw above is really a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$ isomorphic to $(s \times t)(L\mathbb{G}_n)$, as required.
+\end{proof} 
+
+\section{Unit endomorphisms of $L\mathbb{G}_n$}
+
+To help us understand $\mathrm{Mor}(L\mathbb{G}_n)$, we decided to break it down into two smaller pieces. The first of these was the source/target data $(s \times t)(L\mathbb{G}_n)$, which we explored in the previous section. The other piece that we now have to consider is the monoid of unit endomorphisms, $L\mathbb{G}_n(I,I)$. 
+
+This is a particularly important submonoid of the morphisms $\mathrm{Mor}(L\mathbb{G}_n)$, since it is the only submonoid which is also a homset of the category $L\mathbb{G}_n$. Moreover, because the maps in $L\mathbb{G}_n(I,I)$ all share the same source and target, what we have is not just a monoid under tensor product but also under composition as well. This fact leads to a series of special properties for $L\mathbb{G}_n(I,I)$, the first of which is just another instance of the classic Eckmann-Hilton argument.
+
+\begin{lem} \label{endcom} $L\mathbb{G}_n(I,I)$ is a commutative monoid under both tensor product and composition, with $f \otimes f' = f \circ f'$.
+\end{lem}
+\begin{proof}
+Let $f, f'$ be arbitrary elements of the monoid $L\mathbb{G}_n(I,I)$. Since both of these are morphisms in the monoidal category $L\mathbb{G}_n$, we can use the law of interchange to show that
+\begin{eq*} \begin{array}{rll}
+			f \otimes f' & = & (f \circ \mathrm{id}_I) \otimes (\mathrm{id}_I \circ f') \\
+			& = & (f \otimes \mathrm{id}_I) \circ (\mathrm{id}_I \otimes f') \\
+			& = & f \circ f' \\
+			& = & (\mathrm{id}_I \otimes f) \circ (f' \otimes \mathrm{id}_I) \\
+			& = & (f' \circ \mathrm{id}_I) \otimes (\mathrm{id}_I \circ f) \\
+			& = & f' \otimes f
+		\end{array}
+\end{eq*}
+\end{proof}
+
+In fact, since we already proved that the morphisms of $L\mathbb{G}_n$ are all actions morphisms, we can take this one step further.
+
+\begin{prop} \label{endab} $L\mathbb{G}_n(I,I)$ is an abelian group.
+\end{prop}
+\begin{proof}
+From \cref{allmapsaction} we know that every morphism $f$ in $L\mathbb{G}_n$ is of the form $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \mathbb{Z}^{\ast n}$. It follows immediately that
+\begin{eq*} \begin{array}{rl}
+			& \alpha( \, g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \circ \alpha( \, g^{-1} \, ; \, \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}} \, ) \\
+			= & \alpha( \, gg^{-1} \, ; \, \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}} \, ) \\
+			= & \alpha( \, e_m \, ; \, \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}} \, ) \\
+			= & \mathrm{id}_{x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)}} \\
+			& \\
+			& \alpha( \, g^{-1} \, ; \, \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}} \, ) \circ \alpha( \, g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \\
+			= & \alpha( \, g^{-1}g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \\
+			= & \alpha( \, e_m \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \\
+			= & \mathrm{id}_{x_1 \otimes ... \otimes x_m}
+		\end{array}
+\end{eq*}
+In other words, every morphism $f: w \to v$ in $L\mathbb{G}_n$ has an inverse under composition, 
+\begin{eq*} f^{-1} \quad := \quad \alpha(g^{-1}; \mathrm{id}_{x_{\pi(g^{-1})(1)}}, ..., \mathrm{id}_{x_{\pi(g^{-1})(m)}}) \end{eq*}
+But we know from \cref{endcom} that tensor product and composition are the same for endomorphisms of the unit object of $L\mathbb{G}_n$. In particular this means that if some morphism $f: I \to I$ has a compositional inverse $f^{-1}$, then it will also be its monoidal inverse $f^*$. Thus every element of the commutative monoid $L\mathbb{G}_n(I,I)$ is invertible, or in other words $L\mathbb{G}_n(I,I)$ is an abelian group.
+\end{proof}
+
+Indeed, by using a slightly broader argument we can extend this result to every morphism of $L\mathbb{G}_n$.
+
+\begin{prop} \label{tensinv} Every morphism $f: w \to v$ in $L\mathbb{G}_n$ has an inverse under tensor product, $f^*: w^* \to v^*$. That is, the monoid $\mathrm{Mor}(L\mathbb{G}_n)$ is actually a group.
+\end{prop}
+\begin{proof}
+For any $f: w \to v$ in $L\mathbb{G}_n$, consider the map $\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}$, where $f^{-1}$ is the compositional inverse of $f$, as in the proof of \cref{endab}. This morphism has source $w^* \otimes v \otimes v^* = w^*$ and target $w^* \otimes w \otimes v^* = v^*$, which allows us to apply the law of interchange to get
+\begin{eq*} \begin{array}{rll}
+			f \otimes (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) & = & \big( \, f \circ \mathrm{id}_w \, \big) \otimes \big( \, \mathrm{id}_{v^*} \circ  (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \, \big) \\
+			& = & \big( \, f \otimes \mathrm{id}_{v^*} \, \big) \circ \big( \, \mathrm{id}_w \otimes (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \, \big) \\
+			& = & ( f \otimes \mathrm{id}_{v^*} ) \circ ( f^{-1} \otimes \mathrm{id}_{v^*}) \\
+			& = & (f \circ f^{-1}) \otimes (\mathrm{id}_{v^*} \circ \mathrm{id}_{v^*}) \\
+			& = & \mathrm{id}_v \otimes \mathrm{id}_{v^*} \\
+			& = & \mathrm{id}_I
+		\end{array}
+\end{eq*}
+and likewise
+\begin{eq*} \begin{array}{rll}
+			(\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \otimes f & = & \big( \, (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \circ \mathrm{id}_{w^*} \, \big) \otimes \big( \, \mathrm{id}_v \circ f \, \big) \\
+			& = & \big( \, (\mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}) \otimes \mathrm{id}_v \, \big) \circ \big( \, \mathrm{id}_{w^*} \otimes f \, \big) \\
+			& = & (\mathrm{id}_{w^*} \otimes f^{-1}) \circ (\mathrm{id}_{w^*} \otimes f) \\
+			& = & (\mathrm{id}_{w^*} \circ \mathrm{id}_{w^*}) \otimes (f^{-1} \circ f)\\
+			& = & \mathrm{id}_{w^*} \otimes \mathrm{id}_w \\
+			& = & \mathrm{id}_I
+		\end{array}
+\end{eq*}
+In other words, $f^* := \mathrm{id}_{w^*} \otimes f^{-1} \otimes \mathrm{id}_{v^*}$ is the inverse of $f$ in the monoid $\mathrm{Mor}(L\mathbb{G}_n)$, as required.
+\end{proof}
+
+So $\mathrm{Mor}(L\mathbb{G}_n)$ and $L\mathbb{G}_n(I,I)$ both turn out to be groups under tensor product. Obviously it follows from this that $L\mathbb{G}_n(I,I)$ is a not just a submonoid of $\mathrm{Mor}(L\mathbb{G}_n)$ but a subgroup --- in particular an abelian subgroup, going by \cref{endab}. But $L\mathbb{G}_n(I,I)$ is actually an even more special subgroup than this.
+
+\begin{prop} $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$.
+\end{prop}
+\begin{proof}
+From \cref{endab,tensinv}, we know that $L\mathbb{G}_n(I,I)$ is a subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$. For normality, we need to again consider both crossed and non-crossed action operads separately. 
+
+If $G$ is non-crossed, then by \cref{crossconcomp} we know that the map assigning objects of $L\mathbb{G}_n$ to their connected component is just the identity $\mathrm{id}_{\mathbb{Z}^{\ast n}}$. In other words, every objects belongs to its own unique component, so that every morphisms of $L\mathbb{G}_n$ is actually an endomorphism. It follows that the group $L\mathbb{G}_n(I,I)$ is the kernel of the source homomorphism $s$ from \cref{st} --- or equally the target homomorphism $t$.
+\begin{eq*} \begin{tikzcd}
+L\mathbb{G}_n(I,I) \ar[r] & \mathrm{Mor}(L\mathbb{G}_n) \ar[r, "s"] & \mathrm{Ob}(L\mathbb{G}_n)
+\end{tikzcd} \end{eq*}
+The kernel of a group homomorphism is always a normal subgroup of that homomorphisms source, and so in our case we have $L\mathbb{G}_n(I,I) \le \mathrm{Mor}(L\mathbb{G}_n)$.
+
+For crossed $G$, recall from \cref{spacial} that all crossed $\mathrm{E}G$-algebras are spacial, and so in particular $L\mathbb{G}_n$ is. This means that for any $h \in L\mathbb{G}_n(I,I)$ and $w \in \mathrm{Ob}(L\mathbb{G}_n)$ we will always have $h \otimes \mathrm{id}_w = \mathrm{id}_w \otimes h$. Thus for any $f:w \to v$ in $\mathrm{Mor}(L\mathbb{G}_n)$, we get
+\begin{eq*} \begin{array}{rll}
+		h \otimes f & = & (\mathrm{id}_I \circ h) \otimes (f \circ \mathrm{id}_w) \\
+		& = & (\mathrm{id}_I \otimes f) \circ (h \otimes \mathrm{id}_w) \\
+		& = & (f \otimes \mathrm{id}_I) \circ (\mathrm{id}_w \otimes h) \\
+		& = & (f \circ \mathrm{id}_w) \otimes (\mathrm{id}_I \circ h) \\
+		& = & f \otimes h
+		\end{array}
+\end{eq*}
+That is, $L\mathbb{G}_n(I,I)$ is a subgroup of the centre of $\mathrm{Mor}(L\mathbb{G}_n)$. Then because
+\begin{eq*} f \otimes h \otimes f^* \, = \, h \otimes f \otimes f^* \, = \, h \, \in L\mathbb{G}_n(I,I) \end{eq*}
+it follows that $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$.
+\end{proof}
+
+This is the last important property of $L\mathbb{G}_n(I,I)$ that we need. Now we finally have enough information to show that the morphism monoid of $L\mathbb{G}_n$ really does split apart into the smaller pieces that we claimed it did.
+
+\section{Recovering the morphisms of $L\mathbb{G}_n$} 
+ 
+\begin{prop} \label{morprod}
+\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I,I) \end{eq*}
+\end{prop}
+\begin{proof}
+Because we know that $L\mathbb{G}_n(I,I)$ is a normal subgroup of $\mathrm{Mor}(L\mathbb{G}_n)$, we can consider the quotient group
+\begin{eq*} \begin{tikzcd}
+L\mathbb{G}_n(I,I) \ar[r, hookrightarrow] & \mathrm{Mor}(L\mathbb{G}_n) \ar[r] & \bigquotient{\mathrm{Mor}(L\mathbb{G}_n)}{L\mathbb{G}_n(I,I)}
+\end{tikzcd} \end{eq*}
+Whenever they exist, quotient groups are an example of a cokernel in the category of groups and group homomorphisms. This means that the quotient map $\mathrm{Mor}(L\mathbb{G}_n) \to \mathrm{Mor}(L\mathbb{G}_n) / L\mathbb{G}_n(I,I)$ will factor any homomorphism whose composite with the inclusion $L\mathbb{G}_n(I,I) \to \mathrm{Mor}(L\mathbb{G}_n)$ is the zero map. But our source/target map $s \times t : \mathrm{Mor}(L\mathbb{G}_n) \to (s \times t)(L\mathbb{G}_n)$ is one such homomorphism, since for any $h: I \to I$ clearly $(s \times t)(h) = (I, I)$, which is the identity element in $(s \times t)(L\mathbb{G}_n)$. Therefore there must exist a unique homomorphism $u$ making the triangle below commute:
+\begin{eq*} \begin{tikzcd}
+\mathrm{Mor}(L\mathbb{G}_n) \ar[dd] \ar[ddrr, "s \times t"] & & \\
+& & \\
+\bigquotient{\mathrm{Mor}(L\mathbb{G}_n)}{L\mathbb{G}_n(I,I)} \ar[rr, "u"] & & (s \times t)(L\mathbb{G}_n)
+\end{tikzcd} \end{eq*}
+This map $u$ will be surjective --- because $s \times t$ is --- but in fact it will also be injective. This is because if two morphisms $f, f'$ of $L\mathbb{G}_n$ have the same source and target, then the map $h = f^* \otimes f'$ is an element of $L\mathbb{G}_n(I,I)$ for which $f \otimes h = f'$, and so $f$ and $f'$ are a part of the same equivalence classes in $\mathrm{Mor}(L\mathbb{G}_n)/L\mathbb{G}_n(I,I)$. More precisely, 
+\begin{eq*} \begin{array}{rclcrcl}
+		[f] & \neq & [f'] & \implies & [f]^* \otimes [f'] & \neq & [I] \\
+		& & & \implies & [f^* \otimes f'] & \neq & [I] \\
+		& & & \implies & f^* \otimes f' & \notin & L\mathbb{G}_n(I,I)
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rrcl}
+		\implies & (s \times t)(f^* \otimes f') & \neq & (I, I) \\
+		\implies & (s \times t)(f)^* \otimes (s \times t)(f') & \neq & (I, I) \\
+		\implies & (s \times t)(f) & \neq & (s \times t)(f')
+		\end{array}
+\end{eq*}
+Thus $u$ is bijective, or in other words
+\begin{eq*} \bigquotient{\mathrm{Mor}(L\mathbb{G}_n)}{L\mathbb{G}_n(I,I)} \quad \cong \quad (s \times t)(L\mathbb{G}_n) \end{eq*}
+
+Finally, by \cref{stZsub} $(s \times t)(L\mathbb{G}_n)$ is also a submonoid (hence subgroup) of $\mathrm{Mor}(L\mathbb{G}_n)$. Combined with the identity above, we see that what have here is a split exact sequence of groups
+\begin{eq*} \begin{tikzcd}
+L\mathbb{G}_n(I,I) \ar[r] & \mathrm{Mor}(L\mathbb{G}_n) \ar[r] & (s \times t)(L\mathbb{G}_n)
+\end{tikzcd} \end{eq*}
+That is, $\mathrm{Mor}(L\mathbb{G}_n)$ is a split group extension of $(s \times t)(L\mathbb{G}_n)$ by $L\mathbb{G}_n(I,I)$, or equivalently $\mathrm{Mor}(L\mathbb{G}_n)$ is a semi direct product $L\mathbb{G}_n(I,I) \rtimes (s \times t)(L\mathbb{G}_n)$. Moreover, we saw earlier that $L\mathbb{G}_n(I,I)$ is a subgroup of the centre of $\mathrm{Mor}(L\mathbb{G}_n)$, and so it follows that $\mathrm{Mor}(L\mathbb{G}_n)$ is also a central extension of $(s \times t)(L\mathbb{G}_n)$. However, the only extensions which are both central and split are the trivial extensions, and therefore $\mathrm{Mor}(L\mathbb{G}_n)$ is really just the direct product $L\mathbb{G}_n(I,I) \times (s \times t)(L\mathbb{G}_n)$, as required.
+\end{proof} 
+
+\begin{prop}\label{Zmor1} The endomorphisms of the unit object of $L\mathbb{G}_n$ are
+\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\mathbb{Z}^n} \end{eq*}
+and therefore
+\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n} \, \times \, \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{gp, ab}}}{\mathbb{Z}^n} \end{eq*}
+\end{prop}
+\begin{proof}
+From \cref{morprod}, we know that
+\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I, I) \end{eq*}
+Abelianising both sides of this equation, we get
+\begin{eq*} \begin{array}{rll}
+			{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}} & = & \big( \, (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I, I) \, \big)^{\mathrm{ab}} \\
+			& = & {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} \times {L\mathbb{G}_n(I, I)}^{\mathrm{ab}} \\
+			& = & {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} \times L\mathbb{G}_n(I, I) \\
+		\end{array}
+\end{eq*} 
+since $L\mathbb{G}_n(I, I)$ is already abelian. Now, there is an obvious inclusion ${(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} \hookrightarrow (s \times t)(L\mathbb{G}_n)^{\mathrm{ab}} \times L\mathbb{G}_n(I, I)$, and since everything here is abelain, all subgroups are normal subgroups. Thus we can take the quotient of the above equation by this map, to obtain 
+\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{{(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}}} \end{eq*}
+We can also now substitute this expression back into our original equation, which yields
+\begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad = \quad (s \times t)(L\mathbb{G}_n) \times \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{{(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}}} \end{eq*}
+But from \cref{stpullback} we already know that the value of $(s \times t)(L\mathbb{G}_n)$ is $\mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}$. Moreover, the homomorphisms that this pullback is taken over are both the quotient map of abelianisation $\mathbb{Z}^{\ast n} \to \mathbb{Z}^n$, and as a result,
+\begin{eq*} (\mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n})^{\mathrm{ab}} \quad = \quad \mathbb{Z}^n \end{eq*}
+Putting this all together, we get the two equations in the statement of the proposition.
+\end{proof}
+
+Note that its not entirely clear here exactly which $\mathbb{Z}^n$ subgroup of $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$ is being referenced in the statement of \cref{Zmor1}. This is because the existence of such a quotient relied on our assumption that the algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ exists, and so we will not be able to actually perform this quotient until we understand where $q$ comes from.
+
+
+
+
+
+However, it does let us answer a lingering question about \cref{Zmor1}. Recall that we found that
+\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\mathbb{Z}^n} \end{eq*}
+but at the time it was not obvious which $\mathbb{Z}^n$ subgroup of ${\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{gp, ab}}$ this equation was refering to.  But now we have \cref{Qobj, coeq} to tell us how $q$ acts on objects, which allows us conclude the following:
+
+\begin{prop} \label{identityquot}
+
+\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\langle \, [\mathrm{id}_x] \, : \, x \in \mathrm{Ob}(L\mathbb{G}_n) \, \rangle} \end{eq*}
+
+\end{prop}
+\begin{proof}
+In the proof of \cref{Zmor1}, the $\mathbb{Z}^n$ term first appears when we form the quotient group for the inclusion
+\begin{eq*} \begin{tikzcd}
+\mathbb{Z}^n \quad = \quad {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} \ar[r, hookrightarrow] & (s \times t)(L\mathbb{G}_n)^{\mathrm{ab}} \times L\mathbb{G}_n(I, I) \quad = \quad {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}
+\end{tikzcd} \end{eq*}
+This is just the image under the abelianisation functor $\mathrm{ab}: \mathrm{Grp} \to \mathrm{Ab}$ of the inclusion
+\begin{eq*} \begin{tikzcd}
+(s \times t)(L\mathbb{G}_n) \ar[r, hookrightarrow] & \mathrm{Mor}(L\mathbb{G}_n)
+\end{tikzcd} \end{eq*}
+given in \cref{stZmon}, which is in turn just the image under the algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ of whichever inclusion
+\begin{eq*} \begin{tikzcd}
+i \, : \, (s \times t)(\mathbb{G}_{2n}) \ar[r, hookrightarrow] & \mathrm{Mor}(\mathbb{G}_{2n})
+\end{tikzcd} \end{eq*}
+we decided to use in \cref{stGnmon}. 
+
+Now, rememeber that making a choice for this inclusion amounted to choosing for each generator $(z, z')$ of $\mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$ an element $g_{z, z'}$ of $G(|z|)$ for which $\pi(g_{z, z'})(z) = z'$. Moreover, for each of the generators $z_1, ..., z_{2n}$ of the monoid $\mathbb{N}^{\ast 2n}$, the pair $(z_i, z_i)$ is definitely a generator of $\mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$. This is because there are no non-unit elements $a, b \in \mathbb{N}^{\ast 2n}$ with the property that $a \otimes b = z_i$, and hence no non-unit elements $(a, a'), (b, b') \in \mathbb{N}^{\ast 2n} \times_{\mathbb{N}^{2n}} \mathbb{N}^{\ast 2n}$ for which $(a, a') \otimes (b, b') = (a \otimes b, a' \otimes b') = (z_i, z_i)$. Therefore, when we are making a choice for the inclusion $i$ we must at some point pick a sequence $g_{z_1, z_1}, ..., g_{z_{2n}, z_{2n}}$ of independent elements of $G(1)$. We would need to ask that their underlying permutations satisfy $\pi(g_{z_i, z_i})(z_i) = z_i$ as well, but this will always be true, since in this case $\pi$ is a map $\pi_1 : G(1) \to \mathrm{S}_1$, and $\mathrm{S}_1 = \{e\}$.
+
+However, notice that regardless of which $G$ we are using we are always free to choose each of the $g_{z_i, z_i}$ to be the identity element $e_1 \in G(1)$. If we do this then our inclusion $i$ will end up sending the $(z_i, z_i)$ to the elements $(e_1, z_i)$ of $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \cong \mathrm{Mor}(\mathbb{G}_{2n})$, which correspond to the identity morphisms $\mathrm{id}_{z_i}$ of $\mathbb{G}_{2n}$.
+\begin{eq*} \begin{array}{rrrll}
+		i & : & (s \times t)(\mathbb{G}_{2n}) & \hookrightarrow & \mathrm{Mor}(\mathbb{G}_{2n}) \\
+		& : & (z_i, z_i) & \mapsto & \mathrm{id}_{z_i}
+		\end{array}
+\end{eq*}
+Working our way back towards the statement of \cref{Zmor1} again, we then have
+\begin{eq*} \begin{array}{rrrll}
+		q(i) & : & (s \times t)(L\mathbb{G}_n) & \hookrightarrow & \mathrm{Mor}(L\mathbb{G}_n) \\
+		& : & \big( \, q(z_i), q(z_i) \, \big) & \mapsto & q(\mathrm{id}_{z_i}) \\
+		& & & & \\
+		\implies \quad q(i) & : & (z_i, z_i) & \mapsto & \mathrm{id}_{z_i} \\
+		& & (z^*_i, z^*_i) & \mapsto & \mathrm{id}_{z^*_i} \\
+		& & & & \\
+		q(i)^{\mathrm{ab}} & : & {(s \times t)(L\mathbb{G}_n)}^{\mathrm{ab}} & \hookrightarrow & {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}} \\
+		& : & [ \, (z_i, z_i) \, ] & \mapsto & [\mathrm{id}_{z_i}] \\
+		& : & [ \, (z^*_i, z^*_i) \, ] & \mapsto & [\mathrm{id}_{z^*_i}] \\
+		& & & & \\
+		\implies q(i)^{\mathrm{ab}} & : & \mathbb{Z}^n & \hookrightarrow & {\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}} \\
+		& : & z_i & \mapsto & [\mathrm{id}_{z_i}] \\
+		& : & z^*_i & \mapsto & [\mathrm{id}_{z^*_i}] \\
+		\end{array}
+\end{eq*}
+Therefore the particular $\mathbb{Z}^n$ that we are quotienting out of $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{ab}}$ is the one generated by the equivalence classes of the identity maps $\mathrm{id}_{z_i}, \mathrm{id}_{z^*_i}$ under abelianisation. But since $\mathrm{Ob}(L\mathbb{G}_n) = \mathrm{Z}^{\ast n}$ is generated by the objects $z_i, z^*_i$, and
+\begin{eq*} [\mathrm{id}_{x}] \otimes [\mathrm{id}_{y}] \, = \, [\mathrm{id}_{x} \otimes \mathrm{id}_{y}] \, = \, [\mathrm{id}_{x \otimes y}] \end{eq*}
+the group generated by the $[\mathrm{id}_{z_i}], [\mathrm{id}_{z^*_i}]$ will just contain the equivalence classes for every identity morphism of $L\mathbb{G}_n$. That is, we will have
+\begin{eq*} L\mathbb{G}_n(I, I) \quad = \quad \bigquotient{{\mathrm{Mor}(L\mathbb{G}_n)}^{\mathrm{ab}}}{\langle \, [\mathrm{id}_x] \, : \, x \in \mathrm{Ob}(L\mathbb{G}_n) \, \rangle} \end{eq*}
+as required.
+\end{proof}
+
+
+
+
+
+
+
+
+\section{The action of $L\mathbb{G}_n$} 
+
+\begin{prop} The action of $L\mathbb{G}_n$ is given by the following map:
+\end{prop}
+\begin{proof}
+\end{proof}
+
+\section{A full description of $L\mathbb{G}_n$}
+
+With this last proposition proven, the results in this chapter now collectively describe how to construct free $\mathrm{E}G$-algebras on $n$ invertible objects. However, since this charachterization was discovered by us in such a piecemeal fashion, it would be best to restate the complete conclusion all in one place.
+
+\begin{thm}\label{freeinvalg} Let $\mathbb{G}_n$ be the free $\mathrm{E}G$-algebra on $n$ objects. Then the free $\mathrm{E}G$-algebra on $n$ invertible objects, $L\mathbb{G}_n$, is the algebra described by
+\end{thm}
+\begin{proof}
+\end{proof}
+
+With \cref{freeinvalg} proven we can now finally achieve the first main goal of this paper --- to describe the free braided monoidal category on $n$ invertible objects. In addition, this section will provide a few other simple applications of the theorem, in an effort to build up to the main result more gently. The definition of $L\mathbb{G}_n$ given in \ref{freeinvalg} is after all a little difficult to parse on first reading, because of the fairly abstract way it is presented, and hopefully the following concrete examples should allow the braided case to be properly understood.
+
+
+
+
+
+
+
+
+\section{Freely generated action operads}
+
+At this stage, the obvious next question to ask is can we simplify the expression $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp, ab}}$? 
+
+\begin{defn} Let $G$ be an action operad and $\mathcal{G} \subseteq G$ a subset. If
+\begin{itemize}
+\item the monoid $G$ is freely generated by the set $\mathcal{G}$ under tensor product
+\item the group $G(0) \subseteq G$ is the trivial group $\{I\}$
+\end{itemize}
+the we say that $(G, \mathcal{G})$ is a
+\end{defn}
+
+\begin{lem} If $(G, \mathcal{G})$ is , then $e_1 \in \mathcal{G}$, where $e_1$ is the identity element of the group $G(1) \subseteq G$.
+\end{lem}
+\begin{proof}
+Consider the identity element $e_1 \in G(1)$. By definition, $|e_1| = 1$, which means that
+\begin{eq*} \begin{array}{rclcrcl}
+			g_1 \otimes ... \otimes g_k & = & e_1 & \implies & |g_1| + ... + |g_k| & = & |g_1 \otimes ... \otimes g_k| \\
+			& & & & & = & |e_1| \\
+			& & & & & = & 1 \\
+			& & & & & & \\
+			\implies \quad \exists i & \in & \mathbb{N} & : & |g_i| & = & 1 \\
+			& & & & |g_j| & = & 0, \quad i \neq j 
+		\end{array}
+\end{eq*}
+But since $G(0) = \{I\}$, the only element of $G$ of length $0$ is $I$, and thus the only ways to express $e_1$ as a tensor product of other elements are the trivial ones,
+\begin{eq*} e_1 \, = \, I \otimes ... \otimes I \otimes e_1 \otimes I \otimes ... \otimes I \end{eq*}
+Therefore $e_1$ cannot be generated by the set $\mathcal{G}$ unless $e_1$ itself is in $\mathcal{G}$, and so since $\mathcal{G}$ does generate all of the elements of $G$, this will in fact be the case.
+\end{proof}
+
+\begin{prop} Let $(G, \mathcal{G})$ be a . Then
+\begin{eq*} {(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})}^{\mathrm{gp}} \quad = \quad {G}^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
+\end{prop}
+\begin{proof}
+First, consider the fact that the monoid $G$ is freely generated by the set $\mathcal{G}$, and that $\mathbb{N}^{\ast 2n}$ is not only a free monoid but one whose generators $z_1, ..., z_{2n}$ all have length $|z_i| = 1$. This means that we can factorise any $(g,w)$ in the pullback monoid $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ as a tensor product of elements of the pullback set $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$:
+\begin{eq*} \begin{array}{c}
+			\begin{array}{rcll}
+ 				g & = & g_1 \otimes ... \otimes g_k, & g_i \in \mathcal{G} \\
+				w & = & x_1 \otimes ... \otimes x_{|w|}, & x_i \in \{z_1, ..., z_{2n}\} \\
+				|g| & = & |w| &
+			\end{array} \\
+			\\
+			\begin{array}{rcl}
+				\implies \quad (g, w) & = & ( \, g_1, \, x_1 \otimes ... \otimes x_{|g_1|} \, ) \otimes ... \otimes ( \, g_k, \, x_{|w|-|g_k|} \otimes ... \otimes x_{|w|} \, ) \\
+				& =: & (g_1, w_1) \otimes ... \otimes (g_k, w_k), \\
+				& & (g_i, w_i) \in \mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}
+			\end{array}
+		\end{array} 
+\end{eq*}
+This expansion will also always be unique, since
+\begin{eq*} \begin{array}{rcl}
+			(g_1, w_1) \otimes ... \otimes (g_k, w_k) & = & (g'_1, w'_1) \otimes ... \otimes (g'_{k'}, w_{k'}), \\
+			& & (g_i, w_i), (g'_i, w'_i) \in \mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \\
+			& & \\
+			\implies \quad ( \, g_1 \otimes ... \otimes g_k, \, w_1 \otimes ... \otimes w_k \, ) & = & ( \, g'_1 \otimes ... \otimes g'_{k'}, \, w'_1 \otimes ... \otimes w_{k'} \, ) \\
+			& & \\
+			\implies \quad g_1 \otimes ... \otimes g_k & = & g'_1 \otimes ... \otimes g'_{k'} \\
+			w_1 \otimes ... \otimes w_k & = & w'_1 \otimes ... \otimes w_{k'} \\
+			& & \\
+			\implies \quad g_i & = & g'_i \\
+			k & = & k' \\
+			\implies \quad |g_i| & = & |g'_i| \\
+			\implies \quad |w_i| & = & |w'_i| \\
+			\implies \quad w_i & = & w'_i \\
+			& & \\
+			\implies \quad (g_i, w_i) & = & (g'_i, w'_i)		
+		\end{array}
+\end{eq*}
+In other words, the monoid $G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ is freely generated by its subset $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$.
+
+Now, recall that if $M$ is a monoid which is presented by some generators $\mathcal{M}$ subject to relations $\mathcal{R}$, then the group completion $M^{\mathrm{gp}}$ will be the group given by the \emph{group} presentation $(\mathcal{M}, \mathcal{R})$. In particular, if $M$ is a free monoid, then $M^{\mathrm{gp}}$ is the free group on the set $\mathcal{M}$, and so it follows that $G^{\mathrm{gp}}$ is the free group on the set $\mathcal{G}$, $(\mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is the free group on $\{z_1, ..., z_{2n}\}$ --- that is, $\mathbb{Z}^{\ast 2n}$ --- and $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is the free group on $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$. Moreover, the canonical maps $G \to G^{\mathrm{gp}}$ and $\mathbb{N}^{\ast 2n} \to (\mathbb{N}^{\ast 2n})^{\mathrm{gp}} = \mathbb{Z}^{\ast 2n}$ act as the identity on the shared generating sets $\mathcal{G}$ and $\{z_1, ..., z_{2n}\}$ respectively, and so these homomorphisms are actually inclusions of monoids.
+
+Finally, define the pullback
+\begin{eq*} \begin{tikzcd}[column sep=tiny]
+& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}  \ar[dl] \ar[dr] \ar[dd, phantom, "\pullback", very near start] & \\
+G^{\mathrm{gp}} \ar[dr, "| \, \_ \, |^{\mathrm{gp}}"'] & & \mathbb{Z}^{\ast 2n} \ar[dl, "| \, \_ \, |^{\mathrm{gp}}"] \\
+& \mathbb{Z} &
+\end{tikzcd} \end{eq*}
+where the $| \, \_ \, |^{\mathrm{gp}}$ are the obvious extensions of the length homomorphisms $| \, \_ \, |$ defined on their generators by
+\begin{eq*} \begin{array}{rcrcll}
+			| \, \_ \, |^{\mathrm{gp}} & : & G^{\mathrm{gp}} & \to & \mathbb{Z} & \\
+			& : & g & \mapsto & \, \, \, \, |g|, &  g \in \mathcal{G} \\
+			& : & g^* & \mapsto & -|g|, & g \in \mathcal{G} \\
+			& & & & & \\
+			| \, \_ \, |^{\mathrm{gp}} & : & \mathbb{Z}^{\ast 2n} & \to & \mathbb{Z} & \\
+			& : & z_i & \mapsto & \, \, \, \, 1 & \\
+			& : & z_i^* & \mapsto & -1 &
+		\end{array}
+\end{eq*}
+Notice that we can use the inclusions $\mathcal{G} \hookrightarrow G \hookrightarrow G^{\mathrm{gp}}$ and $\mathbb{N}^{\ast 2n} \hookrightarrow \mathbb{Z}^{\ast 2n}$ to see any element $(g, w)$ of our generator pullback $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ as an element $( \, i(g), i(w) \, )$ of this new pullback $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$, because
+\begin{eq*} |i(g)|^{\mathrm{gp}} \, = \, |g| \, = \, |w| \, = \, |i(w)|^{\mathrm{gp}} \end{eq*}
+Furthermore, for any $(g, w) \in G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ we must have some
+\begin{eq*} g_1, ..., g_k \in \{ \, h \in G^{\mathrm{gp}} \, : \, h \in \mathcal{G} \text{ or }  h^* \in \mathcal{G} \, \}, \quad \quad  g \, = \, g_1 \otimes ... \otimes g_k \end{eq*}
+and hence
+\begin{eq*} \begin{array}{c}
+			\begin{array}{rcl}
+				(g, w) & = & ( \, g_1 \otimes ... \otimes g_k, \, w \, ) \\
+				& = & \big( \, g_1 \otimes ... \otimes g_k \otimes {e_{|g|}}^* \otimes e_{|g|}, \, \, z_1^{|g|} \otimes (z_1^{|g|})^* \otimes w \, \big) \\
+				& = & \big( \, g_1 \otimes ... \otimes g_k \otimes {e_{|g|}}^* \otimes e_{|w|}, \, \, z_1^{|g_1|+...+|g_k|} \otimes (z_1^{|g|})^* \otimes w \, \big) \\
+				& = & \big( g_1, {z_1}^{|g_1|} \big) \otimes ... \otimes \big( g_k, {z_1}^{|g_k|} \big) \otimes \big({e_{|g|}}^*, (z_1^{|g|})^* \big) \otimes \big(e_{|w|}, w\big) \\
+				& = & ( g_1, {z_1}^{|g_1|} ) \otimes ... \otimes ( g_k, {z_1}^{|g_k|} ) \otimes (e_{|g|}, {z_1}^{|g|})^* \otimes (e_{|w|}, w) \\
+			\end{array} \\
+			\\
+			( g_1, {z_1}^{|g_1|} ), \, ..., \, ( g_k, {z_1}^{|g_k|} ), \, (e_{|g|}, {z_1}^{|g|}), \, (e_{|w|}, w) \, \in \, G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}
+		\end{array}
+\end{eq*}
+Therefore the subset $\mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ generates the whole of the free group $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$, and thus since $(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})^{\mathrm{gp}}$ is also freely generated by the same set, we must have
+\begin{eq*} {(G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n})}^{\mathrm{gp}} \quad = \quad {G}^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
+as required.
+\end{proof}
+
+\begin{prop} 
+\begin{eq*} {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \quad \cong \quad {G}^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
+\end{prop}
+\begin{proof}
+Recall that the monoid $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ is a pullback over the length homomorphisms $| \, \_ \, |^{\mathrm{gp}} : G \to \mathbb{N}$ and $| \, \_ \, |^{\mathrm{gp}} : \mathbb{N}^{\ast 2n} \to \mathbb{N}$, which from now on we will just write as $| \, \_ \, |$ to avoid clutter. Their shared target, $\mathbb{Z}$, is a abelian group, and this means that the $| \, \_ \, |$ will factor through the abelianisations $(G^{\mathrm{gp}})^{\mathrm{ab}}$ and $(\mathbb{Z}^{\ast 2n})^{\mathrm{ab}} = \mathbb{Z}^{2n}$, respectively. Expanding them like this, the pullback square for $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ becomes the following commutative diagram:
+\begin{eq*} \begin{tikzcd}[column sep=tiny]
+& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}  \ar[dl] \ar[dr] & \\
+G^{\mathrm{gp}} \ar[dd, "\mathrm{ab}"'] \ar[dddr, "| \, \_ \, |"] & & \mathbb{Z}^{\ast 2n} \ar[dd, "\mathrm{ab}"] \ar[dddl, "| \, \_ \, |"'] \\
+& & \\
+G^{\mathrm{gp,ab}} \ar[dr, "| \, \_ \, |^{\mathrm{ab}}"'] & & \mathbb{Z}^{2n} \ar[dl, "| \, \_ \, |^{\mathrm{ab}}"] \\
+& \mathbb{Z} &
+\end{tikzcd} \end{eq*}
+Now, if we take the pullback of the bottom two maps in this diagram, the $| \, \_ \, |^{\mathrm{ab}}$, then we obtain a new monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$. Then because the diagram above also forms a commutative square over the maps $| \, \_ \, |^{\mathrm{ab}}$, the universal property of the pullback $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ will give us a unique homomorphism $u: G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \to G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$, making the top-left and top-right regions in the following diagram commute:
+\begin{eq*} \begin{tikzcd}[column sep=tiny]
+& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \ar[dl] \ar[dr] \ar[dd, dashed, "u"] & \\
+G^{\mathrm{gp}} \ar[dd, "\mathrm{ab}"'] & & \mathbb{Z}^{\ast 2n} \ar[dd, "\mathrm{ab}"] \\
+& G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \ar[dl] \ar[dr] \ar[dd, phantom, "\pullback", very near start] & \\
+G^{\mathrm{gp,ab}} \ar[dr, "| \, \_ \, |^{\mathrm{ab}}"'] & & \mathbb{Z}^{2n} \ar[dl, "| \, \_ \, |^{\mathrm{ab}}"] \\
+& \mathbb{Z} &
+\end{tikzcd} \end{eq*}
+However, since the monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ is a pullback of abelian groups, it must be abelian itself. It follows then that the map $u$ will also factor through the abelianisation of its source monoid, via a new homomorphism that we shall call $u^{\mathrm{ab}}$.
+\begin{eq*} \begin{tikzcd}
+& G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \ar[ddl, "\mathrm{ab}"'] \ar[ddr, "u"] & \\
+& & \\
+{(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \ar[rr, dashed, "u^{\mathrm{ab}}"] & & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}
+\end{tikzcd} \end{eq*}
+
+It is not too hard to find an explicit description of the map $u^{\mathrm{ab}}$. For any group $H$, the abelianisation $H^{\mathrm{ab}}$ is just the quotient group $H/[H,H]$, where
+\begin{eq*} [H, H] \, = \, \{ \, h \in H \, : \, \exists a, b \in H, \, h \, = \, aba^{-1}b^{-1} \, \} \end{eq*}
+is the commutator subgroup of $H$. Thus elements of the monoid $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$ are pairs of equivalence classes
+\begin{eq*} \big( \, [g], [w] \, \big), \quad \text{for} \quad g \in G^{\mathrm{gp}}, \, w \in \mathbb{Z}^{\ast 2n}, \quad | \, [g] \, |^{\mathrm{ab}} \, = \, | \, [w] \, |^{\mathrm{ab}} \end{eq*}
+and the elements of $(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})^{\mathrm{ab}}$ are equivalence classes of pairs
+\begin{eq*} \big[ \, (g, w) \, \big], \quad \text{for} \quad g \in G^{\mathrm{gp}}, \, w \in \mathbb{Z}^{\ast 2n}, \quad |g| \, = \, |w| \end{eq*}
+By the universal property of pullbacks, the unique map $u$ is then simply the monoid homomorphism defined by
+\begin{eq*} \begin{array}{rrrll}
+			u & : & (G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}) & \to & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \\
+			& : & (g, w) & \mapsto & \big( \, [g], [w] \, \big)
+		\end{array}
+\end{eq*}
+and hence $u^{\mathrm{ab}}$ is
+\begin{eq*} \begin{array}{rrrll}
+			u^{\mathrm{ab}} & : & {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} & \to & G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \\
+			& : & \big[ \, (g, w) \, \big] & \mapsto & \big( \, [g], [w] \, \big)
+		\end{array}
+\end{eq*}
+To complete the proof, we just need to demonstrate that this map is actually an isomorphism of monoids. In other words, we must show that the obvious reverse assignment, $([g], [w]) \mapsto [(g, w)]$, is well-defined.
+
+Let $g, g' \in G^{\mathrm{gp}}$ and $w, w' \in \mathbb{Z}^{\ast 2n}$ with $|g| = |g'| = |w| = |w'|$, so that $(g, w)$ and $(g', w')$ are valid elements of $G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}$ and $([g], [w]), ([g'], [w'])$ are valid elements of $G^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n}$, and furthermore let $([g], [w]) = ([g'], [w'])$. It follows immediately that $[g] = [g']$ and $[w] = [w']$, or equivalently
+\begin{eq*} \begin{array}{rcrcl} 
+			\exists \, h, h' \in [G^{\mathrm{gp}}, G^{\mathrm{gp}}] & : & gh & = & g'h' \\
+			\exists \, v, v' \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & : & wv & = & w'v'
+		\end{array}
+\end{eq*}
+But notice that
+\begin{eq*} \begin{array}{c}
+			\begin{array}{rcrcll}
+				h \in [G^{\mathrm{gp}},G^{\mathrm{gp}}] & \implies & h & = & a \otimes b \otimes a^* \otimes b^*, & a, b \in G^{\mathrm{gp}}  \\
+				& & & & & \\
+				& \implies & |h| & = & |a|+|b|+|a^*|+|b^*| & \\
+				& & & = & |a|+|b|-|a|-|b| & \\
+				& & & = & 0 & 
+			\end{array} \\
+			\\
+			\begin{array}{rcl}
+				h' \in [G^{\mathrm{gp}},G^{\mathrm{gp}}] & \implies & |h'| \, = \, 0 \\
+				v \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & \implies & |v| \, = \, 0 \\
+				v' \in [\mathbb{Z}^{\ast 2n},\mathbb{Z}^{\ast 2n}] & \implies & |v'| \, = \, 0
+			\end{array}
+		\end{array}
+\end{eq*}
+and so in particular
+\begin{eq*}|h| \, = \, |v|, \quad |h'| \, = \, |v'| \quad \implies \quad (h,v), (h',v')  \in G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \end{eq*}
+Moreover, if $e_1$ is the identity element of the group $G(1) \subseteq G \subseteq G^{\mathrm{gp}}$ and $z_1$ is the first generator of ${Z}^{\ast 2n}$ then $|e_1| = |z_1| = 1$, and thus
+\begin{eq*} \begin{array}{c}
+			\begin{array}{rcrcl}
+				\exists \, a, b \in G^{\mathrm{gp}} & : & h & = & a \otimes b \otimes a^* \otimes b^* \\
+				\exists \, x, y \in \mathbb{Z}^{\ast 2n} & : & v & = & x \otimes y \otimes x^* \otimes y^* 
+			\end{array} \\
+			\\
+			\begin{array}{rcl}
+				\implies \quad h & = & a \otimes b \otimes a^* \otimes b^* \\
+				& = & a \otimes b \otimes a^* \otimes b^* \otimes e_1^{|x|+|y|} \otimes (e_1^{|x|+|y|})^* \\
+				& = & a \otimes b \otimes a^* \otimes b^* \otimes e_1^{|x|} \otimes e_1^{|y|} \otimes (e_1^{|x|})^* \otimes (e_1^{|y|})^* \\
+				& & \\
+				v & = & x \otimes y \otimes x^* \otimes y^* \\
+				& = & z_1^{|a|+|b|} \otimes (z_1^{|a|+|b|})^* \otimes x \otimes y \otimes x^* \otimes y^* \\
+				& = & z_1^{|a|} \otimes z_1^{|b|} \otimes (z_1^{|a|})^* \otimes (z_1^{|b|})^* \otimes x \otimes y \otimes x^* \otimes y^* \\
+				& & \\
+				\implies \quad (h, v) & = & \big( \, a, \, z_1^{|a|} \, \big) \otimes \big( \, b, \, z_1^{|b|} \, \big) \otimes \big( \, a^*, \, (z_1^{|a|})^* \, \big) \otimes \big( \, b^*, \, (z_1^{|b|})^* \, \big) \\
+				& & \otimes \, \big( \, e_1^{|x|}, \, x \, \big) \otimes \big( \, e_1^{|y|}, \, y \, \big) \otimes \big( \, (e_1^{|x|})^*, \, x^* \, \big) \otimes \big( \, (e_1^{|y|})^*, \, y^* \, \big) \\
+				& \in & [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ]
+			\end{array}
+		\end{array}
+\end{eq*}
+and also
+\begin{eq*} (h', v') \in [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ] \end{eq*}
+for similar reasons. Therefore
+\begin{eq*} \begin{array}{c}
+			\exists \, (h,v), (h', v') \in [ \, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n}, G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n} \, ] \quad \text{such that} \\
+			\\
+			\begin{array}{rcl}
+				(g, w) \otimes (h, v) & = & (g \otimes h, w \otimes v) \\
+				& = & (g' \otimes h', w' \otimes v') \\
+				& = & (g', w') \otimes (h, v) \\
+				& & \\
+				\implies \big[ \, (g, w) \, \big] & = & \big[ \, (g', w') \, \big]
+			\end{array}
+		\end{array}
+\end{eq*}
+That is, we have shown that
+\begin{eq*} \big( \, [g], [w] \, \big) \, = \, \big( \, [g'], [w'] \, \big) \quad \implies \quad \big[ \, (g, w) \, \big] \, = \, \big[ \, (g', w') \, \big] \end{eq*}
+and so the mapping $([g], [w]) \mapsto [(g, w)]$ is indeed well-defined. From this we can conclude that the homomorphism $u^{\mathrm{ab}}$ has an inverse, and hence we have an isomorphism
+\begin{eq*} {(G^{\mathrm{gp}} \times_{\mathbb{Z}} \mathbb{Z}^{\ast 2n})}^{\mathrm{ab}} \quad \cong \quad {G}^{\mathrm{gp,ab}} \times_{\mathbb{Z}} \mathbb{Z}^{2n} \end{eq*}
+as required
+\end{proof} 
+
+
+
+\begin{defn} We say that a monoid $M$ is \emph{left-cancellative} if for any $x, y, z \in M$, we have
+\begin{eq*} x \otimes y \, = \, x \otimes z \quad \implies \quad y \, = \, z \end{eq*}
+That is, common factors in tensor products may be cancelled out on the left. Similarly, we call $M$ \emph{right-cancellative} if common factorscan be cancelled on the left:
+\begin{eq*} x \otimes z \, = \, y \otimes z \quad \implies \quad x \, = \, y \end{eq*}
+A monoid that is both left- and right-cancellative is simply referred to as \emph{cancellative}
+\end{defn}
+
+\begin{prop} Let $G$ be an action operad. Then $(G, \otimes)$ is a cancellative monoid.
+\end{prop}
+\begin{proof}
+Let $g$, $g'$, and $h$ be elements of $G$ with the property that $g \otimes h = g' \otimes h$. Since the length map $| \, \_ \, | : G \to \mathbb{N}$ is a monoid homomorphism, applying it to both sides of this equation yields
+\begin{eq*} \begin{array}{rll} 
+			|g \otimes h| & = & |g' \otimes h| \\
+			\implies \quad |g| \otimes |h| & = & |g'| \otimes |h| 
+		\end{array}
+\end{eq*}
+Then because $\mathbb{N}$ is a definitely a cancellative monoid, it follows from this that ${|g| = |g'|}$. In other words, $g$ and $g'$ are both elements of the same group of operations, $G( \, |g| \, )$, and so in particular it makes sense to multiply them. Thus
+\begin{eq*} \begin{array}{rclcrcl}
+		g \otimes h & = & g' \otimes h & \implies & e_{|g| + |h|} & = & {(g \otimes h)}^{-1} ( g' \otimes h) \\
+		& & & & & = & (g^{-1} \otimes h^{-1}) ( g' \otimes h) \\
+		& & & & & = & (g^{-1}g') \otimes (h^{-1}h) \\
+		& & & & & = & (g^{-1}g') \otimes e_{|h|} \\
+		\end{array}
+\end{eq*}
+But then 
+\begin{eq*} e_{|g|} \otimes e_{|h|} \, =  \,  e_{|g| + |h|} \, = \, (g^{-1}g') \otimes e_{|h|} \end{eq*}
+
+\end{proof}
+
+
+
+\begin{lem} Let  be a subset of  whose elements generate $G$ by tensor product and group multiplication, subject to some relations $\mathcal{R}$. Then ${G}^{\mathrm{gp, ab}}$ is just the group with generators $\mathcal{G}$, subject to relations 
+\begin{eq*} \mathcal{R}' \, = \, \mathcal{R} \cup \{ \, ab = ba \, : \, \forall a, b \in \mathcal{G} \, \} \end{eq*}
+\end{lem}
+\begin{proof}
+\end{proof}
+
+
+
+
+
+
+
+
+
+
+
+\begin{prop} One object case
+\end{prop}
+
+\begin{prop} Symmetric case
+\end{prop}
+
+\begin{prop} Braided case
+\end{prop}
+
+\begin{prop} Cactus group case
+\end{prop}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
+.
+.
+.
+.
+
+
+\section{The free algebra on $n$ weakly invertible objects}
+
+Up until now, we've been working under the convention that by `invertible' objects we mean stictly invertible --- $x \otimes x^* = I$. As an additional exercise, we can ask ourselves how all of this would change if we permitted our objects to be only weakly invertible, that is $x \otimes x^* \cong I$. The situation is actually quite elegant, in that the effect of weakening in our objects can be offset completely by the effect of also weakening our algebra homomorphisms, such that we won't need to calculate any new free algebras other than those given by \cref{freeinvalg}. Before proving this though, we first to need to set out some definitions.
+
+\begin{defn} Given an $\mathrm{E}G$-algebra $X$, we denote by $X_{\mathrm{wkinv}}$ the category whose
+\begin{itemize}
+\item objects are tuples $(x, x^*, \eta, \epsilon)$, where $x$ and $x^*$ are objects of $X$ and $\eta: I \to x^* \otimes x$ and $\epsilon : x \otimes x^* \to I$ are morphisms such that the composites
+\begin{eq*} \begin{tikzcd}
+x \ar[r, "\mathrm{id} \otimes \eta"] & x \otimes x^* \otimes x \ar[r, "\epsilon \otimes \mathrm{id}"] & x &
+x^* \ar[r, "\eta \otimes \mathrm{id}"] & x^* \otimes x \otimes x^* \ar[r, "\mathrm{id} \otimes \epsilon"] & x^* 
+\end{tikzcd} \end{eq*}
+are identity morphisms.
+\item maps $(f, f^*): (x, x^*, \eta_x, \epsilon_x) \to (y, y^*, \eta_y, \epsilon_y)$ are pairs $f: x \to y$, $f^* : x^* \to y^*$ of morphisms such that the diagrams
+\begin{eq*} \begin{tikzcd}
+& I \ar[dl, "\eta_x"'] \ar[dr, "\eta_y"] & & x \otimes x^* \ar[rr, "f \otimes f^*"] \ar[dr, "\epsilon_x"'] & & y \otimes y^* \ar[dl, "\epsilon_y"] \\
+x^* \otimes x \ar[rr, "f^* \otimes f"] & & y \otimes y^* & & I &
+\end{tikzcd} \end{eq*}
+commute.
+\end{itemize}
+\end{defn}
+
+\begin{defn}\label{weakmonfunc} Let $(X, \alpha)$ and $(Y, \beta)$ be $\mathrm{E}G$-algebras. A \emph{weak $\mathrm{E}G$-algebra homorphism} between them is a weak monoidal functor $\psi: X \to Y$ such that all diagrams of the form
+\begin{eq*} \begin{tikzcd}
+\psi( x_1 \otimes ... \otimes x_m) \ar[r, "\sim"] \arrow{d}[']{\psi(\alpha(g; h_1, ... , h_m))} & \psi(x_1) \otimes ... \otimes \psi(x_m) \arrow{d}{\beta(g; \psi(h_1), ..., \psi(h_m))} \\
+\psi( y_{\pi(g)^{-1}(1)} \otimes ... \otimes y_{\pi(g)^{-1}(m)}) \ar[r, "\sim"] & \psi(y_{\pi(g)^{-1}(1)}) \otimes ... \otimes \psi(y_{\pi(g)^{-1}(m)})
+\end{tikzcd} \end{eq*}
+commute.
+\end{defn} 
+
+\begin{defn} We denote by $\mathrm{E}G\mathrm{Alg}_W$ the 2-category of $\mathrm{E}G$-algebras, weak $\mathrm{E}G$-algebra homomorphisms, and weak monoidal transformations.\end{defn}
+
+Now we can properly express what we mean by the free algebras on weakly invertible objects being the same as those in the strict case.
+
+\begin{thm} The algebra $L\mathbb{G}_n$ is also the free $\mathrm{E}G$-algebra on $n$ weakly invertible objects. Specifically, for any other $\mathrm{E}G$-algebra $X$ there is an equivalence of categories
+\begin{eq*} \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \simeq (X_{\mathrm{wkinv}})^n \end{eq*}
+\end{thm}
+\begin{proof}
+We begin by defining a functor $F : \mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X) \to (X_{\mathrm{wkinv}})^n$. On weak maps, $F$ acts as 
+\begin{eq*} F( \, \psi: L\mathbb{G}_n \to X \, ) = \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \end{eq*}
+where the $z_i$ are the generators of $\mathbb{Z}^{*n}$ and the isomorphisms are those given by $\psi$ being a weak moniodal functor. On weak monoidal transformations, $F$ acts as
+\begin{eq*} F( \, \theta : \psi \to \chi \, ) = \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} }\end{eq*}
+This choice does satisfy the condition on morphisms of $(X_{\mathrm{wkinv}})^n$, since we can build the required commuting diagrams out of smaller ones given by $\theta$ being a weak monoidal transfomation:
+\begin{eq*} \begin{tikzcd}
+& I \ar[dl, "\sim"'] \ar[dr, "\sim"] & & \psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\theta_{z_i} \otimes \theta_{z_i^*}"] \ar[d, "\sim"'] & & \chi(z_i) \otimes \chi(z_i^*) \ar[d, "\sim"] \\
+\psi(I) \ar[d, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[d, "\sim"] & \psi(I) \ar[dr, "\sim"'] \ar[rr, "\theta_I"] & & \chi(I) \ar[dl, "\sim"] \\
+\psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\theta_{z_i^*} \otimes \theta_{z_i}"] & & \chi(z_i^*) \otimes \chi(z_i) & & I & 
+\end{tikzcd} \end{eq*}
+
+Now we need to check if $F$ is an equivalence of categories. First, let $\big\{ ( x_i, x_i^*, \eta_i, \epsilon_i ) \big\}_{i \in \{z_1, ..., z_n\} }$ be an arbitrary object of $(X_{\mathrm{wkinv}})^n$. We can construct a weak algebra map $\psi: L\mathbb{G}_n \to X$ from it as follows. Define
+\begin{eq*} \psi(I) = I, \quad \psi(z_i) = x_i, \quad \psi(z_i^*) = x_i^* \end{eq*}
+and choose the isomorphisms
+\begin{eq*} \begin{array}{rllllll}
+		\psi_I & : & I \to \psi(I) & = & \mathrm{id}_I & : & I \to I \\
+		\psi_{z_i, z_i^*} & : & \psi(z_i) \otimes \psi(z_i^*) \to \psi(I) & = & \epsilon_i & : & x_i \otimes x_i^* \to I \\
+		\psi_{z_i^*, z_i} & : & \psi(z_i^*) \otimes \psi(z_i) \to \psi(I) & = & \eta_i^{-1} & : & x_i^* \otimes x_i \to I
+		\end{array} .
+\end{eq*}
+Then for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ such that $d(w \otimes w') = d(w) \otimes d(w')$, where $d(-)$ is the minimal generator decomposition from \cref{mgd}, set 
+\begin{eq*} \psi(w \otimes w') = \psi(w) \otimes \psi(w'), \quad \quad \psi_{w, w'} = \mathrm{id}_{\psi(w) \otimes \psi(w')} \end{eq*}
+This is enough to determine the value of $\psi$ on all of the remaining objects, via successive decompositions. For the isomorphisms, first note that the ones we have already defined satisfy the associativity and unitality required of weak monoidal functors. Now consider some $w, w'$ with $d(w \otimes w') \neq d(w) \otimes d(w')$. The fact that they differ implies that tensoring $w$ with $w'$ causes some cancellation of inverses to occur where the end of one sequence meets the beginning of another. In particular, if we let $b$ be the last term in the minimal generator decomposition of $w$, and let $c = w'$, then we conclude that the length $d(b \otimes c)$ is smaller than the length of $d(c)$. Let $a$ be the product of the rest of $d(w)$, so that $a \otimes b = w$. Then we can use requirement for associativity,
+\begin{eq*} \begin{tikzcd}
+\psi(a) \otimes \psi(b) \otimes \psi(c) \ar[rr, "\mathrm{id} \otimes \psi_{b, c}"] \ar[d, "\psi_{a, b} \otimes \mathrm{id}"'] & & \psi(a) \otimes \psi(b \otimes c) \ar[d, "\psi_{a, b \otimes c}"] \\
+\psi(a \otimes b) \otimes \psi(c) \ar[rr, "\psi_{a \otimes b, c}"] && \psi(a \otimes b \otimes c)
+\end{tikzcd} \end{eq*}
+to define $\psi_{w, w'} = \psi{a\otimes b, c}$ in terms of three other isomorphisms that each have strictly smaller decompositions. Repeating this process will therefore eventually yield a definition in terms of our previous isomorphisms.
+
+By \cref{allmapsaction}, every morphism in $L\mathbb{G}_n$ can be written as $\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m})$ for some $g \in G(m)$, $w_i \in \mathbb{Z}^{*n}$. The action of $\psi$ on morphisms is thus determined by the diagram in \cref{weakmonfunc}, that is
+\begin{eq*} \psi(\alpha(g; w_1, ... w_m)) \, = \, \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta(\, g \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_m)}\, ) \circ \psi_{\mathbf{w}}^{-1}\end{eq*} 
+However, morphisms do not have a unique representation of this form, so we must check that whenever we have different representations of the same morphism
+\begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha(g'; \mathrm{id}_{w_1'}, ..., \mathrm{id}_{w_{m'}'}) \end{eq*} 
+their diagrams give the same image under $\psi$. There are two cases to consider here;
+\begin{eq*} \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) = \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \end{eq*}
+when $v_1 \otimes ... \otimes v_k = 0$, which comes from the edges of the colimit diagram $D_n$ in \cref{colimthm}; and
+\begin{eq*} \begin{array}{rll}
+		\alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) & = & \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ) \\
+		&& \circ \, \, \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \\
+		&& \circ \, \, \alpha(\, h^{-1} \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}'} \, ) \\
+		&& \circ \, \, \alpha(\, j^{-1} \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \\
+		& = & \mathrm{id}_{w_1 \otimes ... \otimes w_m} 
+		\end{array}
+\end{eq*}
+for $ \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ), \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \in \mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, which comes from the abelianisation of the vertices of $D_n$. All other ways for a morphism to have different representations must be generated by successive examples of these cases, since otherwise they wouldn't be coequalised by the colimit in \cref{colimthm}. In the first case we just have
+\begin{eq*} \begin{array}{rl}
+		& \psi( \, \alpha( \, g \otimes e_k \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m}, \, \mathrm{id}_{v_1}, \, ..., \, \mathrm{id}_{v_k} \, ) \, ) \\
+		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}, \mathbf{v}} \circ \beta(\, g \otimes e_k \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_m)}, \, \mathrm{id}_{\psi(v_1)}, \, ..., \, \mathrm{id}_{\psi(v_k)} \, ) \circ \psi_{\mathbf{w}, \mathbf{v}}^{-1} \\
+		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \otimes \psi_{\mathbf{v}} \big) \circ \big( \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \otimes \mathrm{id}_{\psi(\mathbf{v})} \big) \circ \big( \psi_{\mathbf{w}}^{-1} \otimes \psi_{\mathbf{v}}^{-1} \big) \\
+		= & \big( \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \big) \otimes \big( \psi_{\mathbf{v}} \circ \mathrm{id}_{\psi(\mathbf{v})} \circ \psi_{\mathbf{v}}^{-1} \big) \\
+		= & \psi_{\mathbf{w}_{\pi(g)^{-1}}} \circ \beta( g ; \mathrm{id}_{\psi(w_1)}, ..., \mathrm{id}_{\psi(w_m)}) \circ \psi_{\mathbf{w}}^{-1} \\
+		=& \psi( \, \alpha(g; \mathrm{id}_{w_1}, ..., \mathrm{id}_{w_m}) \, )
+		\end{array}
+\end{eq*}
+as required. The second case is more subtle. We begin by expanding
+\begin{eq*} \begin{array}{rl}
+		& \psi( \, \alpha( \, g \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m} \, ) \\
+		= & \psi( \, \alpha(\, h \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}} \, ) \, ) \\
+		& \circ \, \, \psi( \, \alpha(\, j \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \, ) \\
+		& \circ \, \, \psi( \, \alpha(\, h^{-1} \, ; \, \mathrm{id}_{w_1'}, \, ..., \, \mathrm{id}_{w_{m'}'} \, ) \, ) \\
+		&\circ \, \, \psi( \, \alpha(\, j^{-1} \, ; \, \mathrm{id}_{w_1''}, \, ..., \, \mathrm{id}_{w_{m''}''} \, ) \, ) \\
+		= & \psi_{\mathbf{w'}} \circ \beta(\, h \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'})} \, ) \circ \psi_{\mathbf{w'}}^{-1} \\
+		& \circ \, \, \psi_{\mathbf{w''}} \circ\beta(\, j \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
+		& \circ \, \, \psi_{\mathbf{w'}} \circ \beta(\, h^{-1} \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'}')} \, ) \circ \psi_{\mathbf{w'}}^{-1}  \\
+		&\circ \, \, \psi_{\mathbf{w''}} \circ \beta(\, j^{-1} \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \circ \psi_{\mathbf{w''}}^{-1} \\
+		\end{array}
+\end{eq*}
+Here the objects $w_i, w_i', w_i''$ are all in $\mathbb{G}_n \subseteq L\mathbb{G}_n$, and so we know their minimal generator decompositions are also in $\mathbb{G}_n$. It follows that $d(w_i \otimes w_j) = d(w_i) \otimes d(w_j)$ for all $i,j$, and hence by our definition of $\psi$ we have $\psi(w_i \otimes w_j) = \psi(w_i) \otimes \psi(w_j)$ and also $\psi_{\mathbf{w}_{\sigma}} = id$ for any permuation $\sigma$ --- and the same for $\mathbf{w'}$ and $\mathbf{w''}$. Also, note that since we are working in $\mathbb{G}_n(w_1 \otimes ... \otimes w_m,  w_1 \otimes ... \otimes w_m)$, all of the action morphisms in the above composite have the same source and target, $\psi(w_1 \otimes ...\otimes w_m)$. This object is weakly invertible, because each of the $w_i$ are invertible. However, the automorphisms of any weakly invertible object are isomorphic to the automorphisms of the unit object, as in the proof of \cref{zerotree}, and hence form an abelian group, by an Eckmann-Hilton argument like in the proof of \cref{colimthm}. Therefore we may permute these action morphisms freely, and so
+\begin{eq*} \begin{array}{rl}
+& \psi( \, \alpha( \, g \, ; \, \mathrm{id}_{w_1}, \, ..., \, \mathrm{id}_{w_m} \, ) \\
+		= & \beta(\, h \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'})} \, ) \\
+		& \circ \, \, \beta(\, h^{-1} \, ; \, \mathrm{id}_{\psi(w_1')}, \, ..., \, \mathrm{id}_{\psi(w_{m'}')} \, )  \\
+		& \circ \, \, \beta(\, j \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \\
+		& \circ \, \, \beta(\, j^{-1} \, ; \, \mathrm{id}_{\psi(w_1'')}, \, ..., \, \mathrm{id}_{\psi(w_{m''}'')} \, ) \\
+		= & \mathrm{id}_{\psi(w_1) \otimes ... \otimes \psi(w_m)} \\
+		= & \psi_{\mathbf{w}} \circ \beta(\, e_m \, ; \, \mathrm{id}_{\psi(w_1)}, \, ..., \, \mathrm{id}_{\psi(w_{m})} \, ) \circ \psi_{\mathbf{w}}^{-1}
+		\end{array}
+\end{eq*}
+as required. 
+
+With $\psi$ now fully defined, notice that
+\begin{eq*} \begin{array}{rll}
+		F(\psi) & = & \big\{ \, ( \, \psi(z_i), \, \psi(z_i^*), \, I \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} \psi(z_i^*)\psi(z_i), \, \psi(z_i)\psi(z_i^*) \xrightarrow{\sim} \psi(I) \xrightarrow{\sim} I \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
+		& = & \big\{ \, ( \, x_i, \, x_i^*, \, \eta_i, \, \epsilon_i \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
+		\end{array}
+\end{eq*}
+which was our arbitrary object in $(X_{\mathrm{wkinv}})^n$. Therefore, $F$ is surjective on objects.
+
+Next, choose an arbitrary monoidal transformation $\theta : \psi \to \chi$ from $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$. By naturality, for any $w, w' \in \mathrm{Ob}(L\mathbb{G}_n)$ we have that
+\begin{eq*} \begin{tikzcd}
+\psi(w) \otimes \psi(w') \ar[r, "\sim"] \ar[d, "\theta_w \otimes \theta_{w'}"'] & \psi(w \otimes w') \ar[d, "\theta_{w \otimes w'}"] \\
+\chi(w) \otimes \chi(w') \ar[r, "\sim"] & \chi(w \otimes w')
+\end{tikzcd} \end{eq*}
+or equivalently, $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$. It follows from this that the components of $\theta$ are generated by the components on the generators of $\mathrm{Ob}(L\mathbb{G}_n)$, namely $\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \}_{i \in \{z_1, ..., z_n\} }$. But this is just $F(\theta)$, and thus any monoidal transformation $\theta$ is determined uniquely by its image under $F$, or in other words $F$ is faithful.
+
+Finally, let $\psi, \chi$ be objects of $\mathrm{E}G\mathrm{Alg}_W(L\mathbb{G}_n, X)$, and choose an arbitrary map $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} } : F(\psi) \to F(\chi)$ from $(X_{\mathrm{wkinv}})^n$. We can use this to construct a monoidal transformation $\theta : \psi \to \chi$ via the reverse of process we just used. Specifically, if we define
+\begin{eq*} \theta_I = \chi_I \circ \psi_I^{-1}, \quad \quad \theta_{z_i} =  f_i, \quad \quad \theta_{z_i^*} = f_i^*\end{eq*}
+then these will automatically form the naturality squares
+\begin{eq*} \begin{tikzcd}
+\psi(z_i) \otimes \psi(z_i^*) \ar[rr, "\psi_{z_i, z_i^*}"] \ar[dd, "f_i \otimes f_i^*"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] & \psi(z_i^*) \otimes \psi(z_i) \ar[rr, "\psi_{z_i^*, z_i}"] \ar[dd, "f_i^* \otimes f_i"'] & & \psi(I) \ar[d, "\psi_I^{-1}"] \\
+& & I \ar[d, "\chi_I"] & & & I \ar[d, "\chi_I"] \\
+\chi(z_i) \otimes \chi(z_i^*) \ar[rr, "\chi_{z_i, z_i^*}"] & & \chi(I) & \chi(z_i^*) \otimes \chi(z_i) \ar[rr, "\chi_{z_i^*, z_i}"] & & \chi(I)
+\end{tikzcd} \end{eq*}
+since these are just the conditions for $\{ \, ( \, f_i, \, f^*_i \, ) \, \}_{i \in \{z_1, ..., z_n\} }$ to be a map $F(\psi) \to F(\chi)$ in $(X_{\mathrm{wkinv}})^n$. Repeatedly applying the naturality condition $\theta_{w \otimes w'} = \chi_{w, w'} \circ (\theta_w \otimes \theta_{w'}) \circ \psi_{w, w'}^{-1}$ will then generate all of the other components of $\theta$, in a way that clearly satisfies naturality. Thus we have a well-defined monoidal transformation $\theta : \psi \to \chi$, and applying $F$ to it gives
+\begin{eq*} \begin{array}{rll}
+		F(\theta) & = & \big\{ \, ( \, \theta_{z_i}, \, \theta_{z_i^*} \, ) \, \big\}_{i \in \{z_1, ..., z_n\} } \\
+		& = & \big\{ \, ( \, f_i, \, f_i^* \, ) \, \big\}_{ i \in \{z_1, ..., z_n\} },
+		\end{array}
+\end{eq*}
+our arbitrary map. Therefore $F$ is full and, putting this together with the previous results, is an equivalence of categories.
+\end{proof}
