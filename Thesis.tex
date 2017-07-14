@@ -28,7 +28,7 @@
 
 \numberwithin{equation}{section}
 
-\newtheorem{thm}{Theorem}[chapter]
+\newtheorem{thm}{Theorem}[chapter]  
 \newtheorem{prop}[thm]{Proposition}
 \newtheorem*{prop*}{Proposition}
 \newtheorem{lem}[thm]{Lemma}
@@ -37,7 +37,7 @@
 \newtheoremstyle{example}{\topsep}{\topsep}{}{}{\bfseries}{.}{2pt}{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}
 \theoremstyle{example}
 
-\newtheorem{nota}[thm]{Notation}
+\newtheorem{nota}[thm]{Notation} 
 \newtheorem{example}[thm]{Example}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem*{rem}{Remark}
@@ -70,12 +70,13 @@
 \newcommand{\quotient}[2]{ \raisebox{0.5\height}{$#1$} \mkern-5mu\diagup\mkern-4mu \raisebox{-0.5\height}{$#2$} }
 \newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-12mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
 \newcommand{\pullback}{\mathbin{\text{\rotatebox{45}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
+\newcommand{\pushout}{\mathbin{\text{\rotatebox{225}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
 
 \newcolumntype{L}{>{$}l<{$}}
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
 
-%\excludecomment{proof} 
+%\excludecomment{proof}  
 
 
 \title{Action operads, free algebras on invertible objects, and the classification of 3-groups}
