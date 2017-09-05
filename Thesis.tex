@@ -7,6 +7,8 @@
 \usepackage{graphicx}
 \usepackage{eucal}
 \usepackage{tikz-cd}
+\usetikzlibrary{decorations.markings}
+\usetikzlibrary{shapes,snakes}
 \usepackage{pdfsync}
 \usepackage{relsize}
 \usepackage{afterpage}
@@ -16,7 +18,6 @@
 \usepackage{lmodern}
 \usepackage{array}
 \usepackage{longtable}
-
 
 \usepackage[color=orange!80,bordercolor=black,textwidth=3cm,textsize=small,colorinlistoftodos]{todonotes}
 \makeatletter \providecommand\@dotsep{5}
@@ -41,6 +42,10 @@
 \newtheorem{example}[thm]{Example}
 \newtheorem{defn}[thm]{Definition}
 \newtheorem*{rem}{Remark}
+ 
+\newtheoremstyle{named}{\topsep}{\topsep}{}{}{\bfseries}{.}{\newline}{\thmname{#1}\thmnumber{ #2}\thmnote{ #3}}
+\theoremstyle{named}
+\newtheorem{namedexample}[thm]{Example}
 
 %% E.P. notes
 \newcommand{\epnote}[1]{\todo[color=blue!40,linecolor=blue!40!black,size=\tiny]{#1}}
@@ -52,7 +57,7 @@
 \newcommand{\ngmpar}[1]{\todo[noline,color=red!40,linecolor=red!40!black,size=\tiny]{#1}}
 \newcommand{\ngnoteil}[1]{\todo[inline,color=red!40,linecolor=red!40!black,size=\normalsize]{#1}}
 
-% Cleveref definitions 
+% Cleveref definitions  
 \crefname{prop}{Proposition}{Propositions}
 \crefname{thm}{Theorem}{Theorems} 
 \crefname{defn}{Definition}{Definitions}
@@ -68,7 +73,7 @@
 \crefname{eqn}{Display}{Displays}
 
 \newcommand{\quotient}[2]{ \raisebox{0.5\height}{$#1$} \mkern-5mu\diagup\mkern-4mu \raisebox{-0.5\height}{$#2$} }
-\newcommand{\bigquotient}[2]{ \raisebox{1\height}{$#1$} \mkern-12mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
+\newcommand{\bigquotient}[2]{ \raisebox{0.75\height}{$#1$} \mkern-12mu\scalebox{2}{$\diagup$}\mkern-10mu \raisebox{-0.5\height}{$#2$} }
 \newcommand{\pullback}{\mathbin{\text{\rotatebox{45}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
 \newcommand{\pushout}{\mathbin{\text{\rotatebox{225}{$\mathlarger{\mathlarger{\mathlarger{\mathlarger{\llcorner}}}}$}}}}
 
@@ -76,25 +81,30 @@
 \newcolumntype{C}{>{$}c<{$}}
 \newcolumntype{R}{>{$}r<{$}}
 
+\tikzset{->-/.style={decoration={markings,mark=at position #1 with {\arrow{>}}},postaction={decorate}}} 
+
+\pgfdeclarelayer{bg}
+\pgfsetlayers{bg,main}
+
 %\excludecomment{proof}  
 
 
-\title{Action operads, free algebras on invertible objects, and the classification of 3-groups}
+\title{Action operads and the free $G$-monoidal category on $n$ invertible objects}
 %\subtitle{}
 \author{Edward G. Prior}
 \dept{School of Mathematics and Statistics}
 \university{University of Sheffield}
 %\crest{\includegraphics{Style/UnivShield}}
-
+ 
 
 
 
 \begin{document} 
-
+ 
 
 \frontmatter
 
-\maketitle
+\maketitle  
 
 %\begin{dedication} 
 %\end{dedication}
@@ -110,24 +120,24 @@
 
 
 \mainmatter
+ 
 
-
-\input{actionoperad.tex}  
+\input{actionoperad.tex}   
 
 \input{initialalgebra.tex}
 
-\input{coeqalgebra.tex}
+\input{coeqalgebra.tex} 
 
-\input{mainthm.tex}
+\input{morph.tex} 
 
-\input{2groupclass.tex}
+\input{mainthm.tex} 
 
-\input{cohomology.tex}
+%\input{2groupclass.tex}
 
-\input{3groupclass.tex}   
+%\input{cohomology.tex}  
 
 
-
+ 
 \begin{thebibliography}{9}
 
 \bibitem{hda5}
@@ -177,6 +187,31 @@ https://arxiv.org/pdf/1612.09375v1.pdf
 Eckmann, B.; Hilton, P. J. 
 \textit{Group-like structures in general categories. I. Multiplications and comultiplications}
 Mathematische Annalen, 145 (3), pp. 227–255
+
+\bibitem{semi}
+Raouf Doss.
+\textit{Sur l'immersion d'un semi-groupe dans un groupe}
+Bulletin des Sciences Mathématiques, (2) 72, (1948). 139–150. 
+
+\bibitem{immer1}
+Malcev, A.
+\textit{On the Immersion of an Algebraic Ring into a Field}
+Mathematische Annalen 113 (1937): DCLXXXVI-DCXCI. 
+
+\bibitem{immer2}
+Malcev, A.
+\textit{On the immersion of associative systems into groups}
+Matematicheskii Sbornik 6 (1939), no.2, 331-336
+
+\bibitem{ribbon1}
+Nathalie Wahl.
+\textit{Ribbon braids and related operads}
+Thesis (Ph.D.)–University of Oxford (2001)
+
+\bibitem{ribbon2}
+Paolo Salvatore; Nathalie Wahl. 
+\textit{Framed discs operads and Batalin-Vilkovisky algebras}
+Q. J. Math., 54(2):213–231, 2003.
 
 \end{thebibliography}
 
