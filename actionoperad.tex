@@ -1,11 +1,178 @@
-\chapter{Operads and their algebras}
+\chapter{Operads and their algebras} \label{actionoperad} 
+
+Before we can talk about the main focus of this paper, the free $\mathrm{E}G$-algebras on $n$ invertible objects, we will need to work our way through several intermediate concepts. This chapter will cover the background material need to undertstand each of these structures in turn --- monoidal categories, operads, action operads, $G$-operads, and operad algebras. Most of this content is due to other authors, and the reader is encouraged to refer to the given sources if they are interested in a more complete analysis of any of the featured topics. Towards the end of the chatper however we will start to see some novel results appear.
+
+\section{Monoidal categories}
+
+We shall start by reviewing some very basic definitions. Everything in this section can be found in any good introductory text on category theory, such as the foundational `Categories for the Working Mathematician' \cite{cwm} by Saunders Mac Lane.
+
+\begin{defn} \label{moncat} A \emph{monoidal category} is a category $C$ equipped with
+\begin{itemize}\itemsep0.3em
+\item a functor $\otimes : C \times C \to C$, called the \emph{tensor product} of $C$
+\item an object $I \in C$, called the \emph{unit}
+\item a natural isomorphism $a$, called the \emph{associator}, with components
+\begin{eq*} a_{x,y,z} \, : \, (x \otimes y) \otimes z \longrightarrow x \otimes (y \otimes z) \end{eq*}
+\item two natural isomorphisms $l$ and $r$, called the \emph{left} and \emph{right unitors}, with components
+\begin{eq*} l_{x} \, : \, I \otimes x \longrightarrow x, \quad \quad \quad \quad r_{x} \, : \, x \otimes I \longrightarrow x \end{eq*}
+\end{itemize}
+which satisfy two coherence conditions. The first of these, the pentagon identity, is best displayed as the commutative diagram
+\begin{eq*} \begin{tikzcd}
+& (w \otimes x) \otimes (y \otimes z) \ar[dr, "a_{w,x,y \otimes z}"] & \\
+((w \otimes x) \otimes y) \otimes z \ar[ur, "a_{w\otimes x,y, z}"] \ar[dd, "a_{w,x,y} \otimes \mathrm{id}_{z}"']  & & w \otimes (x \otimes (y \otimes z)) \\
+& & \\
+(w \otimes (x \otimes y)) \otimes z \ar[rr, "a_{w,x\otimes y, z}"] & & w \otimes ((x \otimes y) \otimes z) \ar[uu, "\mathrm{id}_{z} \otimes a_{x,y,z}"']
+\end{tikzcd} \end{eq*}
+and shows that the operation $\otimes$ is weakly associative. Likewise the second condition, the triangle identity, corresponds to the diagram
+\begin{eq*} \begin{tikzcd}
+(x \otimes I) \otimes y \ar[rr, "a_{x,I,y}"] \ar[dr, "r_x \otimes \mathrm{id}_y"'] & & x \otimes (I \otimes y) \ar[dl, "\mathrm{id}_y \otimes l_y"] \\
+& x \otimes y & 
+\end{tikzcd} \end{eq*}
+and represents the fact that $I$ is a weak unit. A monoidal category in which the natural isomorphisms $a, l, r$ are all identities --- and thus the two coherence conditions old trivially --- is said to be \emph{strictly} monoidal. For contrast, we will therefore sometimes refer to the above kind of category as \emph{weakly} monoidal.
+\end{defn}
+
+While it isn't explicitly stated in \cref{moncat}, notice that functoriality of $\otimes$ will induce the following relationship between the tensor product and composition in $C$:
+\begin{eq*} ( f' \circ f) \otimes (g' \circ g) \quad = \quad (f' \otimes g') \circ (f \otimes g) \end{eq*}
+This is known as the \emph{interchange law} of $C$, and we will make heavy use of this fact in later chapters.
+
+Monoidal categories are found everywhere thoughout mathematics. Commonly studied examples include the category of sets $\mathrm{Set}$ with the cartesian product $\times$, the category of abelian groups $\mathrm{Ab}$ under direct sum $\oplus$, and the category of $K$-vector spaces $\mathrm{K-Vect}$ with its usual tensor product $\otimes_{K}$. Part of the reason for their ubiquity is that monoidal categories are, in some sense, really degenerate versions of a higher dimensional category, specifically a one-object bicategory. We will not be exploring the concept of higher categories in this paper (see for example \cite{hohc} for a proper treatment), but suffice it to say that there are also other kinds of degenerate $n$-categories which appear to be common kinds of category-with-extra-structure. 
+
+\begin{defn} \label{bdmoncat} A \emph{braided} monoidal category is a monoidal category $C$ equipped with an additional natural isomorphism,
+\begin{eq*} \beta_{x,y} \, : \, x \otimes y \longrightarrow y \otimes x \end{eq*}
+called the \emph{braiding}, which satisfies the hexagon identities,
+\begin{eq*} \begin{tikzcd}
+& (x \otimes y) \otimes z \ar[rr, "\beta_{x \otimes y, z}"] \ar[dl, "a_{x,y, z}"'] & & z \otimes (x \otimes y) \ar[dr, "a^{-1}_{z, x,y}"] & \\
+x \otimes (y \otimes z) \ar[dr, "\mathrm{id}_x \otimes \beta_{y,x}"'] & & & & (z \otimes x) \otimes y \ar[dl, "\beta_{z, x} \otimes \mathrm{id}_y"] \\
+& x \otimes (z \otimes y) \ar[rr, "a^{-1}_{x,z,y}"] & & (x \otimes z) \otimes y &
+\end{tikzcd} \end{eq*}
+\begin{eq*} \begin{tikzcd}
+& x \otimes (y \otimes z) \ar[rr, "\beta_{x, y \otimes z}"] \ar[dl, "a^{-1}_{x,y, z}"'] & & (y \otimes z) \otimes x \ar[dr, "a_{y,z, x}"] & \\
+(x \otimes y) \otimes z \ar[dr, "\beta_{x,y} \otimes \mathrm{id}_z"'] & & & & y \otimes (z \otimes x) \ar[dl, "\mathrm{id}_y \otimes \beta_{z, x}"] \\
+& (y \otimes x) \otimes z \ar[rr, "a_{y,x,z}"] & & y \otimes (x \otimes z) &
+\end{tikzcd} \end{eq*}
+\end{defn}
+
+Again, though it isn't directly mentioned in, the above definition also implies another pair of coherence conditions for the unit in $C$, namely
+\begin{eq*} \begin{tikzcd}
+x \otimes I \ar[rr, "\beta_{x, I}"] \ar[dr, "r_x"'] & & I \otimes x \ar[dl, "l_x"] & & I \otimes x \ar[rr, "\beta_{I,x}"] \ar[dr, "l_x"'] & & x \otimes I \ar[dl, "r_x"] \\
+& x & & & & x &
+\end{tikzcd} \end{eq*}
+
+\begin{defn} \label{symmoncat} A \emph{symmetric} monoidal category is a braided monoidal category $C$ whose braiding satisfies an extra symmetry condition, $\beta_{x, y}^{-1} = \beta_{y,x}$.
+\end{defn}
+
+Braided monoidal categories can be seen as the `same' as doubly-degenerate tricategories, while symmetric monoidal categories `are' triply-degenerate weak 4-categories. For a more thorough explanation of this relationship, see \cite{ptncld1} and \cite{ptncld2} by Cheng and Gurski.
+
+Strict symmetric monoidal categories are sometimes known as `permutative categories', and it is not hard to see why. If we set $a, l, r = \mathrm{id}$, then in the symmetric case the diagrams from \cref{bdmoncat} simplify to 
+\begin{eq*} \begin{array}{rclcrcl}
+			\beta_{x \otimes y, z} & = & (\beta_{z, x} \otimes \mathrm{id}_y) \circ (\mathrm{id}_x \otimes \beta_{y,x}), & \quad \quad & \beta_{x, I} & = & \mathrm{id}_x \\
+			\beta_{x, y \otimes z} & = & (\mathrm{id}_y \otimes \beta_{z, x}) \circ (\beta_{y,x} \otimes \mathrm{id}_x), & \quad \quad & \beta_{I,xI} & = & \mathrm{id}_x
+		\end{array}
+\end{eq*}
+Collectively, these identities represent the fact that for any collection of distinct objects $x_1, ..., x_n$ in a strict symmetric monoidal category $X$ and any permutation $\sigma \in \mathrm{S}_n$, there exists a unique isomorphism
+\begin{eq*} x_1 \otimes ... \otimes x_n \, \longrightarrow \, x_{\sigma^{-1}(1)} \otimes ... \otimes x_{\sigma^{-1}(n)} \end{eq*}
+built out of the symmetries $\beta$. In other words, elements of the symmetric groups $\mathrm{S}_n$ act like $n$-ary operations, which take in an appropriate number of objects and return some data for a strict symmmetric monoidal category. This is a fairly vague statement however; it would be nice if we could make it more rigourous.
 
 \section{Operads} \label{operad}
 
-\begin{defn} Operads $O$ \end{defn}
+What we need is the concept of an operad. These were first introduced by Peter May in the book `The Geometry of Iterated Loop Spaces' \cite{gils}, though our usage will be slightly different, for reasons discussed later.
+
+\begin{defn} \label{opdef} An \emph{operad} $O$ in a symmetric monoidal category $(C, \otimes, I)$ is a structure consisting of
+\begin{itemize}\itemsep0.3em
+\item a family of objects, $O(n)$ for $n \in \mathbb{N}$, 
+\item a morphism $1: I \to O(1)$, called the identity
+\item a family of morphisms,
+\begin{eq*} \mu_{n;k_1,...,k_n} \, : \, O(n) \otimes O(k_1) \otimes ... \otimes O(k_n) \, \longrightarrow \, O(k_1+...+k_n) \end{eq*}
+called operadic multiplication.
+\end{itemize}
+This data is then subject to the unitality conditions
+\begin{eq*} \begin{tikzcd}
+I \otimes O(n) \ar[dd, "1 \otimes \mathrm{id}_{O(n)}"'] \ar[ddrr, "l_x"] & & & O(n) \otimes I \otimes ... \otimes I \ar[dd, "\mathrm{id}_{O(n)} \otimes 1 \otimes ... \otimes 1"'] \ar[ddrr, "r_{x \otimes I \otimes ... \otimes I} \, \circ ... \circ \, r_{x}"] & & \\
+& & & & & \\
+O(1) \otimes O(n) \ar[rr, "\mu_{1;n}"'] & & O(n) & O(n) \otimes O(1) \otimes ... \otimes O(1) \ar[rr, "\mu_{n;1,...,1}"'] & & O(n)
+\end{tikzcd} \end{eq*}
+for all $n \in \mathbb{N}$, and the associativity conditions
+\begin{eq*} \begin{tikzcd}
+O(n) \otimes \prod O(m_i) \otimes \prod O(k_{1,j}) \otimes ... \otimes \prod O(k_{n, j}) \ar[ddr, "\mu \otimes \mathrm{id}"] \ar[dd, "\beta"'] & \\
+& \\
+O(n) \otimes \prod \big( \, O(m_i) \otimes \prod O(k_{i,j}) \, \big) \ar[dd, "\mathrm{id} \, \otimes \prod \mu"'] & O(m_1+...+m_n) \otimes \prod O(k_{i,j}) \ar[dd, "\mu"] \\
+& \\
+O(n) \otimes \prod O(k_{i,1}+...+k_{i,m_i}) \ar[r, "\mu"] & O(k_{1,1}+...+k_{n,m_n})
+\end{tikzcd} \end{eq*}
+for all $n, m_1, ..., m_n, k_{1,1}, ..., k_{1, m_1}, ..., k_{n,1}, ...,  k_{n, m_n} \in \mathbb{N}$.
+\end{defn}
+
+The idea behind operads is that they are supposed to generalise the notion of `operations'. That is, objects $O(n)$ are to be thought of as somehow representing collections of $n$-ary operations, with the identity as a distinguished unary operation. Multipication in an operad is then motivated by the intuition that we can plug the outputs of $n$ given operations into the inputs of an $n$-ary operation. 
+\begin{center} \begin{tabular}{ccccc}
+			\begin{tikzpicture}[baseline]
+				\fill (-0.3,0.3) to (-0.3,-0.3) to (0.3,0);
+				\draw[-] (-0.7,0.2) to (-0.3,0.2);
+				\draw[-] (-0.7,0) to (-0.3,0);
+				\draw[-] (-0.7,-0.2) to (-0.3,-0.2);
+				\draw[-] (0.2,0) to (0.7,0);
+			\end{tikzpicture} & & 
+			\begin{tikzpicture}[baseline]
+				\draw[-] (-0.5,0) to (0.5,0);
+			\end{tikzpicture} & & 
+			\begin{tikzpicture}[baseline]
+				\fill (-1.2,1.2) to (-1.2,0.6) to (-0.6,0.9);
+				\fill (-1.2,0.3) to (-1.2,-0.3) to (-0.6,0);
+				\fill (-1.2,-1.2) to (-1.2,-0.6) to (-0.6,-0.9);
+				\fill (0,1.5) to (0,-1.5) to (1.2,0);
+				\draw[-] (-1.6,1) to (-1.2,1);
+				\draw[-] (-1.6,0.8) to (-1.2,0.8);
+				\draw[-] (-1.6,-0.9) to (-1.2,-0.9);
+				\draw[-] (-0.6,0.9) to (0,0.9);
+				\draw[-] (-0.6,0) to (0,0);
+				\draw[-] (-0.6,-0.9) to (0,-0.9);
+				\draw[-] (1.2,0) to (1.6,0);
+			\end{tikzpicture} \\
+			$n$-ary operation & \quad \quad \quad \quad & Identity & \quad \quad \quad \quad & Operadic multiplication \\
+\end{tabular} \end{center}
+As an example, if we were to represent some operations pictorially as in the diagram above, then the figure on the right is what is meant by the multiplication $\mu: O(3) \times O(2) \times O(0) \times O(1) \to O(2+0+1)$. Under this interpretation, each of the coherence conditions for an operad represents some obvious fact about how generic $n$-ary operations should interact with one another. For instance, unitality of the identity is simply
+\begin{center} \begin{tabular}{ccccc}
+			& & & & \\
+			\begin{tikzpicture}[baseline]
+				\fill (-0.3,0.3) to (-0.3,-0.3) to (0.3,0);
+				\draw[-] (-1.7,0.2) to (-0.3,0.2);
+				\draw[-] (-1.7,0) to (-0.3,0);
+				\draw[-] (-1.7,-0.2) to (-0.3,-0.2);
+				\draw[-] (0.2,0) to  (0.7,0);
+			\end{tikzpicture} & &
+			\begin{tikzpicture}[baseline]
+				\fill (-0.3,0.3) to (-0.3,-0.3) to (0.3,0);
+				\draw[-] (-0.7,0.2) to (-0.3,0.2);
+				\draw[-] (-0.7,0) to (-0.3,0);
+				\draw[-] (-0.7,-0.2) to (-0.3,-0.2);
+				\draw[-] (0.2,0) to  (0.7,0);
+			\end{tikzpicture} & &
+			\begin{tikzpicture}[baseline]
+				\fill (-0.3,0.3) to (-0.3,-0.3) to (0.3,0);
+				\draw[-] (-0.7,0.2) to (-0.3,0.2);
+				\draw[-] (-0.7,0) to (-0.3,0);
+				\draw[-] (-0.7,-0.2) to (-0.3,-0.2);
+				\draw[-] (0.2,0) to  (1.7,0);
+			\end{tikzpicture} \\
+			& & & & \\
+			$\mu( \, x \, ; \, 1, 1, 1 \, )$ & \quad = \quad & $x$ & \quad = \quad & $\mu( \, 1 \, ; \, x \, )$ \\
+\end{tabular} \end{center}
+
+As with most mathematical structures, operads naturally form a category, together with a suitable notion of morphisms between operads.
+
+\begin{defn} Given two operads $O, O'$ in a symmetric monoidal category $(C, \otimes, I)$, a \emph{map of operads} between them is a family of maps between their operations which preserve operadic composition. That is, any $f: O \to O'$ is composed of morphisms $f_n : O(n) \to O'(n)$, $n \in \mathbb{N}$ which satisfy
+\begin{eq*} \begin{tikzcd}
+& I \ar[ddl, "1^O"'] \ar[ddr, "1^{O'}"] & & O(n) \otimes O(k_1) \otimes ... \otimes O(k_n) \ar[dd, "f_n \otimes f_{k_1} \otimes ... \otimes f_{k_n}"'] \ar[r, "\mu^O"] & O(k_1 + ... + k_n) \ar[dd, "f_{k_1 + ... +k_n}"] \\
+& & & & \\
+O(1) \ar[rr, "f_1"]& & O'(1) & O'(n) \otimes O'(k_1) \otimes ... \otimes O'(k_n) \ar[r, "\mu^{O'}"] & O'(k_1 + ... + k_n)
+\end{tikzcd} \end{eq*}
+for all $n, k_1, ..., k_n \in \mathbb{N}$. The category of operads and maps of operads in $(C, \otimes, I)$ is denoted $\mathrm{Op}(C)$, though in the case of $\mathrm{Set}$ we will just call it $\mathrm{Op}$. Composition in this category is defined by termwise composition of families $f_n : O(n) \to O'(n)$, $g_n : O'(n) \to O''(n)$, and the identity morphisms $\mathrm{id}_O : O \to O$ are simply the families $\mathrm{id}_{O(n)}$ from $C$.
+\end{defn}
+
+For a far more in depth explanation of operads and their intimate relationship with category theory, see the book `Higher Operads, Higher Categories' \cite{hohc} by Tom Leinster.
+ 
+When we are working with operads in the category of sets, $(\mathrm{Set}, \times, 1)$, the objects $O(n)$ genuinely are collections of elements, with a distinguished identity $1 \in O(1)$. However, these elements still do not have to be operations in any way other than that they satisfy \cref{opdef}, as we will see in the following examples.
 
 \begin{namedexample}[(The symmetric operad)]
-There is an operad $\mathrm{S}$ whose sets of operations $\mathrm{S}(n)$ for each $n \in \mathbb{N}$ are the underlying sets of the symmetric groups $\mathrm{S}_n$. The identity element of this \emph{symmetric operad} is the identity permutation of a single object, $e_1 \in \mathrm{S}_1$, and the operadic multiplication is defined in the following way:
+There is an operad in $\mathrm{Set}$ whose sets of operations $\mathrm{S}(n)$ for each $n \in \mathbb{N}$ are the underlying sets of the symmetric groups $\mathrm{S}_n$. The identity element of this \emph{symmetric operad} $\mathrm{S}$ is the identity permutation of a single object, $e_1 \in \mathrm{S}_1$, and the operadic multiplication is defined in the following way:
 \begin{itemize}
 \item First, there exist maps $\otimes : \mathrm{S}_m \times \mathrm{S}_n \to \mathrm{S}_{m+n}$ called the \emph{direct sum} or \emph{block sum} of permutations. For any $\sigma \in \mathrm{S}_m$ and $\tau \in \mathrm{S}_n$, these are given by
 \begin{eq*} (\sigma \otimes \tau)(i) \quad = \quad \begin{cases}
@@ -26,7 +193,7 @@ As the name suggests, this direct sum is usually denote by the symbol $\oplus$, 
 In other words, the operadic multiplication of permutations comes from both permutating objects within distinct blocks and also permuting the blocks themselves.
 \end{itemize}
 
-If we decide to represent elements of the symmetric operad pictorially --- for example as strings which cross over another according to the appropriate permutation --- then both $\sigma \otimes \tau$ and $\sigma_{(k_1, ..., k_n)}$ have rather nice interpretations. The direct sum of two permutations is just the result of placing two permutations `next to' each other,
+If we decide to represent elements of the symmetric operad pictorially --- for example as strings which cross over another according to the appropriate permutation --- then both $\sigma \otimes \tau$ and $\sigma_{(k_1, ..., k_n)}$ have rather nice interpretations. 
 \begin{center} \begin{tabular}{ccccc}
 			\begin{tikzpicture}[baseline]
 				\node(x1) at (-0.5,1){};
@@ -60,7 +227,7 @@ If we decide to represent elements of the symmetric operad pictorially --- for e
 			\end{tikzpicture} \\
 			$\sigma$ & & $\tau$ & & $\sigma \otimes \tau$
 \end{tabular} \end{center}
-and block permutations are given by expanding string into some number of parallel strings,
+The direct sum of two permutations is just the result of placing two permutations `next to' each other, as above, and block permutations are given by expanding string into some number of parallel strings:
 \begin{center} \begin{tabular}{ccc}
 			\begin{tikzpicture}[baseline]
 				\node(x1) at (-0.5,1){};
@@ -124,16 +291,35 @@ This means that the elementary block transpositions are
 So all we need to know to fully understand the functions $( \, \_ \, )_{(k_1, ..., k_n)}$ are the values they take on the transposition $(1 \, 2)$. These can be defined recursively, via
 \begin{eq*} \begin{array}{rclcrcl}
 			(1 \, 2)_{(0, n)} & = & e_n, & \quad \quad & (1 \, 2)_{(m+m', n)} & = & \big( \, (1 \, 2)_{(m, n)} \otimes e_{m'} \, \big) \cdot \big( \, e_m \otimes (1 \, 2)_{(m', n)} \, \big) \\
-			(1 \, 2)_{(m, 0)} & = & e_m, & \quad \quad & (1 \, 2)_{(m, n+n')} & = & \big( \, e_n \otimes (1 \, 2)_{(m, n')} \, \big) \cdot \big( \, (1 \, 2)_{(m, n)} \otimes e_{n'} \, \big) 			
+			(1 \, 2)_{(m, 0)} & = & e_m, & \quad \quad & (1 \, 2)_{(m, n+n')} & = & \big( \, e_n \otimes (1 \, 2)_{(m, n')} \, \big) \cdot \big( \, (1 \, 2)_{(m, n)} \otimes e_{n'} \, \big) \\
+			(1 \, 2)_{(1,1)} & = & (1 \, 2) & & & &		
 		\end{array}
 \end{eq*}
 which all follow from the definition of $( \, \_ \, )_{(k_1, ..., k_n)}$. Therefore all $\sigma_{(k_1, ..., k_n)}$ and hence all $\mu(\sigma; \tau_1, ..., \tau_n)$ can be expressed in terms of group multiplication $\cdot$ and direct sum $\otimes$, and the elementary permutations which constitute $\sigma, \tau_1, ..., \tau_n$.
 \end{namedexample}
 
+Something very important to notice about the symmetric operad is that while its sets of operations $\mathrm{S}_n$ are groups, it is \emph{not} an operad in the category of groups, because the operadic multiplication we have just outlined is not a group homomorphism. If it were, then it would obey
+\begin{eq*} \mu(\sigma; \tau_1, ..., \tau_n) \cdot \mu(\sigma'; \tau'_1, ..., \tau'_n) \quad = \quad \mu( \, \sigma\sigma' \, ; \, \tau_1\tau'_1, ..., \tau_n\tau'_n \, ) \end{eq*}
+for all $\sigma, \sigma' \in \mathrm{S}_n$, $\tau_i, \tau'_i \in \mathrm{S}_{k_i}$, but this is clearly false. As a counterexample, consider the fairly simple case
+\begin{eq*} \begin{array}{rcccccl}
+			\mu\big( \, (1 \, 2) \, ; \, e_2, e_1 \, \big) & = & (1 \, 2)_{(2, 1)} \cdot (e_2 \otimes e_1) & = & (1 \, 2 \, 3) \cdot e_3 & = & (1 \, 2 \, 3) \\
+			\mu\big( \, e_2 \, ; \, (1 \, 2), e_1 \, \big) & = & {(e_2)}_{(2, 1)} \cdot \big(\, (1 \, 2) \otimes e_1 \, \big) & = & e_3 \cdot (1 \, 2) & = & (1 \, 2) \\
+			\mu\big( \,  (1 \, 2) \, ; \, (1 \, 2), e_1 \, \big) & = & (1 \, 2)_{(2, 1)} \cdot \big(\, (1 \, 2) \otimes e_1 \, \big) & = & (1 \, 2 \, 3) \cdot (1 \, 2) & &
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rll}
+			\implies \mu\big( \, e_2 \, ; \, (1 \, 2), e_1 \, \big) \cdot \mu\big( \, (1 \, 2) \, ; \, e_2, e_1 \, \big) & = & (1 \, 2) \cdot (1 \, 2 \, 3) \\
+			& \neq &  (1 \, 2 \, 3) \cdot (1 \, 2) \\
+			& = & \mu\big( \,  (1 \, 2) \, ; \, (1 \, 2), e_1 \, \big) \\
+			& = & \mu\big( \, e_2 \cdot (1 \, 2) \, ; \, (1 \, 2) \cdot e_2 , \, e_1 \cdot e_1 \, \big)
+		\end{array}
+\end{eq*}
+This seems at first like pretty strange behaviour. After all, the symmetric groups play a central role in the theory of groups, so it would be reasonable to assume that their operad would be similarly crucial for the theory of group operads. But $\mathrm{S}$ is not the only family of groups whose operad is fundamentally set related.
+
 \begin{namedexample}[(The braid operad)]\label{braidop}
 The \emph{braid groups} $B_n$ are the family of groups that result from taking the symmetric groups and removing the requirement that everything needs to be self-inverse. That is, the group $B_n$ has a presentation on some \emph{elementary braids} $b_1, ..., b_{n-1}$, given by the relations
 \begin{eq*} b_i b_{i+1} b_i \, = \, b_{i+1} b_i b_{i+1}, \quad \quad \quad \quad \quad b_i b_j \, = \, b_j b_i, \quad i+1 < j \end{eq*}
-As might be expected, the underlying sets of these groups also form an operad, known as the \emph{braid operad} $B$, and they do so in a way directly analagous to the operad $\mathrm{S}$. That is, the identity element of $B$ is $e_1 \in \mathrm{B}_1$, and the operadic multiplication is constructed as follows:
+As might be expected, the underlying sets of these groups also form an operad in $\mathrm{Set}$ known as the \emph{braid operad} $B$, and they do so in a way directly analagous to the operad $\mathrm{S}$. That is, the identity element of $B$ is $e_1 \in B_1$, and the operadic multiplication is constructed as follows:
 \begin{itemize}
 \item Tensor products $\otimes : B_m \times B_n \to B_{m+n}$ are determined by setting 
 \begin{eq*} x \otimes y \quad = \quad (x \otimes e_n) \cdot (e_m \otimes y) \quad = \quad (e_m \otimes x) \cdot (y \otimes e_n) \end{eq*}
@@ -143,7 +329,8 @@ for any elementary braid $b_i \in B_n$, where $b$ is the only elementary braid i
 \item The functions $( \, \_ \, )_{(k_1, ..., k_n)} : B_n \to B_{k_1 + ... + k_n}$ are first defined recursively on the elementary braid $b \in B_2$ by
 \begin{eq*} \begin{array}{rclcrcl}
 			b_{(0, n)} & = & e_n, & \quad \quad & b_{(m+m', n)} & = & (b_{(m, n)} \otimes e_{m'}) \cdot (e_m \otimes b_{(m', n)}) \\
-			b_{(m, 0)} & = & e_m, & \quad \quad & b_{(m, n+n')} & = & (e_n \otimes b_{(m, n')}) \cdot (b_{(m, n)} \otimes e_{n'}) 			
+			b_{(m, 0)} & = & e_m, & \quad \quad & b_{(m, n+n')} & = & (e_n \otimes b_{(m, n')}) \cdot (b_{(m, n)} \otimes e_{n'}) \\
+			b_{(1,1)} & = & b & & & &				
 		\end{array}
 \end{eq*}
 then on arbitrary elementary braids $b_i \in B_n$ via
@@ -240,23 +427,99 @@ and the `block braids' are multiple strings braided together in parallel,
 \end{tabular} \end{center}
 \end{namedexample}
 
-\begin{defn} Operads maps \end{defn}
+\section{Action operads}
 
-\cite{ogge} \cite{groupop}
+It is not hard to see that the symmetric and braided operads both share certain features which are not otherwise common among operads of sets. This fact has been noticed by several different authors, each of whom proposed a slightly different definition and terminology for these sorts of structures. While older treatments exist --- see for example \cite{ribbon1} and \cite{groupop} --- in this paper we will be following the conventions laid out in \cite{ogge}, since they are the most general.
 
-\begin{defn}\label{actop} Action operads $G$, maps, $\mathrm{AOp}$ \end{defn}
+\begin{defn} \label{actop} An \emph{action operad} $(G, \pi)$ consists of 
+\begin{itemize}
+\item an operad $G$ in the category of sets, whose $G(n)$ are also all groups
+\item a map of operads $\pi : G \to \mathrm{S}$ whose components $\pi_n : G(n) \to \mathrm{S}_n$ are also group homomorphisms
+\end{itemize}
+where the operadic multipliction of $G$ and the group multiplication of the $G(n)$ are linked via the map $\pi$ in the following way:
+\begin{eq*} \mu( \, gg' \, ; \, h_1 h'_1, ...,  h_n h'_n \, ) \quad = \quad \mu(g; h_{\pi(g')^{-1}(1)}, ..., h_{\pi(g')^{-1}(n)}) \cdot \mu(g'; h'_1, ..., h'_n) \end{eq*}
+\end{defn}
 
-There are a couple of operads which trivially have the structure of an action operads. 
+The element $\pi(g)$ is called the \emph{underlying permutation} of $g$, and as we can see the role it plays is to permute the inputs of an operadic multiplication when two of them are multiplied as group elements. This is exactly the behaviour we observed before with the symmetric operad; for instance, recalling our previous example we see that we should have had was
+\begin{eq*} \begin{array}{rclllll}
+			\mu\big( \, (1 \, 2) \, ; \, e_1, e_2 \, \big) & = & (1 \, 2 \, 3) & & & & \\
+			\mu\big( \, e_2 \, ; \, e_1, (1 \, 2) \, \big) & = & {(e_2)}_{(1, 2)} \cdot \big(\, e_1 \otimes (1 \, 2) \, \big) & = & e_3 \cdot (2 \, 3) & = & (2 \, 3) \\
+			\mu\big( \,  (1 \, 2) \, ; \, (1 \, 2), e_1 \, \big) & = & (1 \, 2 \, 3) \cdot (1 \, 2) & & & &
+		\end{array}
+\end{eq*}
+\begin{eq*} \begin{array}{rll}
+			\implies \mu\big( \, e_2 \, ; \, (1 \, 2), e_1 \, \big) \cdot \mu\big( \, (1 \, 2) \, ; \, e_2, e_1 \, \big) & = & (2 \, 3) \cdot (1 \, 2 \, 3) \\
+			& = &  (1 \, 2 \, 3) \cdot (1 \, 2) \\
+			& = & \mu\big( \,  (1 \, 2) \, ; \, (1 \, 2), e_1 \, \big) \\
+			& = & \mu\big( \, e_2 \cdot (1 \, 2) \, ; \, (1 \, 2) \cdot e_2 , \, e_1 \cdot e_1 \, \big)
+		\end{array}
+\end{eq*}
+The effect that this has on the map $\mu$ also mirrors the way that we had to define operadic multiplication for $\mathrm{S}$ and $B$ in stages. Specifically if for any action operad $G$ we define
+\begin{eq*} g_{(k_1, ..., k_n)} \, := \, \mu(g; e_{k_1}, ..., e_{k_n}), \quad \quad \quad g_1 \otimes ... \otimes g_n \, := \, \mu(e_n; g_1, ..., g_n) \end{eq*}
+then it follows from \cref{actop} that
+\begin{eq*} \begin{array}{rll}
+			\mu( \, g \, ; \, h_1, ..., h_n \, ) & = & \mu( \, g \cdot e_n \, ; \, e_{k_1} \cdot h_1, ..., e_{k_n} \cdot h_n \, ) \\
+			& = & \mu( \, g \, ; \, e_{\pi(e_n)^{-1}(k_1)} ..., e_{\pi(e_n)^{-1}(k_1)} \, ) \cdot \mu( \, e_n \, ; \, h_1, ..., h_n \, ) \\
+			& = & \mu( \, g \, ; \, e_{k_1} ..., e_{k_1} \, ) \cdot \mu( \, e_n \, ; \, h_1, ..., h_n \, ) \\
+			& = & g_{(k_1, ..., k_n)} \cdot (h_1 \otimes ... \otimes h_n)
+		\end{array}
+\end{eq*}
+for all $g \in G(n)$, $h_i \in G(k_i)$, $n, k_1, ..., k_n \in \mathbb{N}$. 
 
-First there is the \emph{terminal operad} $\mathrm{T}$, which has a single operation for each arity, so that $\mathrm{T}(n) = \{ e_n \}$. Each of these sets can be seen as the trivial group, and it follows from this that the $\pi^{\mathrm{T}} : \mathrm{T}(n) \to \mathrm{S}_n$ must be the respective zero maps, the terminal homomorphisms in the category of groups. The action operad condition is then
+Now we can also see the reason why we chose the tensor product notation for the operation $\mu(e_n; \_, ..., \_)$ before. Just like the tensor product of a monoidal category, the definition of this $\otimes$ in $G$ immediately implies an interchange law:
+\begin{eq*} \begin{array}{rll}
+			(g \cdot g') \otimes (h \cdot h') & = & \mu( \, e_2 \, ; \, gg', \, hh' \, ) \\
+			& = & \mu(e_2; g, h) \cdot \mu(e_2; g', h')\\
+			& = & (g \otimes h) \cdot (g' \otimes h')
+		\end{array}
+\end{eq*}
+This interaction between the operad and group structures of $G$ places some restrictions on which groups we may choose to build action operads out of. One such consequence which we will need to refer to in later chapters is the following: 
+
+\begin{lem} \label{G0abel} For any action operad $G$, the group $G(0)$ is abelian.  
+\end{lem}
+\begin{proof}
+This lemma is an example of the classic Eckmann-Hilton argument, first put forth in \cite{eckhil}. The idea is that if some set is equipped with two binary operations which obey some form of interchange, and both of them possess the same unit element $e$, then they are in reality a single, commutative operation.
+
+In the case of $G(0)$, we know that it is closed under group multiplication, whose unit is the identity element $e_0$. But the operadic multiplication of $G$ includes a map
+\begin{eq*} \mu_{n;0,...,0} \, : \, G(n) \times G(0) \times ... \times G(0) \, \longrightarrow \, G(0+...+0) \, = \, G(0) \end{eq*}
+which means that tensor products of elements in $G(0)$,
+\begin{eq*} g_1 \otimes ... \otimes g_n \quad = \quad \mu_{n;0,...,0}(e_n; g_1, ..., g_n) \end{eq*}
+are also elements of $G(0)$. This operation has unit $e_0$ as well, since by associativity and unitality of operadic multipication,
+\begin{eq*} \begin{array}{rll}
+			g \otimes e_0 & = & \mu(e_2; g, e_0) \\
+			& = & \mu\big( \, e_2 \, ; \, \mu(e_1;g), \, \mu(e_0; -) \, \big) \\
+			& = & \mu\big( \, \mu(e_2;e_1,e_0) \, ; \, g \, \big) \\
+			& = & \mu(e_1;g) \\
+			& = & g
+		\end{array}
+\end{eq*}
+and likewise for $e_0 \otimes g = g$. Moreover, we've just seen that the group multiplication and tensor product of $G$ obey an interchange law. Therefore we can apply the Eckmann-Hilton argument: for any $g, h \in G(0)$,
+\begin{eq*} g \otimes h \quad = \quad (g \cdot e_0) \otimes (e_0 \cdot h) \quad = \quad (g \otimes e_0) \cdot (e_0 \otimes h) \quad = \quad g \cdot h \end{eq*}
+and also
+\begin{eq*} h \otimes g \quad = \quad (e_0 \cdot h) \otimes (g \cdot e_0) \quad = \quad (e_0 \otimes g) \cdot (h \otimes e_0) \quad = \quad g \cdot h \end{eq*}
+In other words, tensor product and group multiplication coincide on $G(0)$, and are commutative, so that $G(0)$ is an abelian group.
+\end{proof}
+
+Much like standard operads, we can pair action operads with a natural notion of maps between them in order to form a category.
+
+\begin{defn} Given action operads $G, G'$, a \emph{map of action operads} $f: G \to G'$ is a map of operads in $\mathrm{Set}$ whose components $f_n : G(n) \to G'(n)$ are all group homomorphisms, and which preserves all underlying permutations:
+\begin{eq*} \begin{tikzcd}
+G(n) \ar[rr, "f_n"] \ar[ddr, "\pi^G"'] & & G'(n) \ar[ddl, "\pi^{G'}"] \\
+& & \\
+& \mathrm{S}_n &
+\end{tikzcd} \end{eq*}
+The identity maps $\mathrm{id}_G : G \to G$ and the composites of action operad maps $g \circ f : G \to G' \to G''$ in $\mathrm{Op}$ are all well-defined maps of action operads themselves, and so together these constitute a category of action operads and their maps, called $\mathrm{AOp}$.
+\end{defn}
+
+There are a couple of operads which trivially have the structure of an action operad. First we have the \emph{terminal operad} $\mathrm{T}$, which has a single operation for each arity, so that $\mathrm{T}(n) = \{ e_n \}$. Each of these sets can be seen as the trivial group, and it follows from this that the $\pi^{\mathrm{T}} : \mathrm{T}(n) \to \mathrm{S}_n$ must be the respective zero maps, the terminal homomorphisms in the category of groups. The action operad condition is then
 \begin{eq*} \mu(e_n; e_{k_1}, ..., e_{k_n}) \cdot \mu(e_n; e_{k_1}, ..., e_{k_n}) \quad = \quad \mu(e_n; e_{k_1}, ..., e_{k_n}) \end{eq*}
 which is really just
 \begin{eq*} e_{k_1 + ... + k_n} \cdot e_{k_1 + ... + k_n} \, = \, e_{k_1 + ... + k_n} \end{eq*}
 and hence is trivially true. As its name suggests, the terminal operad is the terminal object in the category of operads, but it is also the \emph{initial} object in the category of action operads. This is because for any other $G$ in $\mathrm{AOp}$ the zero homomorphisms $\mathrm{T}(n) \to G(n)$ define the unique map of operads $f: \mathrm{T} \to G$.
 
-On the other hand, it is the symmetric operad $\mathrm{S}$ itself that functions as the terminal object in $\mathrm{AOp}$. Its action operad structure is just given by the standard group multiplications on the $\mathrm{S}_n$, with the identity maps $\mathrm{id}_{\mathrm{S}_n} : \mathrm{S}_n \to \mathrm{S}_n$ functioning as its $\pi_n$. To see terminality, notice that for any other action operad $G$ a valid morphism $f: G \to \mathrm{S}$ in $\mathrm{AOp}$ must obey
+On the other hand, the symmetric operad $\mathrm{S}$ itself functions as the terminal object in $\mathrm{AOp}$. Its action operad structure is just given by the standard group multiplications on the $\mathrm{S}_n$, with the identity maps $\mathrm{id}_{\mathrm{S}_n} : \mathrm{S}_n \to \mathrm{S}_n$ functioning as its $\pi_n$. To see terminality, notice that for any other action operad $G$, a valid morphism $f: G \to \mathrm{S}$ in $\mathrm{AOp}$ must obey
 \begin{eq*} \pi^{\mathrm{S}} \circ f \, = \, \pi^{G} \quad \implies \quad f \, = \, \pi^{G} \end{eq*}
-Thus there only one map of action operads $G \to \mathrm{S}$, which is the very underlying permutation structure used to define $G$.
+Thus there only one map of action operads $G \to \mathrm{S}$: the underlying permutation structure used to define $G$ in the first place.
 
 There are more interesting examples of action operads we can look at though. For instance, we know that the braid groups $B_n$ have the same presentation as the symmetric groups, except without the relations $b_i^2 = e$. Thus if we take their quotients by these relations we will obtain a sequence of homomorphisms $B_n \to \mathrm{S}_n$, each sending $b_i \mapsto (i \, \, \, i+1)$. This provides a natural way to describe the underlying permutation of any braid, and indeed choosing these maps to form $\pi^B$ gives a valid way of seeing the braid operad as an action operad. Another example can also be built with the so-called ribbon braid groups.
 
@@ -305,30 +568,29 @@ Much as the symmetric groups can be represented by crossings of a collection of 
 \end{tabular} \end{center}
 This operad $RB$ is also clearly an action operad, since we can just define $\pi^{RB} : RB_n \to \mathrm{S}_n$ to act like $\pi^B$ on any braids, at which point the fact that $\pi(t) \in S_1 = \{e_1\}$ will automatically take care of the twists. To learn more about the ribbon braids and their operads, see Natalie Wahl's thesis \cite{ribbon1} on the subject, or her subsequent paper with Paolo Salvatore \cite{ribbon2}.
 
-\begin{lem} \label{G0abel} For any action operad $G$, the group $G(0)$ is abelian.  
-\end{lem}
-\begin{proof}
-\end{proof}
+The fact that the ribbon braid operad seems to contain the whole of the braid operad is the key to easily understanding its operadic structure. We can formalise this kind of relationship in the following way:
 
-\begin{defn} Sub action operads \end{defn}
+\begin{defn} An action operad $G$ is said to be a \emph{sub action operad} of some other action operad $G'$ if for all $n \in \mathbb{N}$ we have
+\begin{eq*} G(n) \le G'(n), \quad \quad \quad \mu^{G}(g;h_1, ..., h_n) \, = \, \mu^{G'}(g;h_1, ..., h_n), \quad \quad \quad \pi^{G}(g) \, = \, \pi^{G'}(g) \end{eq*}
+\end{defn}
 
-The most important example of sub action operads are those of the symmetric operad, $\mathrm{S}$. This is because \cref{actop} itself makes explicit reference to the symmetric groups, and so every action operad will end up related to some sub-operad of $\mathrm{S}$:
+The most important example of sub action operads are those of the symmetric operad, $\mathrm{S}$. This is because \cref{actop} itself makes explicit reference to the symmetric groups, and so every action operad will end up being related to some sub-operad of $\mathrm{S}$:
 
-\begin{defn} For an arbitrary action operad $G$ the images of the underlying permutation maps $\pi^G_n : G(n) \to \mathrm{S}_n$ naturally form an action operad $\mathrm{im}(\pi^G)$, where
+\begin{defn} For any action operad $G$, the images of the underlying permutation maps $\pi^G_n : G(n) \to \mathrm{S}_n$ naturally form an action operad $\mathrm{im}(\pi^G)$, where
 \begin{itemize}
 \item the sets of operations are the images of $G$'s sets of operations under the homomorphisms $\pi^G$:
 \begin{eq*} \mathrm{im}(\pi^G)(n) \quad := \quad \mathrm{im}(\pi^G_n) \end{eq*}
 \item the underlying permutation maps are the evident inclusions:
-\begin{eq*} \pi^{\mathrm{im}(\pi^G)}_n \, : \, \mathrm{im}(\pi^G)(n) \hookrightarrow \mathrm{S}_n \end{eq*}
+\begin{eq*} \pi^{\mathrm{im}(\pi^G)}_n \, : \, \mathrm{im}(\pi^G_n) \hookrightarrow \mathrm{S}_n \end{eq*}
 \item the operad multiplication is the appropriate restriction of the multiplication of $\mathrm{S}$:
 \begin{eq*} \mu^{\mathrm{im}(\pi^G)}( \, g \, ; \, h_1, ..., h_n \, ) \quad := \quad \mu^{\mathrm{S}}( \, g \, ; \, h_1, ..., h_n \, ) \end{eq*}
 \end{itemize}
-Clearly this $\mathrm{im}(\pi^G)$ is a sub action operad of the symmetric operad $\mathrm{S}$, and we will call the \emph{underlying permutation operad} of $G$.
+Clearly this $\mathrm{im}(\pi^G)$ is a sub action operad of the symmetric operad $\mathrm{S}$, and so we will call it the \emph{underlying permutation operad} of $G$.
 \end{defn} 
 
-For example, consider the action operad $\mathrm{B}$ we just saw in \cref{braidop}. For a given $n$, the braid group $\mathrm{B}_n$ is generated by $n-1$ elementary braids. But the underlying permutations of these braids are just the $n-1$ adjacent transpositions which generate the symmetric group $\mathrm{S}_n$, and so the underlying permutation maps $\pi^{\mathrm{B}}_n : \mathrm{B}_n \to \mathrm{S}_n$ are all surjective. Thus the underlying permutation operad of $\mathrm{B}$ is just the whole symmetric action operad $\mathrm{S}$.
+For example, consider the action operad $B$ we just saw in \cref{braidop}. For a given $n$, the braid group $B_n$ is generated by $n-1$ elementary braids. But the underlying permutations of these braids are just the $n-1$ adjacent transpositions which generate the symmetric group $\mathrm{S}_n$, and so the underlying permutation maps $\pi^{B}_n : B_n \to \mathrm{S}_n$ are all surjective. Thus the underlying permutation operad of $B$ is just the whole symmetric action operad, $\mathrm{im}(\pi^B) = \mathrm{S}$.
 
-It is even easier to see that $\mathrm{S}$ itself will have underlying permutations $\mathrm{S}$, as the maps $\pi^{\mathrm{S}}_n = \mathrm{id} : \mathrm{S}_n \to \mathrm{S}_n$ are obviously surjective. Similarly, the trivial operad $\mathrm{T}$ is also its own underlying permutation action operad, as the image of the homomorphims $\pi^{\mathrm{T}}_n : \{ e \} \to \mathrm{S}_n$ are trivial. Faced with rather dull examples like these, it might be tempting to try and construct some action operads with more exotic underlying permutations, like maybe the alternating groups $\mathrm{A}_n \subset \mathrm{S}_n$. But it turns out that this is not possible; when it come to their underlying permutation operad, action operads come in exactly two flavours.
+It is even easier to see that $\mathrm{S}$ itself will have underlying permutations $\mathrm{S}$, as the maps $\pi^{\mathrm{S}}_n = \mathrm{id} : \mathrm{S}_n \to \mathrm{S}_n$ are obviously surjective. Similarly, the trivial operad $\mathrm{T}$ is also its own underlying permutation action operad, as the image of the homomorphims $\pi^{\mathrm{T}}_n : \{ e \} \to \mathrm{S}_n$ are trivial. Faced with rather dull examples like these, it might be tempting to try and construct some new action operads with more exotic underlying permutations, like maybe the alternating groups $\mathrm{A}_n \subset \mathrm{S}_n$. But it turns out that this is not possible; when it come to their underlying permutation operad, action operads come in exactly two flavours.
 
 \begin{defn} Let $G$ be an action operad where $\mathrm{im}(\pi)(n)$ is the trivial group for each $n \in \mathbb{N}$. Then we say that $G$ is \emph{non-crossed}, since its operad multiplication will be a true group homomorphism:
 \begin{eq*} \begin{array}{rll}
@@ -356,31 +618,339 @@ the only non-identity element of $\mathrm{S}_2$. This proves that the map $\pi_2
 Then because adjacent transpositions generate the symmetric groups $\mathrm{S}_n$, it follows that every permutation is actually an operation in $\mathrm{im}(\pi)$, so that it is really just the full symmetric operad $\mathrm{S}$. Thus by only assuming that our action operad $G$ was crossed, we have shown that all of the maps $\pi_n$ must be surjective.
 \end{proof} 
 
-\begin{defn} $G$-operads \end{defn}
+\section{$G$-Operads}
+
+The most important feature of action operads, and the reason for givning them that name in the first place, is that they are able to `act' on other operads. The way that this is done for operads in the category of sets is a direct generalisation of the more familiar notion of group actions on sets. Before we begin then, we should recall what exactly is meant by an action of a group on a set.
+
+\begin{defn} For any set $S$ and group $H$, a \emph{(right) action} of $H$ on $S$ is a function $\cdot : S \times H \to S$ which respects the group multiplication of $H$. That is,
+\begin{eq*} x \cdot e \, = \, x, \quad \quad \quad \quad x \cdot (hh') \, = \, (x \cdot h) \cdot h' \end{eq*}
+for any $x \in S$, $h,h' \in H$, and $e$ the identity of $H$. The set $S$ equipped with this action is known as an \emph{$H$-set}.
+\end{defn}
+
+In more categorical terms, an $H$-set is simply a functor $\mathrm{B}H \to \mathrm{Set}$. Here the notation $\mathrm{B}H$ refers to the category that has a single object $\ast$, and a homset $\mathrm{B}H(\ast, \ast)$ which is just isomorphic to the group $H$ when viewed as a monoid under composition. The bridge between these two perspectives is that if the functor $\mathrm{B}H \to \mathrm{Set}$ sends $\ast \mapsto S$, then the rest of the functor constitutes a monoid homomorphism $H \to \mathrm{Set}(S, S)$. We can then see this as a special kind of function $S \times H \to S$, via the (right) tensor-hom adjunction for the category of sets:
+\begin{eq*} \mathrm{Set}(A \times B, C) \quad \cong \quad \mathrm{Set}\big( \, B, \, \mathrm{Set}(A,C) \, \big) \end{eq*}
+
+Now we can take the idea of $H$-sets and apply it to the domain of operads and action operads.
+
+\begin{defn} \label{Gopset} Let $G$ be an action operad. Then a \emph{$G$-operad} in the category of sets is an operad $O$ in $\mathrm{Set}$, equipped with an action of the group $G(n)$ on the set $O(n)$ for each $n \in \mathbb{N}$, which respect the operadic multiplications of $G$ and $O$ in the following sense:
+\begin{eq*} \mu^O( \, x \cdot g \, ; \, y_1 \cdot h_1, ..., y_n \cdot h_n \, ) \quad = \quad \mu^O(x; y_{\pi(g)^{-1}(1)}, ..., y_{\pi(g)^{-1}(n)}) \cdot \mu^G(g; h_1, ..., h_n) \end{eq*}
+Additionally, if a map of operads $f: O \to O'$ between two $G$-operads preserves all of the actions, so that the diagrams
+\begin{eq*} \begin{tikzcd}
+O(n) \times G(n) \ar[rr, "f_n \times \mathrm{id}_{G(n)}"] \ar[dd] & & O'(n) \times G(n) \ar[dd] \\
+& & \\
+O(n) \ar[rr, "f_n"] & & O'(n)
+\end{tikzcd} \end{eq*}
+commute for each $n \in \mathbb{N}$, then we say that $f$ is a \emph{map of $G$-operads} in $\mathrm{Set}$. Together $G$-operads of sets and their maps form a category, which we shall call $G\mathrm{-Op}$.
+\end{defn}
+
+It is a well-known fact that every group $H$ can also be seen as an $H$-set, with the action $H \times H \to H$ being given by multiplication or the right. The equivariance axiom above has been chosen in such a way that we can immediately conclude an analogous result about operads. That is, any action operad $G$ is also $G$-operad with actions $G(n) \times G(n) \to G(n)$ given by multiplication on the right, because under those conditions the defining equation of a $G$-operad simply becomes the defining equation for an action operad.
+
+For certain specific $G$, the $G$-operads are already well-studied objects. If we take our action operad $G$ to be the symmetric operad $\mathrm{S}$, then since the map $\pi^{\mathrm{S}}$ is trivial we arrive at a rather straightforward variety of $G$-operads, those whose equivariance is given by
+\begin{eq*} \mu^O( \, x \cdot \sigma \, ; \, y_1 \cdot \tau_1, ..., y_n \cdot \tau_n \, ) \quad = \quad \mu^O(x; y_{\sigma^{-1}(1)}, ..., y_{\sigma^{-1}(n)}) \cdot \mu^{\mathrm{S}}(\sigma; \tau_1, ..., \tau_n) \end{eq*}
+These $\mathrm{S}$-operads are nowadays generally known as \emph{symmetric operads}, or sometimes \emph{permutative operads}. However, May's original definition \cite{gils} for `operads' was actually this symmetric version, and so some authors prefer to reserve that term for these structures, instead calling the subject of \cref{opdef} `planar operads', or `operads without permutation'. This should give an idea of just how important these symmetric operads really are. Prominent examples include the `little cubes', `little discs', and similar operads which helped motivate the development of operad theory.
+There are also \emph{braided operads}, which are $B$-operads for the braid operad $B$ --- these appear in the work of Zbigniew Fiedorowicz \cite{braidedop}.
+
+As one might expect, the notion of $G$-operads can be extended from $\mathrm{Set}$ to work in other symmetric monoidal categories $(C, \otimes, I)$, by instead working with the operads within that category. Since we are aiming to connect action operads to symmetric and braided monoidal categories, the particular context we will be interested in is $\mathrm{Cat}$, the category of (small) categories. Here the concept of a group action is particularly simple --- it is just like a group action on sets, applied to both the objects and morphism of a category.
+
+\begin{defn} Let $X$ be a category, and $H$ a group which we will also think of as a discrete category. Then a \emph{(right) action} of $H$ on $X$ is a functor $\cdot : X \times H \to X$ which respects the group multiplication of $H$. That is,
+\begin{eq*} \begin{array}{rclcrcl}
+			x \cdot e & = & x, & \quad \quad & x \cdot (hh') & = & (x \cdot h) \cdot h'  \\
+			f \cdot \mathrm{id}_{e} & = & f, & \quad \quad & f \cdot \mathrm{id}_{hh'} & = & (f \cdot\mathrm{id}_{h}) \cdot \mathrm{id}_{h'} 
+		\end{array}
+\end{eq*}
+for any objects $x$ and morphisms $f$ of $X$, and elements $h,h' \in H$ with $e$ the identity.
+\end{defn}
+
+As before, we can view a group action like this as a functor $\mathrm{B}H \to \mathrm{Cat}$ where the sole object $\ast$ of $\mathrm{B}H$ is sent to the category $X$ in question. This is because these are equivalent to monoid homomorphisms $H \to \mathrm{Cat}(X, X)$, which we can see as functors $X \times H \to X$ using the fact that $\mathrm{Cat}$ is copowered (on the right) over $\mathrm{Set}$:
+\begin{eq*} \mathrm{Cat}(X \times S, Y) \quad \cong \quad \mathrm{Set}\big( \, S, \, \mathrm{Cat}(X,Y) \, \big) \end{eq*}
+Here $S$ is a set which again we identify with a discrete category.
+
+\begin{defn} \label{Gopcat} Let $G$ be an action operad. Then a \emph{$G$-operad} in $\mathrm{Cat}$ is an operad $O$ in $(\mathrm{Cat}, \times, 1)$, equipped with an action of the group $G(n)$ on the category $O(n)$ for each $n \in \mathbb{N}$, which respect the operadic multiplications of $G$ and $O$ via a higher dimensional version of the equation in \cref{Gopset}. Specifically, we require that the diagram
+\begin{eq*} \begin{tikzcd}
+O(n) \times G(n) \times \prod \big( \, O(k_i) \times G(k_i) \, \big) \ar[d, "\mathrm{id} \times {(\pi, \mathrm{id})} \times \mathrm{id}"'] \ar[rr] & & O(n) \times \prod O(k_i) \ar[ddd, "\mu^O"] \\
+O(n) \times \mathrm{S}_n \times G(n) \times \prod \big( \, O(k_i) \times G(k_i) \, \big) \ar[d, "\beta"'] & & \\
+O(n) \times \mathrm{S}_n \times \prod O(k_i) \times G(n) \times \prod G(k_i) \ar[d, "\tilde{\mu}^O \times \mu^G"'] \ar[d, "\tilde{\mu}^O \times \mu^G"'] & & \\
+O(k_1 + ... + k_n) \times G(k_1 + ... + k_n) \ar[rr] & & O(k_1 + ... + k_n)
+\end{tikzcd} \end{eq*}
+commutes for all $n, k_1, ..., k_n \in \mathbb{N}$. Here we are using $\tilde{\mu}^O$ to refer to the obvious functor $\mathrm{S}_n \times O(n) \times \prod O(k_i) \to O(k_1 + ... + k_n)$ which acts like $\mu^O$ but with suitably permuted inputs:
+\begin{eq*} \tilde{\mu}^O( \, \sigma, x \, ; \, y_1, ..., y_n \, ) \quad := \quad \mu^O( \, x \, ; \, y_{\sigma^{-1}(1)}, ..., y_{\sigma^{-1}(1)} \, ) \end{eq*}
+\end{defn}
+
+The easiest way to produce examples of $G$-operads in $\mathrm{Cat}$ is to simply build them out of existing operads in the category of sets. In particular, if we design our categories of operations so that the morphisms are determined entirely by their source and target, then a single operad in $\mathrm{Set}$ will suffice to create one of these new higher dimensional operads.
+
+\begin{defn}\label{Edef} For any monoid $M$, we will define its \emph{translation category} $\mathrm{E}M$ to be the (monoidal) category whose objects are the elements of the monoid $M$, and whose morphisms consist of a unique isomorphism between each pair of objects. Also, for any monoid homomorphisms $h: M \to M'$ we can define a functor
+\begin{eq*} \begin{array}{rlrll}
+		\mathrm{E}h & : & \mathrm{E}M & \to & \mathrm{E}M' \\
+		& : & m & \mapsto & h(m) \\
+		& : & m \to m' & \mapsto & h(m) \to h(m')
+		\end{array}
+\end{eq*}
+This definition of $\mathrm{E}h$ obviously respects composition and identities, and so together with $\mathrm{E}M$ it describes a functor $\mathrm{E}: \mathrm{Mon} \to \mathrm{Cat}$.
+
+Likewise, for any operad $O$ in the category of sets we can define its \emph{translation operad} $\mathrm{E}O$ to be the operad in $\mathrm{Cat}$ given by the data
+\begin{eq*} (\mathrm{E}O)(n) \, := \, \mathrm{E}\big( O(n) \big), \quad \quad \quad 1^{\mathrm{E}O} \, = \, \mathrm{E}(1^{O}), \quad \quad \quad \mu^{\mathrm{E}O} \, = \, \mathrm{E}(\mu^O) \end{eq*}
+For each of the coherence conditions which $\mathrm{E}O$ must satisfy in order to be a well-defined operad in $\mathrm{Cat}$, we can obtain them from the corresponding conditions that make $O$ an operad in $\mathrm{Set}$, by simply applying the functor $\mathrm{E}$ everywhere.
+ \end{defn}
+
+$\mathrm{E}O$ can be seen as a categorified version of the operad $O$. That is, it may live in $\mathrm{Cat}$ rather than $\mathrm{Set}$, but in many other respects it behaves the same way that $O$ does. Of particular interest to us is what this means in the case when $O$ is really an action operad $G$. We saw earlier that any $G$ is always a $G$-operad in the category of sets, with an action given by group multiplication. The categorified variant of this statement is the following:
+
+\begin{lem} For any action operad $G$, the translation operad $\mathrm{E}G$ is a $G$-operad in $\mathrm{Cat}$, with actions
+\begin{eq*} \begin{array}{rll}
+		\mathrm{E}G(n) \times G(n) & \to & \mathrm{E}G(n) \\
+		(g, h) & \mapsto & gh \\
+		(g \to g', \mathrm{id}_h) & \mapsto & gh \to g'h
+		\end{array}
+\end{eq*}
+\end{lem}
+
+The proof of this fact can be found in \cite{operadborel}.
 
 \section{Operad algebras}
 
-\begin{defn} Operad algbras \end{defn}
+As with many mathematical structures, we are not merely interested in operads for their own sake, but also for their algebras.
 
-\begin{defn} $G$-operad algebras \end{defn}
-
-\section{$\mathrm{E}G$-algebras}
-
-\begin{defn} The $G$-operad $\mathrm{E}G$ \end{defn}
-
-\begin{defn}\label{monaddef} The monad $\mathrm{E}G$ \end{defn}
-
-\begin{defn} $\mathrm{E}G$-algebras \end{defn}
-
-\begin{prop} $G$-operad algebras are monoidal categories with permutation-like structure \end{prop} 
-
-\begin{cor} Braided monoidal categories are $G$-operad algebras \end{cor}
-
-\begin{defn} A strict monoidal category $X$ is said to be \emph{spacial} if, for any object $x \in \mathrm{Ob}(X)$ and any endomorphism of the unit object $f: I \to I$, 
-\begin{eq*} f \otimes \mathrm{id}_x = \mathrm{id}_x \otimes f \end{eq*}
+\begin{defn} \label{opalg} Let $O$ be an operad in the symmetric monoidal category $(C, \otimes, I)$. Then an \emph{algebra} of $O$ is an object $X$ in $C$, equipped with a family of morphisms $\alpha_n : O(n) \otimes X^{\otimes n} \to X$, $n \in \mathbb{N}$ called the action of $O$ on $X$, which obey axioms that mirror those needed to define an operad. In other words, we a unitality condition
+\begin{eq*} \begin{tikzcd}
+I \otimes  X \ar[dd, "1 \otimes \mathrm{id}_{X}"'] \ar[ddrr, "l_X"] & & \\
+& & \\
+O(1) \otimes X \ar[rr, "\alpha_{1}"'] & &  X
+\end{tikzcd} \end{eq*}
+and then for all $n, k_1, ...,  k_n \in \mathbb{N}$ we have an associativity condition,
+\begin{eq*} \begin{tikzcd}
+O(n) \otimes \prod O(k_i) \otimes \prod X^{\otimes k_i} \ar[ddr, "\mu \otimes \mathrm{id}"] \ar[dd, "\beta"'] & \\
+& \\
+O(n) \otimes \prod \big( \, O(k_i) \otimes X^{\otimes k_i} \, \big) \ar[dd, "\mathrm{id} \, \otimes \prod \alpha"'] & O(k_1+...+k_n) \otimes X^{\otimes (k_1 + ... + k_n)} \ar[dd, "\alpha"] \\
+& \\
+O(n) \otimes X^{\otimes n} \ar[r, "\alpha"] & X
+\end{tikzcd} \end{eq*}
+As one might expect, a \emph{map of algebras} $f: (X, \alpha^X) \to (Y, \alpha^Y)$ between two algebras of $O$ is then simply a map between their underlying objects, $f: X \to Y$, which preserves this algebra structure:
+\begin{eq*} \begin{tikzcd}
+O(n) \times X^n \ar[rr, "\mathrm{id}^{O(n)} \times f^n"] \ar[dd, "\alpha^X"'] & & O(n) \times Y^n \ar[dd, "\alpha^Y"] \\
+& & \\
+X \ar[rr, "f"] & & Y
+\end{tikzcd} \end{eq*}
+Together these form the category $O\mathrm{Alg}$ of all $O$-algebras and their maps.
 \end{defn}
 
+When $O$ is an operad in $\mathrm{Set}$, an algebra of $O$ is simply a realisation of the elements of the $O(n)$ as actual $n$-ary operations on some set. A similar statement is true in any concrete category, though with extra structure or restrictions depending on the nature of $(C, \otimes, I)$. When $O$ is an operad in $\mathrm{Cat}$ we can also upgrade the category $O\mathrm{Alg}$ into a 2-category, by simply adding in monoidal natural transformations as the 2-morphisms between algebra maps. We will use the notation $O\mathrm{Alg}$ for both of these structures, since it is generally clear from the context whether we want to be working with categories or 2-categories.
+
+As we've seen many times already, when the operad we are working with is actually an action operad, the presence of the additional group structure will cause something more interesting to happen. In this case, because the operadic multiplication $\mu^G(e_n; \, \_ \, , ..., \, \_ \,)$ in an action operad $G$ can be interpreted as a tensor product, the operad algebras of $G$ will end up inheriting a monoidal structure of their own.
+
+\begin{lem} Let $G$ be an action operad, and $X$ an algebra of $G$ in the category of sets. Then $X$ is a monoid with respect to the operation
+\begin{eq*} x_1 \otimes ... \otimes x_n \quad := \quad \alpha(e_n; x_1, ..., x_n) \end{eq*}
+and there exists a forgetful functor $G\mathrm{Alg} \to \mathrm{Mon}$ sending the algebras of $G$ to this underlying monoid structure.
+
+Similarly, let $Y$ be an algebra of $\mathrm{E}G$ in $\mathrm{Cat}$. Then $Y$ is a strict monoidal category with respect to the operation
+\begin{eq*} y_1 \otimes ... \otimes y_n \quad := \quad \alpha(e_n; y_1, ..., y_n), \quad \quad \quad f_1 \otimes ... \otimes f_n \quad := \quad \alpha(e_n; f_1, ..., f_n) \end{eq*}
+and there is a forgetful 2-functor $\mathrm{E}G\mathrm{Alg} \to \mathrm{MonCat}_{\mathrm{st}}$ sending these algebras to their underlying strict monoidal structure.
+\end{lem}
+\begin{proof}
+We'll start by checking that above definition on $X$ makes sense. Firstly, for any element $x \in X$ we want the one-fold tensor product of $x$ with itself to just be $x$ again. This is ensured by the unitality of the action $\alpha^X$, which says that $\alpha(e_1; x) = x$. Next, we need to make sure that the tensor products for each arity are all compatible with each other, which follows from the associativity axiom for $\alpha^X$:
+\begin{eq*} \begin{array}{rl}
+			& (x_1 \otimes ... \otimes x_{k_1}) \otimes ... \otimes (x_{k_1 + ... + k_{n-1}+1} \otimes ... \otimes x_{k_1 + ... + k_n}) \\
+			= & \alpha\big( \, e_n \, ; \, \alpha(e_{k_1}; x_1, ..., x_{k_1}), \, ..., \, \alpha(e_{k_n}; x_{k_1 + ... + k_{n-1}+1}, ... , x_{k_1 + ... + k_n}) \, \big) \\
+			= & \alpha\big( \, \mu(e_n; e_{k_1}, ..., e_{k_n}) \, ; \, x_1, ..., x_{k_1}, ..., x_{k_1 + ... + k_{n-1}+1}, ... , x_{k_1 + ... + k_n} \, \big) \\
+			= & \alpha( \, e_{k_1+...+k_n} \, ; \, x_1, ... , x_{k_1 + ... + k_n} \, ) \\
+			= & x_1 \otimes ... \otimes x_{k_1 + ... + k_n}
+		\end{array}
+\end{eq*}
+Perhaps unsurprising, this means that associativity axiom also forces the tensor product to be associative. Finally, a special case of the above --- where $n=2$ and the $k_i$ are $0$ and $1$ --- shows that the empty tensor product $\alpha(e_0; -)$ acts as the unit of $\otimes$. Thus $X$ is indeed a well-defined monoid under the tensor product coming from its action. Moreover, since all algebra maps $f: X \to X'$ preserve actions they will also preserve this monoid structure,
+\begin{eq*} f(x \otimes x') \quad = \quad f\big( \, \alpha^X(e_2; x, x') \, \big) \quad = \quad \alpha^{X'}\big( \, e_2 \, ; \, f(x), f(x') \, \big) \quad = \quad f(x) \otimes f(x') \end{eq*}
+Therefore if we forget all of the features of our $G$-algebras other than the tensor product, what we are left with are monoids and monoid homomorphisms, and this defines an obvious functor $G\mathrm{Alg} \to \mathrm{Mon}$.
+
+Turning now to the category $Y$, if we think of all of the functors in the unitality and associativity axioms for $\alpha^Y$ as acting just on objects, the exact same arguments we employed above will show that $(\mathrm{Ob}(Y), \otimes)$ is well-defined monoid. Likewise, restricting our view to morphisms will let us prove that $(\mathrm{Mor}(Y), \otimes)$ is a monoid, and then functoriality of $\alpha^Y$ tells us that we can stitch these two tensor products together into a single functor $\otimes : Y \times Y \to Y$.
+\begin{eq*} \begin{array}{rll}
+			(f : x \to y) \otimes (f': x' \to y') & = & \alpha(e_2 ; f, f') : \alpha(e_2; x, x') \to \alpha(e_2; y, y') \\
+			& = & f \otimes f' : x \otimes x' \to y \otimes y'
+		\end{array}
+\end{eq*}
+Thus $Y$ as a whole has a tensor product, and because it comes from a monoid at both levels it will be \emph{strictly} associative and unital. Therefore $\mathrm{E}G$-algebras are strict monoidal categories, and since any algebra map $F: Y \to Y'$ will preserve this monoidal structure for the same reason we had before, there is an associated forgetful 2-functor $\mathrm{E}G\mathrm{Alg} \to \mathrm{MonCat}_{\mathrm{st}}$ onto the 2-category of strict monoidal categories.
+\end{proof}
+
+In general, the algebras of $G$ and $\mathrm{E}G$ will have a lot more structure to them than just this tensor product. For example, any algebra for the symmetric operad $\mathrm{S}$ will have an extra binary operation coming from the elementary permutation in $\mathrm{S}_2$:
+\begin{eq*} \begin{array}{rll}
+		X \times X & \to & X \\
+		(x, x') & \mapsto & \alpha\big( \, (1 \, 2) \, ; \, x, x' \, \big) \\
+		\end{array}
+\end{eq*}
+However, the rules that govern operad algebras do not put any extra restraints on this operation, which means that the resulting category $\mathrm{SAlg}$ ends up fairly boring due to its lack of specificity. The problem is that by using the concept of a standard operad algebra, we are ignoring the group multiplication of our action operads, since this is not something that every operad of sets can be expected to have.
+
+What we need is a notion for algebras of a $G$-operad. Of course, as operads themselves any $G$-operad will already have algebras in the sense of \cref{opalg}, but in general these won't respect the $G$-operadic actions, which anything worthy of the name `$G$-operad algebra' should do. We can fix this by simply demanding that the maps $\alpha$ coequalise certain maps, chosen in a way which will force the equivariance to hold.
+
+\begin{defn} \label{Gopalgdef} For any operad $O$ in $\mathrm{Set}$ or $\mathrm{Cat}$, a \emph{$G$-operad algebra} $X$ of $O$ is just an operad algebra of $O$ whose actions $\alpha_n : O(n) \times X^n \to X$ coequalise two maps $O(n) \times G(n) \times X^n \to O(n) \times X^n$, one coming from the action of $G(n)$ on $O(n)$, and the other from the reordering of $X^n$ by the underlying permutations of $G(n)$.
+
+More precisely, recall that the symmetric monoidal structures of $(\mathrm{Set}, \times, 1)$ and $(\mathrm{Cat}, \times, 1)$ provide us with several different isomorphisms $\beta : X^n \to X^n$. Indeed, there will be one for each permutation in $\mathrm{S}_n$, and this gives rise to a natural embedding of monoids $\mathrm{S}_n \to \mathrm{Set}(X^n, X^n)$ or $\mathrm{S}_n \to \mathrm{Cat}(X^n, X^n)$. We can then use the (left) copower isomorphisms of the given categories to turn these embeddings into maps $\tilde{\beta} : \mathrm{S}_n \times X^n \to X^n$. With this notation, we define an algebra of $O$ as a $G$-operad to be any algebra $X$ of $O$ as an operad, for which the following two composites are equal:
+\begin{eq*} \begin{tikzcd}
+O(n) \times G(n) \times X^n \ar[ddr, "\mathlarger{\cdot} \, \times \mathrm{id}_{X^n}"'] \ar[rr, "\mathrm{id}_{O(n)} \times \pi \times \mathrm{id}_{X^n}"] & & O(n) \times \mathrm{S}_n \times X^n \ar[ddl, "\mathrm{id}_{O(n)} \times \tilde{\beta}"] \\
+& & \\
+& O(n) \times X^n \ar[dd, "\alpha"] & \\
+& & \\
+& X &
+\end{tikzcd} \end{eq*}
+Maps between $G$-operad algebras are just maps between their underlying operad algebras, so the category of $G$-operad algebras for a given $O$ is a subcategory of $O\mathrm{Alg}$, which we will denote by $O_G\mathrm{Alg}$. Generally, the objects of this category will just be referred to as $O$-algebras, with the $G$-operad perspective being implied.
+\end{defn}
+
+So, what are the algebras of an action operad like in this context? Unfortunately, $G_G\mathrm{Alg}$ is even less interesting than $G\mathrm{Alg}$ was; it is simply the category of monoids, $\mathrm{Mon}$. To see this, notice that if we view an action operad $G$ as a $G$-operad with multiplication for its action, then the equivariance condition for an algebra $X$ will become
+\begin{eq*} \begin{array}{rll}
+			\alpha(g;x_1, ..., x_n) & = & \alpha( \, e_n \cdot g \, ; \, x_1, ..., x_n \, ) \\
+			& = & \alpha( \, e_n \, ; \, x_{\pi(g)^{-1}(1)}, ..., x_{\pi(g)^{-1}(n)} \, ) \\
+			& = & x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(n)}
+		\end{array}
+\end{eq*}
+That is, the action $\alpha^X$ is entirely determined by the tensor product of $X$, and as we've already seen that this is unrestrained by the axioms for an operad algebra, so $X$ is just an undecorated monoid. 
+
+However, the 2-category $\mathrm{E}G_G\mathrm{Alg}$ is far more exciting. Sure, the same argument we've just used for $G$ will ensure that the action reduces to the tensor product on objects, but on morphisms the underlying permutative structure $\pi$ will finally come into play. As an example, for the symmetric operad $\mathrm{S}$ we know that any $\mathrm{ES}$-algebra $X$ must contain action morphisms of the form
+\begin{eq*} \begin{array}{rcrcl}
+			\alpha\big( \, e_2 \to (1 \, 2) \, ; \, \mathrm{id}_x, \mathrm{id}_y \, \big) & : & \alpha\big( \, e_2 \, ; \, x, y \, \big) & \to & \alpha\big( \, (1 \, 2) \, ; \, x, y \, \big) \\
+			& : & x \otimes y & \to & y \otimes x
+			\end{array}
+\end{eq*}
+for all objects $x$,$y$. Indeed, it is not to difficult to see that these morphisms are really the symmetries $\beta_{x,y}$ for a strict symmetric monoidal category. For instance, the relation $\beta_{y,x} \circ \beta_{x,y} = \mathrm{id}_{x \otimes y}$ comes from the $\mathrm{S}$-operad algebra equivariance axiom, and the fact that the functor $\alpha$ preserves composition:
+\begin{eq*} \begin{array}{rl}
+			& \alpha\big( \, e_2 \to (1 \, 2) \, ; \, \mathrm{id}_y, \mathrm{id}_x \, \big) \circ \alpha\big( \, e_2 \to (1 \, 2) \, ; \, \mathrm{id}_x, \mathrm{id}_y \, \big) \\[\medskipamount]
+			= & \alpha\big( \, (1 \, 2) \cdot (1 \, 2) \to e_2 \cdot (1 \, 2) \, ; \, \mathrm{id}_y, \mathrm{id}_x \, \big) \circ \alpha\big( \, e_2 \to (1 \, 2) \, ; \, \mathrm{id}_x, \mathrm{id}_y \, \big) \\[\medskipamount]
+			= & \alpha\big( \, (1 \, 2) \to e_2 \, ; \, \mathrm{id}_x, \mathrm{id}_y \, \big) \circ \alpha\big( \, e_2 \to (1 \, 2) \, ; \, \mathrm{id}_x, \mathrm{id}_y \, \big) \\[\medskipamount]
+			= & \alpha\big( \, e_2 \to (1 \, 2) \to e_2 \, ; \, \mathrm{id}_x \circ \mathrm{id}_x, \mathrm{id}_y \circ \mathrm{id}_y \, \big) \\[\medskipamount]
+			= & \alpha( \mathrm{id}_{e_2} ; \mathrm{id}_x, \mathrm{id}_y ) \\
+			= & \mathrm{id}_{\alpha(e_2 ; x, y )} \\
+			= & \mathrm{id}_{x \otimes y}
+			\end{array}
+\end{eq*}
+The questions that should follow from this observation are obvious. What about the braid operad $B$? Are the objects of $\mathrm{E}B_B\mathrm{Alg}$ braided monoidal categories, in the same way that those of $\mathrm{ES}_{\mathrm{S}}\mathrm{Alg}$ are symmetric monoidal? What about the algebras of the ribbon braid operad, what sort of monoidal category are they? And do the $\mathrm{S}$-operad algebras of $\mathrm{ES}$ have any additional structure, other than their symmetries?
+
+It turns out that there is a theorem which answers all of these questions at once, for all possible $G$. To properly state it though, we'll need some new terminology. 
+
+\begin{defn} \label{GRmon} Let a \emph{$(\mathcal{G}, \mathcal{R})$-monoidal category} mean a strict monoidal category $X$, equipped with a set of natural isomorphisms
+\begin{eq*} \mathcal{G} \, = \, \big\{ \, (f; \pi_f) \, : \, x_1 \otimes ... \otimes x_n \xrightarrow{f}  x_{\pi_f^{-1}(1)} \otimes ... \otimes x_{\pi_f^{-1}(n)} \, \big\} \end{eq*}
+which are subject to relations of the form
+\begin{eq*} r \, \, : \, \, (f_{1, 1} \otimes ... \otimes f_{1, k_1}) \circ ... \circ (f_{n, 1} \otimes ... \otimes f_{n, k_n})  \, = \, (f'_{1, 1} \otimes ... \otimes f'_{1, k'_1}) \circ ... \circ (f'_{n', 1} \otimes ... \otimes f'_{n', k'_{n'}}) \end{eq*}
+for each element in the set
+\begin{eq*} \mathcal{R} \, = \, \big\{ \, (r; n, n', \underline{k}, \underline{k'}, \underline{f}, \underline{f'}) \, : \, n, n' \in \mathbb{N}, \, \underline{k} \in \mathbb{N}^n, \, \underline{k'} \in \mathbb{N}^{n'}, \, \underline{f} \in \mathcal{G}^{\Sigma \underline{k}}, \, \underline{f'} \in \mathcal{G}^{\Sigma \underline{k'}} \, \big\} \end{eq*}
+\end{defn}
+
+\begin{defn} \label{Gmon} Let $G$ be an action operad. Then a \emph{$G$-monoidal category} will refer to the notion of $(\mathcal{G}, \mathcal{R})$-monoidal category we get from $G$ by setting
+\begin{eq*} \mathcal{G} \, = \, \big\{ \, \big( \, g \, ; \, \pi(g) \, \big) \, : \, \forall \, g \in G \, \big\} \end{eq*}
+and having $\mathcal{R}$ contain one element $(r; n, n', \underline{k}, \underline{k'}, \underline{g}, \underline{g'})$ for each relation
+\begin{eq*} r \, \, : \, \, (g_{1, 1} \otimes ... \otimes g_{1, k_1}) \cdot ... \cdot (g_{n, 1} \otimes ... \otimes g_{n, k_n})  \, = \, (g'_{1, 1} \otimes ... \otimes g'_{1, k'_1}) \cdot ... \cdot (g'_{n', 1} \otimes ... \otimes g'_{n', k'_{n'}}) \end{eq*}
+satisfied by the action operad $G$.
+\end{defn}
+
+\begin{thm} \label{Gmonthm} For any action operad $G$, the algebras of $\mathrm{E}G$ are precisely the $G$-monoidal categories. Furthermore, for every notion of $(\mathcal{G}, \mathcal{R})$-monoidal categories, there exists some action operad $G$ for which they are equivalent to $G$-monoidal categories, and thus $\mathrm{E}G$-algebras.
+\end{thm} 
+\begin{proof}
+See \cite{operadborel}, Theorem 3.11 and Corollary 3.12.
+\end{proof} 
+
+This powerful result lets us to freely move back and forth between the worlds of action operads and strict monoidal categories, allowing us to reframe our questions about the latter into ones concerning the former. For instance, it is not difficult to see that the action operad corresponding to braided monoidal categories is the braid operad $B$. Thus if we want to describe certain kinds of free braided monoidal category, we can instead choose to look for the same sorts of free $\mathrm{E}B$-algebra. Moreover, this equivalence reveals a way to generate new examples of either structures. Using an eariler example, we know that the ribbon braid groups form an action operad $RB$, and so we can immediately conclude that there exists some notion of ribbon braided monoidal category \cite{ribbon1}, sometimes also known as balanced monoidal categories \cite{graphicalmon}. Conversely, if we had already known about these ribbon categories then we could have surmised from their strict versions that the ribbon braid groups formed an action operad.
+
+Also, \cref{Gmonthm} will lead to a simplification for how we describe the action $\alpha$ of an $\mathrm{E}G$-algebra $X$. First, from now on we will generally only speak of the action as an operation that can be applied to the morphisms of $X$, because while $\alpha$ is really a functor its effect on objects is already covered by any discussion of the tensor product $\otimes$. Secondly, when the $\mathrm{E}G$ coordinate of $\alpha$ contains the unique morphism $g \to h$, we can always use the action of $G$ on $\mathrm{E}G$ to rewrite things so that we have the morphism $e \to hg^{-1}$ instead. We saw this briefly in the symmetric example we looked at, but the definition of $\mathcal{G}$ in \cref{Gmon} along with \cref{Gmonthm} shows that this shift to a single variable will never cause any problems or additional considerations. Thus from now on we will freely identify the morphism $g \to h$ in $\mathrm{E}G$ with the element $hg^{-1}$.
+
+\section{The free $\mathrm{E}G$-algebra on $n$ objects}
+
+From here on out, everything we do in this paper will be geared towards goal of describing the free $\mathrm{E}G$-algebras on $n$ invertible objects, for each action operad $G$. By \cref{Gmonthm}, this will then tell us how to construct the equivalent free structure for whole host of strict monoidal categories. Before we attempt this however, it is crucial that we understand a much simpler case, where we do not require that our objects be invertible.
+
+\begin{defn} Let $G$ be an action operad. Then for any category $X$ and $k \in \mathbb{N}$, we will denote by $\mathrm{E}G(k) \times_{G(k)} X^k$ the coequaliser of the two functors $\mathrm{E}G(k) \times G(k) \times X^k \to \mathrm{E}G(k) \times X^k$ from \cref{Gopalgdef}:
+\begin{eq*} \begin{tikzcd}
+\mathrm{E}G(k) \times G(k) \times X^k \ar[ddr, "\mathlarger{\cdot} \, \times \mathrm{id}_{X^k}"'] \ar[rr, "\mathrm{id}_{\mathrm{E}G(k)} \times \pi \times \mathrm{id}_{X^k}"] & & \mathrm{E}G(k) \times \mathrm{S}_k \times X^k \ar[ddl, "\mathrm{id}_{\mathrm{E}G(k)} \times \tilde{\beta}"] \\
+& & \\
+& \mathrm{E}G(k) \times X^k \ar[dd] & \\
+& & \\
+& \mathrm{E}G(k) \times_{G(k)} X^k &
+\end{tikzcd} \end{eq*}
+\end{defn}
+
+\begin{prop} \label{Gndef} Let $\{ z_1, ..., z_n \}$ be an $n$-object set, which can also be considered as a discrete category. Then the free $\mathrm{E}G$-algebra on $n$ objects is the algebra $\mathbb{G}_n$ whose underlying category is 
+\begin{eq*} \mathbb{G}_n \quad := \quad \coprod_{k \in \mathbb{N}} \, \mathrm{E}G(k) \times_{G(k)} \{ z_1, ..., z_n \}^k \end{eq*}
+where for all $m, k_1, ..., k_m \in \mathbb{N}$, $g \in G(m)$, $x_i \in \{z_1, ..., z_n \}$ the action is given by
+\begin{eq*} \alpha\big( \, g \, ; \, (h_1; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_{k_1}}), \, ..., \, (h_m; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_{k_m}}) \, \big) \, = \, \big( \, \mu(g;h_1, .., h_m) \, ; \, \mathrm{id}_{x_1}, \, ..., \, \mathrm{id}_{x_{k_m}} \, \big) \end{eq*}
+In other words, for any $\mathrm{E}G$-algebra $X$,
+\begin{eq*} \mathrm{E}G_G\mathrm{Alg}(\mathbb{G}_n, X) \quad \cong \quad \mathrm{Cat}(\{ z_1, ..., z_n \}, X) \quad \cong \quad X^n \end{eq*}
+\end{prop}
+ 
+Again, this is something already covered by the work of Gurski \cite{ogge}, so we won't go through all of the details here. The basic idea is that since the actions $\alpha_m : \mathrm{E}G(m) \times X^m \to X$ of any $\mathrm{E}G$-algebra coequalise the diagram from \cref{Gopalgdef}, the universal property of $\mathrm{E}G(k) \times_{G(k)} X^k$ will allow us to factor them uniquely though some $\alpha'$,
+\begin{eq*} \begin{tikzcd}
+\mathrm{E}G(k) \times X^k \ar[dd] \ar[ddrr, "\alpha_k"] & & \\
+& & \\
+\mathrm{E}G(k) \times_{G(k)} X^k \ar[rr, dashed, "\alpha'_k"'] & & X
+\end{tikzcd} \end{eq*}
+This then lets us upgrade any choice $f : \{ z_1, ..., z_n \} \to X$ of $n$ objects from $X$ into an algebra map $\mathbb{G}_n \to X$:
+\begin{eq*} \begin{tikzcd}
+\coprod_{k \in \mathbb{N}} \, \mathrm{E}G(k) \times_{G(k)} \{ z_1, ..., z_n \}^k \ar[rr, "\coprod \mathrm{id} \times f^k"] & & \coprod_{k \in \mathbb{N}} \, \mathrm{E}G(k) \times_{G(k)} X^k \ar[rr, "\coprod \alpha'_k"] & & X
+\end{tikzcd} \end{eq*}
+
+\cref{Gndef} serves as a fairly opaque definition of $\mathbb{G}_n$ at first, so we'll spend a little time now unpacking it. Recall that $\coprod_{k \in \mathbb{N}} \, \mathrm{E}G(k) \times_{G(k)} \{ z_1, ..., z_n \}^k$ is the coequalizer of the maps
+\begin{eq*} \begin{tikzcd}
+\coprod_{k \in \mathbb{N}} \mathrm{E}G(k) \times G(k) \times \{ z_1, ..., z_n \}^k \ar[r, shift left] \ar[r, shift right] & \coprod_{k \in \mathbb{N}} \mathrm{E}G(k) \times \{ z_1, ..., z_n \}^k
+\end{tikzcd} \end{eq*}
+that come from the action of $G(k)$ on $\mathrm{E}G(k)$ by multiplication on the right,
+\begin{eq*} \begin{array}{rll}
+			\mathrm{E}G(k) \times G(k) & \to & \mathrm{E}G(k) \\
+			(g, h) & \mapsto & gh \\
+			( \, !: g \to g', \mathrm{id}_h \, ) & \mapsto & !: gh \to g'h
+		\end{array}
+\end{eq*}
+and the action of $G(k)$ on $\{ z_1, ..., z_n \}^k$ by underlying permutations,
+\begin{eq*} \begin{array}{rll}
+			G(k) \times \{ z_1, ..., z_n \}^k & \to & \{ z_1, ..., z_n \}^k \\
+			( \, h \, ; \, x_1, ..., x_k \, ) & \mapsto & (x_{\pi(h^{-1})(1)}, ..., x_{\pi(h^{-1})(k)}) \\
+			 \, (\mathrm{id}_h \, ; \, \mathrm{id}_{(x_1, ..., x_k)} \, ) & \mapsto & \mathrm{id}_{(x_{\pi(h^{-1})(1)}, ..., x_{\pi(h^{-1})(k)})}
+		\end{array}
+\end{eq*}
+Thus objects in this algebra are equivalence classes of tuples $(g; x_1, ..., x_m)$, for some $g \in G(m)$ and $x_i \in \{z_1, ..., z_n\}$, under the relation
+\begin{eq*} ( \, gh \, ; \, x_1, \, ..., \, x_m \, ) \sim ( \, g \, ; \, x_{\pi(h)^{-1}(1)}, \, ..., \, x_{\pi(h)^{-1}(m)} \, )\end{eq*}
+But we can use this relation to rewrite any $(g;x_1, ..., x_m)$ uniquely in the form $(e_m; x'_1, ..., x'_m) = x'_1 \otimes ... \otimes x'_m$ where $x'_i = x_{\pi(g)(i)}$, and this means that each such equivalence class is just a tensor product for some unique sequence of generators $z_i$. More concretely, we have:
+
+\begin{lem} \label{Gnobj} $\mathrm{Ob}(\mathbb{G}_n)$ is the free monoid on $n$ generators, which is $\mathbb{N}^{\ast n}$, the free product of $n$ copies of $\mathbb{N}$. \end{lem}
+
+Similarly, the morphisms of $\mathbb{G}_n$ are all of the form
+\begin{eq*} (g ; \mathrm{id}_{x_1},...,\mathrm{id}_{x_m}) \, : \, x_1 \otimes ... \otimes x_m \, \to \, x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)} \end{eq*}
+for some $g \in G(m)$ and $x_i \in \{z_1, ..., z_n\}$. However, notice the definition of the action $\alpha$ of $\mathbb{G}_n$, we can rewrite these as
+\begin{eq*} \begin{array}{rll}
+			(g ; \mathrm{id}_{x_1},...,\mathrm{id}_{x_m}) & = & \big( \, \mu(g;e_1, ..., e_1) \, ; \, \mathrm{id}_{x_1},...,\mathrm{id}_{x_m} \, \big) \\
+			& = & \alpha\big( \, g \, ; \, (e_1; \mathrm{id}_{x_1}), \, ..., \, (e_1; \mathrm{id}_{x_m}) \, \big) \\
+			& = & \alpha( g ; \, \mathrm{id}_{(e_1;x_1)}, ..., \mathrm{id}_{(e_1; x_m)} ) \\
+			& = & \alpha( g ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} )
+		\end{array}
+\end{eq*}
+That is, the free $\mathrm{E}G$-algebra $\mathbb{G}_n$ does not have any objects or morphisms that do not arise straightforwardly from the tensor product and action.
+
+\begin{lem} \label{Gnmapsaction} Every morphism of $\mathbb{G}_n$ can be expressed uniquely as an action morphism 
+\begin{eq*} \alpha( \, g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \, : \, x_1 \otimes ... \otimes x_m \, \to \, x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \end{eq*}
+for some $g, g' \in G(m)$ and $x_i \in \{z_1, ..., z_n \}$. \end{lem}
+
+As an immediate consequence of this, the source and target of any given morphism in $\mathbb{G}_n$ must be related to one another via some permutation of the form $\pi(g)$. In other words, the connected components of $\mathbb{G}_n$ will depend upon the underlying permutation operad of $G$, in the following way:
+
+\begin{prop}\label{Gnconcomp} Considered as a monoid under tensor product,
+\begin{eq*} \pi_0(\mathbb{G}_n) \quad = \quad \begin{cases}
+							\quad \mathbb{N}^n & \text{if $G$ is crossed} \\
+							\quad \mathbb{N}^{\ast n} & \text{otherwise}
+							\end{cases}
+ \end{eq*} 
+Also, the canonical homomorphism sending objects in $\mathbb{G}_n$ to their connected component,
+\begin{eq*} [ \, \_ \, ] \, : \, \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n) \end{eq*}
+is the quotient map of abelianisation
+\begin{eq*} \mathrm{ab} \, : \, \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{\mathrm{ab}} \, = \, \mathbb{N}^n \end{eq*}
+when $G$ is crossed, and the identity map $\mathrm{id}_{\mathbb{N}^{*n}}$ otherwise.
+\end{prop}
+\begin{proof}
+By \cref{Gnmapsaction}, all morphisms in $\mathbb{G}_n$ can be written uniquely as $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \{z_1, ..., z_n \}$. Since maps of this form have source $x_1 \otimes ... \otimes x_m$ and target $x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)}$, we see that the only pairs of object which might have a morphism between them are those that can be expanded as tensor products that differ by some permutation. 
+
+If our action operad $G$ is crossed, then for any two objects like this --- say source $x_1 \otimes ... \otimes x_m$ and target $x_{\sigma^{-1}(1)} \otimes ... \otimes x_{\sigma^{-1}(m)}$ for an arbitrary $\sigma \in \mathrm{S}_m$ --- we can always find a map $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ between them, because by \cref{surjortriv} the underlying permutations maps $\pi_m: G(m) \to S_m$ are all surjective and so there must exist at least one $g$ with $\pi(g) = \sigma$. In particular, for any two generating objects $z_i$ and $z_j$of $\mathbb{G}_n$ there must exist at least morphism between $z_i \otimes z_j$ and $z_j \otimes z_i$, and therefore
+\begin{eq*} [z_i] \otimes [z_j] \quad = \quad [z_i \otimes z_j] \quad = \quad [z_j \otimes z_i] \quad = \quad [z_j] \otimes [z_i] \end{eq*}
+Thus the canonical map $[ \, \_ \, ] : \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n)$ is the one that makes the free product of $\mathbb{N}^{*n}$ commutative, that is, the quotient map for the abelianisation $\mathrm{ab} : \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{\mathrm{ab}}$, and so $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$.
+
+Conversely, if $G$ is non-crossed then its underlying permutation operad $\mathrm{im}(\pi)$ is trivial, and so the only morphisms we have in $\mathbb{G}_n$ will be those of the form
+\begin{eq*} \alpha( \, e_m \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \quad = \quad \mathrm{id}_{x_1} \otimes ... \otimes \mathrm{id}_{x_m} \quad = \quad \mathrm{id}_{x_1 \otimes ... \otimes x_m} \end{eq*}
+Therefore the map $[ \, \_ \,]$ just sends each object to its identity morphism, and since that function is one-to-one and onto it follows that
+\begin{eq*} \pi_0(\mathbb{G}_n) \quad = \quad \mathrm{Ob}(\mathbb{G}_n) \quad = \quad \mathbb{N}^{\ast n}, \quad \quad \quad \quad \quad [ \, \_ \,] \quad = \quad \mathrm{id}_{\mathbb{N}^{*n}} \end{eq*}
+by \cref{Gnobj}.
+\end{proof}
+
+\cref{Gconcomp} is not the only way that the behaviour of tthe algebra $\mathbb{G}_n$ is contigent on whether or not $G$ is crossed. A strict monoidal category $X$ is said to be \emph{spacial} if all of its identity morphisms commute with the endomorphisms of the unit object: 
+\begin{eq*} f \otimes \mathrm{id}_x \, = \, \mathrm{id}_x \otimes f, \quad \quad \quad x \in \mathrm{Ob}(X), f \in X(I,I) \end{eq*}
 The motivation for the name `spacial' comes from the context of string diagrams \cite{graphicalmon}. In a string diagram, the act of tensoring two strings together is represented by placing those strings side by side. Since the defining feature of the unit object is that tensoring it with other objects should have no effect, the unit object is therefore represented diagrammatically by the absense of a string. An endomorphism of the unit thus appears as an entity with no input or output strings, detached from the rest of the diagram. In a real-world version of these diagrams, made out of physical strings arranged in real space, we could use this detachedness to grab these endomorphisms and slide them over or under any strings we please, without affecting anything else in the diagram. This ability is embodied algebraically by the equation above, and hence categories which obey it are called `spacial'.
+
+It turns out that the crossedness of an action operad has a direct effect on the spaciality of algebras.
 
 \begin{lem}\label{spacial} If $G$ is a crossed action operad, then all $\mathrm{E}G$-algebras are spacial. \end{lem}
 \begin{proof}
@@ -438,106 +1008,9 @@ Therefore, $h \cdot \mu(e_2; k^{-1}, e_1)$ is exactly the $g$ we were looking fo
 		\implies \quad \alpha( \, e_2 \, ; \, \mathrm{id}_x, \, f \, ) & = & \alpha( \, e_2 \, ; \, f, \, \mathrm{id}_I \, )
 		\end{array}
 \end{eq*}
-\end{proof}
-
-\section{The free $\mathrm{E}G$-algebra on $n$ objects} 
-
-Our goal for the next few chapters will be to understand the free braided monoidal category on an finite number of invertible objects. Thus, now that we have a firm grasp on action operads and their algebras, we should begin to think about the simpler free constructions they can form. We will use this extensively when calculating the invertible case later on. 
-
-In the paper \cite{operadborel}, Gurski establishes how to contruct free $G$-operad algebras through the use of the monad $\mathrm{E}G$. What follows in this section is a quick summary of the results which will be useful for our purposes. For a more detailed treatment please refer to \cite{operadborel}.
-
-\begin{prop}\label{freealg} There exists a free $\mathrm{E}G$-algebra on $n$ objects. That is, there is an $\mathrm{E}G$-algebra $Y$ such that for any other $\mathrm{E}G$-algebra $X$, we have an isomorphism of categories
-\begin{eq*} \mathrm{E}G\mathrm{Alg}_S(Y, X) \cong X^n \end{eq*}
-\end{prop}
-\begin{proof}
-There is an obvious forgetful 2-functor \( U: \mathrm{E}G\mathrm{Alg}_S \to \mathrm{Cat}\) sending $\mathrm{E}G$-algebras to their underlying categories. $U$ has a left adjoint, which we call the free 2-functor \( F : \mathrm{Cat} \to \mathrm{E}G\mathrm{Alg}_S \) adjoint to it. It follows immediately that
-\begin{eq*}\begin{array}{rll}
-		U(X)^n & = & \mathrm{Cat}(\{z_1, ..., z_n\}, U(X) ) \\
-		& \cong & \mathrm{E}G\mathrm{Alg}_S( F(\{z_1, ..., z_n\}), X) 
-		\end{array}
-\end{eq*}
-where $\{z_1, ..., z_n\}$ is any set with $n$ distinct elements. Since $X$ and $U(X)$ are obviously isomorphic as categories, this shows that $F(\{z_1, ..., z_n\})$ is the free algebra on $n$ objects as required. 
-\end{proof}
-
-\begin{defn}\label{Gndef} Let $\{ z_1, ..., z_n \}$ be an $n$-object set, which we will also consider as a discrete category. Then we will denote by $\mathbb{G}_n$ the $\mathrm{E}G$-algebra whose underlying category is $\mathrm{E}G( \{ z_1, ..., z_n \})$ and whose action
-\begin{eq*} \alpha : \mathrm{E}G\big( \, \mathrm{E}G( \{ z_1, ..., z_n \}) \, \big) \to \mathrm{E}G( \{ z_1, ..., z_n \}) \end{eq*}
-is the appropriate component of the multiplication natural transformation $\mu: \mathrm{E}G \circ \mathrm{E}G \to \mathrm{E}G$ of the 2-monad $\mathrm{E}G$.
-\end{defn}
-
-\begin{thm} $\mathbb{G}_n$ is the free $\mathrm{E}G$-algebra on $n$ objects. That is,
-\begin{eq*}  F(\{z_1, ..., z_n\}) = \mathbb{G}_n \end{eq*}
-\end{thm}
-\begin{proof}
-\end{proof}
-
-\cref{Gndef} is a fairly opaque definition, so we'll spend a little time upacking it. Recall from \cref{monaddef} that $\mathrm{E}G( \{ z_1, ..., z_n \})$ is the coequalizer of the maps
-\begin{eq*} \begin{tikzcd}
-\coprod_{m \geq 0} \mathrm{E}G(m) \times G(m) \times \{ z_1, ..., z_n \}^m \ar[r, shift left] \ar[r, shift right] & \coprod_{m \geq 0} \mathrm{E}G(m) \times \{ z_1, ..., z_n \}^m
-\end{tikzcd} \end{eq*}
-that comes from the action of $G(m)$ on $\mathrm{E}G(m)$ by multiplication on the right,
-\begin{eq*} \begin{array}{rll}
-		\mathrm{E}G(m) \times G(m) & \to & \mathrm{E}G(m) \\
-		(g, h) & \mapsto & gh \\
-		( \, !: g \to g', \mathrm{id}_h \, ) & \mapsto & !: gh \to g'h
-		\end{array}
-\end{eq*}
-and the action of $G(m)$ on $\{ z_1, ..., z_n \}^m$ by permutation,
-\begin{eq*} \begin{array}{rll}
-		G(m) \times \{ z_1, ..., z_n \}^m & \to & \{ z_1, ..., z_n \}^m \\
-		( \, h \, ; \, x_1, ..., x_m \, ) & \mapsto & (x_{\pi(h^{-1})(1)}, ..., x_{\pi(h^{-1})(m)}) \\
-		 \, (\mathrm{id}_h \, ; \, \mathrm{id}_{(x_1, ..., x_m)} \, ) & \mapsto & \mathrm{id}_{(x_{\pi(h^{-1})(1)}, ..., x_{\pi(h^{-1})(m)})}
-		\end{array}
-\end{eq*}
-
-First, objects in this algebra are equivalence classes of tuples $(g; x_1, ..., x_m)$, for $g \in G(m)$ and $x_i \in \{z_1, ..., z_n\}$, under the relation
-\begin{eq*} ( \, gh \, ; \, x_1, \, ..., \, x_m \, ) \sim ( \, g \, ; \, x_{\pi(h)^{-1}(1)}, \, ..., \, x_{\pi(h)^{-1}(m)} \, )\end{eq*}
-Notice that using this relation we can rewrite any object uniquely in the form $[e; x_1, ..., x_m]$ for some $m \in \mathbb{N}$ and $x_i \in \{z_1, ..., z_n\}$. This means that each equivalence class is just the tensor product $x_1 \otimes ... \otimes x_m$ in the underlying monoidal category of $\mathbb{G}_n$, for some unique sequence of generators. That is, we can view the objects of $\mathbb{G}_n$ as elements of the monoid freely generated by each of the $z_i$, or in other words:
-
-\begin{lem} \label{Gnobj} $\mathrm{Ob}(\mathbb{G}_n)$ is the free monoid on $n$ generators, $\mathbb{N}^{\ast n}$, the free product of $n$ copies of $\mathbb{N}$. \end{lem}
-
-Similarly, the morphisms of $\mathbb{G}_n$ are the maps
-\begin{eq*} (! ; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}) : ( g ; x_1, ..., x_m ) \to ( g' ; x_1, ..., x_m )\end{eq*}
-with $g, g' \in G(m)$ and $x_i \in \{z_1, ..., z_n \}$. Using the relation $\sim$ on objects we can rewrite each of these morphisms in the form
-\begin{eq*} [h ; \mathrm{id}_{y_1},...,\mathrm{id}_{y_m}] \, : \, y_1 \otimes ... \otimes y_m \, \to \, y_{\pi(h^{-1})(1)} \otimes ... \otimes y_{\pi(h^{-1})(m)} \end{eq*}
-where
-\begin{eq*} h = g' g^{-1}, \quad \quad y_i = x_{\pi(g^{-1})(i)} \end{eq*}
- The $\mathrm{E}G$-action of $\mathbb{G}_n$ is permutation and tensor product, and the action on morphisms is given by
-\begin{eq*} \alpha( \, g \, ; \, [h_1; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_{m_1}}], \, ..., \, [h_k; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_{m_k}}] \, ) = [ \, \mu(g;h_1, .., h_k) \, ; \, \mathrm{id}_{x_1}, \, ..., \, \mathrm{id}_{x_{m_k}} \, ] \end{eq*}
-Notice that using tensor product notation the object $[e; x]$ is simply $x$, and so $[e; \mathrm{id}_x] = \mathrm{id}_{[e;x]}$ should be written as $\mathrm{id}_x$. Hence by the above $[g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m}]$ is really just $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, and so we have the following:
-
-\begin{lem} \label{Gnmapsaction} Every morphism of $\mathbb{G}_n$ can be expressed uniquely as an action morphism 
-\begin{eq*} \alpha( \, g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \, : \, x_1 \otimes ... \otimes x_m \, \to \, x_{\pi(g)^{-1}(1)} \otimes ... \otimes x_{\pi(g)^{-1}(m)} \end{eq*}
-for some $g, g' \in G(m)$ and $x_i \in \{z_1, ..., z_n \}$. \end{lem}
-
-As an immediate consequence of this, the source and target of a given morphism in $\mathbb{G}_n$ must be related to one another by some permutation of the form $\pi(g)$. In toher words, the connected components of $\mathbb{G}_n$ will depend upon the underlying permutation operad of $G$, in the following way:
-
-\begin{prop}\label{Gnconcomp} Considered as a monoid under tensor product,
-\begin{eq*} \pi_0(\mathbb{G}_n) \quad = \quad \begin{cases}
-							\quad \mathbb{N}^n & \text{if $G$ is crossed} \\
-							\quad \mathbb{N}^{\ast n} & \text{otherwise}
-							\end{cases}
- \end{eq*} 
-Also, the canonical homomorphism sending objects in $\mathbb{G}_n$ to their connected component,
-\begin{eq*} [ \, \_ \, ] \, : \, \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n) \end{eq*}
-is the quotient map of abelianisation
-\begin{eq*} \mathrm{ab} \, : \, \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{\mathrm{ab}} \, = \, \mathbb{N}^n \end{eq*}
-when $G$ is crossed, and the identity map $\mathrm{id}_{\mathbb{N}^{*n}}$ otherwise.
-\end{prop}
-\begin{proof}
-By \cref{Gnmapsaction}, all morphisms in $\mathbb{G}_n$ can be written uniquely as $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$, for some $g \in G(m)$ and $x_i \in \{z_1, ..., z_n \}$, the set of generators of $\mathbb{N}^{*n}$. Since maps of this form have source $x_1 \otimes ... \otimes x_m$ and target $x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)}$, we see that the only pairs of object which might have a morphism between them are those that can be expanded as tensor products that differ by some permutation. 
-
-If our action operad $G$ is crossed, then for any two objects like this --- say source $x_1 \otimes ... \otimes x_m$ and target $x_{\sigma^{-1}(1)} \otimes ... \otimes x_{\sigma^{-1}(m)}$ for an arbitrary $\sigma \in \mathrm{S}_m$ --- we can always find a map $\alpha(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ between them, because by \cref{surjortriv} the underlying permutations maps $\pi_m: G(m) \to S_m$ are all surjective and so there must exist at least one $g$ with $\pi(g) = \sigma$. In particular, for any two generating objects $z_i$ and $z_j$of $\mathbb{G}_n$ there must exist at least morphism between $z_i \otimes z_j$ and $z_j \otimes z_i$, and therefore
-\begin{eq*} [z_i] \otimes [z_j] \quad = \quad [z_i \otimes z_j] \quad = \quad [z_j \otimes z_i] \quad = \quad [z_j] \otimes [z_i] \end{eq*}
-Thus the canonical map $[ \, \_ \, ] : \mathrm{Ob}(\mathbb{G}_n) \to \pi_0(\mathbb{G}_n)$ is the one that makes the free product of $\mathbb{N}^{*n}$ commutative, that is, the quotient map for the abelianisation $\mathrm{ab} : \mathbb{N}^{*n} \to (\mathbb{N}^{*n})^{\mathrm{ab}}$, and so $\pi_0(\mathbb{G}_n) = \mathbb{N}^n$.
-
-Conversely, if $G$ is non-crossed then its underlying permutation operad $\mathrm{im}(\pi)$ is trivial, and so the only morphisms we have in $\mathbb{G}_n$ will be those of the form
-\begin{eq*} \alpha( \, e_m \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \quad = \quad \mathrm{id}_{x_1} \otimes ... \otimes \mathrm{id}_{x_m} \quad = \quad \mathrm{id}_{x_1 \otimes ... \otimes x_m} \end{eq*}
-Therefore the map $[ \, \_ \,]$ just sends each object to its identity morphism, and since that function is one-to-one and onto it follows that
-\begin{eq*} \pi_0(\mathbb{G}_n) \quad = \quad \mathrm{Ob}(\mathbb{G}_n) \quad = \quad \mathbb{N}^{\ast n}, \quad \quad \quad \quad \quad [ \, \_ \,] \quad = \quad \mathrm{id}_{\mathbb{N}^{*n}} \end{eq*}
-by \cref{Gnobj}.
 \end{proof} 
 
-Finally, \cref{Gnmapsaction} also gives us a complete description of how the morphisms of $\mathbb{G}_n$ interact under tensor product, though we need a little new terminology in order to express it properly.
+Finally, \cref{Gnmapsaction} also gives a complete description of how the morphisms of $\mathbb{G}_n$ interact as a monoid under tensor product, though to best express this we need a bit of new terminology.
 
 \begin{defn} Let $G$ be an action operad. Then we will also the notation $G$ to denote the \emph{underlying monoid} of this action operad. This is the natural way to consider $G$ as a monoid, with its element set being all of its elements together, $\bigsqcup_m G(m)$, and with tensor product as its binary operation, $g \otimes h = \mu(e_2; g, h)$.
 

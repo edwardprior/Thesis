@@ -1,4 +1,5 @@
 \chapter{Morphisms of free invertible algebras}
+\label{morphisms}
  
 The goal of this chapter will be to show that we can reconstruct all of the morphisms of $L\mathbb{G}_n$ from the abelian group $\mathrm{M}(L\mathbb{G}_n)^{\mathrm{gp, ab}}$, and therefore that we can actually use the adjunction from \cref{Moradj} to help find a description of the free $\mathrm{E}G$-algebra on $n$ invertible objects. 
 
@@ -693,7 +694,7 @@ which we proved back in \cref{Zmor2}. Since the bottom-right inclusion completes
 
 Of course, $\rho$ was an arbitrary permutation-preserving map $\mathbb{N}^{\ast n} \times_{\mathbb{N}} \mathbb{N}^{\ast n} \to G$, chosen using the freeness of its source monoid. Thus if we wanted to we could just pick the same element $\rho(2) \in \pi^{-1}((1 \, 2))$ to act as $\rho(z_i \otimes z_j, z_j \otimes z_i)$ for all $i, j$, and for simplicity's sake we will indeed assume this from now on.
 
-\section{Group completion of action operads}
+\section{Freely generated action operads}
 
 The next group we are interested in understanding a little better is $\mathrm{M}(\mathbb{G}_{2n})^{\mathrm{gp},\mathrm{ab}}$. Per \cref{}, the operations needed to produce this group out of $\mathrm{Mor}(\mathbb{G}_{2n}) = G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}$ can be done in any order we choose, and so we will save the identification of $\otimes$ and $\circ$ until last. This will let us keep the tensor product as simple as possible whilst we are in the process of group completing and abelianising it.
 
@@ -756,8 +757,6 @@ which is left-cancellativity. Right-cancellativity follows from quasi-regularait
 \end{cor}
 
 From now on we'll just write $g$ for $\mathrm{gp}(g)$ and $g^*$ for $\mathrm{gp}(g)^*$, in order to save on space.
-
-\section{Freely generated action operads}
 
 Knowing that the monoid $G \times_{\mathbb{N}} \mathbb{N}^{\ast n}$ always has a particularly well-behaved group completion is a good first step towards finding a description for said completion. However, it is worth noting that \cref{gpcomp} is true for all action operads $G$, which is more than we really need. After all, the only reason we care about $\mathrm{M}(\mathbb{G}_{2n})^{\mathrm{gp},\mathrm{ab}}$ is that we know from \cref{Zmor} that it is crucial to understanding the morphisms of \emph{crossed} action operads. Thus it would be nice if we could use some consequence of crossed-ness to tell us even more about the inclusion map $\mathrm{gp} : G \times_{\mathbb{N}} \mathbb{N}^{\ast n} \to {(G \times_{\mathbb{N}} \mathbb{N}^{\ast n})}^{\mathrm{gp}}$.
 
