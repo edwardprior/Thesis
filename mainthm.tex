@@ -11,7 +11,7 @@ At this stage, there is only one part of this $\mathrm{E}G$-algebra that we have
 \begin{eq*} \alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m} \, ) \quad = \quad \mathrm{id}_{x_1 \otimes ... \otimes x_m} \end{eq*}
 \end{lem}
 \begin{proof}
-In order for $\alpha_{L\mathbb{G}_n}$ to be a well-defined $\mathrm{E}G$-action, the map $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ needs to have source $x_1 \otimes ... \otimes x_m$ and target $x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)}$, where by noncrossedness of $G$ the latter is also $x_1 \otimes ... \otimes x_m$. But we know from \cref{trivendo} that all morphisms in this $L\mathbb{G}_n$ are identities, and hence we get the result.
+In order for $\alpha_{L\mathbb{G}_n}$ to be a well-defined $\mathrm{E}G$-action, the map $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_m})$ needs to have source $x_1 \otimes ... \otimes x_m$ and target $x_{\pi(g^{-1})(1)} \otimes ... \otimes x_{\pi(g^{-1})(m)}$, where by non-crossedness of $G$ the latter is also $x_1 \otimes ... \otimes x_m$. But we know from \cref{trivendo} that all morphisms in this $L\mathbb{G}_n$ are identities, and hence we get the result.
 \end{proof}
 
 For crossed $G$, things are more complicated. What we need to do is employ the trick that was previously mentioned in \cref{actmorLGn}, where we exploit the surjectivity of the algebra map $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$. This will allow us to express $\alpha_{L\mathbb{G}_n}$ in terms of the action $\alpha_{\mathbb{G}_{2n}}$. 
@@ -49,7 +49,7 @@ Firstly, by the rules governing $\mathrm{E}G$-actions and \cref{tenscomp}, we kn
 \end{eq*}
 Since we already understand tensor products of objects and unit endomorphisms, we now only need to find the action morphisms on identities. Moreover, we know that the source and target of $\alpha_{L\mathbb{G}_n}(g; \mathrm{id}_{y_1}, ..., \mathrm{id}_{y_m})$ have to be $y_1 \otimes ... \otimes y_m$ and $y_{\pi(g^{-1})(1)} \otimes ... \otimes y_{\pi(g^{-1})(m)}$ respectively, so to see this morphism as an element of the monoid
 \begin{eq*} \mathrm{Mor}(L\mathbb{G}_n) \quad \cong \quad (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I,I) \end{eq*}
-all that is left to understand is its projection onto the unit endormorphisms.
+all that is left to understand is its projection onto the unit endomorphisms.
 
 Now, recall that $q: \mathbb{G}_{2n} \to L\mathbb{G}_n$ is a surjective map of $\mathrm{E}G$-algebras, so that for any $f_i \in \mathrm{Mor}(L\mathbb{G}_{n})$ there exist $f'_i \in \mathrm{Mor}(\mathbb{G}_{2n})$ with $q(f'_i) = f_i$, and hence
 \begin{eq*} q\big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, f'_1, ..., f'_m \, ) \, \big) \quad = \quad \alpha_{L\mathbb{G}_n}( \, g \, ; \, f_1, ..., f_m \, ) \end{eq*}
@@ -61,16 +61,16 @@ But $p_I \circ q$ is a map that can be described in a different way. Consider th
 & & \mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{ab}} \ar[d] \ar[rr] & & \bigquotient{\mathrm{Mor}(L\mathbb{G}_{n})^{\mathrm{ab}}}{(s \times t)(L\mathbb{G}_n)^{\mathrm{ab}}} \ar[d, equals] \\
 \mathrm{M}(\mathbb{G}_{2n})^{\mathrm{gp},\mathrm{ab}} \ar[rr, "\mathrm{M}(q)^{\mathrm{gp},\mathrm{ab}}"] & & \mathrm{M}(L\mathbb{G}_n)^{\mathrm{gp},\mathrm{ab}} \ar[rr] & & \bigquotient{\mathrm{M}(L\mathbb{G}_{n})^{\mathrm{gp}, \mathrm{ab}}}{\mathbb{Z}^{{n}\choose{2}}}
 \end{tikzcd} \end{eq*}
-where all unlabelled arrows are the appriate quotient maps. The region on the left commutes by naturality of the adjoint functor $\mathrm{M}(\, \_ \,)^{\mathrm{gp},\mathrm{ab}}$, and the bottom-right square uses the fact that
+where all unlabelled arrows are the appropriate quotient maps. The region on the left commutes by naturality of the adjoint functor $\mathrm{M}(\, \_ \,)^{\mathrm{gp},\mathrm{ab}}$, and the bottom-right square uses the fact that
 \begin{eq*} \begin{array}{rllll}
 			\bigquotient{\mathrm{Mor}(L\mathbb{G}_{n})^{\mathrm{ab}}}{(s \times t)(L\mathbb{G}_n)^{\mathrm{ab}}} & = & \frac{ \displaystyle  \left(\mathrm{Mor}(L\mathbb{G}_{n})^{\mathrm{ab}}/\mathrm{Ob}(L\mathbb{G}_{n})^{\mathrm{ab}} \right)}{ \displaystyle \left( (s \times t)(L\mathbb{G}_n)^{\mathrm{ab}}/\mathrm{Ob}(L\mathbb{G}_{n})^{\mathrm{ab}} \right)} & = & \bigquotient{\mathrm{M}(L\mathbb{G}_{n})^{\mathrm{gp}, \mathrm{ab}}}{\mathbb{Z}^{{n}\choose{2}}}
 		\end{array}
 \end{eq*}
-As for the square on the top-right, remember that our product description of morphisms of $L\mathbb{G}_n$ came from a split extension of groups
+As for the square on the top-right, remember that the split extension of groups
 \begin{eq*} \begin{tikzcd}
 L\mathbb{G}_n(I,I) \ar[r, hookrightarrow] & \mathrm{Mor}(L\mathbb{G}_n) \ar[r, shift left, "s \times t"] & (s \times t)(L\mathbb{G}_n) \ar[l, shift left, hookrightarrow, ""]
 \end{tikzcd} \end{eq*}
-Thus by the proof of \cref{splitex}, the specific isomorphism we are using is
+was the source of our product description of morphisms of $L\mathbb{G}_n$. Thus by the proof of \cref{splitex}, the specific isomorphism we are using is
 \begin{eq*} \begin{array}{rll}
 			\mathrm{Mor}(L\mathbb{G}_n) & \cong & (s \times t)(L\mathbb{G}_n) \times L\mathbb{G}_n(I,I) \\
 			f & \mapsto & \Big( \, s(f), \, t(f), \, f \otimes i\big( \, s(f), t(f) \, \big)^* \, \Big)
@@ -84,38 +84,31 @@ and so the projection $p_I$ is given by tensoring a morphism with the inverse of
 			& = & p_I(f)
 		\end{array}
 \end{eq*}
-Here we've used that fact that the equivalence classe of a unit endomorphism under the quotient map $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp},\mathrm{ab}} \to \mathrm{Mor}(L\mathbb{G}_{n})^{\mathrm{ab}}/(s \times t)(L\mathbb{G}_n)^{\mathrm{ab}} = L\mathbb{G}_n(I,I)$ is just the same endomorphism again, and also that $L\mathbb{G}_n(I,I)^{\mathrm{ab}} = L\mathbb{G}_n(I,I)$. 
+Here we've used that fact that the equivalence class of a unit endomorphism under the quotient map $\mathrm{Mor}(L\mathbb{G}_n)^{\mathrm{gp},\mathrm{ab}} \to \mathrm{Mor}(L\mathbb{G}_{n})^{\mathrm{ab}}/(s \times t)(L\mathbb{G}_n)^{\mathrm{ab}} = L\mathbb{G}_n(I,I)$ is just the same endomorphism again, and also that $L\mathbb{G}_n(I,I)^{\mathrm{ab}} = L\mathbb{G}_n(I,I)$. 
 
-Thus all of the regions within the diagram do commute, and hence so will the outside. That is, $p_I \circ q$ is equal to the composite running along the left and bottom edges, which is what we called $\Psi$. This means that the projection onto $L\mathbb{G}_n(I,I)$ of our action on identities is
+Thus all of the regions within the diagram commute, and hence so will the outside. That is, $p_I \circ q$ is equal to the composite along the left and bottom edges, which is $\Psi$. This means that the projection onto $L\mathbb{G}_n(I,I)$ of our action on identities is
 \begin{eq*} \begin{array}{rll}
 			p_I \big( \, \alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{y_1}, ..., \mathrm{id}_{y_m} \, ) \, \big) & = &  p_I q\big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \big) \\
 			& = & \Psi \big( \, \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \big)
 		\end{array}
 \end{eq*}
-and so the whole action on identities is given by
-\begin{eq*} \begin{array}{c}
-			\alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{y_1}, ..., \mathrm{id}_{y_m} \, ) \\
-			= \\
-			\big( \, \, y_1 \otimes ... \otimes y_m, \quad y_{\pi(g^{-1})(1)} \otimes ... \otimes y_{\pi(g^{-1})(m)}, \quad \Psi \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \, \big)
-		\end{array}
-\end{eq*}
-Therefore in the more general case, the action of $L\mathbb{G}_n$ is given by
+and therefore the action of $L\mathbb{G}_n$ is given by
 \begin{eq*} \begin{array}{c}
 			\alpha_{L\mathbb{G}_n}\big( \, g \, ; \, (x_1, y_1, h_1), ..., (x_m, y_m, h_m) \, \big) \\
 			= \\
-			\big( \, \bigotimes_i y_i, \, \bigotimes_i y_{\pi(g^{-1})(i)}, \, \Psi \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \big) \otimes \, \mathrm{id}_{\otimes_i y_i}^* \otimes ( \, \bigotimes_i x_i, \, \bigotimes_i y_i, \, \bigotimes_i h_i \, ) \\
+			\alpha_{L\mathbb{G}_n}( \, g \, ; \, \mathrm{id}_{y_1}, ..., \mathrm{id}_{y_m} \, ) \circ \, \bigotimes_i (x_i, y_i, h_i) \\
 			= \\
-			\big( \, \, \bigotimes_i y_i, \quad \bigotimes_i y_{\pi(g^{-1})(i)}, \quad \Psi \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \, \big) \\
-			\otimes \, \, ( \, \bigotimes_i y_i, \, \bigotimes_i y_i, \, \mathrm{id}_I \, )^* \, \otimes \, ( \, \bigotimes_i x_i, \, \bigotimes_i y_i, \, \bigotimes_i h_i \, ) \\
+			\big( \, \bigotimes_i y_i, \, \bigotimes_i y_{\pi(g^{-1})(i)}, \, \Psi \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, ) \, \big) \otimes \, \mathrm{id}_{\otimes_i y_i}^* \otimes ( \, \bigotimes_i x_i, \, \bigotimes_i y_i, \, \bigotimes_i h_i \, ) \\
 			= \\
 			\big( \, \, \bigotimes_i x_i, \quad \bigotimes_i y_{\pi(g^{-1})(i)}, \quad \Psi \alpha_{\mathbb{G}_{2n}}( \, g \, ; \, \mathrm{id}_{q^{-1}(y_1)}, ..., \mathrm{id}_{q^{-1}(y_m)} \, \, ) \, \otimes \, (\bigotimes_i h_i) \, \big) 
 		\end{array}
 \end{eq*}
+as required.
 \end{proof}
 
 \section{A full description of $L\mathbb{G}_n$}
 
-With this last proposition proven, the results in this paper now collectively describe how to construct the free $\mathrm{E}G$-algebras on $n$ invertible objects for most values of $G$. However, since this characterization was discovered by us in such a piecemeal fashion, we will now restate everything in one place, for ease of reading. We'll begin with the uncrossed case, or as much of it as we were able to draw a complete conclusion about.
+With this last proposition proven, the results in this paper now collectively describe how to construct the free $\mathrm{E}G$-algebras on $n$ invertible objects for most values of $G$. However, since this characterization was discovered by us in such a piecemeal fashion, we will now restate everything in one place, for ease of reading. We'll begin with the non-crossed case, or as much of it as we were able to draw a complete conclusion about.
 
 \begin{thm} \label{freeinvalgG1} Let $G$ be a $G(1)$-generated action operad. Then the free $\mathrm{E}G$-algebra on $n$ invertible objects is just the discrete category
 \begin{eq*} L\mathbb{G}_n \quad = \quad \mathbb{Z}^{\ast n} \end{eq*}
@@ -131,7 +124,7 @@ It is a shame that we were not able to find a formulation for uncrossed $L\mathb
 \begin{thm}\label{freeinvalgc} Let $G$ be a crossed action algebra, and let $G'$ be the action operad defined by $G'(m) := G(m)/G(0)$. Choose a subset $\mathcal{G}$ that generates $G'$ under a combination of tensor product and group multiplication, which itself has subsets $\mathcal{G}_m := \mathcal{G} \, \cap \, G'(m)$. Then denote by $A$ the abelian group obtained from the free abelian group 
 \begin{eq*} \mathrm{F}( \mathcal{G} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n}) \quad = \quad \mathbb{Z}^{2n|\mathcal{G}_1| + (2n)^2|\mathcal{G}_2| + ...} \end{eq*}
 via the following steps:
-\begin{enumerate}
+\begin{enumerate}[leftmargin=*]
 \item For all $g, g' \in G(m)$ and $w \in \mathbb{N}^{\ast 2n}$ with $|w| = m$, quotient out by the relation 
 \begin{eq*} (g, w) \, \otimes \, \big( \, g', \pi(g^{-1})(w) \, \big) \quad \sim \quad (g \cdot g', w) \end{eq*}
 \item Quotient out by the subgroup $\Delta$, which is generated by the equivalence classes of elements of the form
@@ -142,19 +135,17 @@ via the following steps:
 		\end{array} 
 \end{eq*}
 where $g \in G(m)$, the $x_i$ are generators of $\mathbb{N}^{\ast 4n}$, and for all $1 \le i \le n$,
-\begin{eq*} \begin{array}{rclcrcl}
-			\tilde{\delta}(z_i) & = & z_i, & \quad \quad & \tilde{I}(z_i) & = & z_i, \\
-			\tilde{\delta}(z_{n+i}) & = & z_{n+i}, & \quad \quad & \tilde{I}(z_{n+i}) & = & z_{n+i}, \\
-			\tilde{\delta}(z_{2n+i}) & = & z_i \otimes z_{n+i}, & \quad \quad & \tilde{I}(z_{2n+i}) & = & I,\\
-			\tilde{\delta}(z_{3n+i}) & = & z_{n+i} \otimes z_i & \quad \quad \quad \quad & \tilde{I}(z_{3n+i}) & = & I
-		\end{array}
+\begin{eq*} \begin{array}{rclcrclcrclcrcl}
+			\tilde{\delta}(z_i) & = & z_i, & & \tilde{\delta}(z_{2n+i}) & = & z_i \otimes z_{n+i}, & & \tilde{I}(z_i) & = & z_i, & &\tilde{I}(z_{2n+i}) & = & I,\\
+			\tilde{\delta}(z_{n+i}) & = & z_{n+i}, &  & \tilde{\delta}(z_{3n+i}) & = & z_{n+i} \otimes z_i & & \tilde{I}(z_{n+i}) & = & z_{n+i}, & & \tilde{I}(z_{3n+i}) & = & I
+			 \end{array}
 \end{eq*} 
 \item Choose any $\rho(2) \in \pi^{-1}((1 \, 2))$, and then quotient out by the $\mathbb{Z}^{{n}\choose{2}}$ subgroup generated by the equivalence classes of the elements 
 \begin{eq*} \big( \, \rho(2) \, ; \, z_i, z_j \, \big), \quad \quad 1 \le i < j \le n \end{eq*}
 \end{enumerate}
 Also, denote by $\Psi: G \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \to A$ the corresponding quotient map. Then the free $\mathrm{E}G$-algebra on $n$ invertible objects is the category
 \begin{eq*} L\mathbb{G}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}A \end{eq*}
-equipped with a tensor product given by componentwise monoid multiplication,
+equipped with a tensor product given by component-wise monoid multiplication,
 \begin{eq*} (x', y' ,h') \otimes (x, y, h) \, = \, ( \, x' \otimes x, \, y' \otimes y, \, h'h \, ) \end{eq*}
 and an $\mathrm{E}G$-action given by
 \begin{eq*} \begin{array}{c}
@@ -192,7 +183,7 @@ Even collected all together, \cref{freeinvalgc} is still a fairly opaque result.
 
 \begin{prop} \label{invsymcat} The underlying monoidal category of the free $\mathrm{ES}$-algebra on $n$ invertible objects is
 \begin{eq*} L\mathbb{S}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}\mathbb{Z}_2^{n} \end{eq*}
-with componentwise tensor product.
+with component-wise tensor product.
 \end{prop}
 \begin{proof}
 The symmetric operad has only one nullary operation, $e_0$, the identity permutation on 0 objects, and so the quotient operad $\mathrm{S}/\mathrm{S}_0$ is still just $\mathrm{S}$. Moreover, we saw back in \cref{operad} that the symmetric groups $\mathrm{S}_m$ are generated by the elementary transpositions $(i \, \, \, i+1)$, which in turn are tensor products
@@ -210,7 +201,7 @@ First of all, we need to collapse the composition and tensor product inherited f
 			\implies \quad (e_1; z_i) & \sim & I
 		\end{array}
 \end{eq*}
-and this will allow us to immediately eliminate those elements, leaving the group $\mathbb{Z}^{(2n)^2}$ coming from the $(1 \, 2)$ generators. The effect that collapsing compositon has on these elements will depend on how elementary transpositions interact under group multiplication. This comes down two three conditions from \cref{sympres},
+and this will allow us to immediately eliminate those elements, leaving the group $\mathbb{Z}^{(2n)^2}$ coming from the $(1 \, 2)$ generators. The effect that collapsing composition has on these elements will depend on how elementary transpositions interact under group multiplication. This comes down two three conditions from \cref{sympres},
 \begin{eq*} \begin{array}{rclll}
 			(i \, \, \, i+1)^2 & = & e & & \\
 			(i-1 \, \, \, i)(i \, \, \, i+1)(i-1 \, \, \, i) & = & (i \, \, \, i+1)(i-1 \, \, \, i)(i \, \, \, i+1) & & \\
@@ -222,18 +213,17 @@ The last of these will not induce any new relation on our generators, since they
 for any $i$, and so the second condition is implied by the specific case
 \begin{eq*} (1 \, 2)(2 \, 3)(1 \, 2) \quad = \quad (2 \, 3)(1 \, 2)(2 \, 3) \end{eq*}
 which only produces a commutativity condition on our generators:
-\begin{eq*} \begin{array}{rl}
+\begin{longtable}{RL}
 			& \big( \, (1 \, 2) \, ; \, z_i, z_j \, \big) \, \otimes \, \big( \, (1 \, 2) \, ; \, z_i, z_k \, \big) \, \otimes \, \big( \, (1 \, 2) \, ; \, z_j, z_k \, \big) \\
 			\sim & (e_1; z_k) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_j \, \big) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_k \, \big) \otimes (e_1; z_j) \otimes (e_1; z_i) \otimes \big( \, (1 \, 2) \, ; \, z_j, z_k \, \big)\\
-			\sim & \big( \, (e_1 \otimes (1 \, 2)) \cdot ((1 \, 2) \otimes e_1) \cdot (e_1 \otimes (1 \, 2)) \, ; \, z_i, z_j, z_k \, \big) \\	
+			\sim & \big( \, (e_1 \otimes (1 \, 2)) \cdot ((1 \, 2) \otimes e_1) \cdot (e_1 \otimes (1 \, 2)) \, ; \, z_i, z_j, z_k \, \big) \\
 			= & \big( \, (2 \, 3)(1 \, 2)(2 \, 3) \, ; \, z_i, z_j, z_k \, \big) \\
 			= & \big( \, (1 \, 2)(2 \, 3)(1 \, 2)  \, ; \, z_i, z_j, z_k \, \big) \\
 			= & \big( \, ((1 \, 2) \otimes e_1) \cdot (e_1 \otimes (1 \, 2)) \cdot ((1 \, 2) \otimes e_1) \, ; \, z_i, z_j, z_k \, \big) \\
 			\sim & \big( \, (1 \, 2) \, ; \, z_j, z_k \, \big) \otimes (e_1; z_i) \otimes (e_1; z_j) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_k \, \big) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_j \, \big) \otimes (e_1; z_k) \\
 			\sim & \big( \, (1 \, 2) \, ; \, z_j, z_k \, \big) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_k \, \big) \otimes \big( \, (1 \, 2) \, ; \, z_i, z_j \, \big)
-		\end{array}
-\end{eq*}
-Thus the only restraint we need to impose on our remaining generators is
+\end{longtable}
+Thus the only restraint we need to impose on our remaining generators is the one that comes from the symmetry condition,
 \begin{eq*} \begin{array}{rll}
 			\big( \, (1 \, 2) \, ; \, z_i, z_j \, \big) \, \otimes \, \big( \, (1 \, 2) \, ; \, z_j, z_i \, \big) & \sim & \big( \, (1 \, 2) \cdot (1 \, 2) \, ; \, z_i, z_j \, \big) \\
 			& = & (e_2; z_i, z_j) \\
@@ -272,7 +262,7 @@ and so the underlying monoidal category we are looking for is
 \begin{eq*} L\mathbb{S}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}\mathbb{Z}_2^{n} \end{eq*}
 \end{proof} 
 
-If we are to understand $L\mathbb{S}_n$'s role as a \emph{symmetric} monoidal category, we now just need to use the rest of \cref{freeinvalgc} to find its $\mathrm{ES}$-action. This operation too is incredibly simple.
+If we are to understand $L\mathbb{S}_n$'s role as a \emph{symmetric} monoidal category, we now just need to use the rest of \cref{freeinvalgc} to find its $\mathrm{ES}$-action, which will dictate which morphisms act as the various symmetries $\beta_{x, y}$. However, this operation too is incredibly simple.
 
 \begin{prop} The action of $L\mathbb{S}_n$ is fully determined by the values
 \begin{eq*} \alpha\big( \, (1 \, 2) \, ; \, \mathrm{id}_{z_i}, \mathrm{id}_{z_j} \, \big) \quad = \, 
@@ -299,11 +289,11 @@ for all morphisms $f_i: x_i \to y_i$, and
 			= & \alpha\big( \, \mu(g; e_1, ..., e_1, e_2, e_1, ..., e_1) \, ; \, \mathrm{id}_{x_1}, ..., \mathrm{id}_{x_{i-1}}, \mathrm{id}_{x_i}, \mathrm{id}_{x'_{i}}, \mathrm{id}_{x_{i+1}}, ..., \mathrm{id}_{x_m} \, \big)
 		\end{array}
 \end{eq*}
-for all elements $g \in G$ and objects $x_1, ..., x_m, x'_i$. Hence we can definitely recover all values of $\alpha_{\mathbb{S}_{2n}}$ from just those on identities morphisms, and more specifically identities of generators and their inverses. Further, the fact that we can express any permutation $\sigma \in \mathrm{S}$ in terms of $e_1$ and $(1 \, 2)$ via tensor product and group multiplication tells us that the action will also be determined just by its values on the transposition $(1 \, 2)$. Thus the equations in the statement of the proposition really would suffice to fix $\alpha_{L\mathbb{S}_n}$; all we need to do now is prove that they hold. The sources and targets are easy enough to verify, so we'll focus on the $\mathbb{Z}_2^{n}$ coordinate.
+for all elements $g \in G$ and objects $x_1, ..., x_m, x'_i$. Hence we can recover all values of $\alpha_{\mathbb{S}_{2n}}$ from those on identities morphisms, and more specifically identities of generators and their inverses. Further, the fact that we can express any $\sigma \in \mathrm{S}$ in terms of $e_1$ and $(1 \, 2)$ via tensor product and group multiplication tells us that the action will also be determined solely by its values on $(1 \, 2)$. Thus the equations in the statement of the proposition really would suffice to fix $\alpha_{L\mathbb{S}_n}$; all we need now is prove that they hold. The sources and targets are easy enough, so we'll focus on the $\mathbb{Z}_2^{n}$ coordinate.
 
 Per \cref{freeinvalgc}, we will start by forming the action morphisms
 \begin{eq*} \alpha_{\mathbb{S}_{2n}}\big( \, (1 \, 2) \, ; \, \mathrm{id}_{q^{-1}(z_i)}, \mathrm{id}_{q^{-1}(z_j)} \, \big) \quad = \quad \alpha_{\mathbb{S}_{2n}}\big( \, (1 \, 2) \, ; \, \mathrm{id}_{z_i}, \mathrm{id}_{z_j} \, \big) \end{eq*}
-and then find their images under the map $\Psi: \mathrm{S} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \to \mathbb{Z}_2^{n}$. However, we just saw in the proof of \cref{invsymcat} how this monoid homomorphism is built up as a composite
+and then find their images under the map $\Psi: \mathrm{S} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \to \mathbb{Z}_2^{n}$. However, we just saw in \cref{invsymcat} how this homomorphism is built up as a composite
 \begin{eq*} \begin{tikzcd}
  \mathrm{S} \times_{\mathbb{N}} \mathbb{N}^{\ast 2n} \ar[r] & \mathbb{Z}^{2n + (2n)^2} \ar[r] & \mathbb{Z}_2^{2n} \times \mathbb{Z}^{{2n}\choose{2}} \ar[r] & \mathbb{Z}_2^{n} \times \mathbb{Z}^{{n}\choose{2}}  \ar[r] & \mathbb{Z}_2^{n}
 \end{tikzcd} \end{eq*}
@@ -322,16 +312,16 @@ But again, we saw in the proof of \cref{invsymcat} that the second-to-last arrow
 Thus we see that in the free symmetric monoidal category on $n$ invertible objects, every morphism can be expressed as a composite of tensor products of identities and symmetries maps
 \begin{eq*} \beta_{z_i, z_j} \quad = \quad \alpha\big( \, (1 \, 2) \, ; \, \mathrm{id}_{z_i}, \mathrm{id}_{z_j} \, \big) \end{eq*}
 Moreover, two parallel morphisms in $L\mathbb{S}_n$ are equal if and only if the number of symmetries from
-\begin{eq*} \big\{ \, \beta_{z_i, z_i}, \beta_{z_i^*, z_i}, \beta_{z_i, z_i^*}, \beta_{z_i^*, z_i^*} \, \big\} \end{eq*}
+\begin{eq*} \big\{ \, \beta_{z_i, z_i}, \, \beta_{z_i^*, z_i}, \, \beta_{z_i, z_i^*}, \, \beta_{z_i^*, z_i^*} \, \big\} \end{eq*}
 appearing in these two expressions has the same parity, for each $1 \le i \le n$.
 
-\section{Free braided monoidal categories on invertible objects}
+\section{Free braided monoidal categories on invertible objects} 
 
-Having successfully understood the symmetric monoidal case, we should now be ready to tackle the very similar world of braided monoidal categories. Indeed, since the only difference between the braid groups $B_n$ and the symmetry groups $\mathrm{S}_n$ is the presense or absense of a self-invertibility condition, the abelian group $L\mathbb{B}_n(I,I)$ is simply the value we would gotten for $L\mathbb{S}_n(I,I)$ if we had never set $((1 \, 2); z_i, z_j) \otimes ((1 \, 2); z_i, z_j) \sim I$.
+Having successfully understood the symmetric monoidal case, we should now be ready to tackle the very similar world of braided monoidal categories. Indeed, since the only difference between the braid groups $B_n$ and the symmetry groups $\mathrm{S}_n$ is the presence or absence of a self-invertibility condition, the abelian group $L\mathbb{B}_n(I,I)$ is simply the value we would gotten for $L\mathbb{S}_n(I,I)$ if we had never set $((1 \, 2); z_i, z_j) \otimes ((1 \, 2); z_i, z_j) \sim I$.
 
 \begin{prop} \label{invbraidcat} The underlying monoidal category of the free $\mathrm{E}B$-algebra on $n$ invertible objects is
 \begin{eq*} L\mathbb{B}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}(\mathbb{Z}^{n} \times \mathbb{Z}^{{n}\choose{2}} ) \end{eq*}
-with componentwise tensor product.
+with component-wise tensor product.
 \end{prop}
 \begin{proof}
 The beginning of this proof is identical to that of \cref{invsymcat}. First, the braid operad $B$ has $B_0 = \{e_0\}$, so we don't need to take a quotient of our action operad. Next, we know from \cref{braidop} that the braid groups $B_m$ are generated by the elementary braids $b_i$, and these are just tensor products
@@ -347,7 +337,7 @@ Collapsing the composition of $\mathbb{B}_{2n}$ will then let us eliminate any g
 Moreover, the rules governing the elementary braids only state that
 \begin{eq*} b_i b_{i+1} b_i \, = \, b_{i+1} b_i b_{i+1}, \quad \quad \quad \quad \quad b_i b_j \, = \, b_j b_i, \quad i+1 < j \end{eq*}
 both of which just produce commutativity conditions on the remaining generators. In the latter case this should be obvious, and in the former it follows from the fact that
-\begin{eq*} \begin{array}{rl}
+\begin{longtable}{RL}
 			& ( \, b \, ; \, z_i, z_j \, ) \, \otimes \, ( \, b \, ; \, z_i, z_k \, ) \, \otimes \, ( \, b \, ; \, z_j, z_k \, ) \\
 			\sim & (e_1; z_k) \otimes ( \, b \, ; \, z_i, z_j \, ) \otimes ( \, b \, ; \, z_i, z_k \, ) \otimes (e_1; z_j) \otimes (e_1; z_i) \otimes ( \, b \, ; \, z_j, z_k \, )\\
 			\sim & \big( \, (e_1 \otimes b) \cdot (b \otimes e_1) \cdot (e_1 \otimes b) \, ; \, z_i, z_j, z_k \, \big) \\	
@@ -356,8 +346,7 @@ both of which just produce commutativity conditions on the remaining generators.
 			= & \big( \, (b \otimes e_1) \cdot (e_1 \otimes b) \cdot (b \otimes e_1) \, ; \, z_i, z_j, z_k \, \big) \\
 			\sim & ( \, b\, ; \, z_j, z_k \, ) \otimes (e_1; z_i) \otimes (e_1; z_j) \otimes ( \, b \, ; \, z_i, z_k \, ) \otimes ( \, b \, ; \, z_i, z_j \, ) \otimes (e_1; z_k) \\
 			\sim & ( \, b \, ; \, z_j, z_k \, ) \otimes ( \, b \, ; \, z_i, z_k \, ) \otimes ( \, b \, ; \, z_i, z_j \, )
-		\end{array}
-\end{eq*}
+\end{longtable}
 Thus we again arrive at a group $\mathbb{Z}^{(2n)^2}$, whose generators all have the form $(b; z_i, z_j)$. But without the self-invertibility that we had in the symmetric case we are already done with step 1 of \cref{freeinvalgc}, so that
 \begin{eq*} \bigquotient{\mathbb{Z}^{2n + (2n)^2}}{\otimes \sim \circ} \quad = \quad \mathbb{Z}^{(2n)^2} \end{eq*}
 
@@ -437,7 +426,7 @@ What is the significance of this fact? It is not entirely clear, though certainl
 
 \section{Free ribbon braided monoidal categories on invertible objects}
 
-The last action operad whose invertible algebras we will calculate explicitly is the ribbon braid operad, $RB$. The details will prove largely similar to those we saw for the braided case in \cref{invbraidcat}, much as the braided case itself was built upon the symmatric case with a few small changes. 
+The last action operad whose invertible algebras we will calculate explicitly is the ribbon braid operad, $RB$. The details will prove largely similar to those we saw for the braided case in \cref{invbraidcat}, much as the braided case itself was built upon the symmetric case with a few small changes. 
 
 \begin{prop} \label{invribboncat} The underlying monoidal category of the free $\mathrm{E}RB$-algebra on $n$ invertible objects is
 \begin{eq*} L\mathbb{RB}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}(\mathbb{Z}^{n} \times \mathbb{Z}^{n} \times \mathbb{Z}^{{n}\choose{2}}) \end{eq*}
@@ -462,7 +451,6 @@ Since the free $\mathrm{E}B$-algebra $\mathbb{B}_{2n}$ is clearly a subcategory 
 \end{eq*}
 Therefore,
 \begin{eq*} \bigquotient{\mathbb{Z}^{4n + (2n)^2}}{\otimes \sim \circ} \quad = \quad \mathbb{Z}^{2n + (2n)^2} \end{eq*}
-
 The next step is to quotient out by $\Delta$, and again this will at the very least end up imposing all of the same constraints that we had in the braided case, namely
 \begin{eq*} [ \, ( \, b \, ; z_i, z_j \, ) \, ] \quad = \quad [ \, ( \, b \, ; \, z_{n+i}, z_j \, ) \, ]^* \quad = \quad [ \, ( \, b \, ; \, z_i, z_{n+j} \, ) \, ]^* \quad = \quad [ \, ( \, b \, ; \, z_{n+i}, z_{n+j} \, ) \, ]  \end{eq*}
 But we also have those elements of $\Delta$ which come from the twist $t$:
@@ -478,7 +466,7 @@ Quotienting out by these will allow us to express twists on objects with index g
 \begin{eq*} [ \, ( \, t \, ; \, z_{n+i} \, ) \, ] \quad = \quad [ \, ( \, t \, ; \, z_i \, ) \, ]^* \otimes [ \, ( \, b \, ; \, z_i, z_i \, ) \, ]^{\otimes 2} \end{eq*}
 and so overall we will get
 \begin{eq*} \bigquotient{\mathbb{Z}^{2n + (2n)^2}}{\Delta} \quad = \quad \mathbb{Z}^{n + n^2} \end{eq*}
-Then for the $\mathbb{Z}^{{n}\choose{2}}$ subgroup coming from the representatives $\rho(2)$ we can just choose the same one as in the braided case, so that
+Then the $\mathbb{Z}^{{n}\choose{2}}$ coming from $\rho(2)$ will be the same as in the braided case, so that
 \begin{eq*} \bigquotient{\mathbb{Z}^{n + n^2}}{\mathbb{Z}^{{n}\choose{2}}} \quad = \quad \mathbb{Z}^{n + n^2 - {{n}\choose{2}}} \quad = \quad \mathbb{Z}^{n} \times \mathbb{Z}^{n} \times \mathbb{Z}^{{n}\choose{2}} \end{eq*}
 and therefore
 \begin{eq*} L\mathbb{RB}_n \quad = \quad \mathbb{Z}^{\ast n} \times_{\mathbb{Z}^n} \mathbb{Z}^{\ast n}  \, \times \, \mathrm{B}(\mathbb{Z}^{n} \times \mathbb{Z}^{n} \times \mathbb{Z}^{{n}\choose{2}}) \end{eq*}
